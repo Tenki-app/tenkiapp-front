@@ -1,5 +1,9 @@
+import Title from "@/UI/1-atoms/Text/Title";
+
 export default function Home() {
-    return <div>
-        <h1>Hi, this is Tenki</h1>
-    </div>
+    return (
+        <div>
+            <Title>Hi, this is Tenki</Title>
+        </div>
+    );
 }
