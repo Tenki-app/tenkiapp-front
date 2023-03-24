@@ -16,7 +16,7 @@ module.exports = {
                 "champagne-white": "#F7EFD8",
                 "light-blue": "#95F9FF",
                 "bluish-gray": "#556270",
-                "olive-drab": "##6F7C5E",
+                "olive-drab": "#6F7C5E",
                 bronze: "#C5A76E",
                 "dark-gray": "#4C5052",
             },
