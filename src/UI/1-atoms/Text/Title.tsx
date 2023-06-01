@@ -12,7 +12,7 @@ const Title = ({ children, className, type }: typeTitle): JSX.Element => {
         <>
             {
                 type === 'title' &&
-                <h1 className={`text-3xl text-dark-blue font-primary font-bold ${className ?? ''}`}>
+                <h1 className={`${className ?? ''} text-3xl text-dark-blue font-primary font-bold `}>
                         {children}
                 </h1>
             }
