@@ -20,6 +20,9 @@ module.exports = {
                 bronze: "#C5A76E",
                 "dark-gray": "#4C5052",
             },
+            fontFamily: {
+                primary: ["Roboto", "sans-serif"],
+            },
         },
         screens: {
             xxs: "320px",
