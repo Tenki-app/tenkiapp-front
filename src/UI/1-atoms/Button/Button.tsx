@@ -15,13 +15,7 @@ const Button = ({ children, className, onClick, redirect }: typeButtonProps): JS
 
     return (
         <>
-            <button
-                className={`${designButton} ${className ?? ''}`}
-                onClick={onClick}
-            >
-                {children}
-            </button>
-            {redirect && (
+            {redirect ? (
                 <Link
                     className={`${designButton} ${className ?? ''}`}
                     href={redirect}
@@ -29,6 +23,13 @@ const Button = ({ children, className, onClick, redirect }: typeButtonProps): JS
                 >
                     {children}
                 </Link>
+            ) : (
+                <button
+                    className={`${designButton} ${className ?? ''}`}
+                    onClick={onClick}
+                >
+                    {children}
+                </button>
             )}
         </>
     );
