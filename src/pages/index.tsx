@@ -3,9 +3,9 @@ import { Title }  from "@/UI/1-atoms/Text/Title";
 
 export default function Home() {
     return (
-        <div>
+        <div className='bg-champagne-white'>
             <Title type='title'>Title</Title>
-            <Input className='' type="text" text={'Hoolaa'} />
+            <Input className='' type="text" text={'Escribe tu usuario...'} />
             <Title type='subtitle'>Subtitle</Title>
 
         </div>
