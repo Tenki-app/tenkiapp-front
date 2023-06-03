@@ -19,6 +19,7 @@ module.exports = {
                 "olive-drab": "#6F7C5E",
                 bronze: "#C5A76E",
                 "dark-gray": "#4C5052",
+                "dark-blue-transparency": "rgba(24, 36, 56, 0.65)",
             },
             fontFamily: {
                 primary: ["Roboto", "sans-serif"],
