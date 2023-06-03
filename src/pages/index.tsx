@@ -1,5 +1,6 @@
-import { Title }  from "@/UI/1-atoms/Text/Title";
-import TenkiLogo from "@/svg/theme/tenkiLogo.svg";
+import { Title } from '@/UI/1-atoms/Text/Title';
+import { Text } from '@/UI/1-atoms/Text/Text';
+import TenkiLogo from '@/svg/theme/tenkiLogo.svg';
 
 export default function Home() {
     return (
