@@ -11,10 +11,10 @@ import InProgressIcon from '@/svg/task/inProgressIcon.svg';
 
 const StateDropdown = (): JSX.Element => {
     const iconStyles = 'w-[25px] h-[25px]';
-    const optionStyles = 'flex';
+    const optionStyles = 'p-[10px] w-full flex option-styles';
     const textStyles = 'ml-[10px]';
     return (
-        <div className='flex flex-col justify-between border-2 border-dark-blue rounded-lg w-[200px] h-[130px] p-[10px]'>
+        <div className='flex flex-col justify-between border-2 border-dark-blue rounded-lg w-[200px] h-[150px]'>
             <div className={optionStyles}>
                 <FinishIcon className={iconStyles} />
                 <Text className={textStyles}>Finalizado</Text>
