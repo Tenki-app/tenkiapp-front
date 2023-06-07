@@ -7,11 +7,11 @@ const Login = () => {
         <div className='text-center flex flex-col items-center'>
             <TenkiLogo className='w-[140px] h-[170px] text-dark-blue' />
             <Input
-                placeholder='Escribe tu usuario...'
+                text='Escribe tu usuario...'
                 className='mb-8'
             />
             <Input
-                placeholder='Escribe tu contraseña...'
+                text='Escribe tu contraseña...'
                 className='mb-12'
             />
             <Button>Iniciar sesión</Button>
