@@ -9,27 +9,33 @@ import type { typesFormValidations } from '@/lib/types/form';
 export type typeInputFormProps = {
     name: string;
     formValidations?: typesFormValidations;
-    className?: string;
+    designContainer?: string;
     placeholder?: string;
     designErrorMessage?: string;
     type?: 'input' | 'textarea';
     icon?: ReactNode;
 };
 
-const InputForm = ({ name, formValidations, className, placeholder, designErrorMessage, type = 'input', icon }: typeInputFormProps): JSX.Element => {
+const InputForm = ({
+    name,
+    formValidations,
+    designContainer,
+    placeholder,
+    designErrorMessage,
+    type = 'input',
+    icon,
+}: typeInputFormProps): JSX.Element => {
     const {
         register,
         formState: { errors },
     } = useFormContext();
 
     return (
-        <div>
+        <div className={`${designContainer ?? ''}`}>
             {type === 'input' && (
                 <div className='relative'>
                     <input
-                        className={`text-xl text-gray w-full border-b-[2px] focus:outline-none border-b-rounded border-dark-blue-transparency bg-transparent placeholder:text-dark-blue-transparency font-medium ${
-                            className ?? ''
-                        }`}
+                        className={`text-xl text-gray w-full border-b-[2px] focus:outline-none border-b-rounded border-dark-blue-transparency bg-transparent placeholder:text-dark-blue-transparency font-medium`}
                         placeholder={placeholder}
                         {...register(name, formValidations)}
                     />
@@ -37,16 +43,13 @@ const InputForm = ({ name, formValidations, className, placeholder, designErrorM
                 </div>
             )}
             {type === 'textarea' && <textarea />}
-            {formValidations && (
-                <ErrorMessage
-                    errors={errors}
-                    name={name}
-                    render={(all) => {
-                        console.log('monda: ', all);
-                        return <Text className={`text-red-500 font-semibold ${designErrorMessage}`}>asd</Text>;
-                    }}
-                />
-            )}
+            <ErrorMessage
+                errors={errors}
+                name={name}
+                render={({ message }) => {
+                    return <Text className={`text-red-500 font-semibold text-right ${designErrorMessage ?? ''}`}>{message}</Text>;
+                }}
+            />
         </div>
     );
 };

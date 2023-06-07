@@ -20,15 +20,16 @@ const Login = () => {
                     <InputForm
                         name='username'
                         placeholder='Escribe tu usuario...'
-                        className='mb-8'
-                        formValidations={{ required: true }}
+                        designContainer='mb-8'
+                        formValidations={{ required: 'A username is required' }}
                     />
                     <InputForm
                         name='password'
                         placeholder='Escribe tu contraseña...'
-                        className='mb-12'
+                        designContainer='mb-8'
+                        formValidations={{ required: 'A password is required' }}
                     />
-                    <button type='submit'>Iniciar sesión</button>
+                    <Button type='submit'>Iniciar sesión</Button>
                 </form>
             </FormProvider>
         </div>

@@ -1,8 +1,11 @@
 export type typesFormValidations = {
-    required?: boolean;
-    maxLength?: number;
-    minLength?: number;
-    max?: number;
-    min?: number;
-    valueAsNumber?: boolean;
+    required?: string;
+    maxLength?: {
+        value: number;
+        message: string;
+    };
+    minLength?: {
+        value: number;
+        message: string;
+    };
 };
