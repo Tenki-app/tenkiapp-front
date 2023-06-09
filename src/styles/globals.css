@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* stateDropdown hover styles */
+.option-styles {
+	transition: all ease 0.2s;
+}
 .option-styles:hover {
 	background: #182438;
 	cursor: pointer;
