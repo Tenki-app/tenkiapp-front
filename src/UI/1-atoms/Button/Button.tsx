@@ -8,9 +8,16 @@ type typeButtonProps = {
     className?: string;
     onClick?: MouseEventHandler;
     redirect?: string;
+    type?: 'button' | 'submit' | 'reset';
 };
 
-const Button = ({ children, className, onClick, redirect }: typeButtonProps): JSX.Element => {
+const Button = ({
+    children,
+    className,
+    onClick,
+    redirect,
+    type = 'button',
+}: typeButtonProps): JSX.Element => {
     const designButton = 'text-lg rounded-lg bg-dark-blue text-white px-6 py-2';
 
     return (
@@ -27,6 +34,7 @@ const Button = ({ children, className, onClick, redirect }: typeButtonProps): JS
                 <button
                     className={`${designButton} ${className ?? ''}`}
                     onClick={onClick}
+                    type={type}
                 >
                     {children}
                 </button>

@@ -1,7 +1,7 @@
-import { Title } from '@/UI/1-atoms/Text/Title';
-import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { Input } from '@/UI/1-atoms/Inputs/Input';
+import { Title } from '@/UI/1-atoms/Text/Title';
 import UserIcon from '@/svg/navBar/profileIcon.svg';
+import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 const options = [
@@ -21,11 +21,13 @@ export default function Home() {
             <Title type='title'>Title</Title>
             <Title type='subtitle'>Subtitle</Title>
             <Dropdown dropdownOptions={options} />
-            <StateDropdown/>
-            <Input className=''
-                type="text"
+            <StateDropdown />
+            <Input
+                className=''
+                type='text'
                 text={'Escribe tu usuario...'}
-                icon={<UserIcon className='w-full h-full text-dark-blue-transparency'/>}/>
+                icon={<UserIcon className='w-full h-full text-dark-blue-transparency' />}
+            />
         </div>
     );
 }
