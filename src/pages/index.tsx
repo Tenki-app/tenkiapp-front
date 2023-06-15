@@ -1,7 +1,7 @@
-import { Title } from '@/UI/1-atoms/Text/Title';
-import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { Input } from '@/UI/1-atoms/Inputs/Input';
+import { Title } from '@/UI/1-atoms/Text/Title';
 import UserIcon from '@/svg/navBar/profileIcon.svg';
+import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
