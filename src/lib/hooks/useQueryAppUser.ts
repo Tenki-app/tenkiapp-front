@@ -3,13 +3,13 @@ import { useMutation, QueryClient, useQuery } from '@tanstack/react-query';
 import { USER_ENDPOINTS } from '../utils/router';
 import { postBasicData } from '../helpers/postData';
 import { useAppStore } from '../store/store';
-import { TypeUser } from '../types/user';
+import { TypeFormLogin } from '../types/user';
 import { responseUserLoginSchema } from '../schema/userSchema';
 
 const queryClient = new QueryClient();
 
 //SIGN_IN
-const fetchPostSignIn = async (user: Partial<TypeUser>) => {
+const fetchPostSignIn = async (user: TypeFormLogin) => {
     if (!user) return null;
     const response = await postBasicData(USER_ENDPOINTS.SIGN_IN, user);
     return responseUserLoginSchema.parse(response);
@@ -17,7 +17,7 @@ const fetchPostSignIn = async (user: Partial<TypeUser>) => {
 export const usePostSingInUserQuery = () => {
     const { setUser } = useAppStore();
     return useMutation({
-        mutationFn: (user: Partial<TypeUser>) => fetchPostSignIn(user),
+        mutationFn: (user: TypeFormLogin) => fetchPostSignIn(user),
         onSuccess: (data) => {
             if (data) {
                 localStorage.setItem('accessToken', data.accessToken);
