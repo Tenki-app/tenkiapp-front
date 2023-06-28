@@ -20,8 +20,13 @@ const Login = () => {
     const onSubmit = (data: any) => {
         console.log(data);
 
+        let dataTest = {
+            username: 'silvestre',
+            password: '12345',
+        };
+
         axios
-            .post('http://localhost:3001/auth/login', { data })
+            .post('http://localhost:3001/auth/login', dataTest)
             .then((res) => console.log(res));
     };
 
@@ -31,7 +36,7 @@ const Login = () => {
             <FormProvider {...methods}>
                 <form onSubmit={methods.handleSubmit(onSubmit)}>
                     <InputForm
-                        name='user_name'
+                        name='username'
                         placeholder='Escribe tu usuario...'
                         designContainer='mb-8'
                         formValidations={{ required: 'A username is required' }}
