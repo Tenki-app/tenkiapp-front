@@ -1,33 +1,29 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { useAppStore } from '@/lib/store/store';
+import { usePostSingInUserQuery } from '@/lib/hooks/useQueryAppUser';
 
 import TenkiLogo from '@/svg/theme/tenkiLogo.svg';
 import { InputForm } from '@/UI/1-atoms/Inputs/InputForm';
 import { Button } from '@/UI/1-atoms/Button/Button';
 
-type FormValues = {
-    firstName: string;
-    lastName: string;
-    email: string;
+type TypeLoginFormValues = {
+    username: string;
+    password: string;
 };
 
 const Login = () => {
     const methods = useForm();
-    const { user } = useAppStore();
+    const router = useRouter();
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const postSingInUserQuery = usePostSingInUserQuery();
 
-        let dataTest = {
-            username: 'silvestre',
-            password: '12345',
-        };
-
-        axios
-            .post('http://localhost:3001/auth/login', dataTest)
-            .then((res) => console.log(res));
+    const onSubmit = (loginValues: any) => {
+        postSingInUserQuery.mutateAsync(loginValues).then((res) => {
+            router.push('/');
+        });
     };
 
     return (
