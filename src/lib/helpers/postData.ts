@@ -1,0 +1,29 @@
+import { AxiosResponse } from 'axios';
+import { api, basicApi } from '../utils/axios';
+
+export const postData = async (endpoint: string, values: Record<string, any>): Promise<any> => {
+    return api
+        .post(endpoint, values)
+        .then((res: AxiosResponse) => {
+            return res.data;
+        })
+        .catch((error) => {
+            console.error(error);
+            throw error;
+        });
+};
+
+export const postBasicData = async (
+    endpoint: string,
+    values: Record<string, any>
+): Promise<any> => {
+    return basicApi
+        .post(endpoint, values)
+        .then((res: AxiosResponse) => {
+            return res.data;
+        })
+        .catch((error) => {
+            console.error(error);
+            throw error;
+        });
+};
