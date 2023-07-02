@@ -31,7 +31,7 @@ const Login = () => {
                             <InputForm
                                 name='username'
                                 placeholder='Escribe tu usuario...'
-                                designContainer='mb-8'
+                                designContainer='mb-12'
                                 formValidations={{
                                     required: 'A username is required',
                                 }}
@@ -42,7 +42,7 @@ const Login = () => {
                             <InputForm
                                 name='password'
                                 placeholder='Escribe tu contraseña...'
-                                designContainer='mb-8 w-full'
+                                designContainer='mb-4 w-full'
                                 formValidations={{
                                     required: 'A password is required',
                                 }}
@@ -50,6 +50,15 @@ const Login = () => {
                                     <EyeIcon className='h-[22px] w-[22px] text-light-gray' />
                                 }
                             />
+                            <div className='flex justify-end w-full'>
+                                <Button
+                                    redirect=''
+                                    className='text-gray font-medium'
+                                    variant='underline'
+                                >
+                                    ¿Olvidaste tu contraseña?
+                                </Button>
+                            </div>
                             <div className='my-20 flex flex-col w-full gap-6 items-center'>
                                 <Button
                                     className=''

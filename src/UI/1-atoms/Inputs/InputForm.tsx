@@ -51,7 +51,7 @@ const InputForm = ({
                 render={({ message }) => {
                     return (
                         <Text
-                            className={`text-red-500 font-semibold text-right ${
+                            className={`text-red-500 font-medium text-right ${
                                 designErrorMessage ?? ''
                             }`}
                         >
