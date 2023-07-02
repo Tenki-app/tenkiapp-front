@@ -4,18 +4,24 @@ type typeMainLayoutProps = {
     children: ReactNode;
     className?: string;
     hasMargin?: boolean;
+    wrapperClasses?: string;
 };
 
 const MainLayout = ({
     children,
     className,
     hasMargin,
+    wrapperClasses,
 }: typeMainLayoutProps) => {
-    const wrapperDesign = 'mx-auto w-[90vw] 2xl:w-[1080px]';
+    const mainMargin = 'mx-auto w-[90vw] 2xl:w-[1080px]';
 
     return (
         <main className={`bg-champagne-white min-h-screen ${className ?? ''}`}>
-            <div className={`${hasMargin ? wrapperDesign : ''}`}>
+            <div
+                className={`${hasMargin ? mainMargin : ''} ${
+                    wrapperClasses ?? ''
+                }`}
+            >
                 {children}
             </div>
         </main>

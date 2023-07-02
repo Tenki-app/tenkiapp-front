@@ -31,8 +31,8 @@ const InputForm = ({
     } = useFormContext();
 
     return (
-        <div className={`${designContainer ?? ''}`}>
-            <div className='relative'>
+        <div className={`${designContainer ?? ''} w-full`}>
+            <div className='relative w-full'>
                 {type === 'input' && (
                     <input
                         className={`text-xl text-gray w-full border-b-[2px] focus:outline-none border-b-rounded border-dark-blue-transparency bg-transparent placeholder:text-dark-blue-transparency font-medium`}
