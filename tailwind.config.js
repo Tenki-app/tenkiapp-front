@@ -18,6 +18,7 @@ module.exports = {
                 'bluish-gray': '#556270',
                 'olive-drab': '#6F7C5E',
                 bronze: '#C5A76E',
+                'light-gray': '#556270',
                 gray: '#666B70',
                 'dark-gray': '#4C5052',
                 'dark-blue-transparency': 'rgba(24, 36, 56, 0.65)',
