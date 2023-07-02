@@ -42,7 +42,7 @@ const Login = () => {
                             <InputForm
                                 name='password'
                                 placeholder='Escribe tu contraseña...'
-                                designContainer='mb-4 w-full'
+                                designContainer='mb-3 w-full'
                                 formValidations={{
                                     required: 'A password is required',
                                 }}
@@ -53,7 +53,7 @@ const Login = () => {
                             <div className='flex justify-end w-full'>
                                 <Button
                                     redirect=''
-                                    className='text-gray font-medium'
+                                    className='text-gray font-medium text-base'
                                     variant='underline'
                                 >
                                     ¿Olvidaste tu contraseña?
