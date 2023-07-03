@@ -9,6 +9,7 @@ type typeButtonProps = {
     onClick?: MouseEventHandler;
     redirect?: string;
     type?: 'button' | 'submit' | 'reset';
+    variant?: 'fill' | 'underline';
 };
 
 const Button = ({
@@ -17,8 +18,17 @@ const Button = ({
     onClick,
     redirect,
     type = 'button',
+    variant = 'fill',
 }: typeButtonProps): JSX.Element => {
-    const designButton = 'text-lg rounded-lg bg-dark-blue text-white px-6 py-2';
+    let designButton = '';
+
+    if (variant === 'fill') {
+        designButton =
+            'text-lg w-max rounded-lg bg-dark-blue text-champagne-white px-8 py-2 font-medium';
+    } else if (variant === 'underline') {
+        designButton =
+            'text-lg w-max text-champagne-white underline font-medium';
+    }
 
     return (
         <>
