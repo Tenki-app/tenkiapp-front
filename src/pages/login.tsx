@@ -1,4 +1,7 @@
-import { useForm, FormProvider } from 'react-hook-form';
+import { useRouter } from 'next/router';
+
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { usePostSingInUserQuery } from '@/lib/hooks/useQueryAppUser';
 
 import { InputForm } from '@/UI/1-atoms/Inputs/InputForm';
 import { Button } from '@/UI/1-atoms/Button/Button';
@@ -10,10 +13,19 @@ import GoogleIcon from '@/svg/login/google.svg';
 import EyeIcon from '@/svg/login/eyeIcon.svg';
 import ProfileIcon from '@/svg/navbar/profileIcon.svg';
 
-const Login = () => {
-    const methods = useForm();
+import type { TypeFormLogin } from '@/lib/types/user';
 
-    const onSubmit = (data: any) => {};
+const Login = () => {
+    const methods = useForm<TypeFormLogin>();
+    const router = useRouter();
+
+    const postSingInUserQuery = usePostSingInUserQuery();
+
+    const onSubmit = (loginValues: TypeFormLogin) => {
+        postSingInUserQuery.mutateAsync(loginValues).then((res) => {
+            router.push('/');
+        });
+    };
 
     return (
         <MainLayout>
