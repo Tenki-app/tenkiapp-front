@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useAppStore } from '../../lib/store/store';
-import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 
 type typeUseProtectedRoute = {
     children: JSX.Element;
@@ -12,16 +12,14 @@ const ProtectedRoute = ({ children }: typeUseProtectedRoute): JSX.Element => {
 
     const isAuthenticate = user && localStorage.getItem('accessToken');
 
-    const validateAuthentication = () => {
-        if (isAuthenticate) {
-            return <>{children}</>;
-        } else {
-            router.push('/');
-            return <></>;
+    useEffect(() => {
+        if (!isAuthenticate) {
+            router.push('/login');
         }
-    };
+        // eslint-disable-next-line
+    }, []);
 
-    return validateAuthentication();
+    return isAuthenticate ? children : <></>;
 };
 
 export { ProtectedRoute };
