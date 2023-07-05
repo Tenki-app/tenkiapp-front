@@ -1,10 +1,10 @@
+import { ProtectedRoute } from '@/UI/4-layouts/ProtectedRoute';
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
 import UserIcon from '@/svg/navBar/profileIcon.svg';
 import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
-
 import { useTranslation } from 'react-i18next';
 
 const options = [
@@ -26,25 +26,27 @@ export default function Home() {
 		setHidden(!hidden);
 	};
 	return (
-		<div className='bg-champagne-white pb-60'>
-			<Title type='title'>Title</Title>
-			<Title type='subtitle'>Subtitle</Title>
-			<Dropdown dropdownOptions={options} />
-			<button onClick={() => showModal()}>
-				{translations('buttonLabel')}
-			</button>
-			<StateDropdown
-				className={hidden ? '!hidden' : '!block'}
-				showModal={showModal}
-			/>
-			<Input
-				className=''
-				type='text'
-				text={'Escribe tu usuario...'}
-				icon={
-					<UserIcon className='w-full h-full text-dark-blue-transparency' />
-				}
-			/>
-		</div>
+		<ProtectedRoute>
+			<div className='bg-champagne-white pb-60'>
+				<Title type='title'>Title</Title>
+				<Title type='subtitle'>Subtitle</Title>
+				<Dropdown dropdownOptions={options} />
+				<button onClick={() => showModal()}>
+					{translations('buttonLabel')}
+				</button>
+				<StateDropdown
+					className={hidden ? '!hidden' : '!block'}
+					showModal={showModal}
+				/>
+				<Input
+					className=''
+					type='text'
+					text={'Escribe tu usuario...'}
+					icon={
+						<UserIcon className='w-full h-full text-dark-blue-transparency' />
+					}
+				/>
+			</div>
+		</ProtectedRoute>
 	);
 }
