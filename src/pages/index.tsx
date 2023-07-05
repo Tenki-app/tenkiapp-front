@@ -2,9 +2,11 @@ import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
 import UserIcon from '@/svg/navBar/profileIcon.svg';
 import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
-
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 const options = [
 	{
 		label: 'label',
@@ -18,6 +20,7 @@ const options = [
 let stateClassName = '';
 
 export default function Home() {
+	const [translations, i18n] = useTranslation('global');
 	const [hidden, setHidden] = useState(true);
 	const showModal = () => {
 		setHidden(!hidden);
@@ -27,7 +30,9 @@ export default function Home() {
 			<Title type='title'>Title</Title>
 			<Title type='subtitle'>Subtitle</Title>
 			<Dropdown dropdownOptions={options} />
-			<button onClick={() => showModal()}>State</button>
+			<button onClick={() => showModal()}>
+				{translations('buttonLabel')}
+			</button>
 			<StateDropdown
 				className={hidden ? '!hidden' : '!block'}
 				showModal={showModal}
