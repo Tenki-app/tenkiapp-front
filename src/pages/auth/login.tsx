@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { usePostSingInUserQuery } from '@/lib/hooks/useQueryAppUser';
@@ -19,11 +20,17 @@ const Login = () => {
     const methods = useForm<TypeFormLogin>();
     const router = useRouter();
 
-    const postSingInUserQuery = usePostSingInUserQuery();
-
-    const onSubmit = (loginValues: TypeFormLogin) => {
-        postSingInUserQuery.mutateAsync(loginValues).then((res) => {
-            router.push('/');
+    const onSubmit = async (loginValues: TypeFormLogin) => {
+        signIn('credentials', {
+            username: loginValues.username,
+            password: loginValues.password,
+            redirect: false,
+            callbackUrl: '/',
+        }).then((res) => {
+            if (res?.status === 200) {
+                router.push('/');
+            }
+            console.log('res: ', res);
         });
     };
 
@@ -55,11 +62,12 @@ const Login = () => {
                                 name='password'
                                 placeholder='Escribe tu contraseña...'
                                 designContainer='mb-3 w-full'
+                                type='password'
                                 formValidations={{
                                     required: 'A password is required',
                                 }}
                                 icon={
-                                    <EyeIcon className='h-[22px] w-[22px] text-light-gray' />
+                                    <EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
                                 }
                             />
                             <div className='flex justify-end w-full'>
