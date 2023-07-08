@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import type { NextAuthOptions } from 'next-auth';
-import { usePostSingInUserQuery } from '@/lib/hooks/useQueryAppUser';
+import { fetchPostSignIn } from '@/lib/hooks/useQueryAppUser';
 
 export default NextAuth({
     pages: {
@@ -15,9 +15,7 @@ export default NextAuth({
                 password: {},
             },
             async authorize(credentials, req) {
-                // This is where you need to retrieve user data
-                // to verify with credentials
-                // Docs: https://next-auth.js.org/configuration/providers/credentials
+                // TODO: Do login fetch
                 const user = {
                     id: '42',
                     name: 'silvestre',
