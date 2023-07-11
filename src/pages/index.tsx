@@ -1,6 +1,6 @@
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
-import UserIcon from '@/svg/navBar/profileIcon.svg';
+import ProfileIcon from '@/svg/navBar/profileIcon.svg';
 import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
@@ -41,7 +41,7 @@ export default function Home() {
                 type='text'
                 text={'Escribe tu usuario...'}
                 icon={
-                    <UserIcon className='w-full h-full text-dark-blue-transparency' />
+                    <ProfileIcon className='w-full h-full text-dark-blue-transparency' />
                 }
             />
         </div>
