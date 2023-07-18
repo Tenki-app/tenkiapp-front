@@ -26,8 +26,6 @@ export default function Home() {
     const [hidden, setHidden] = useState(true);
     const session = useSession();
 
-    console.log('session: ', session);
-
     const showModal = () => {
         setHidden(!hidden);
     };
