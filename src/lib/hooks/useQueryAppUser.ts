@@ -9,7 +9,7 @@ import { responseUserLoginSchema } from '../schema/userSchema';
 const queryClient = new QueryClient();
 
 //SIGN_IN
-const fetchPostSignIn = async (user: TypeFormLogin) => {
+export const fetchPostSignIn = async (user: TypeFormLogin) => {
     if (!user) return null;
     const response = await postBasicData(USER_ENDPOINTS.SIGN_IN, user);
     return responseUserLoginSchema.parse(response);

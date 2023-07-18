@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
-import { usePostSingInUserQuery } from '@/lib/hooks/useQueryAppUser';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import { InputForm } from '@/UI/1-atoms/Inputs/InputForm';
 import { Button } from '@/UI/1-atoms/Button/Button';
@@ -19,11 +19,22 @@ const Login = () => {
     const methods = useForm<TypeFormLogin>();
     const router = useRouter();
 
-    const postSingInUserQuery = usePostSingInUserQuery();
-
-    const onSubmit = (loginValues: TypeFormLogin) => {
-        postSingInUserQuery.mutateAsync(loginValues).then((res) => {
-            router.push('/');
+    const onSubmit = async (loginValues: TypeFormLogin) => {
+        signIn('credentials', {
+            username: loginValues.username,
+            password: loginValues.password,
+            redirect: false,
+        }).then((res) => {
+            if (res?.status === 200) {
+                router.push('/');
+            } else if (res?.status === 401) {
+                methods.setError('username', {
+                    message: 'Incorrect username',
+                });
+                methods.setError('password', {
+                    message: 'Incorrect password',
+                });
+            }
         });
     };
 
@@ -55,11 +66,12 @@ const Login = () => {
                                 name='password'
                                 placeholder='Escribe tu contraseña...'
                                 designContainer='mb-3 w-full'
+                                type='password'
                                 formValidations={{
                                     required: 'A password is required',
                                 }}
                                 icon={
-                                    <EyeIcon className='h-[22px] w-[22px] text-light-gray' />
+                                    <EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
                                 }
                             />
                             <div className='flex justify-end w-full'>
