@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
@@ -7,6 +7,7 @@ import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@/UI/1-atoms/Button/Button';
 
 const options = [
     {
@@ -25,12 +26,21 @@ export default function Home() {
     const [hidden, setHidden] = useState(true);
     const session = useSession();
 
+    console.log('session: ', session);
+
     const showModal = () => {
         setHidden(!hidden);
     };
 
+    const handleSignOut = () => {
+        signOut();
+    };
+
     return (
-        <div className='bg-champagne-white pb-60'>
+        <div className='bg-champagne-white w-screen h-screen p-12'>
+            <div className='flex justify-end'>
+                <Button onClick={handleSignOut}>Sign Out</Button>
+            </div>
             <Title type='title'>Title</Title>
             <Title type='subtitle'>Subtitle</Title>
             <Dropdown dropdownOptions={options} />

@@ -1,15 +1,18 @@
-import { withAuth } from 'next-auth/middleware';
+import { withAuth, NextRequestWithAuth } from 'next-auth/middleware';
 
-export default withAuth(function middleware(req) {}, {
-    callbacks: {
-        authorized: ({ token }) => {
-            return token !== null;
+export default withAuth(
+    function middleware(req: NextRequestWithAuth) {
+        // role users logic here
+    },
+    {
+        callbacks: {
+            authorized: ({ token }) => {
+                return !!token;
+            },
         },
-    },
-    pages: {
-        signIn: '/auth/login',
-        error: '/auth/error',
-    },
-});
-
-export const config = { matcher: ['/test-page'] };
+        pages: {
+            signIn: '/auth/login',
+            error: '/auth/error',
+        },
+    }
+);
