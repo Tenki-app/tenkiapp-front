@@ -56,7 +56,7 @@ const InputForm = ({
                     <input
                         className={inputDesign}
                         placeholder={placeholder}
-                        type={showPassword ? 'password' : 'text'}
+                        type={showPassword ? 'text' : 'password'}
                         {...register(name, formValidations)}
                     />
                 )}

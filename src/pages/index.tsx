@@ -1,3 +1,5 @@
+import { useSession } from 'next-auth/react';
+
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
@@ -21,9 +23,12 @@ let stateClassName = '';
 export default function Home() {
     const [translations, i18n] = useTranslation('global');
     const [hidden, setHidden] = useState(true);
+    const session = useSession();
+
     const showModal = () => {
         setHidden(!hidden);
     };
+
     return (
         <div className='bg-champagne-white pb-60'>
             <Title type='title'>Title</Title>
