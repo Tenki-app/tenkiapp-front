@@ -1,7 +1,7 @@
 {
-    "userName": "Enter your user",
+    "userName": "Enter your user...",
     "userNameRequired": "User required",
-    "password": "Enter your password",
+    "password": "Enter your password...",
     "passwordRequired":"Contraseña requerida",
     "forgotPassword": "Forgot your password?",
     "login": "Login",

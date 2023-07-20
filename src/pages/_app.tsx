@@ -7,35 +7,39 @@ import { SessionProvider } from 'next-auth/react';
 import i18next from 'i18next';
 import translations_es from '@/locales/es/global.json';
 import translations_en from '@/locales/en/global.json';
+import translations_es_login from '@/locales/es/login.json';
+import translations_en_login from '@/locales/en/login.json';
 // UI
 import '@/styles/globals.css';
 
 const queryClient = new QueryClient();
 
 i18next.init({
-    interpolation: { escapeValue: false },
-    lng: 'es',
-    resources: {
-        es: {
-            global: translations_es,
-        },
-        en: {
-            global: translations_en,
-        },
-    },
+	interpolation: { escapeValue: false },
+	lng: 'es',
+	resources: {
+		es: {
+			global: translations_es,
+			login: translations_es_login,
+		},
+		en: {
+			global: translations_en,
+			login: translations_en_login,
+		},
+	},
 });
 export default function App({
-    Component,
-    pageProps: { session, ...pageProps },
+	Component,
+	pageProps: { session, ...pageProps },
 }: AppProps) {
-    return (
-        <QueryClientProvider client={queryClient}>
-            <SessionProvider session={session}>
-                <I18nextProvider i18n={i18next}>
-                    <Component {...pageProps} />
-                    <ReactQueryDevtools />
-                </I18nextProvider>
-            </SessionProvider>
-        </QueryClientProvider>
-    );
+	return (
+		<QueryClientProvider client={queryClient}>
+			<SessionProvider session={session}>
+				<I18nextProvider i18n={i18next}>
+					<Component {...pageProps} />
+					<ReactQueryDevtools />
+				</I18nextProvider>
+			</SessionProvider>
+		</QueryClientProvider>
+	);
 }
