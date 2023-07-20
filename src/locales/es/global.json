@@ -1,4 +1,7 @@
 {
 	"Title": "Tenki app",
-	"buttonLabel": "abrir"
+	"buttonLabel": "abrir",
+	"spanish": "ES",
+	"english": "EN"
+
 }

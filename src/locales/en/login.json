@@ -1,4 +1,11 @@
 {
+    "userName": "Enter your user",
+    "userNameRequired": "User required",
+    "password": "Enter your password",
+    "passwordRequired":"Contraseña requerida",
+    "forgotPassword": "Forgot your password?",
+    "login": "Login",
+    "continueWithGoogle": "Continue with google",
     "incorrectUsername": "Incorrect username",
     "incorrectPassword": "Incorrect password"
 }
