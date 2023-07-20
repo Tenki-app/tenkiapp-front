@@ -2,7 +2,7 @@
     "userName": "Enter your user...",
     "userNameRequired": "User required",
     "password": "Enter your password...",
-    "passwordRequired":"Contraseña requerida",
+    "passwordRequired":"passwordRequired",
     "forgotPassword": "Forgot your password?",
     "login": "Login",
     "continueWithGoogle": "Continue with google",
