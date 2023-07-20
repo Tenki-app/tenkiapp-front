@@ -8,7 +8,6 @@ import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
-import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
 
 const options = [
 	{
@@ -36,7 +35,6 @@ export default function Home() {
 
 	return (
 		<div className='bg-champagne-white w-screen h-screen p-12'>
-			<SwitchLang />
 			<div className='flex justify-end'>
 				<Button onClick={handleSignOut}>Sign Out</Button>
 			</div>
