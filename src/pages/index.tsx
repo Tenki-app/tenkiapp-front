@@ -20,7 +20,6 @@ const options = [
 		value: 'value2',
 	},
 ];
-let stateClassName = '';
 
 export default function Home() {
 	const [translations, i18n] = useTranslation('global');
