@@ -7,6 +7,7 @@ const SwitchLang = () => {
 	const [lang, setLang] = useState(true);
 	const changeLanguage = () => {
 		setLang(!lang);
+		lang ? i18n.changeLanguage('en') : i18n.changeLanguage('es');
 	};
 	return (
 		<div className='w-[60px] flex items-center'>
@@ -15,10 +16,10 @@ const SwitchLang = () => {
 			</p>
 			<div
 				onClick={changeLanguage}
-				className='ml-9 position: absolute w-[50px] h-[28px] bg-dark-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
+				className='md:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-dark-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
 			>
 				<div
-					className={`transition-all relative ${
+					className={` transition-all relative ${
 						lang ? 'left-[-4px]' : 'left-[17px]'
 					} bottom-[4px] w-[30px] h-[30px] bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
 				>
