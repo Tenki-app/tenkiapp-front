@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ColFlag from '@/svg/theme/colombiaFlag.svg';
 import UsaFlag from '@/svg/theme/usaFlag.svg';
 import { useTranslation } from 'react-i18next';
+import { Text } from '@/UI/1-atoms/Text/Text';
 const SwitchLang = () => {
 	const [translations, i18n] = useTranslation('global');
 	const [lang, setLang] = useState(true);
@@ -11,17 +12,18 @@ const SwitchLang = () => {
 	};
 	return (
 		<div className='w-[60px] flex items-center'>
-			<p className='underline text-xl font-bold text-dark-blue'>
+			<Text className='underline font-bold'>
 				{translations(lang ? 'ES' : 'EN')}
-			</p>
+			</Text>
+			<p></p>
 			<div
 				onClick={changeLanguage}
-				className='md:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-dark-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
+				className='shadow lg:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-bluish-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
 			>
 				<div
-					className={` transition-all relative ${
+					className={`shadow transition-all relative ${
 						lang ? 'left-[-4px]' : 'left-[17px]'
-					} bottom-[4px] w-[30px] h-[30px] bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
+					} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
 				>
 					{lang ? (
 						<ColFlag className='w-[100%] h-[100%]' />
