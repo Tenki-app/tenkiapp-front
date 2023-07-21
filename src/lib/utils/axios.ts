@@ -12,9 +12,16 @@ export const basicApi = axios.create({
 
 api.interceptors.request.use(
     (config) => {
-        const accessToken = localStorage.getItem('accessToken');
+        config.params = {
+            ...config.params,
+        };
 
-        config.headers['Authorization'] = `Bearer ${accessToken}`;
+        const accessToken = config.params?.accessToken;
+        console.log('accessToken: ', accessToken);
+
+        if (accessToken) {
+            config.headers['Authorization'] = `Bearer ${accessToken}`;
+        }
 
         return config;
     },

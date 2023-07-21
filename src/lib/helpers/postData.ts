@@ -1,9 +1,13 @@
 import { AxiosResponse } from 'axios';
 import { api, basicApi } from '../utils/axios';
 
-export const postData = async (endpoint: string, values: Record<string, any>): Promise<any> => {
+export const postData = async (
+    endpoint: string,
+    values: Record<string, any>,
+    accessToken: string
+): Promise<any> => {
     return api
-        .post(endpoint, values)
+        .post(endpoint, values, { params: { accessToken: accessToken } })
         .then((res: AxiosResponse) => {
             return res.data;
         })

@@ -1,5 +1,7 @@
 import { useSession, signOut } from 'next-auth/react';
 
+import { usePostSingleTask } from '@/lib/hooks/useQueryTask';
+
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
@@ -26,12 +28,25 @@ export default function Home() {
     const [hidden, setHidden] = useState(true);
     const session = useSession();
 
+    const postSingleTask = usePostSingleTask();
+
+    console.log('postSingleTask: ', postSingleTask);
+
     const showModal = () => {
         setHidden(!hidden);
     };
 
     const handleSignOut = () => {
         signOut();
+    };
+
+    const handlePost = () => {
+        const valuesToSend = {
+            title: 'tenkiar',
+            category: 'tenki',
+            state: 'tenki',
+        };
+        postSingleTask.mutateAsync(valuesToSend);
     };
 
     return (
@@ -49,6 +64,7 @@ export default function Home() {
                 className={hidden ? '!hidden' : '!block'}
                 showModal={showModal}
             />
+            <Button onClick={handlePost}>Post Task</Button>
             <Input
                 className=''
                 type='text'
