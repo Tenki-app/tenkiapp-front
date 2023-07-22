@@ -1,6 +1,6 @@
 import { useSession, signOut } from 'next-auth/react';
 
-import { usePostSingleTask } from '@/lib/hooks/useQueryTask';
+import { usePostSingleTask, useGetAllTasks } from '@/lib/hooks/useQueryTask';
 
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
@@ -30,6 +30,7 @@ export default function Home() {
     console.log('session: ', session);
 
     const postSingleTask = usePostSingleTask();
+    const getAllTasks = useGetAllTasks();
 
     const showModal = () => {
         setHidden(!hidden);

@@ -4,7 +4,40 @@ import { postData } from '../helpers/postData';
 import { TASKS_ENDPOINTS } from '../utils/router';
 import { typesPostTask } from '../types/tasks';
 import { responsePostTaskSchema } from '../schema/taskSchema';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getData } from '../helpers/getData';
+
+// GET ALL TASKS
+export const fetchGetAllTasks = async (
+    userId?: string,
+    accessToken?: string
+) => {
+    if (!userId || !accessToken) return null;
+
+    const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS(userId);
+    const response = await getData(endpoint, accessToken);
+    return response;
+};
+export const useGetAllTasks = () => {
+    const { data } = useSession();
+
+    const accessToken = data?.user?.accessToken;
+    const userId = data?.user?.user._id;
+
+    const query = useQuery({
+        queryKey: ['allTasks', userId],
+        queryFn: async () => {
+            return fetchGetAllTasks(userId, accessToken);
+        },
+        onError: (err) => {
+            console.error(err);
+        },
+    });
+
+    return {
+        resp: query,
+    };
+};
 
 // CREATE SINGLE TASK
 export const fetchPostSingleTask = async (
