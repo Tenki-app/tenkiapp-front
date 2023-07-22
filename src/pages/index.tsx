@@ -21,7 +21,6 @@ const options = [
         value: 'value2',
     },
 ];
-let stateClassName = '';
 
 export default function Home() {
     const [translations, i18n] = useTranslation('global');
@@ -40,15 +39,6 @@ export default function Home() {
         signOut();
     };
 
-    const handlePost = () => {
-        const valuesToSend = {
-            title: 'tenkiar',
-            category: 'tenki',
-            state: 'tenki',
-        };
-        postSingleTask.mutateAsync(valuesToSend);
-    };
-
     return (
         <div className='bg-champagne-white w-screen h-screen p-12'>
             <div className='flex justify-end'>
@@ -60,11 +50,25 @@ export default function Home() {
             <button onClick={() => showModal()}>
                 {translations('buttonLabel')}
             </button>
+            <br />
+            <button
+                className='bg-dark-blue text-champagne-white p-2'
+                onClick={() => i18n.changeLanguage('es')}
+            >
+                ESPAÑOL
+            </button>
+            <br />
+            <br />
+            <button
+                className='bg-dark-blue text-champagne-white p-2'
+                onClick={() => i18n.changeLanguage('en')}
+            >
+                ENGLISH
+            </button>
             <StateDropdown
                 className={hidden ? '!hidden' : '!block'}
                 showModal={showModal}
             />
-            <Button onClick={handlePost}>Post Task</Button>
             <Input
                 className=''
                 type='text'
