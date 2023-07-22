@@ -6,7 +6,6 @@ export const userSchema = z.object({
     name: z.string(),
     user_name: z.string(),
     email: z.string(),
-    tasks: z.array(taskSchema).or(z.array(z.unknown()).min(0)),
 });
 
 export const responseUserLoginSchema = z.object({

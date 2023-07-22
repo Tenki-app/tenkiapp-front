@@ -27,9 +27,9 @@ export default function Home() {
     const [hidden, setHidden] = useState(true);
     const session = useSession();
 
-    const postSingleTask = usePostSingleTask();
+    console.log('session: ', session);
 
-    console.log('postSingleTask: ', postSingleTask);
+    const postSingleTask = usePostSingleTask();
 
     const showModal = () => {
         setHidden(!hidden);

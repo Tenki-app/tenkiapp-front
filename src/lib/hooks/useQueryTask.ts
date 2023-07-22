@@ -23,7 +23,7 @@ export const usePostSingleTask = () => {
     const { data } = useSession();
 
     const accessToken = data?.user?.accessToken;
-    const userId = data?.user?._id;
+    const userId = data?.user?.user._id;
 
     return useMutation({
         mutationFn: (values: any) =>
