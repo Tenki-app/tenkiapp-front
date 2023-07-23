@@ -4,27 +4,11 @@ export const BASE_URL = 'http://localhost:3001';
 
 export const api = axios.create({
     baseURL: BASE_URL,
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true,
 });
 
 export const basicApi = axios.create({
     baseURL: BASE_URL,
+    headers: { 'Content-Type': 'application/json' },
 });
-
-api.interceptors.request.use(
-    (config) => {
-        config.params = {
-            ...config.params,
-        };
-
-        const accessToken = config.params?.accessToken;
-
-        if (accessToken) {
-            config.headers['Authorization'] = `Bearer ${accessToken}`;
-        }
-
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);

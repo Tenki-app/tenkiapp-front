@@ -1,11 +1,11 @@
 import { useSession } from 'next-auth/react';
 
-import { postData } from '../helpers/postData';
-import { TASKS_ENDPOINTS } from '../utils/router';
-import { typesPostTask } from '../types/tasks';
-import { responsePostTaskSchema } from '../schema/taskSchema';
+import { postData } from '@/lib/helpers/postData';
+import { TASKS_ENDPOINTS } from '@/lib/utils/router';
+import { typesPostTask } from '@/lib/types/tasks';
+import { responsePostTaskSchema } from '@/lib/schema/taskSchema';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { getData } from '../helpers/getData';
+import { getData } from '@/lib/helpers/getData';
 
 // GET ALL TASKS
 export const fetchGetAllTasks = async (
@@ -21,8 +21,8 @@ export const fetchGetAllTasks = async (
 export const useGetAllTasks = () => {
     const { data } = useSession();
 
-    const accessToken = data?.user?.accessToken;
-    const userId = data?.user?.user._id;
+    const accessToken = data?.accessToken;
+    const userId = data?.user._id;
 
     const query = useQuery({
         queryKey: ['allTasks', userId],
@@ -55,8 +55,8 @@ export const fetchPostSingleTask = async (
 export const usePostSingleTask = () => {
     const { data } = useSession();
 
-    const accessToken = data?.user?.accessToken;
-    const userId = data?.user?.user._id;
+    const accessToken = data?.accessToken;
+    const userId = data?.user._id;
 
     return useMutation({
         mutationFn: (values: any) =>

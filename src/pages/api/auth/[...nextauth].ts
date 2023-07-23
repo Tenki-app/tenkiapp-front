@@ -1,11 +1,17 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { fetchPostSignIn } from '@/lib/hooks/useQueryAppUser';
+
+import { fetchPostSignIn } from '@/lib/hooks/queries/useQueryAppUser';
+
 import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { basicApi } from '@/lib/utils/axios';
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     return await NextAuth(req, res, {
+        session: {
+            strategy: 'jwt',
+        },
         pages: {
             signIn: '/auth/login',
             error: '/auth/error',
@@ -23,10 +29,16 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                         password: credentials?.password as string,
                     };
 
-                    const response = await fetchPostSignIn(userReq);
+                    const response = await basicApi.post(
+                        '/auth/login',
+                        userReq,
+                        {
+                            withCredentials: true,
+                        }
+                    );
 
-                    if (credentials?.username === response?.user.name) {
-                        return response;
+                    if (credentials?.username === response?.data.user.name) {
+                        return response.data;
                     } else {
                         return null;
                     }
@@ -34,11 +46,17 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             }),
         ],
         callbacks: {
-            async jwt({ token, user }) {
-                return { ...token, ...user };
+            async jwt({ token, user }: { token: any; user: any }) {
+                if (user) {
+                    return {
+                        accessToken: user.accessToken,
+                        ...user,
+                    };
+                }
+                return { ...token };
             },
             async session({ session, token, user }) {
-                session.user = token;
+                session = token as any;
                 return session;
             },
         },
