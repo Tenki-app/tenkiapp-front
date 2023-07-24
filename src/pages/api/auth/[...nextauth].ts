@@ -1,13 +1,14 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { fetchPostSignIn } from '@/lib/hooks/queries/useQueryAppUser';
+import { fetchPostSignIn } from '@/lib/helpers/fetchAuth';
 
 import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { basicApi } from '@/lib/utils/axios';
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
+    console.log(req.headers);
+
     return await NextAuth(req, res, {
         session: {
             strategy: 'jwt',
@@ -29,13 +30,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                         password: credentials?.password as string,
                     };
 
-                    const response = await basicApi.post(
-                        '/auth/login',
-                        userReq,
-                        {
-                            withCredentials: true,
-                        }
-                    );
+                    const response = await fetchPostSignIn(userReq);
 
                     if (credentials?.username === response?.data.user.name) {
                         return response.data;

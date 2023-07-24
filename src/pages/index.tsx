@@ -47,7 +47,6 @@ export default function Home() {
         let res = await basicApi.post('/auth/login', userReq, {
             withCredentials: true,
         });
-        console.log('res: ', res);
     };
 
     const handleRefresh = async () => {
