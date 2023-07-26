@@ -1,5 +1,4 @@
 import { api } from '../utils/axios';
-import { postData } from './postData';
 import { APP_ENDPOINTS } from '../utils/router';
 
 type typeSignInValues = {

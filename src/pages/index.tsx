@@ -11,7 +11,6 @@ import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
-import { api } from '@/lib/utils/axios';
 
 const options = [
     {
