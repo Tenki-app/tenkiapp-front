@@ -1,9 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 
-import {
-    usePostSingleTask,
-    useGetAllTasks,
-} from '@/lib/hooks/queries/useQueryTask';
+import { useGetAllTasks } from '@/lib/hooks/queries/useQueryTask';
 import { useRefreshToken } from '@/lib/hooks/axios/useRefreshToken';
 
 import { Input } from '@/UI/1-atoms/Inputs/Input';
@@ -11,12 +9,9 @@ import { Title } from '@/UI/1-atoms/Text/Title';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
 import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
 import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
-
-import { basicApi } from '@/lib/utils/axios';
-import { fetchPostSignIn } from '@/lib/hooks/queries/useQueryAppUser';
+import { api } from '@/lib/utils/axios';
 
 const options = [
     {
@@ -34,26 +29,9 @@ export default function Home() {
     const [hidden, setHidden] = useState(true);
     const session = useSession();
 
-    /* console.log('session: ', session); */
+    console.log('session: ', session);
 
-    /*  const postSingleTask = usePostSingleTask();
-    const getAllTasks = useGetAllTasks(); */
-
-    const handleLogin = async () => {
-        let userReq = {
-            username: 'silvestre',
-            password: '12345',
-        };
-        let res = await basicApi.post('/auth/login', userReq, {
-            withCredentials: true,
-        });
-    };
-
-    const handleRefresh = async () => {
-        let res2 = await basicApi.get('/auth/refresh', {
-            withCredentials: true,
-        });
-    };
+    useGetAllTasks();
 
     const showModal = () => {
         setHidden(!hidden);
@@ -74,20 +52,6 @@ export default function Home() {
             <button onClick={() => showModal()}>
                 {translations('buttonLabel')}
             </button>
-            <div className='w-full'>
-                <button
-                    className='border border-black'
-                    onClick={handleLogin}
-                >
-                    Do login
-                </button>
-                <button
-                    className='border border-black'
-                    onClick={handleRefresh}
-                >
-                    Do refresh
-                </button>
-            </div>
             <br />
             <button
                 className='bg-dark-blue text-champagne-white p-2'

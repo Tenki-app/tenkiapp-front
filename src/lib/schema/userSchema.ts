@@ -12,3 +12,8 @@ export const responseUserLoginSchema = z.object({
     user: userSchema,
     accessToken: z.string(),
 });
+
+export const responseRefreshTokenSchema = z.object({
+    accessToken: z.string(),
+    status: z.number(),
+});
