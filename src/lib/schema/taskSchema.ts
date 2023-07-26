@@ -5,7 +5,7 @@ const stateTypeEnum = z.enum(['done', 'pending', 'progress']);
 const categoryTypeEnum = z.enum(['today', 'tomorrow', 'someday']);
 
 export const taskSchema = z.object({
-    id: z.string(),
+    _id: z.string(),
     title: z.string(),
     description: z.string(),
     state: stateTypeEnum,
@@ -14,5 +14,11 @@ export const taskSchema = z.object({
     date_created: z.string(),
     time: z.string(),
     is_pomodoro: z.boolean(),
-    pomodoro: z.array(pomodoroSchema),
+    pomodoro: z.array(pomodoroSchema).nullable(),
+});
+
+export const responsePostTaskSchema = z.object({
+    code: z.number(),
+    message: z.string(),
+    task: taskSchema,
 });
