@@ -8,12 +8,10 @@ const useRefreshToken = () => {
     const { data: session } = useSession();
 
     const refreshToken = async () => {
-        const response = await responseRefreshTokenSchema.parse(
-            api.get(APP_ENDPOINTS.REFRESH_TOKEN)
-        );
-
-        if (session && response.accessToken) {
-            session.accessToken = response.accessToken;
+        const res = await api.get(APP_ENDPOINTS.REFRESH_TOKEN);
+        const resData = responseRefreshTokenSchema.parse(res.data);
+        if (session) {
+            session.accessToken = resData.accessToken;
         } else {
             signIn();
         }

@@ -16,13 +16,14 @@ export const fetchGetAllTasks = async (
 
     const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS(userId);
     const response = await apiAuth.get(endpoint);
+
     return response;
 };
 export const useGetAllTasks = () => {
-    const { data } = useSession();
+    const { data: session } = useSession();
     const apiAuth = useAxiosAuth();
 
-    const userId = data?.user._id;
+    const userId = session?.user._id;
 
     const query = useQuery({
         queryKey: ['allTasks', userId],

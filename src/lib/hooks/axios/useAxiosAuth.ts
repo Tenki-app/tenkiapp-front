@@ -43,7 +43,8 @@ const useAxiosAuth = () => {
             api.interceptors.request.eject(requestIntercept);
             api.interceptors.response.eject(responseIntercept);
         };
-    }, [session, refreshToken]);
+        // eslint-disable-next-line
+    }, []);
 
     return api;
 };

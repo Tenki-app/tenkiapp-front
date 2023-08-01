@@ -7,8 +7,6 @@ import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
-    console.log(req.headers);
-
     return await NextAuth(req, res, {
         session: {
             strategy: 'jwt',
