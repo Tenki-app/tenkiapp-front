@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
+import { useEffect } from 'react';
 
 import { useForm, FormProvider } from 'react-hook-form';
 import { fetchPostSignIn } from '@/lib/helpers/fetchAuth';
@@ -22,15 +23,18 @@ const Login = () => {
     const [translations, i18n] = useTranslation('login');
     const methods = useForm<TypeFormLogin>();
     const router = useRouter();
+    const session = useSession()
 
-    const onSubmitCredentials = async (loginValues: TypeFormLogin) => {
+    console.log(session);
+
+    const onCredentialsSignIn = async (loginValues: TypeFormLogin) => {
         let userValues = {
             username: loginValues.username,
             password: loginValues.password,
         };
 
         fetchPostSignIn(userValues).then((res) => {
-            if (res.status === 200) {
+            if (res?.status === 200) {
                 signIn('credentials', {
                     username: loginValues.username,
                     password: loginValues.password,
@@ -38,7 +42,7 @@ const Login = () => {
                 }).then(() => {
                     router.push('/');
                 });
-            } else if (res.response.data.code === 401) {
+            } else if (res?.response.data.code === 401) {
                 methods.setError('username', {
                     message: 'Incorrect username',
                 });
@@ -48,6 +52,24 @@ const Login = () => {
             }
         });
     };
+
+    const onGoogleSignIn = () => {
+        signIn('google');
+    }
+
+    /* useEffect(() => {
+        console.log('is working');
+        const isGoogleSession = session.data?.type === 'google';
+        if (isGoogleSession) {
+            signIn('credentials', {
+                username: session?.data?.user.email,
+                password: session?.data?.user._id,
+                redirect: false,
+            }).then(() => {
+                router.push('/');
+            });
+        }
+    }, [session]); */
 
     return (
         <MainLayout>
@@ -64,7 +86,7 @@ const Login = () => {
                     <FormProvider {...methods}>
                         <form
                             className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'
-                            onSubmit={methods.handleSubmit(onSubmitCredentials)}
+                            onSubmit={methods.handleSubmit(onCredentialsSignIn)}
                         >
                             <InputForm
                                 name='username'
@@ -107,8 +129,10 @@ const Login = () => {
                                 </Button>
                                 <Text className='font-semibold'>OR</Text>
                                 <Button
+                                    type='button'
                                     redirect=''
                                     className='flex gap-2 items-center'
+                                    onClick={onGoogleSignIn}
                                 >
                                     <GoogleIcon />
                                     {translations('continueWithGoogle')}

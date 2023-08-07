@@ -1,10 +1,17 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 
 import { fetchPostSignIn } from '@/lib/helpers/fetchAuth';
 
 import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+type typeJWT = {
+    token: any;
+    user: any;
+    account: any;
+};
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     return await NextAuth(req, res, {
@@ -37,13 +44,30 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                     }
                 },
             }),
+            GoogleProvider({
+                id: 'google',
+                clientId: process.env.GOOGLE_CLIENT_ID ?? '',
+                clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+            }),
         ],
         callbacks: {
-            async jwt({ token, user }: { token: any; user: any }) {
-                if (user) {
+            async jwt({ token, user, account }: typeJWT) {
+                const isGoogleProvider = account?.provider !== 'google';
+                if (user && !isGoogleProvider) {
                     return {
                         accessToken: user.accessToken,
                         ...user,
+                    };
+                }
+                if (isGoogleProvider) {
+                    return {
+                        type: 'google',
+                        user: {
+                            email: token?.email,
+                            name: token?.name,
+                            user_name: token?.name,
+                            _id: token?.id,
+                        },
                     };
                 }
                 return { ...token };
