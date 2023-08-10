@@ -8,7 +8,6 @@ import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
-
 const options = [
 	{
 		label: 'label',

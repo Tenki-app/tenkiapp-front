@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
-
 import { useForm, FormProvider } from 'react-hook-form';
-
 import { InputForm } from '@/UI/1-atoms/Inputs/InputForm';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
@@ -47,9 +45,11 @@ const Login = () => {
 					<LoginBanner />
 				</div>
 				<div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
-					<div>
-						<SwitchLang />
-					</div>
+					{
+						<div suppressHydrationWarning={true}>
+							<SwitchLang />
+						</div>
+					}
 
 					<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10' />
 					<FormProvider {...methods}>

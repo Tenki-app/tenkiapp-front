@@ -14,24 +14,24 @@ import '@/styles/globals.css';
 
 const queryClient = new QueryClient();
 
-i18next.init({
-	interpolation: { escapeValue: false },
-	lng: 'es',
-	resources: {
-		es: {
-			global: translations_es,
-			login: translations_es_login,
-		},
-		en: {
-			global: translations_en,
-			login: translations_en_login,
-		},
-	},
-});
 export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }: AppProps) {
+	i18next.init({
+		interpolation: { escapeValue: false },
+		lng: 'es',
+		resources: {
+			es: {
+				global: translations_es,
+				login: translations_es_login,
+			},
+			en: {
+				global: translations_en,
+				login: translations_en_login,
+			},
+		},
+	});
 	return (
 		<QueryClientProvider client={queryClient}>
 			<SessionProvider session={session}>
