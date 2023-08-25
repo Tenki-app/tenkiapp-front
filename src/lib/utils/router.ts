@@ -1,6 +1,7 @@
 export const APP_ENDPOINTS = {
     SIGN_IN: '/auth/login',
     REFRESH_TOKEN: '/auth/refresh',
+    SIGN_IN_GOOGLE: '/auth/google',
 };
 
 export const TASKS_ENDPOINTS = {

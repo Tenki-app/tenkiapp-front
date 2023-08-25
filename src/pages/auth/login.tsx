@@ -3,7 +3,7 @@ import { signIn, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
 import { useForm, FormProvider } from 'react-hook-form';
-import { fetchPostSignIn } from '@/lib/helpers/fetchAuth';
+import { fetchPostSignIn, fetchPostGoogleAuth } from '@/lib/helpers/fetchAuth';
 
 import { InputForm } from '@/UI/1-atoms/Inputs/InputForm';
 import { Button } from '@/UI/1-atoms/Button/Button';
@@ -33,7 +33,7 @@ const Login = () => {
             password: loginValues.password,
         };
 
-        fetchPostSignIn(userValues).then((res) => {
+        fetchPostSignIn(userValues).then((res: any) => {
             if (res?.status === 200) {
                 signIn('credentials', {
                     username: loginValues.username,
@@ -54,10 +54,10 @@ const Login = () => {
     };
 
     const onGoogleSignIn = () => {
-        signIn('google');
+        signIn('google')
     }
 
-    /* useEffect(() => {
+    useEffect(() => {
         console.log('is working');
         const isGoogleSession = session.data?.type === 'google';
         if (isGoogleSession) {
@@ -69,7 +69,7 @@ const Login = () => {
                 router.push('/');
             });
         }
-    }, [session]); */
+    }, [session]);
 
     return (
         <MainLayout>

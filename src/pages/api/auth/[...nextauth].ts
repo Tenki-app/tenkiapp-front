@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { fetchPostSignIn } from '@/lib/helpers/fetchAuth';
+import { fetchPostSignIn, fetchPostGoogleAuth } from '@/lib/helpers/fetchAuth';
 
 import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -30,12 +30,12 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
                     password: {},
                 },
                 async authorize(credentials, req): Promise<any> {
-                    const userReq = {
+                    const loginValues = {
                         username: credentials?.username as string,
                         password: credentials?.password as string,
                     };
 
-                    const response = await fetchPostSignIn(userReq);
+                    const response = await fetchPostSignIn(loginValues);
 
                     if (credentials?.username === response?.data.user.name) {
                         return response.data;
@@ -53,21 +53,23 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         callbacks: {
             async jwt({ token, user, account }: typeJWT) {
                 const isGoogleProvider = account?.provider !== 'google';
-                if (user && !isGoogleProvider) {
+                if (user && isGoogleProvider) {
                     return {
                         accessToken: user.accessToken,
                         ...user,
                     };
                 }
-                if (isGoogleProvider) {
+                if (!isGoogleProvider && token) {
+                    const loginValues = {
+                        email: token?.email,
+                        password: token?.id,
+                    };
+                    const googleUser = await fetchPostGoogleAuth(loginValues);
+                    console.log('googleUser: ', googleUser.data);
                     return {
                         type: 'google',
-                        user: {
-                            email: token?.email,
-                            name: token?.name,
-                            user_name: token?.name,
-                            _id: token?.id,
-                        },
+                        accessToken: googleUser.data.accessToken,
+                        user: googleUser.data.user,
                     };
                 }
                 return { ...token };
