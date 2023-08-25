@@ -15,101 +15,101 @@ import type { TypeFormLogin } from '@/lib/types/user';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
 
 const Login = () => {
-	const [translations, i18n] = useTranslation('login');
-	const methods = useForm<TypeFormLogin>();
-	const router = useRouter();
-	const onSubmit = async (loginValues: TypeFormLogin) => {
-		signIn('credentials', {
-			username: loginValues.username,
-			password: loginValues.password,
-			redirect: false,
-		}).then((res) => {
-			if (res?.status === 200) {
-				router.push('/');
-			} else if (res?.status === 401) {
-				methods.setError('username', {
-					message: 'Incorrect username',
-				});
-				methods.setError('password', {
-					message: 'Incorrect password',
-				});
-			}
-		});
-	};
+    const { t, i18n } = useTranslation();
+    const methods = useForm<TypeFormLogin>();
+    const router = useRouter();
+    const onSubmit = async (loginValues: TypeFormLogin) => {
+        signIn('credentials', {
+            username: loginValues.username,
+            password: loginValues.password,
+            redirect: false,
+        }).then((res) => {
+            if (res?.status === 200) {
+                router.push('/');
+            } else if (res?.status === 401) {
+                methods.setError('username', {
+                    message: 'Incorrect username',
+                });
+                methods.setError('password', {
+                    message: 'Incorrect password',
+                });
+            }
+        });
+    };
 
-	return (
-		<MainLayout>
-			<div className='flex h-screen'>
-				<div className='hidden w-1/2 md:block'>
-					<LoginBanner />
-				</div>
-				<div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
-					{
-						<div suppressHydrationWarning={true}>
-							<SwitchLang />
-						</div>
-					}
+    return (
+        <MainLayout>
+            <div className='flex h-screen'>
+                <div className='hidden w-1/2 md:block'>
+                    <LoginBanner />
+                </div>
+                <div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
+                    {
+                        <div suppressHydrationWarning={true}>
+                            <SwitchLang />
+                        </div>
+                    }
 
-					<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10' />
-					<FormProvider {...methods}>
-						<form
-							className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'
-							onSubmit={methods.handleSubmit(onSubmit)}
-						>
-							<InputForm
-								name='username'
-								placeholder={translations('userName')}
-								designContainer='mb-12'
-								formValidations={{
-									required: translations('userNameRequired'),
-								}}
-								icon={
-									<ProfileIcon className='h-[20px] w-[20px] text-light-gray' />
-								}
-							/>
-							<InputForm
-								name='password'
-								placeholder={translations('password')}
-								designContainer='mb-3 w-full'
-								type='password'
-								formValidations={{
-									required: translations('passwordRequired'),
-								}}
-								icon={
-									<EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
-								}
-							/>
-							<div className='flex justify-end w-full'>
-								<Button
-									redirect=''
-									className='text-gray font-medium text-base'
-									variant='underline'
-								>
-									{translations('forgotPassword')}
-								</Button>
-							</div>
-							<div className='my-20 flex flex-col w-full gap-6 items-center'>
-								<Button
-									className=''
-									type='submit'
-								>
-									{translations('login')}
-								</Button>
-								<Text className='font-semibold'>OR</Text>
-								<Button
-									redirect=''
-									className='flex gap-2 items-center'
-								>
-									<GoogleIcon />
-									{translations('continueWithGoogle')}
-								</Button>
-							</div>
-						</form>
-					</FormProvider>
-				</div>
-			</div>
-		</MainLayout>
-	);
+                    <TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10' />
+                    <FormProvider {...methods}>
+                        <form
+                            className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'
+                            onSubmit={methods.handleSubmit(onSubmit)}
+                        >
+                            <InputForm
+                                name='username'
+                                placeholder={t('userName')}
+                                designContainer='mb-12'
+                                formValidations={{
+                                    required: t('userNameRequired'),
+                                }}
+                                icon={
+                                    <ProfileIcon className='h-[20px] w-[20px] text-light-gray' />
+                                }
+                            />
+                            <InputForm
+                                name='password'
+                                placeholder={t('password')}
+                                designContainer='mb-3 w-full'
+                                type='password'
+                                formValidations={{
+                                    required: t('passwordRequired'),
+                                }}
+                                icon={
+                                    <EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
+                                }
+                            />
+                            <div className='flex justify-end w-full'>
+                                <Button
+                                    redirect=''
+                                    className='text-gray font-medium text-base'
+                                    variant='underline'
+                                >
+                                    {t('forgotPassword')}
+                                </Button>
+                            </div>
+                            <div className='my-20 flex flex-col w-full gap-6 items-center'>
+                                <Button
+                                    className=''
+                                    type='submit'
+                                >
+                                    {t('login')}
+                                </Button>
+                                <Text className='font-semibold'>OR</Text>
+                                <Button
+                                    redirect=''
+                                    className='flex gap-2 items-center'
+                                >
+                                    <GoogleIcon />
+                                    {t('continueWithGoogle')}
+                                </Button>
+                            </div>
+                        </form>
+                    </FormProvider>
+                </div>
+            </div>
+        </MainLayout>
+    );
 };
 
 export default Login;

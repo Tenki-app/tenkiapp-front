@@ -6,9 +6,8 @@ import { Text } from '@/UI/1-atoms/Text/Text';
 import { useAppStore } from '@/lib/store/store';
 
 const SwitchLang = () => {
-	const { t, i18n } = useTranslation('global');
+	const { t, i18n } = useTranslation();
 	const [isClient, setIsClient] = useState(false);
-	//const [lang, setLang] = useState(true);
 	const lang = i18n.language;
 
 	const changeLanguage = () => {
@@ -22,11 +21,16 @@ const SwitchLang = () => {
 	useEffect(() => {
 		setIsClient(true);
 	}, []);
+
+	if (!isClient) {
+		return <></>
+	}
+
 	return (
 		<div className='w-[60px] flex items-center'>
 			{
-				<Text className='underline font-bold'>
-					{isClient && t(lang === 'es' ? 'spanish' : 'english')}
+				<Text className='underline font-bold uppercase'>
+					{lang}
 				</Text>
 			}
 			<div
@@ -34,17 +38,14 @@ const SwitchLang = () => {
 				className='shadow lg:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-bluish-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
 			>
 				<div
-					className={`shadow transition-all relative ${
-						isClient &&
-						(lang === 'es' ? 'left-[-4px]' : 'left-[17px]')
-					} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
+					className={`shadow transition-all relative ${lang === 'es' ? 'left-[-4px]' : 'left-[17px]'
+						} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
 				>
-					{isClient &&
-						(lang === 'es' ? (
-							<ColFlag className='w-[100%] h-[100%]' />
-						) : (
-							<UsaFlag className='w-[100%] h-[100%]' />
-						))}
+					{lang === 'es' ? (
+						<ColFlag className='w-[100%] h-[100%]' />
+					) : (
+						<UsaFlag className='w-[100%] h-[100%]' />
+					)}
 				</div>
 			</div>
 		</div>
