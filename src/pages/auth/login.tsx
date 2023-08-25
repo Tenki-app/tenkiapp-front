@@ -18,7 +18,6 @@ const Login = () => {
 	const [translations, i18n] = useTranslation('login');
 	const methods = useForm<TypeFormLogin>();
 	const router = useRouter();
-
 	const onSubmit = async (loginValues: TypeFormLogin) => {
 		signIn('credentials', {
 			username: loginValues.username,

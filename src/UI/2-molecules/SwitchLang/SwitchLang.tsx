@@ -6,33 +6,27 @@ import { Text } from '@/UI/1-atoms/Text/Text';
 import { useAppStore } from '@/lib/store/store';
 
 const SwitchLang = () => {
-	const [translations, i18n] = useTranslation('global');
-	const { language, setLanguage } = useAppStore();
-	const isSpanish = language === 'es';
-	console.log(language);
-	/* useEffect(() => {
-		const initialLanguage = () => {
-			i18n.changeLanguage(language);
-			console.log('lenguaje', language);
-		};
-		initialLanguage();
-	}, []); */
+	const { t, i18n } = useTranslation('global');
+	const [isClient, setIsClient] = useState(false);
+	//const [lang, setLang] = useState(true);
+	const lang = i18n.language;
 
 	const changeLanguage = () => {
-		console.log('entra a esta monda');
-		if (isSpanish) {
+		if (lang === 'es') {
 			i18n.changeLanguage('en');
-			setLanguage('en');
 		} else {
 			i18n.changeLanguage('es');
-			setLanguage('es');
 		}
 	};
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 	return (
 		<div className='w-[60px] flex items-center'>
 			{
 				<Text className='underline font-bold'>
-					{translations(isSpanish ? 'ES' : 'EN')}
+					{isClient && t(lang === 'es' ? 'spanish' : 'english')}
 				</Text>
 			}
 			<div
@@ -41,14 +35,16 @@ const SwitchLang = () => {
 			>
 				<div
 					className={`shadow transition-all relative ${
-						isSpanish ? 'left-[-4px]' : 'left-[17px]'
+						isClient &&
+						(lang === 'es' ? 'left-[-4px]' : 'left-[17px]')
 					} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
 				>
-					{isSpanish ? (
-						<ColFlag className='w-[100%] h-[100%]' />
-					) : (
-						<UsaFlag className='w-[100%] h-[100%]' />
-					)}
+					{isClient &&
+						(lang === 'es' ? (
+							<ColFlag className='w-[100%] h-[100%]' />
+						) : (
+							<UsaFlag className='w-[100%] h-[100%]' />
+						))}
 				</div>
 			</div>
 		</div>
