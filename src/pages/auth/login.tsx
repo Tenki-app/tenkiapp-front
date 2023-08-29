@@ -16,7 +16,7 @@ import type { TypeFormLogin } from '@/lib/types/user';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
 
 const Login = () => {
-	const { t, i18n } = useTranslation('login');
+	const { t, i18n } = useTranslation();
 	const methods = useForm<TypeFormLogin>();
 	const router = useRouter();
 	const onSubmit = async (loginValues: TypeFormLogin) => {
