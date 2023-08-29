@@ -6,8 +6,6 @@ export interface AppSlice {
 	setUser: (user: TypeUser) => void;
 	isLoading: boolean;
 	setIsLoading: (isLoading: boolean) => void;
-	language: string;
-	setLanguage: (language: string) => void;
 }
 
 export const createAppSlice: StateCreator<AppSlice> = (set) => ({
@@ -15,6 +13,4 @@ export const createAppSlice: StateCreator<AppSlice> = (set) => ({
 	setUser: (user) => set(() => ({ user })),
 	isLoading: false,
 	setIsLoading: (isLoading: boolean) => set(() => ({ isLoading })),
-	language: 'es',
-	setLanguage: (language: string) => set(() => ({ language })),
 });
