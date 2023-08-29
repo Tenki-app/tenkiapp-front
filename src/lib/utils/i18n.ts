@@ -7,28 +7,29 @@ import languageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 const options = {
-	order: ['cookie', 'localStorage', 'sessionStorage'],
-	lookupLocalStorage: 'lang',
-	lookupCookie: 'lang',
-	caches: ['localStorage', 'cookie'],
+    order: ['cookie', 'localStorage', 'sessionStorage'],
+    lookupLocalStorage: 'lang',
+    lookupCookie: 'lang',
+    caches: ['localStorage', 'cookie'],
 };
 
 i18next
-	.use(initReactI18next)
-	.use(languageDetector)
-	.init({
-		interpolation: { escapeValue: false },
-		resources: {
-			es: {
-				global: translations_es,
-				login: translations_es_login,
-			},
-			en: {
-				global: translations_en,
-				login: translations_en_login,
-			},
-		},
-		detection: options,
-	});
+    .use(languageDetector)
+    .use(initReactI18next)
+    .init({
+        fallbackLng: 'en',
+        interpolation: { escapeValue: false },
+        resources: {
+            es: {
+                global: translations_es,
+                login: translations_es_login,
+            },
+            en: {
+                global: translations_en,
+                login: translations_en_login,
+            },
+        },
+        detection: options,
+    });
 
 export { i18next };
