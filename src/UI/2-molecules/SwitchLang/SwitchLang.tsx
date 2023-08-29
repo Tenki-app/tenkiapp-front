@@ -24,10 +24,10 @@ const SwitchLang = () => {
 			}
 			<div
 				onClick={changeLanguage}
-				className='shadow lg:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-bluish-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
+				className='shadow lg:cursor-pointer cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-bluish-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
 			>
 				<div
-					className={`shadow transition-all cursor-pointer relative ${
+					className={`shadow transition-all relative ${
 						lang === 'es' ? 'left-[-4px]' : 'left-[17px]'
 					} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
 				>
