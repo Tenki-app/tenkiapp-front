@@ -6,10 +6,14 @@ export const userSchema = z.object({
     name: z.string(),
     user_name: z.string(),
     email: z.string(),
-    tasks: z.array(taskSchema).or(z.array(z.unknown()).min(0)),
 });
 
 export const responseUserLoginSchema = z.object({
     user: userSchema,
     accessToken: z.string(),
+});
+
+export const responseRefreshTokenSchema = z.object({
+    accessToken: z.string(),
+    status: z.number(),
 });

@@ -1,11 +1,16 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { fetchPostSignIn } from '@/lib/hooks/useQueryAppUser';
+
+import { fetchPostSignIn } from '@/lib/helpers/fetchAuth';
+
 import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     return await NextAuth(req, res, {
+        session: {
+            strategy: 'jwt',
+        },
         pages: {
             signIn: '/auth/login',
             error: '/auth/error',
@@ -25,8 +30,8 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
 
                     const response = await fetchPostSignIn(userReq);
 
-                    if (credentials?.username === response?.user.name) {
-                        return response;
+                    if (credentials?.username === response?.data.user.name) {
+                        return response.data;
                     } else {
                         return null;
                     }
@@ -34,11 +39,17 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             }),
         ],
         callbacks: {
-            async jwt({ token, user }) {
-                return { ...token, ...user };
+            async jwt({ token, user }: { token: any; user: any }) {
+                if (user) {
+                    return {
+                        accessToken: user.accessToken,
+                        ...user,
+                    };
+                }
+                return { ...token };
             },
             async session({ session, token, user }) {
-                session.user = token;
+                session = token as any;
                 return session;
             },
         },

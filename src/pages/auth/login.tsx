@@ -10,10 +10,11 @@ import { LoginBanner } from '@/UI/3-organisms/login/LoginBanner';
 import TenkiLogo from '@/svg/theme/tenkiLogo.svg';
 import GoogleIcon from '@/svg/login/google.svg';
 import EyeIcon from '@/svg/login/eyeIcon.svg';
-import ProfileIcon from '@/svg/navbar/profileIcon.svg';
+import ProfileIcon from '@/svg/navBar/profileIcon.svg';
 import { useTranslation } from 'react-i18next';
-import type { TypeFormLogin } from '@/lib/types/user';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
+
+import type { TypeFormLogin } from '@/lib/types/user';
 
 const Login = () => {
 	const { t, i18n } = useTranslation();
