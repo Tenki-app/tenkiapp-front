@@ -12,8 +12,6 @@ import GoogleIcon from '@/svg/login/google.svg';
 import EyeIcon from '@/svg/login/eyeIcon.svg';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
 import { useTranslation } from 'react-i18next';
-import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
-
 import type { TypeFormLogin } from '@/lib/types/user';
 
 const Login = () => {
@@ -46,9 +44,6 @@ const Login = () => {
 					<LoginBanner />
 				</div>
 				<div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
-					<div className='mb-2'>
-						<SwitchLang />
-					</div>
 					<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10' />
 					<FormProvider {...methods}>
 						<form
