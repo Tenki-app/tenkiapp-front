@@ -21,12 +21,10 @@ import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
 import type { TypeFormLogin } from '@/lib/types/user';
 
 const Login = () => {
-	const [translations, i18n] = useTranslation('login');
+	const { t } = useTranslation();
 	const methods = useForm<TypeFormLogin>();
 	const router = useRouter();
 	const session = useSession();
-
-	console.log(session);
 
 	const onCredentialsSignIn = async (loginValues: TypeFormLogin) => {
 		let userValues = {
@@ -59,7 +57,6 @@ const Login = () => {
 	};
 
 	useEffect(() => {
-		console.log('is working');
 		const isGoogleSession = session.data?.type === 'google';
 		if (isGoogleSession) {
 			signIn('credentials', {
@@ -70,6 +67,7 @@ const Login = () => {
 				router.push('/');
 			});
 		}
+		// eslint-disable-next-line
 	}, [session]);
 
 	return (
@@ -91,10 +89,10 @@ const Login = () => {
 						>
 							<InputForm
 								name='username'
-								placeholder={translations('userName')}
+								placeholder={t('userName')}
 								designContainer='mb-12'
 								formValidations={{
-									required: translations('userNameRequired'),
+									required: t('userNameRequired'),
 								}}
 								icon={
 									<ProfileIcon className='h-[20px] w-[20px] text-light-gray' />
@@ -102,11 +100,11 @@ const Login = () => {
 							/>
 							<InputForm
 								name='password'
-								placeholder={translations('password')}
+								placeholder={t('password')}
 								designContainer='mb-3 w-full'
 								type='password'
 								formValidations={{
-									required: translations('passwordRequired'),
+									required: t('passwordRequired'),
 								}}
 								icon={
 									<EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
@@ -118,7 +116,7 @@ const Login = () => {
 									className='text-gray font-medium text-base'
 									variant='underline'
 								>
-									{translations('forgotPassword')}
+									{t('forgotPassword')}
 								</Button>
 							</div>
 							<div className='my-20 flex flex-col w-full gap-6 items-center'>
@@ -126,7 +124,7 @@ const Login = () => {
 									className=''
 									type='submit'
 								>
-									{translations('login')}
+									{t('login')}
 								</Button>
 								<Text className='font-semibold'>OR</Text>
 								<Button
@@ -136,7 +134,7 @@ const Login = () => {
 									onClick={onGoogleSignIn}
 								>
 									<GoogleIcon />
-									{translations('continueWithGoogle')}
+									{t('continueWithGoogle')}
 								</Button>
 							</div>
 						</form>

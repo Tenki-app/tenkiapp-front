@@ -4,80 +4,78 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import { fetchPostSignIn, fetchPostGoogleAuth } from '@/lib/helpers/fetchAuth';
 
-import type { NextAuthOptions } from 'next-auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 type typeJWT = {
-    token: any;
-    user: any;
-    account: any;
+	token: any;
+	user: any;
+	account: any;
 };
 
 export default async function auth(req: NextApiRequest, res: NextApiResponse) {
-    return await NextAuth(req, res, {
-        session: {
-            strategy: 'jwt',
-        },
-        pages: {
-            signIn: '/auth/login',
-            error: '/auth/error',
-        },
-        providers: [
-            CredentialsProvider({
-                name: 'Credentials',
-                credentials: {
-                    username: {},
-                    password: {},
-                },
-                async authorize(credentials, req): Promise<any> {
-                    const loginValues = {
-                        username: credentials?.username as string,
-                        password: credentials?.password as string,
-                    };
+	return await NextAuth(req, res, {
+		session: {
+			strategy: 'jwt',
+		},
+		pages: {
+			signIn: '/auth/login',
+			error: '/auth/error',
+		},
+		providers: [
+			CredentialsProvider({
+				name: 'Credentials',
+				credentials: {
+					username: {},
+					password: {},
+				},
+				async authorize(credentials, req): Promise<any> {
+					const loginValues = {
+						username: credentials?.username as string,
+						password: credentials?.password as string,
+					};
 
-                    const response = await fetchPostSignIn(loginValues);
+					const response = await fetchPostSignIn(loginValues);
 
-                    if (credentials?.username === response?.data.user.name) {
-                        return response.data;
-                    } else {
-                        return null;
-                    }
-                },
-            }),
-            GoogleProvider({
-                id: 'google',
-                clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-                clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
-            }),
-        ],
-        callbacks: {
-            async jwt({ token, user, account }: typeJWT) {
-                const isGoogleProvider = account?.provider !== 'google';
-                if (user && isGoogleProvider) {
-                    return {
-                        accessToken: user.accessToken,
-                        ...user,
-                    };
-                }
-                if (!isGoogleProvider && token) {
-                    const loginValues = {
-                        email: token?.email,
-                        password: token?.id,
-                    };
-                    const googleUser = await fetchPostGoogleAuth(loginValues);
-                    console.log('googleUser: ', googleUser.data);
-                    return {
-                        type: 'google',
-                        accessToken: googleUser.data.accessToken,
-                        user: googleUser.data.user,
-                    };
-                }
-                return { ...token };
-            },
-            async session({ session, token, user }) {
-                session = token as any;
-                return session;
-            },
-        },
-    });
+					if (credentials?.username === response?.data.user.name) {
+						return response.data;
+					} else {
+						return null;
+					}
+				},
+			}),
+			GoogleProvider({
+				id: 'google',
+				clientId: process.env.GOOGLE_CLIENT_ID ?? '',
+				clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+			}),
+		],
+		callbacks: {
+			async jwt({ token, user, account }: typeJWT) {
+				const isGoogleProvider = account?.provider !== 'google';
+				if (user && isGoogleProvider) {
+					return {
+						accessToken: user.accessToken,
+						...user,
+					};
+				}
+				if (!isGoogleProvider && token) {
+					const loginValues = {
+						email: token?.email,
+						password: token?.id,
+					};
+					const googleUser = await fetchPostGoogleAuth(loginValues);
+					return {
+						type: 'google',
+						accessToken: googleUser.data.accessToken,
+						user: googleUser.data.user,
+					};
+				}
+				return { ...token };
+			},
+			async session({ session, token, user }) {
+				session = token as any;
+				return session;
+			},
+		},
+	});
 }
