@@ -37,7 +37,7 @@ export default function Home() {
 	};
 
 	return (
-		<MainLayout>
+		<MainLayout hasNav={true}>
 			<div className='bg-champagne-white w-screen h-screen p-12'>
 				<div className='flex justify-end'>
 					<Button onClick={handleSignOut}>Sign Out</Button>

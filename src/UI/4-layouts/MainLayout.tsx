@@ -7,6 +7,7 @@ type typeMainLayoutProps = {
 	className?: string;
 	hasMargin?: boolean;
 	wrapperClasses?: string;
+	hasNav?: boolean;
 };
 
 const MainLayout = ({
@@ -14,6 +15,7 @@ const MainLayout = ({
 	className,
 	hasMargin,
 	wrapperClasses,
+	hasNav,
 }: typeMainLayoutProps) => {
 	const mainMargin = 'mx-auto w-[90vw] 2xl:w-[1080px]';
 
@@ -24,10 +26,13 @@ const MainLayout = ({
 					wrapperClasses ?? ''
 				}`}
 			>
-				<div className='flex p-3'>
-					<ThemeMode />
-					<SwitchLang />
-				</div>
+				{hasNav && (
+					<div className='flex p-3 lg:w-[75%]'>
+						<ThemeMode />
+						<SwitchLang />
+					</div>
+				)}
+
 				{children}
 			</div>
 		</main>
