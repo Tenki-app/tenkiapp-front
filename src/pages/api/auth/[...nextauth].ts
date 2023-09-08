@@ -51,17 +51,21 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
 		],
 		callbacks: {
 			async jwt({ token, user, account }: typeJWT) {
-				const isGoogleProvider = account?.provider !== 'google';
-				if (user && isGoogleProvider) {
+				if (user && account?.provider === 'credentials') {
 					return {
 						accessToken: user.accessToken,
 						...user,
 					};
 				}
-				if (!isGoogleProvider && token) {
+				if (token?.type === 'credentials' && !user && !account) {
+					let finalData = JSON.parse(JSON.stringify(token));
+					delete finalData.type;
+					return { ...finalData };
+				}
+				if (account?.provider === 'google' && token) {
 					const loginValues = {
 						email: token?.email,
-						password: token?.id,
+						password: token?.sub,
 					};
 					const googleUser = await fetchPostGoogleAuth(loginValues);
 					return {

@@ -26,6 +26,8 @@ const Login = () => {
 	const router = useRouter();
 	const session = useSession();
 
+	console.log('GOOGLE-USER: ', session);
+
 	const onCredentialsSignIn = async (loginValues: TypeFormLogin) => {
 		let userValues = {
 			username: loginValues.username,
@@ -55,20 +57,6 @@ const Login = () => {
 	const onGoogleSignIn = () => {
 		signIn('google');
 	};
-
-	useEffect(() => {
-		const isGoogleSession = session.data?.type === 'google';
-		if (isGoogleSession) {
-			signIn('credentials', {
-				username: session?.data?.user.email,
-				password: session?.data?.user._id,
-				redirect: false,
-			}).then(() => {
-				router.push('/');
-			});
-		}
-		// eslint-disable-next-line
-	}, [session]);
 
 	return (
 		<MainLayout>
