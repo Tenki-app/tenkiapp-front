@@ -2,7 +2,7 @@ import MoonIcon from '@/svg/theme/moonIcon.svg';
 import SunIcon from '@/svg/theme/sunIcon.svg';
 import { useEffect, useState } from 'react';
 const ThemeMode = () => {
-	const [theme, setTheme] = useState('light');
+	const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
 	useEffect(() => {
 		if (theme === 'dark') {
