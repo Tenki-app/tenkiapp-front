@@ -45,13 +45,14 @@ const Login = () => {
 				<div className='hidden w-1/2 md:block'>
 					<LoginBanner />
 				</div>
-
 				<div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
 					<div className='flex self-start mb-[18%] ml-[-10%] md:ml-[5%] 2xl:ml-[10%] 2xl:mt-[4%] 2xl:mb-[12%] mt-[15px]'>
 						<ThemeMode />
 						<SwitchLang />
 					</div>
-					<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10' />
+					<div>
+						<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10 dark:text-champagne-white' />
+					</div>
 					<FormProvider {...methods}>
 						<form
 							className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'

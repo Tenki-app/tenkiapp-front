@@ -20,7 +20,11 @@ const MainLayout = ({
 	const mainMargin = 'mx-auto w-[90vw] 2xl:w-[1080px]';
 
 	return (
-		<main className={`bg-champagne-white min-h-screen ${className ?? ''}`}>
+		<main
+			className={`bg-champagne-white min-h-screen ${
+				className ?? ''
+			} dark:bg-dark-blue`}
+		>
 			<div
 				className={`${hasMargin ? mainMargin : ''} ${
 					wrapperClasses ?? ''
