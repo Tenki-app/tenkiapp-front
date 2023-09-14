@@ -66,7 +66,7 @@ const Login = () => {
 									required: t('userNameRequired'),
 								}}
 								icon={
-									<ProfileIcon className='h-[20px] w-[20px] text-light-gray' />
+									<ProfileIcon className='h-[20px] w-[20px] text-light-gray dark:text-champagne-white-middleTransparency' />
 								}
 							/>
 							<InputForm
@@ -78,13 +78,13 @@ const Login = () => {
 									required: t('passwordRequired'),
 								}}
 								icon={
-									<EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
+									<EyeIcon className='h-[22px] w-[22px] text-light-gray dark:text-champagne-white-middleTransparency cursor-pointer' />
 								}
 							/>
 							<div className='flex justify-end w-full'>
 								<Button
 									redirect=''
-									className='text-gray font-medium text-base'
+									className='dark:text-champagne-white-middleTransparency text-gray font-medium text-base'
 									variant='underline'
 								>
 									{t('forgotPassword')}
@@ -97,7 +97,9 @@ const Login = () => {
 								>
 									{t('login')}
 								</Button>
-								<Text className='font-semibold'>OR</Text>
+								<Text className='font-semibold dark:text-champagne-white'>
+									OR
+								</Text>
 								<Button
 									redirect=''
 									className='flex gap-2 items-center'

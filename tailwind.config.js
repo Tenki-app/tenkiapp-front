@@ -15,6 +15,9 @@ module.exports = {
 				'dark-blue': '#182438',
 				'dark-garnet': '#723232',
 				'champagne-white': '#F7EFD8',
+				'champagne-white-middleTransparency':
+					'rgba(247, 239, 216, 0.72)',
+				'champagne-white-transparency': 'rgba(247, 239, 216, 0.51)',
 				'light-blue': '#95F9FF',
 				'bluish-gray': '#556270',
 				'olive-drab': '#6F7C5E',

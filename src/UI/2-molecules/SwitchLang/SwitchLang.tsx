@@ -24,12 +24,12 @@ const SwitchLang = () => {
 			}
 			<div
 				onClick={changeLanguage}
-				className='shadow lg:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-bluish-gray border-solid border-[3px] border-dark-blue rounded-[27px]'
+				className='shadow lg:cursor-pointer ml-9 position: absolute w-[50px] h-[28px] bg-bluish-gray border-solid border-[3px] border-dark-blue dark:border-champagne-white rounded-[27px]'
 			>
 				<div
 					className={`shadow transition-all relative ${
 						lang === 'es' ? 'left-[-4px]' : 'left-[17px]'
-					} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue rounded-[50%]`}
+					} bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue dark:border-champagne-white rounded-[50%]`}
 				>
 					{lang === 'es' ? (
 						<ColFlag className='w-[100%] h-[100%]' />
