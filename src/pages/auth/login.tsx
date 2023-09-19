@@ -15,11 +15,19 @@ import { useTranslation } from 'react-i18next';
 import type { TypeFormLogin } from '@/lib/types/user';
 import { ThemeMode } from '@/UI/2-molecules/ThemeMode/ThemeMode';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
+import { useEffect, useState } from 'react';
+import { Loader } from '@/UI/2-molecules/Loader/Loader';
 
 const Login = () => {
+	const [loading, setLoading] = useState(true);
 	const { t, i18n } = useTranslation();
 	const methods = useForm<TypeFormLogin>();
 	const router = useRouter();
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 2500);
+	});
 	const onSubmit = async (loginValues: TypeFormLogin) => {
 		signIn('credentials', {
 			username: loginValues.username,
@@ -39,7 +47,9 @@ const Login = () => {
 		});
 	};
 
-	return (
+	return loading ? (
+		<Loader />
+	) : (
 		<MainLayout hasNav={false}>
 			<div className='flex h-screen'>
 				<div className='hidden w-1/2 md:block'>
