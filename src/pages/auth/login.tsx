@@ -46,10 +46,10 @@ const Login = () => {
 			}
 		});
 	};
-
-	return loading ? (
-		<Loader />
-	) : (
+	if (loading) {
+		return <Loader />;
+	}
+	return (
 		<MainLayout hasNav={false}>
 			<div className='flex h-screen'>
 				<div className='hidden w-1/2 md:block'>
