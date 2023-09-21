@@ -15,11 +15,19 @@ import { useTranslation } from 'react-i18next';
 import type { TypeFormLogin } from '@/lib/types/user';
 import { ThemeMode } from '@/UI/2-molecules/ThemeMode/ThemeMode';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
+import { useEffect, useState } from 'react';
+import { Loader } from '@/UI/2-molecules/Loader/Loader';
 
 const Login = () => {
+	const [loading, setLoading] = useState(true);
 	const { t, i18n } = useTranslation();
 	const methods = useForm<TypeFormLogin>();
 	const router = useRouter();
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 2500);
+	});
 	const onSubmit = async (loginValues: TypeFormLogin) => {
 		signIn('credentials', {
 			username: loginValues.username,
@@ -38,7 +46,9 @@ const Login = () => {
 			}
 		});
 	};
-
+	if (loading) {
+		return <Loader />;
+	}
 	return (
 		<MainLayout hasNav={false}>
 			<div className='flex h-screen'>
@@ -66,7 +76,7 @@ const Login = () => {
 									required: t('userNameRequired'),
 								}}
 								icon={
-									<ProfileIcon className='h-[20px] w-[20px] text-light-gray' />
+									<ProfileIcon className='h-[20px] w-[20px] text-light-gray dark:text-champagne-white-middleTransparency' />
 								}
 							/>
 							<InputForm
@@ -78,13 +88,13 @@ const Login = () => {
 									required: t('passwordRequired'),
 								}}
 								icon={
-									<EyeIcon className='h-[22px] w-[22px] text-light-gray cursor-pointer' />
+									<EyeIcon className='h-[22px] w-[22px] text-light-gray dark:text-champagne-white-middleTransparency cursor-pointer' />
 								}
 							/>
 							<div className='flex justify-end w-full'>
 								<Button
 									redirect=''
-									className='text-gray font-medium text-base'
+									className='dark:text-champagne-white-middleTransparency text-gray font-medium text-base'
 									variant='underline'
 								>
 									{t('forgotPassword')}
@@ -97,7 +107,9 @@ const Login = () => {
 								>
 									{t('login')}
 								</Button>
-								<Text className='font-semibold'>OR</Text>
+								<Text className='font-semibold dark:text-champagne-white'>
+									OR
+								</Text>
 								<Button
 									redirect=''
 									className='flex gap-2 items-center'
