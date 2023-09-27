@@ -1,5 +1,6 @@
 import MoonIcon from '@/svg/theme/moonIcon.svg';
 import SunIcon from '@/svg/theme/sunIcon.svg';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 const ThemeMode = () => {
 	const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -15,20 +16,25 @@ const ThemeMode = () => {
 	const changeTheme = () => {
 		setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
 	};
+
+	const variantsTheme = {
+		dark: { rotateX: '180deg' },
+		light: { rotate: '0' },
+	};
+
 	return (
-		<div className='transition-all'>
+		<motion.div
+			onClick={changeTheme}
+			animate={theme}
+			variants={variantsTheme}
+			transition={{ duration: 0.5 }}
+		>
 			{theme === 'light' ? (
-				<MoonIcon
-					className='lg:cursor-pointer w-[30px] h-[30px] mr-3'
-					onClick={changeTheme}
-				/>
+				<MoonIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3' />
 			) : (
-				<SunIcon
-					className='lg:cursor-pointer w-[30px] h-[30px] mr-3'
-					onClick={changeTheme}
-				/>
+				<SunIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3' />
 			)}
-		</div>
+		</motion.div>
 	);
 };
 
