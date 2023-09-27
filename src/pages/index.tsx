@@ -11,6 +11,8 @@ import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
+import { CardTask } from '@/UI/3-organisms/task/CardTask';
+
 const options = [
 	{
 		label: 'label',
@@ -63,6 +65,16 @@ export default function Home() {
 				>
 					ENGLISH
 				</button>
+				<div className='bg-olive-drab p-6 bg'>
+					<CardTask
+						title='Do dinner'
+						description='sdl sdfklj sdfjll sdklfj sdlfjskdf'
+						time='15:00'
+						date='13-01-2023'
+						state='done'
+						category='today'
+					/>
+				</div>
 				<StateDropdown
 					className={hidden ? '!hidden' : '!block'}
 					showModal={showModal}
