@@ -1,3 +1,8 @@
+import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+
+import { useGetDimensions } from '@/lib/hooks/dom/useGetDimensions';
+
 import { Text } from '@/UI/1-atoms/Text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
 import DoneIcon from '@/svg/task/finishStateIcon.svg';
@@ -5,7 +10,6 @@ import ArrowIcon from '@/svg/task/downArrowIcon.svg';
 import InProgressIcon from '@/svg/task/inProgressIcon.svg';
 import DeleteIcon from '@/svg/task/deleteIcon.svg';
 import EditIcon from '@/svg/task/editIcon.svg';
-import { useState } from 'react';
 
 type TypeCardTaskProps = {
 	title: string;
@@ -28,6 +32,9 @@ const CardTask = ({
 }: TypeCardTaskProps) => {
 	const [isActive, setIsActive] = useState(false);
 
+	const cardRef = useRef<HTMLDivElement>(null);
+	const { height } = useGetDimensions(cardRef);
+
 	const renderStatus = () => {
 		const iconStyles = 'w-[25px] h-[25px] md:w-[32px] md:h-[32px]';
 		if (state === 'done') {
@@ -47,8 +54,13 @@ const CardTask = ({
 		}
 	};
 
+	const variantsArrow = {
+		open: { translateY: '100%', rotate: '180deg' },
+		close: { translate: 0, rotate: '0' },
+	};
+
 	return (
-		<div
+		<motion.div
 			className={`shadow-lg bg-champagne-white px-4 py-4 rounded-md ${
 				cardTaskStyles ?? ''
 			}
@@ -71,7 +83,14 @@ const CardTask = ({
 					<Text className='!font-black uppercase !text-xs mt-[-8px] mr-[-4px]'>
 						{category}
 					</Text>
-					{!isActive && <ArrowIcon className='text-dark-blue' />}
+					<motion.div
+						animate={isActive ? 'open' : 'close'}
+						variants={variantsArrow}
+						onClick={handleHideDetails}
+						className='cursor-pointer p-1'
+					>
+						<ArrowIcon className='text-dark-blue' />
+					</motion.div>
 				</div>
 			</div>
 			{isActive && (
@@ -82,14 +101,10 @@ const CardTask = ({
 							<DeleteIcon className='w-[24px] h-[24px] text-red-200' />
 							<EditIcon className='' />
 						</div>
-						<ArrowIcon
-							className='text-dark-blue rotate-180 cursor-pointer'
-							onClick={handleHideDetails}
-						/>
 					</div>
 				</div>
 			)}
-		</div>
+		</motion.div>
 	);
 };
 
