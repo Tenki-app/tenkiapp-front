@@ -8,4 +8,5 @@ export const login_en = {
 	continueWithGoogle: 'Continue with google',
 	incorrectUsername: 'Incorrect username',
 	incorrectPassword: 'Incorrect password',
+	or: 'OR',
 };

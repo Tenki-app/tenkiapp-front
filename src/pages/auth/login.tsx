@@ -94,7 +94,7 @@ const Login = () => {
 							<div className='flex justify-end w-full'>
 								<Button
 									redirect=''
-									className='dark:text-champagne-white-middleTransparency text-gray font-medium text-base'
+									className='dark:text-champagne-white-middleTransparency dark:font-medium dark:text-base text-gray font-medium text-base'
 									variant='underline'
 								>
 									{t('forgotPassword')}
@@ -107,8 +107,8 @@ const Login = () => {
 								>
 									{t('login')}
 								</Button>
-								<Text className='font-semibold dark:text-champagne-white'>
-									OR
+								<Text className='font-semibold dark:font-semibold dark:text-champagne-white'>
+									{t('or')}
 								</Text>
 								<Button
 									redirect=''

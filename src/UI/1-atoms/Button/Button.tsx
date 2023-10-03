@@ -24,7 +24,7 @@ const Button = ({
 
 	if (variant === 'fill') {
 		designButton =
-			'w-max rounded-lg bg-dark-blue dark:bg-champagne-white text-champagne-white dark:text-dark-blue px-8 py-2 font-medium';
+			'w-max rounded-lg bg-dark-blue dark:bg-champagne-white text-champagne-white dark:text-dark-blue dark:font-medium px-8 py-2 font-medium';
 	} else if (variant === 'underline') {
 		designButton =
 			'text-lg w-max text-champagne-white underline font-medium';
