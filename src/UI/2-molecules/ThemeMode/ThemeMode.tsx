@@ -2,9 +2,9 @@ import MoonIcon from '@/svg/theme/moonIcon.svg';
 import SunIcon from '@/svg/theme/sunIcon.svg';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useAppStore } from '@/lib/store/store';
 const ThemeMode = () => {
-	const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
+	const { theme, setTheme } = useAppStore();
 	useEffect(() => {
 		if (theme === 'dark') {
 			document.querySelector('html')?.classList.add('dark');
@@ -14,7 +14,7 @@ const ThemeMode = () => {
 	}, [theme]);
 
 	const changeTheme = () => {
-		setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+		setTheme(theme === 'light' ? 'dark' : 'light');
 	};
 
 	const variantsTheme = {
