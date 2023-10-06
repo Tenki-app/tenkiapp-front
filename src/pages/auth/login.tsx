@@ -100,7 +100,7 @@ const Login = () => {
 									{t('forgotPassword')}
 								</Button>
 							</div>
-							<div className='my-20 flex flex-col w-full gap-6 items-center'>
+							<div className='mt-[67px] flex flex-col w-full gap-6 items-center'>
 								<Button
 									className=''
 									type='submit'
