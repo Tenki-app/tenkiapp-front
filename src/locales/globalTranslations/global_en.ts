@@ -3,4 +3,6 @@ export const global_en = {
 	buttonLabel: 'open',
 	spanish: 'ES',
 	english: 'EN',
+	loginPill: 'Login',
+	registerPill: 'Register',
 };

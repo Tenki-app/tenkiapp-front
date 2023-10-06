@@ -17,6 +17,7 @@ import { ThemeMode } from '@/UI/2-molecules/ThemeMode/ThemeMode';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
 import { useEffect, useState } from 'react';
 import { Loader } from '@/UI/2-molecules/Loader/Loader';
+import { Pill } from '@/UI/2-molecules/Pill/Pill';
 
 const Login = () => {
 	const [loading, setLoading] = useState(true);
@@ -56,9 +57,14 @@ const Login = () => {
 					<LoginBanner />
 				</div>
 				<div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
-					<div className='flex self-start mb-[18%] ml-[-10%] md:ml-[5%] 2xl:ml-[10%] 2xl:mt-[4%] 2xl:mb-[12%] mt-[15px]'>
-						<ThemeMode />
-						<SwitchLang />
+					<div className='flex w-full justify-between pb-[18%] md:pl-[5%] md:pr-[5%] 2xl:pl-[10%] 2xl:pr-[10%] 2xl:pt-[4%] 2xl:pb-[12%] pt-[15px]'>
+						<div className='flex items-center'>
+							<ThemeMode />
+							<SwitchLang />
+						</div>
+						<div className='ml-[50px]'>
+							<Pill />
+						</div>
 					</div>
 					<div>
 						<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10 dark:text-champagne-white' />
@@ -102,7 +108,7 @@ const Login = () => {
 							</div>
 							<div className='mt-[67px] flex flex-col w-full gap-6 items-center'>
 								<Button
-									className=''
+									className='px-8 py-2 rounded-lg bg-dark-blue dark:bg-champagne-white'
 									type='submit'
 								>
 									{t('login')}
@@ -112,7 +118,7 @@ const Login = () => {
 								</Text>
 								<Button
 									redirect=''
-									className='flex gap-2 items-center'
+									className='px-8 py-2 flex gap-2 items-center rounded-lg bg-dark-blue dark:bg-champagne-white'
 								>
 									<GoogleIcon />
 									{t('continueWithGoogle')}
