@@ -65,14 +65,30 @@ export default function Home() {
 				>
 					ENGLISH
 				</button>
-				<div className='bg-olive-drab p-6 bg'>
+				<div className='bg-olive-drab p-4 bg flex flex-col gap-4'>
 					<CardTask
 						title='Do dinner'
-						description='sdl sdfklj sdfjll sdklfj sdlfjskdf'
+						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
 						time='15:00'
 						date='13-01-2023'
 						state='done'
 						category='today'
+					/>
+					<CardTask
+						title='To buy food'
+						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
+						time='15:00'
+						date='13-01-2023'
+						state='progress'
+						category='next'
+					/>
+					<CardTask
+						title='Do dinner'
+						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
+						time='15:00'
+						date='13-01-2023'
+						state='pending'
+						category='someday'
 					/>
 				</div>
 				<StateDropdown
