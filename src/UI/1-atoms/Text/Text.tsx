@@ -8,7 +8,7 @@ type typeTextProps = {
 const Text = ({ children, className }: typeTextProps): JSX.Element => {
 	return (
 		<p
-			className={`text-dark-blue dark:text-champagne-white text-xl font-primary ${
+			className={`text-dark-blue dark:text-champagne-white text-base font-primary ${
 				className ?? ''
 			}`}
 		>
