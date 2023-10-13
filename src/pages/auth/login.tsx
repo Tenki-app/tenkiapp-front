@@ -56,9 +56,9 @@ const Login = () => {
 				<div className='hidden w-1/2 md:block'>
 					<LoginBanner />
 				</div>
-				<div className='text-center flex flex-col w-[75%] mx-auto items-center md:w-1/2'>
-					<div className='flex w-full justify-between pb-[18%] md:pl-[5%] md:pr-[5%] 2xl:pl-[10%] 2xl:pr-[10%] 2xl:pt-[4%] 2xl:pb-[12%] pt-[15px]'>
-						<div className='flex items-center'>
+				<div className='flex flex-col items-center w-full'>
+					<div className='pl-[10px] pr-[10px] flex justify-between w-full pb-[18%] md:pl-[5%] md:pr-[5%] 2xl:pl-[10%] 2xl:pr-[10%] 2xl:pt-[4%] 2xl:pb-[12%] pt-[15px]'>
+						<div className=' flex items-center'>
 							<ThemeMode />
 							<SwitchLang />
 						</div>
@@ -66,66 +66,68 @@ const Login = () => {
 							<Pill />
 						</div>
 					</div>
-					<div>
-						<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10 dark:text-champagne-white' />
+					<div className='text-center flex flex-col w-[75%] mx-auto items-center'>
+						<div>
+							<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10 dark:text-champagne-white' />
+						</div>
+						<FormProvider {...methods}>
+							<form
+								className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'
+								onSubmit={methods.handleSubmit(onSubmit)}
+							>
+								<InputForm
+									name='username'
+									placeholder={t('userName')}
+									designContainer='mb-12'
+									formValidations={{
+										required: t('userNameRequired'),
+									}}
+									icon={
+										<ProfileIcon className='h-[20px] w-[20px] text-light-gray dark:text-champagne-white-middleTransparency' />
+									}
+								/>
+								<InputForm
+									name='password'
+									placeholder={t('password')}
+									designContainer='mb-3 w-full'
+									type='password'
+									formValidations={{
+										required: t('passwordRequired'),
+									}}
+									icon={
+										<EyeIcon className='h-[22px] w-[22px] text-light-gray dark:text-champagne-white-middleTransparency cursor-pointer' />
+									}
+								/>
+								<div className='flex justify-end w-full'>
+									<Button
+										redirect=''
+										className='dark:text-champagne-white-middleTransparency dark:font-medium dark:text-base text-gray font-medium text-base'
+										variant='underline'
+									>
+										{t('forgotPassword')}
+									</Button>
+								</div>
+								<div className='mt-[67px] flex flex-col w-full gap-6 items-center'>
+									<Button
+										className='px-8 py-2 rounded-lg bg-dark-blue dark:bg-champagne-white'
+										type='submit'
+									>
+										{t('login')}
+									</Button>
+									<Text className='font-semibold dark:font-semibold dark:text-champagne-white'>
+										{t('or')}
+									</Text>
+									<Button
+										redirect=''
+										className='px-8 py-2 flex gap-2 items-center rounded-lg bg-dark-blue dark:bg-champagne-white'
+									>
+										<GoogleIcon />
+										{t('continueWithGoogle')}
+									</Button>
+								</div>
+							</form>
+						</FormProvider>
 					</div>
-					<FormProvider {...methods}>
-						<form
-							className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'
-							onSubmit={methods.handleSubmit(onSubmit)}
-						>
-							<InputForm
-								name='username'
-								placeholder={t('userName')}
-								designContainer='mb-12'
-								formValidations={{
-									required: t('userNameRequired'),
-								}}
-								icon={
-									<ProfileIcon className='h-[20px] w-[20px] text-light-gray dark:text-champagne-white-middleTransparency' />
-								}
-							/>
-							<InputForm
-								name='password'
-								placeholder={t('password')}
-								designContainer='mb-3 w-full'
-								type='password'
-								formValidations={{
-									required: t('passwordRequired'),
-								}}
-								icon={
-									<EyeIcon className='h-[22px] w-[22px] text-light-gray dark:text-champagne-white-middleTransparency cursor-pointer' />
-								}
-							/>
-							<div className='flex justify-end w-full'>
-								<Button
-									redirect=''
-									className='dark:text-champagne-white-middleTransparency dark:font-medium dark:text-base text-gray font-medium text-base'
-									variant='underline'
-								>
-									{t('forgotPassword')}
-								</Button>
-							</div>
-							<div className='mt-[67px] flex flex-col w-full gap-6 items-center'>
-								<Button
-									className='px-8 py-2 rounded-lg bg-dark-blue dark:bg-champagne-white'
-									type='submit'
-								>
-									{t('login')}
-								</Button>
-								<Text className='font-semibold dark:font-semibold dark:text-champagne-white'>
-									{t('or')}
-								</Text>
-								<Button
-									redirect=''
-									className='px-8 py-2 flex gap-2 items-center rounded-lg bg-dark-blue dark:bg-champagne-white'
-								>
-									<GoogleIcon />
-									{t('continueWithGoogle')}
-								</Button>
-							</div>
-						</form>
-					</FormProvider>
 				</div>
 			</div>
 		</MainLayout>

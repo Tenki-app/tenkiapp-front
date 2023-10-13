@@ -4,5 +4,5 @@ export const global_es = {
 	spanish: 'ES',
 	english: 'EN',
 	loginPill: 'Iniciar Sesion',
-	registerPill: 'Registrar',
+	registerPill: 'Registrarse',
 };

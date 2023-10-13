@@ -6,10 +6,10 @@ export const Pill = () => {
 	const { t, i18n } = useTranslation();
 	return (
 		<div>
-			<Button className='px-9 py-1 rounded-l-[50px] bg-dark-blue'>
+			<Button className='text-xs px-1 xxs:text-sm xxs:px-3 py-1 w-[] rounded-l-[50px] bg-dark-blue'>
 				{t('loginPill')}
 			</Button>
-			<Button className='px-6 py-1 rounded-r-[50px] bg-bluish-gray'>
+			<Button className='text-xs px-1 xxs:text-sm xxs:px-3 py-1 rounded-r-[50px] bg-bluish-gray'>
 				{t('registerPill')}
 			</Button>
 		</div>
