@@ -1,7 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
-
-import { useGetAllTasks } from '@/lib/hooks/queries/useQueryTask';
 
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
@@ -28,15 +25,11 @@ export default function Home() {
 	const [translations, i18n] = useTranslation('global');
 	const [hidden, setHidden] = useState(true);
 
-	useGetAllTasks();
-
 	const showModal = () => {
 		setHidden(!hidden);
 	};
 
-	const handleSignOut = () => {
-		signOut();
-	};
+	const handleSignOut = () => {};
 
 	return (
 		<MainLayout hasNav={true}>
