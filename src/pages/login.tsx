@@ -19,15 +19,10 @@ import { Pill } from '@/UI/2-molecules/Pill/Pill';
 import type { TypeFormLogin } from '@/lib/types/user';
 
 const Login = () => {
-	const [loading, setLoading] = useState(true);
 	const { t, i18n } = useTranslation();
 	const methods = useForm<TypeFormLogin>();
 
 	const onSubmit = async (loginValues: TypeFormLogin) => {};
-
-	if (loading) {
-		return <Loader />;
-	}
 
 	return (
 		<MainLayout hasNav={false}>
