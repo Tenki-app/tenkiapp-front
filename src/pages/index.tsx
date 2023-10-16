@@ -26,7 +26,6 @@ const options = [
 
 const Home = () => {
 	const [translations, i18n] = useTranslation('global');
-	const { getIdTokenClaims } = useAuth0();
 
 	const [hidden, setHidden] = useState(true);
 
@@ -110,5 +109,4 @@ const Home = () => {
 
 export default withAuthenticationRequired(Home, {
 	onRedirecting: () => <>Loading...</>,
-	returnTo: '/login',
 });
