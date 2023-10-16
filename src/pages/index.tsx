@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useState } from 'react';
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
@@ -24,7 +24,7 @@ const options = [
 	},
 ];
 
-export default function Home() {
+const Home = () => {
 	const [translations, i18n] = useTranslation('global');
 	const { getIdTokenClaims } = useAuth0();
 
@@ -106,4 +106,9 @@ export default function Home() {
 			</div>
 		</MainLayout>
 	);
-}
+};
+
+export default withAuthenticationRequired(Home, {
+	onRedirecting: () => <>Loading...</>,
+	returnTo: '/login',
+});

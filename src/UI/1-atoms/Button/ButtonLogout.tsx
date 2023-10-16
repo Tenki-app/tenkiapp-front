@@ -11,13 +11,14 @@ const ButtonLogout = () => {
 		<Button
 			variant='blue'
 			type='submit'
-			onClick={() =>
+			onClick={() => {
+				localStorage.clear();
 				logout({
 					logoutParams: {
-						returnTo: window.location.origin,
+						returnTo: `${window.location.origin}/login`,
 					},
-				})
-			}
+				});
+			}}
 		>
 			{t('logout')}
 		</Button>

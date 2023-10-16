@@ -4,6 +4,7 @@ import { I18nextProvider } from 'react-i18next';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { i18next } from './../lib/utils/i18n';
 import { useState, useEffect } from 'react';
+import Router from 'next/router';
 
 import type { AppProps } from 'next/app';
 
