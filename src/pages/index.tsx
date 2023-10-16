@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { Input } from '@/UI/1-atoms/Inputs/Input';
 import { Title } from '@/UI/1-atoms/Text/Title';
@@ -9,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
 import { CardTask } from '@/UI/3-organisms/task/CardTask';
+import { ButtonLogin } from '@/UI/1-atoms/Button/ButtonLogin';
+import { ButtonLogout } from '@/UI/1-atoms/Button/ButtonLogout';
 
 const options = [
 	{
@@ -23,6 +26,8 @@ const options = [
 
 export default function Home() {
 	const [translations, i18n] = useTranslation('global');
+	const { getIdTokenClaims } = useAuth0();
+
 	const [hidden, setHidden] = useState(true);
 
 	const showModal = () => {
@@ -59,6 +64,8 @@ export default function Home() {
 					ENGLISH
 				</button>
 				<div className='bg-olive-drab p-4 bg flex flex-col gap-4'>
+					<ButtonLogin />
+					<ButtonLogout />
 					<CardTask
 						title='Do dinner'
 						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'

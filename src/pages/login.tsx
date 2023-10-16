@@ -2,27 +2,17 @@ import { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { InputForm } from '@/UI/1-atoms/Inputs/InputForm';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { Text } from '@/UI/1-atoms/Text/Text';
 import { LoginBanner } from '@/UI/3-organisms/login/LoginBanner';
 import TenkiLogo from '@/svg/theme/tenkiLogo.svg';
-import GoogleIcon from '@/svg/login/google.svg';
-import EyeIcon from '@/svg/login/eyeIcon.svg';
-import ProfileIcon from '@/svg/navBar/profileIcon.svg';
 import { ThemeMode } from '@/UI/2-molecules/ThemeMode/ThemeMode';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';
-import { Loader } from '@/UI/2-molecules/Loader/Loader';
 import { Pill } from '@/UI/2-molecules/Pill/Pill';
-
-import type { TypeFormLogin } from '@/lib/types/user';
+import { ButtonLogin } from '@/UI/1-atoms/Button/ButtonLogin';
 
 const Login = () => {
 	const { t, i18n } = useTranslation();
-	const methods = useForm<TypeFormLogin>();
-
-	const onSubmit = async (loginValues: TypeFormLogin) => {};
 
 	return (
 		<MainLayout hasNav={false}>
@@ -44,63 +34,7 @@ const Login = () => {
 						<div>
 							<TenkiLogo className='w-[140px] h-[170px] text-dark-blue mb-10 dark:text-champagne-white' />
 						</div>
-						<FormProvider {...methods}>
-							<form
-								className='flex flex-col w-full md:max-w-[70%] 2xl:max-w-[50%] items-start'
-								onSubmit={methods.handleSubmit(onSubmit)}
-							>
-								<InputForm
-									name='username'
-									placeholder={t('userName')}
-									designContainer='mb-12'
-									formValidations={{
-										required: t('userNameRequired'),
-									}}
-									icon={
-										<ProfileIcon className='h-[20px] w-[20px] text-light-gray dark:text-champagne-white-middleTransparency' />
-									}
-								/>
-								<InputForm
-									name='password'
-									placeholder={t('password')}
-									designContainer='mb-3 w-full'
-									type='password'
-									formValidations={{
-										required: t('passwordRequired'),
-									}}
-									icon={
-										<EyeIcon className='h-[22px] w-[22px] text-light-gray dark:text-champagne-white-middleTransparency cursor-pointer' />
-									}
-								/>
-								<div className='flex justify-end w-full'>
-									<Button
-										redirect=''
-										className='dark:text-champagne-white-middleTransparency dark:font-medium dark:text-base text-gray font-medium text-base'
-										variant='underline'
-									>
-										{t('forgotPassword')}
-									</Button>
-								</div>
-								<div className='mt-[67px] flex flex-col w-full gap-6 items-center'>
-									<Button
-										className='px-8 py-2 rounded-lg bg-dark-blue dark:bg-champagne-white'
-										type='submit'
-									>
-										{t('login')}
-									</Button>
-									<Text className='font-semibold dark:font-semibold dark:text-champagne-white'>
-										{t('or')}
-									</Text>
-									<Button
-										redirect=''
-										className='px-8 py-2 flex gap-2 items-center rounded-lg bg-dark-blue dark:bg-champagne-white'
-									>
-										<GoogleIcon />
-										{t('continueWithGoogle')}
-									</Button>
-								</div>
-							</form>
-						</FormProvider>
+						<ButtonLogin />
 					</div>
 				</div>
 			</div>
