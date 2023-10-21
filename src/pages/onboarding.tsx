@@ -1,10 +1,13 @@
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { OnboardingSlideOne } from '@/UI/3-organisms/onboarding/OnboardingSlideOne';
+import { OnboardingSlide } from '@/UI/3-organisms/onboarding/OnboardingSlide';
 
 const onboarding = () => {
 	return (
 		<MainLayout>
-			<OnboardingSlideOne />
+			<OnboardingSlide
+				title='¿Qué es Tenki'
+				content={<>Monda</>}
+			/>
 		</MainLayout>
 	);
 };
