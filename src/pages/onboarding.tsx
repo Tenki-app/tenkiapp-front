@@ -6,9 +6,11 @@ import { OnboardingSlideOne } from '@/UI/3-organisms/onboarding/slides/Onboardin
 const OnboardingPage = () => {
 	const { t } = useTranslation();
 
+	const onClickContinueSlideOne = () => {};
+
 	return (
 		<MainLayout>
-			<OnboardingSlideOne />
+			<OnboardingSlideOne onClickContinue={onClickContinueSlideOne} />
 		</MainLayout>
 	);
 };

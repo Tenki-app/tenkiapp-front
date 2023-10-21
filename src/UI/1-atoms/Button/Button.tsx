@@ -9,7 +9,7 @@ type typeButtonProps = {
 	onClick?: MouseEventHandler;
 	redirect?: string;
 	type?: 'button' | 'submit' | 'reset';
-	variant?: 'fill' | 'underline' | 'blue';
+	variant?: 'fill' | 'underline' | 'blue' | 'ghost';
 };
 
 const Button = ({
@@ -31,6 +31,9 @@ const Button = ({
 	} else if (variant === 'blue') {
 		designButton =
 			'px-8 py-2 mt-2 rounded-lg bg-dark-blue text-white dark:bg-champagne-white';
+	} else if (variant === 'ghost') {
+		designButton =
+			'px-8 py-2 mt-2 rounded-lg bg-transparent border border-dark-blue text-dark-blue dark:text-champagne-white';
 	}
 
 	return (

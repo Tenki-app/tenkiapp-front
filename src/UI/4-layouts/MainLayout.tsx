@@ -22,12 +22,12 @@ const MainLayout = ({
 
 	return (
 		<main
-			className={`bg-champagne-white min-h-screen ${
+			className={`bg-champagne-white h-screen ${
 				className ?? ''
 			} dark:bg-dark-blue`}
 		>
 			<div
-				className={`${hasMargin ? mainMargin : ''} ${
+				className={`h-full ${hasMargin ? mainMargin : ''} ${
 					wrapperClasses ?? ''
 				}`}
 			>

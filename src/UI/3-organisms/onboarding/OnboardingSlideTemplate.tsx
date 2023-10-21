@@ -10,6 +10,7 @@ type TypeOnboardingSlideProps = {
 	content: ReactNode;
 	imageUrl: StaticImageData;
 	imageAlt: string;
+	containerStyles?: string;
 };
 
 const OnboardingSlideTemplate = ({
@@ -17,9 +18,10 @@ const OnboardingSlideTemplate = ({
 	content,
 	imageUrl,
 	imageAlt,
+	containerStyles,
 }: TypeOnboardingSlideProps) => {
 	return (
-		<div>
+		<div className={`h-full w-full ${containerStyles ?? ''}`}>
 			<div className='w-fit h-fit relative'>
 				<div className='w-full h-full absolute top-0 left-0 bg-black opacity-60' />
 				<Image
