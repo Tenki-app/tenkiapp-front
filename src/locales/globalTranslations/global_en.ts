@@ -5,4 +5,11 @@ export const global_en = {
 	english: 'EN',
 	loginPill: 'Login',
 	registerPill: 'Register',
+	continue: 'Continue',
+	state: 'State',
+	taskTitle: 'Task title',
+	assignedDay: 'Assigned day',
+	moreInfo: 'More information',
+	editar: 'Edit',
+	delete: 'Delete',
 };
