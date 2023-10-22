@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { OnboardingSlideTemplate } from '@/UI/3-organisms/onboarding/OnboardingSlideTemplate';
 import { Text } from '@/UI/1-atoms/Text/Text';
 import { Button } from '@/UI/1-atoms/Button/Button';
-import { CardTask } from '../../task/CardTask';
+import { CardTask } from '../../task/cards/CardTask';
 import coffeeDesktopImage from '@/images/coffee-desktop.png';
 
 type TypeOnboardingSlideTwoProps = {
