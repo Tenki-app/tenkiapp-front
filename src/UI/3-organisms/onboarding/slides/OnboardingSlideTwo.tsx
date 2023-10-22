@@ -21,7 +21,7 @@ const OnboardingSlideTwo = ({
 			title={t('ourTaskSystem')}
 			content={
 				<div className='h-full mt-20'>
-					<div className='flex flex-col gap-6'>
+					<div className='flex flex-col gap-[40px]'>
 						<SampleCardTask
 							title='Do dinner'
 							description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
@@ -29,7 +29,7 @@ const OnboardingSlideTwo = ({
 							date='13-01-2023'
 							state='done'
 							category='today'
-							sampleCardTaskStyles='pointer-events-none'
+							sampleCardTaskStyles='pointer-events-none mb-10'
 						/>
 						<CardTask
 							title='Do dinner'

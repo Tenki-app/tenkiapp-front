@@ -57,11 +57,25 @@ const SampleCardTask = ({
 		>
 			<div className='flex justify-between'>
 				<div className='flex items-start gap-4 md:gap-6'>
-					{renderStatus()}
-					<div>
+					<div className='relative w-fit h-fit'>
+						<div className='flex flex-col items-center absolute left-[-4px] w-fit bottom-[25px] h-fit'>
+							<Text className='!text-xs whitespace-nowrap font-bold mb-[2px]'>
+								{t('state')}
+							</Text>
+							<DashedArrowIcon className='w-4 h-[50px]' />
+						</div>
+						{renderStatus()}
+					</div>
+					<div className='relative w-fit h-fit'>
 						<Text className='font-bold !text-lg italic'>
 							{title}
 						</Text>
+						<div className='flex flex-col items-center absolute left-[-4px] w-fit top-[23px] h-fit'>
+							<DashedArrowIcon className='w-4 h-[50px] rotate-180' />
+							<Text className='!text-xs whitespace-nowrap font-bold mt-[2px]'>
+								{t('taskTitle')}
+							</Text>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -70,16 +84,14 @@ const SampleCardTask = ({
 					category === 'next' ? 'right-4' : 'right-3'
 				}`}
 			>
-				<div className='relative'>
-					<Text className={`uppercase !font-bold !text-xs`}>
-						{category}
+				<Text className={`uppercase !font-bold !text-xs`}>
+					{category}
+				</Text>
+				<div className='flex flex-col items-center absolute left-[-15px] w-fit bottom-[16px] h-fit'>
+					<Text className='!text-xs whitespace-nowrap font-bold mb-[2px]'>
+						{t('assignedDay')}
 					</Text>
-					<div className='flex flex-col items-center absolute left-[-15px] w-fit bottom-[16px] h-fit'>
-						<Text className='!text-xs whitespace-nowrap'>
-							{t('assignedDay')}
-						</Text>
-						<DashedArrowIcon className='w-4 h-[50px]' />
-					</div>
+					<DashedArrowIcon className='w-4 h-[50px]' />
 				</div>
 			</div>
 			<div
