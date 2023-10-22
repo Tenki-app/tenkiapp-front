@@ -1,38 +1,36 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 import { Text } from '@/UI/1-atoms/Text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
 import DoneIcon from '@/svg/task/finishStateIcon.svg';
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';
 import InProgressIcon from '@/svg/task/inProgressIcon.svg';
-import DeleteIcon from '@/svg/task/deleteIcon.svg';
-import EditIcon from '@/svg/task/editIcon.svg';
+import DashedArrowIcon from '@/svg/task/dashedArrowIcon.svg';
 
-type TypeCardTaskProps = {
+type TypeSampleCardTaskProps = {
 	title: string;
 	description: string;
 	time: string;
 	date: string;
 	state: 'done' | 'pending' | 'progress';
 	category: 'today' | 'next' | 'someday';
-	cardTaskStyles?: string;
+	sampleCardTaskStyles?: string;
 	isOpen?: boolean;
 	designVariation?: 'white' | 'red' | 'blue';
 };
 
-const CardTask = ({
+const SampleCardTask = ({
 	title,
 	description,
 	time,
 	date,
 	state,
 	category,
-	cardTaskStyles,
-	isOpen = false,
+	sampleCardTaskStyles,
 	designVariation,
-}: TypeCardTaskProps) => {
-	const [isActive, setIsActive] = useState(isOpen);
+}: TypeSampleCardTaskProps) => {
+	const { t } = useTranslation();
 
 	let designCard = '';
 
@@ -54,8 +52,8 @@ const CardTask = ({
 	return (
 		<motion.div
 			className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
-				cardTaskStyles ?? ''
-			} ${!isActive && 'cursor-pointer'}`}
+				sampleCardTaskStyles ?? ''
+			}`}
 		>
 			<div className='flex justify-between'>
 				<div className='flex items-start gap-4 md:gap-6'>
@@ -64,57 +62,33 @@ const CardTask = ({
 						<Text className='font-bold !text-lg italic'>
 							{title}
 						</Text>
-						<AnimatePresence>
-							{isActive && (
-								<motion.div
-									initial={{ opacity: 0, height: 0 }}
-									animate={{
-										opacity: 1,
-										height: 'fit-content',
-									}}
-									exit={{ opacity: 0, height: 0 }}
-								>
-									<Text className='!text-xs font-light'>{`${date} | ${time}`}</Text>
-								</motion.div>
-							)}
-						</AnimatePresence>
 					</div>
 				</div>
 			</div>
-			<Text
-				className={`uppercase absolute !font-bold !text-xs top-2 ${
+			<div
+				className={`absolute top-2 ${
 					category === 'next' ? 'right-4' : 'right-3'
 				}`}
 			>
-				{category}
-			</Text>
-			<motion.div
-				animate={isActive ? 'open' : 'close'}
-				transition={{ duration: 0.4 }}
-				className={`cursor-pointer right-5 h-fit absolute ${
-					isActive ? ' bottom-[20px]' : 'bottom-[25%] my-auto'
-				}`}
+				<div className='relative'>
+					<Text className={`uppercase !font-bold !text-xs`}>
+						{category}
+					</Text>
+					<div className='flex flex-col items-center absolute left-[-15px] w-fit bottom-[16px] h-fit'>
+						<Text className='!text-xs whitespace-nowrap'>
+							{t('assignedDay')}
+						</Text>
+						<DashedArrowIcon className='w-4 h-[50px]' />
+					</div>
+				</div>
+			</div>
+			<div
+				className={`cursor-pointer right-5 h-fit absolute bottom-[25%] my-auto`}
 			>
 				<ArrowIcon className='text-dark-blue w-[24px] h-[12px]' />
-			</motion.div>
-			<AnimatePresence>
-				{isActive && (
-					<motion.div
-						initial={{ opacity: 0, height: 0 }}
-						animate={{ opacity: 1, height: 'fit-content' }}
-						exit={{ opacity: 0, height: 0 }}
-						className='px-1'
-					>
-						<Text className='pt-4 pb-8'>{description}</Text>
-						<div className='flex justify-start gap-5 pt-[14px] items-center border-t '>
-							<EditIcon className={bottomIconsStyles} />
-							<DeleteIcon className={bottomIconsStyles} />
-						</div>
-					</motion.div>
-				)}
-			</AnimatePresence>
+			</div>
 		</motion.div>
 	);
 };
 
-export { CardTask };
+export { SampleCardTask };
