@@ -7,6 +7,7 @@ import DoneIcon from '@/svg/task/finishStateIcon.svg';
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';
 import InProgressIcon from '@/svg/task/inProgressIcon.svg';
 import DashedArrowIcon from '@/svg/task/dashedArrowIcon.svg';
+import BentDashedArrowIcon from '@/svg/task/bentDashedArrowIcon.svg';
 
 type TypeSampleCardTaskProps = {
 	title: string;
@@ -70,7 +71,7 @@ const SampleCardTask = ({
 						<Text className='font-bold !text-lg italic'>
 							{title}
 						</Text>
-						<div className='flex flex-col items-center absolute left-[-4px] w-fit top-[23px] h-fit'>
+						<div className='flex flex-col items-center absolute left-[-20px] w-fit top-[23px] h-fit'>
 							<DashedArrowIcon className='w-4 h-[50px] rotate-180' />
 							<Text className='!text-xs whitespace-nowrap font-bold mt-[2px]'>
 								{t('taskTitle')}
@@ -98,6 +99,12 @@ const SampleCardTask = ({
 				className={`cursor-pointer right-5 h-fit absolute bottom-[25%] my-auto`}
 			>
 				<ArrowIcon className='text-dark-blue w-[24px] h-[12px]' />
+				<div className='flex flex-col items-center right-[-7px] absolute w-fit h-fit'>
+					<BentDashedArrowIcon className='w-[30px] h-[40px]' />
+					<Text className='!text-xs whitespace-nowrap font-bold mb-[2px]'>
+						{t('moreInfo')}
+					</Text>
+				</div>
 			</div>
 		</motion.div>
 	);

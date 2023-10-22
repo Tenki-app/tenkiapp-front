@@ -29,7 +29,7 @@ const OnboardingSlideTwo = ({
 							date='13-01-2023'
 							state='done'
 							category='today'
-							sampleCardTaskStyles='pointer-events-none mb-10'
+							sampleCardTaskStyles='pointer-events-none mb-10 bg-[#8f3b3396]'
 						/>
 						<CardTask
 							title='Do dinner'
@@ -39,7 +39,7 @@ const OnboardingSlideTwo = ({
 							state='done'
 							category='today'
 							isOpen
-							cardTaskStyles='pointer-events-none'
+							cardTaskStyles='pointer-events-none bg-[#8f3b3396]'
 						/>
 					</div>
 					<div className='flex justify-end mt-12'>
