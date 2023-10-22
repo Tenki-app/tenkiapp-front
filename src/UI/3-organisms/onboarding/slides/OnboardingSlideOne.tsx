@@ -18,14 +18,16 @@ const OnboardingSlideOne = ({
 		<OnboardingSlideTemplate
 			title={t('whatIsTenki')}
 			content={
-				<div>
+				<div className='h-full'>
 					<Text>{t('tenkiObjective')}</Text>
-					<Button
-						variant='ghost'
-						onClick={onClickContinue}
-					>
-						{t('continue')}
-					</Button>
+					<div className='flex justify-end mt-12'>
+						<Button
+							variant='ghost'
+							onClick={onClickContinue}
+						>
+							{t('continue')}
+						</Button>
+					</div>
 				</div>
 			}
 			imageUrl={coffeeDesktopImage}

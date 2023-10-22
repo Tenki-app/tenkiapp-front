@@ -17,6 +17,7 @@ type TypeCardTaskProps = {
 	state: 'done' | 'pending' | 'progress';
 	category: 'today' | 'next' | 'someday';
 	cardTaskStyles?: string;
+	isOpen?: boolean;
 };
 
 const CardTask = ({
@@ -27,8 +28,9 @@ const CardTask = ({
 	state,
 	category,
 	cardTaskStyles,
+	isOpen = false,
 }: TypeCardTaskProps) => {
-	const [isActive, setIsActive] = useState(false);
+	const [isActive, setIsActive] = useState(isOpen);
 
 	const renderStatus = () => {
 		const iconStyles = 'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px]';
