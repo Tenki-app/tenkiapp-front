@@ -23,9 +23,6 @@ const Login = () => {
 							<ThemeMode />
 							<SwitchLang />
 						</div>
-						<div className='ml-[50px]'>
-							<Pill />
-						</div>
 					</div>
 					<div className='text-center flex flex-col w-[75%] mx-auto items-center'>
 						<div>

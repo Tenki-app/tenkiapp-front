@@ -35,7 +35,6 @@ const MainLayout = ({
 					<div className='flex p-3 '>
 						<ThemeMode />
 						<SwitchLang />
-						<Pill />
 					</div>
 				)}
 
