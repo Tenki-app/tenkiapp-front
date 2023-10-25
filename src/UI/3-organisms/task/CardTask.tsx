@@ -1,7 +1,5 @@
-import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
-
-import { useGetDimensions } from '@/lib/hooks/dom/useGetDimensions';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 import { Text } from '@/UI/1-atoms/Text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
@@ -17,7 +15,7 @@ type TypeCardTaskProps = {
 	time: string;
 	date: string;
 	state: 'done' | 'pending' | 'progress';
-	category: 'today' | 'tomorrow' | 'someday';
+	category: 'today' | 'next' | 'someday';
 	cardTaskStyles?: string;
 };
 
@@ -32,15 +30,20 @@ const CardTask = ({
 }: TypeCardTaskProps) => {
 	const [isActive, setIsActive] = useState(false);
 
-	const cardRef = useRef<HTMLDivElement>(null);
-	const { height } = useGetDimensions(cardRef);
-
 	const renderStatus = () => {
-		const iconStyles = 'w-[25px] h-[25px] md:w-[32px] md:h-[32px]';
+		const iconStyles = 'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px]';
 		if (state === 'done') {
 			return <DoneIcon className={`${iconStyles}`} />;
 		}
+		if (state === 'pending') {
+			return <PendingIcon className={`${iconStyles}`} />;
+		}
+		if (state === 'progress') {
+			return <InProgressIcon className={`${iconStyles}`} />;
+		}
 	};
+
+	const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
 	const handleShowDetails = () => {
 		if (!isActive) {
@@ -55,55 +58,77 @@ const CardTask = ({
 	};
 
 	const variantsArrow = {
-		open: { translateY: '100%', rotate: '180deg' },
-		close: { translate: 0, rotate: '0' },
+		open: { rotate: '180deg' },
+		close: { rotate: '0' },
 	};
 
 	return (
 		<motion.div
-			className={`shadow-lg bg-champagne-white px-4 py-4 rounded-md ${
+			className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
 				cardTaskStyles ?? ''
-			}
-            ${!isActive && 'cursor-pointer'}`}
-			onClick={handleShowDetails}
+			} ${!isActive && 'cursor-pointer'}`}
+			onClick={() => {
+				handleShowDetails();
+			}}
 		>
 			<div className='flex justify-between'>
-				<div className='flex items-center gap-4 md:gap-6'>
+				<div className='flex items-start gap-4 md:gap-6'>
 					{renderStatus()}
 					<div>
-						<Text className='font-bold !text-base italic'>
+						<Text className='font-bold !text-lg italic'>
 							{title}
 						</Text>
-						{isActive && (
-							<Text className='font-light'>{`${date} | ${time}`}</Text>
-						)}
+						<AnimatePresence>
+							{isActive && (
+								<motion.div
+									initial={{ opacity: 0, height: 0 }}
+									animate={{
+										opacity: 1,
+										height: 'fit-content',
+									}}
+									exit={{ opacity: 0, height: 0 }}
+								>
+									<Text className='!text-xs font-light'>{`${date} | ${time}`}</Text>
+								</motion.div>
+							)}
+						</AnimatePresence>
 					</div>
-				</div>
-				<div className='flex flex-col justify-between items-end gap-2'>
-					<Text className='!font-black uppercase !text-xs mt-[-8px] mr-[-4px]'>
-						{category}
-					</Text>
-					<motion.div
-						animate={isActive ? 'open' : 'close'}
-						variants={variantsArrow}
-						onClick={handleHideDetails}
-						className='cursor-pointer p-1'
-					>
-						<ArrowIcon className='text-dark-blue' />
-					</motion.div>
 				</div>
 			</div>
-			{isActive && (
-				<div className='mt-6 px-1'>
-					<Text className='pb-6'>{description}</Text>
-					<div className='flex justify-between items-center border-t pt-4'>
-						<div className='flex justify-start gap-1'>
-							<DeleteIcon className='w-[24px] h-[24px] text-red-200' />
-							<EditIcon className='' />
+			<Text
+				className={`uppercase absolute !font-bold !text-xs top-2 ${
+					category === 'next' ? 'right-4' : 'right-3'
+				}`}
+			>
+				{category}
+			</Text>
+			<motion.div
+				animate={isActive ? 'open' : 'close'}
+				variants={variantsArrow}
+				onClick={handleHideDetails}
+				transition={{ duration: 0.4 }}
+				className={`cursor-pointer right-5 h-fit absolute ${
+					isActive ? ' bottom-[20px]' : 'bottom-[25%] my-auto'
+				}`}
+			>
+				<ArrowIcon className='text-dark-blue w-[24px] h-[12px]' />
+			</motion.div>
+			<AnimatePresence>
+				{isActive && (
+					<motion.div
+						initial={{ opacity: 0, height: 0 }}
+						animate={{ opacity: 1, height: 'fit-content' }}
+						exit={{ opacity: 0, height: 0 }}
+						className='px-1'
+					>
+						<Text className='pt-4 pb-8'>{description}</Text>
+						<div className='flex justify-start gap-5 pt-[14px] items-center border-t '>
+							<EditIcon className={bottomIconsStyles} />
+							<DeleteIcon className={bottomIconsStyles} />
 						</div>
-					</div>
-				</div>
-			)}
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</motion.div>
 	);
 };

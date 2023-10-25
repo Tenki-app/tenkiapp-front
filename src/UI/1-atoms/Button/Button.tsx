@@ -9,7 +9,7 @@ type typeButtonProps = {
 	onClick?: MouseEventHandler;
 	redirect?: string;
 	type?: 'button' | 'submit' | 'reset';
-	variant?: 'fill' | 'underline';
+	variant?: 'fill' | 'underline' | 'blue';
 };
 
 const Button = ({
@@ -28,6 +28,9 @@ const Button = ({
 	} else if (variant === 'underline') {
 		designButton =
 			'text-lg w-max text-champagne-white underline font-medium';
+	} else if (variant === 'blue') {
+		designButton =
+			'px-8 py-2 mt-2 rounded-lg bg-dark-blue text-white dark:bg-champagne-white';
 	}
 
 	return (

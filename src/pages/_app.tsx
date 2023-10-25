@@ -1,10 +1,12 @@
-import type { AppProps } from 'next/app';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { I18nextProvider } from 'react-i18next';
-import { SessionProvider } from 'next-auth/react';
+import { Auth0Provider } from '@auth0/auth0-react';
 import { i18next } from './../lib/utils/i18n';
 import { useState, useEffect } from 'react';
+import Router from 'next/router';
+
+import type { AppProps } from 'next/app';
 
 import '@/styles/globals.css';
 
@@ -23,13 +25,20 @@ export default function App({
 	if (!isInitialRender) return <></>;
 
 	return (
-		<QueryClientProvider client={queryClient}>
-			<I18nextProvider i18n={i18next}>
-				<SessionProvider session={session}>
+		<Auth0Provider
+			domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN ?? ''}
+			clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID ?? ''}
+			authorizationParams={{
+				redirect_uri:
+					typeof window !== 'undefined' ? window.location.origin : '',
+			}}
+		>
+			<QueryClientProvider client={queryClient}>
+				<I18nextProvider i18n={i18next}>
 					<Component {...pageProps} />
 					<ReactQueryDevtools />
-				</SessionProvider>
-			</I18nextProvider>
-		</QueryClientProvider>
+				</I18nextProvider>
+			</QueryClientProvider>
+		</Auth0Provider>
 	);
 }
