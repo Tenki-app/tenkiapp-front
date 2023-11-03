@@ -21,12 +21,17 @@ const OnboardingSlideTemplate = ({
 	containerStyles,
 }: TypeOnboardingSlideProps) => {
 	return (
-		<div className={`h-full w-full ${containerStyles ?? ''}`}>
-			<div className='w-fit h-fit relative'>
+		<div
+			className={`h-full flex flex-col items-start w-full ${
+				containerStyles ?? ''
+			}`}
+		>
+			<div className='w-full h-[15%] relative'>
 				<div className='w-full h-full absolute top-0 left-0 bg-black opacity-60' />
 				<Image
 					src={imageUrl}
 					alt={imageAlt}
+					className='h-full'
 				/>
 				<div className='absolute top-0 bottom-0 left-0 right-0 m-auto w-full h-fit flex justify-between items-center'>
 					<div className='h-[1px] w-[15%] bg-champagne-white' />
@@ -34,7 +39,7 @@ const OnboardingSlideTemplate = ({
 					<div className='h-[1px] w-[15%] bg-champagne-white' />
 				</div>
 			</div>
-			<div className='w-[80%] mx-auto mt-12'>{content}</div>
+			<div className='w-[80%] h-full mx-auto mt-12'>{content}</div>
 		</div>
 	);
 };
