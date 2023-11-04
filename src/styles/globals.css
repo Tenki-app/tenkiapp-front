@@ -17,15 +17,3 @@
 .option-styles:hover p {
 	color: #f7efd8;
 }
-
-/* slider dots styles */
-.middle-dot {
-
-}
-
-.middle-dot::before {
-	content: '';
-	width: 10px;
-	height: 2px;
-	
-}

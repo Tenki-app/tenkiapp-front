@@ -11,8 +11,6 @@ const SliderDots = ({
 	activeOption,
 	containerStyles,
 }: TypeSliderDotsProps) => {
-	const dotLineStyles = `before:content-[""] before:h-[2px] before:w-[10px] before:bg-dark-blue before:block`;
-
 	const isFirstElement = (index: number) => {
 		if (index === 0) {
 			return true;
@@ -22,16 +20,22 @@ const SliderDots = ({
 	};
 
 	return (
-		<div className={`w-[140px] px-12 flex ${containerStyles ?? ''}`}>
-			{dotOptions.map((singleDot, index) => (
-				<IndicatorDot
-					key={index}
-					text={singleDot}
-					isActive={singleDot === activeOption}
-					hasDotLines={!isFirstElement(index)}
-					indicatorStyles={``}
-				/>
-			))}
+		<div
+			className={`w-[110px] bg-red-200 overflow-hidden ${
+				containerStyles ?? ''
+			}`}
+		>
+			<div className='flex w-full'>
+				{dotOptions.map((singleDot, index) => (
+					<IndicatorDot
+						key={index}
+						text={singleDot}
+						isActive={singleDot === activeOption}
+						hasDotLines={!isFirstElement(index)}
+						indicatorStyles={``}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };

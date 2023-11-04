@@ -35,16 +35,28 @@ const OnboardingPage = () => {
 					pagination={{ clickable: true }}
 				>
 					<SwiperSlide>
-						{({ isActive }) => (
-							<OnboardingSlideOne
-								onClickContinue={onClickContinueSlideOne}
-							/>
-						)}
+						{({ isActive }) => {
+							if (isActive) {
+								setIndexActiveSlide('1');
+							}
+							return (
+								<OnboardingSlideOne
+									onClickContinue={onClickContinueSlideOne}
+								/>
+							);
+						}}
 					</SwiperSlide>
 					<SwiperSlide>
-						<OnboardingSlideTwo
-							onClickContinue={onClickContinueSlideTwo}
-						/>
+						{({ isActive }) => {
+							if (isActive) {
+								setIndexActiveSlide('2');
+							}
+							return (
+								<OnboardingSlideTwo
+									onClickContinue={onClickContinueSlideTwo}
+								/>
+							);
+						}}
 					</SwiperSlide>
 				</Swiper>
 			</div>
