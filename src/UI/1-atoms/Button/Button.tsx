@@ -18,7 +18,7 @@ const Button = ({
 	onClick,
 	redirect,
 	type = 'button',
-	variant = 'fill',
+	variant = 'custom',
 }: typeButtonProps): JSX.Element => {
 	let designButton = '';
 

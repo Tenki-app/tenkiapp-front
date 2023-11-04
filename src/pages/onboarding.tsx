@@ -1,14 +1,22 @@
 import { useTranslation } from 'react-i18next';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from 'swiper/react';
+import { useState } from 'react';
 
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
 import { OnboardingSlideOne } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideOne';
 import { OnboardingSlideTwo } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideTwo';
 
 import 'swiper/css';
+import SliderDots from '@/UI/2-molecules/Slider/SliderDots';
 
 const OnboardingPage = () => {
+	const swiperSlide = useSwiperSlide();
+	const swiper = useSwiper();
 	const { t } = useTranslation();
+
+	const [indexActiveSlide, setIndexActiveSlide] = useState<string>('1');
+
+	const sliderDotsOptions = ['1', '2', '3', '4'];
 
 	const onClickContinueSlideOne = () => {};
 
@@ -16,16 +24,22 @@ const OnboardingPage = () => {
 
 	return (
 		<MainLayout>
-			<div className='relative bg-red-400 h-full w-full overflow-hidden'>
+			<div className='relative h-full w-full overflow-hidden'>
+				<SliderDots
+					dotOptions={sliderDotsOptions}
+					activeOption={indexActiveSlide}
+				/>
 				<Swiper
 					spaceBetween={30}
 					slidesPerView={1}
 					pagination={{ clickable: true }}
 				>
 					<SwiperSlide>
-						<OnboardingSlideOne
-							onClickContinue={onClickContinueSlideOne}
-						/>
+						{({ isActive }) => (
+							<OnboardingSlideOne
+								onClickContinue={onClickContinueSlideOne}
+							/>
+						)}
 					</SwiperSlide>
 					<SwiperSlide>
 						<OnboardingSlideTwo
