@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { OnboardingSlideTemplate } from '@/UI/3-organisms/onboarding/OnboardingSlideTemplate';
+import { OnboardingSlideTemplate } from '@/UI/3-organisms/onboarding/templates/OnboardingSlideTemplate';
 import { Text } from '@/UI/1-atoms/Text/Text';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { CardTask } from '../../task/cards/CardTask';
