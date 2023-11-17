@@ -7,9 +7,9 @@ import { OnboardingSlideOne } from '@/UI/3-organisms/onboarding/slides/Onboardin
 import { OnboardingSlideTwo } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideTwo';
 import { OnboardingSlideThree } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideThree';
 import { OnboardingSlideFour } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideFour';
+import SliderDots from '@/UI/2-molecules/Slider/SliderDots';
 
 import 'swiper/css';
-import SliderDots from '@/UI/2-molecules/Slider/SliderDots';
 
 const OnboardingPage = () => {
 	const swiperSlide = useSwiperSlide();

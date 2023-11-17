@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
 import { OnboardingSlideTemplate } from '@/UI/3-organisms/onboarding/templates/OnboardingSlideTemplate';
-import { Text } from '@/UI/1-atoms/Text/Text';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { CardTask } from '../../task/cards/CardTask';
 import { SampleCardTask } from '../../task/cards/SampleCardTask';
-import coffeeDesktopImage from '@/images/coffee-desktop.png';
+import checkListImage from '@/images/onboarding/check-list.png';
 
 type TypeOnboardingSlideTwoProps = {
 	onClickContinue: () => void;
@@ -49,7 +48,7 @@ const OnboardingSlideTwo = ({
 					</div>
 				</div>
 			}
-			imageUrl={coffeeDesktopImage}
+			imageUrl={checkListImage}
 			imageAlt='coffee on desktop'
 			containerStyles=''
 		/>
