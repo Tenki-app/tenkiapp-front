@@ -44,7 +44,7 @@ const OnboardingSlideTwo = ({
 					</div>
 					<div className='flex justify-end mt-12'>
 						<Button
-							variant='ghost'
+							variant='bordered'
 							onClick={onClickContinue}
 						>
 							{t('continue')}

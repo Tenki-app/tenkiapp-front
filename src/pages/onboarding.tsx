@@ -25,14 +25,11 @@ const OnboardingPage = () => {
 	return (
 		<MainLayout>
 			<div className='relative h-full w-full overflow-hidden'>
-				<SliderDots
-					dotOptions={sliderDotsOptions}
-					activeOption={indexActiveSlide}
-				/>
 				<Swiper
 					spaceBetween={30}
 					slidesPerView={1}
 					pagination={{ clickable: true }}
+					className='h-[85%]'
 				>
 					<SwiperSlide>
 						{({ isActive }) => {
@@ -59,6 +56,11 @@ const OnboardingPage = () => {
 						}}
 					</SwiperSlide>
 				</Swiper>
+				<SliderDots
+					dotOptions={sliderDotsOptions}
+					activeOption={indexActiveSlide}
+					containerStyles='w-full flex justify-center h-[10%]'
+				/>
 			</div>
 		</MainLayout>
 	);
