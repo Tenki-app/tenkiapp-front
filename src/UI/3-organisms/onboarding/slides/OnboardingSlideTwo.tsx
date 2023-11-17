@@ -20,13 +20,10 @@ const OnboardingSlideTwo = ({
 		<OnboardingSlideTemplate
 			title={t('ourTaskSystem')}
 			content={
-				<div className='h-full mt-20'>
-					<div className='flex flex-col gap-[40px]'>
+				<div className='h-full mt-20 w-full'>
+					<div className='flex flex-col gap-[40px] w-full'>
 						<SampleCardTask
 							title='Do dinner'
-							description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
-							time='15:00'
-							date='13-01-2023'
 							state='done'
 							category='today'
 							sampleCardTaskStyles='pointer-events-none mb-10 bg-[#8f3b3396]'

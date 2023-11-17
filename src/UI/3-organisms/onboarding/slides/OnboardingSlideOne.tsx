@@ -18,7 +18,7 @@ const OnboardingSlideOne = ({
 		<OnboardingSlideTemplate
 			title={t('whatIsTenki')}
 			content={
-				<div className='h-full'>
+				<div className='h-full w-full'>
 					<Text>{t('tenkiObjective')}</Text>
 					<div className='flex justify-end mt-12'>
 						<Button

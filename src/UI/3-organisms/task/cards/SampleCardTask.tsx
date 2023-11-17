@@ -11,29 +11,18 @@ import BentDashedArrowIcon from '@/svg/task/bentDashedArrowIcon.svg';
 
 type TypeSampleCardTaskProps = {
 	title: string;
-	description: string;
-	time: string;
-	date: string;
 	state: 'done' | 'pending' | 'progress';
 	category: 'today' | 'next' | 'someday';
 	sampleCardTaskStyles?: string;
-	isOpen?: boolean;
-	designVariation?: 'white' | 'red' | 'blue';
 };
 
 const SampleCardTask = ({
 	title,
-	description,
-	time,
-	date,
 	state,
 	category,
 	sampleCardTaskStyles,
-	designVariation,
 }: TypeSampleCardTaskProps) => {
 	const { t } = useTranslation();
-
-	let designCard = '';
 
 	const renderStatus = () => {
 		const iconStyles = 'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px]';
@@ -48,11 +37,9 @@ const SampleCardTask = ({
 		}
 	};
 
-	const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
-
 	return (
 		<motion.div
-			className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
+			className={`w-full shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
 				sampleCardTaskStyles ?? ''
 			}`}
 		>
