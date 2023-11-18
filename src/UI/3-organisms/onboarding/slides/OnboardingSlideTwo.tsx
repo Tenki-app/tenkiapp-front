@@ -17,7 +17,6 @@ const OnboardingSlideTwo = ({
 
 	return (
 		<OnboardingSlideTemplate
-			title={t('ourTaskSystem')}
 			content={
 				<div className='flex flex-col gap-[40px] w-full mt-12 md:w-[80%] md:mx-auto'>
 					<SampleCardTask

@@ -52,7 +52,7 @@ const OnboardingPage = () => {
 
 	return (
 		<MainLayout>
-			<div className='relative h-full w-full overflow-hidden md:flex md:flex-col'>
+			<div className='relative h-full w-full overflow-hidden md:flex'>
 				<div className='w-full h-[40%] relative md:h-full md:w-[50%]'>
 					<div className='w-full h-full absolute top-0 left-0 bg-black opacity-60' />
 					<Image
@@ -70,12 +70,21 @@ const OnboardingPage = () => {
 						/>
 					</div>
 				</div>
-				<div className='h-[55%] w-full flex flex-col justify-between'>
+				<div className='h-[55%] w-full flex flex-col justify-between md:h-full md:w-[50%] md:gap-4'>
+					<div className='hidden w-full mt-12 md:block'>
+						<TitleWithLines
+							title={t(
+								onboardingImagesData[indexActiveNumber].title
+							)}
+							colorVariation='dark-blue'
+							designVariation='left'
+						/>
+					</div>
 					<Swiper
 						spaceBetween={0}
 						slidesPerView={1}
 						pagination={{ clickable: true }}
-						className='h-[82%] w-full md:h-full md:mb-0'
+						className='h-[82%] w-full md:mb-0 md:h-[70%]'
 					>
 						{sliderDotsOptions.map((singleDot) => (
 							<SwiperSlide key={singleDot}>
@@ -91,7 +100,7 @@ const OnboardingPage = () => {
 					<SliderDots
 						dotOptions={sliderDotsOptions}
 						activeOption={indexActiveSlide}
-						containerStyles='w-full flex justify-center items-center h-[10%] md:absolute md:right-[15vw] md:bottom-[10%] md:w-auto'
+						containerStyles='w-full flex justify-center items-center md:py-8'
 					/>
 				</div>
 			</div>

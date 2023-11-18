@@ -14,7 +14,6 @@ const OnboardingSlideOne = ({
 
 	return (
 		<OnboardingSlideTemplate
-			title={t('whatIsTenki')}
 			onClickContinue={onClickContinue}
 			content={
 				<div className='w-full'>

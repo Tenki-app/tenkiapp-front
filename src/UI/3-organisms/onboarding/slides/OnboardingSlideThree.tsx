@@ -15,7 +15,6 @@ const OnboardingSlideThree = ({
 
 	return (
 		<OnboardingSlideTemplate
-			title={t('chooseHowYouSeeTasks')}
 			onClickContinue={onClickContinue}
 			content={
 				<div className=''>

@@ -15,7 +15,6 @@ const OnboardingSlideFour = ({
 
 	return (
 		<OnboardingSlideTemplate
-			title={t('tryPomodoro')}
 			onClickContinue={onClickContinue}
 			content={
 				<div className=''>
