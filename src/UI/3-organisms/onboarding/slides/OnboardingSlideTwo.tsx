@@ -19,38 +19,26 @@ const OnboardingSlideTwo = ({
 		<OnboardingSlideTemplate
 			title={t('ourTaskSystem')}
 			content={
-				<div className='h-full w-full'>
-					<div className='flex flex-col gap-[40px] w-full md:w-[80%] md:mx-auto'>
-						<SampleCardTask
-							title='Do dinner'
-							state='done'
-							category='today'
-							sampleCardTaskStyles='pointer-events-none mb-10 bg-[#8f3b3396]'
-						/>
-						<CardTask
-							title='Do dinner'
-							description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
-							time='15:00'
-							date='13-01-2023'
-							state='done'
-							category='today'
-							isOpen
-							cardTaskStyles='pointer-events-none bg-[#8f3b3396]'
-						/>
-					</div>
-					<div className='flex justify-end mt-12'>
-						<Button
-							variant='bordered'
-							onClick={onClickContinue}
-						>
-							{t('continue')}
-						</Button>
-					</div>
+				<div className='flex flex-col gap-[40px] w-full mt-12 md:w-[80%] md:mx-auto'>
+					<SampleCardTask
+						title='Do dinner'
+						state='done'
+						category='today'
+						sampleCardTaskStyles='pointer-events-none mb-10 bg-[#8f3b3396]'
+					/>
+					<CardTask
+						title='Do dinner'
+						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
+						time='15:00'
+						date='13-01-2023'
+						state='done'
+						category='today'
+						isOpen
+						cardTaskStyles='pointer-events-none bg-[#8f3b3396]'
+					/>
 				</div>
 			}
-			imageUrl={checkListImage}
-			imageAlt='coffee on desktop'
-			containerStyles=''
+			onClickContinue={onClickContinue}
 		/>
 	);
 };

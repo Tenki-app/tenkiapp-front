@@ -16,6 +16,7 @@ const OnboardingSlideThree = ({
 	return (
 		<OnboardingSlideTemplate
 			title={t('chooseHowYouSeeTasks')}
+			onClickContinue={onClickContinue}
 			content={
 				<div className=''>
 					Lorem Ipsum is simply dummy text of the printing and
@@ -28,19 +29,8 @@ const OnboardingSlideThree = ({
 					the release of Letraset sheets containing Lorem Ipsum
 					passages, and more recently with desktop publishing software
 					like Aldus PageMaker including versions of Lorem Ipsum.
-					<div className='flex justify-end mt-12'>
-						<Button
-							variant='bordered'
-							onClick={onClickContinue}
-						>
-							{t('continue')}
-						</Button>
-					</div>
 				</div>
 			}
-			imageUrl={calendarImage}
-			imageAlt='coffee on desktop'
-			containerStyles=''
 		/>
 	);
 };

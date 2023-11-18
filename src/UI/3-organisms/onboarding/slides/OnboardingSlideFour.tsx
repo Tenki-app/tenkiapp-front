@@ -16,6 +16,7 @@ const OnboardingSlideFour = ({
 	return (
 		<OnboardingSlideTemplate
 			title={t('tryPomodoro')}
+			onClickContinue={onClickContinue}
 			content={
 				<div className=''>
 					Lorem Ipsum is simply dummy text of the printing and
@@ -27,19 +28,8 @@ const OnboardingSlideFour = ({
 					<div className='w-full justify-center flex'>
 						<div className='w-[50px] aspect-square bg-slate-400 rounded-full mt-8' />
 					</div>
-					<div className='flex justify-end mt-12'>
-						<Button
-							variant='bordered'
-							onClick={onClickContinue}
-						>
-							{t('continue')}
-						</Button>
-					</div>
 				</div>
 			}
-			imageUrl={clockImage}
-			imageAlt='coffee on desktop'
-			containerStyles=''
 		/>
 	);
 };
