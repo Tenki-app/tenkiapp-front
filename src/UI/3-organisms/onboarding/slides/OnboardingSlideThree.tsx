@@ -15,7 +15,7 @@ const OnboardingSlideThree = ({
 
 	return (
 		<OnboardingSlideTemplate
-			title={t('ourTaskSystem')}
+			title={t('chooseHowYouSeeTasks')}
 			content={
 				<div className=''>
 					Lorem Ipsum is simply dummy text of the printing and

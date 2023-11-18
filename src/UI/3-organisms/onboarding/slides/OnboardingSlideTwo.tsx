@@ -20,7 +20,7 @@ const OnboardingSlideTwo = ({
 			title={t('ourTaskSystem')}
 			content={
 				<div className='h-full mt-20 w-full'>
-					<div className='flex flex-col gap-[40px] w-full'>
+					<div className='flex flex-col gap-[40px] w-full md:w-[80%] md:mx-auto'>
 						<SampleCardTask
 							title='Do dinner'
 							state='done'
