@@ -53,7 +53,7 @@ const OnboardingPage = () => {
 					spaceBetween={30}
 					slidesPerView={1}
 					pagination={{ clickable: true }}
-					className='h-[85%] mb-[5%]'
+					className='h-[85%] mb-[5%] md:h-full md:mb-0'
 				>
 					{sliderDotsOptions.map((singleDot) => (
 						<SwiperSlide key={singleDot}>
@@ -69,7 +69,7 @@ const OnboardingPage = () => {
 				<SliderDots
 					dotOptions={sliderDotsOptions}
 					activeOption={indexActiveSlide}
-					containerStyles='w-full flex justify-center items-center h-[10%]'
+					containerStyles='w-full flex justify-center items-center h-[10%] md:absolute md:right-[20%] md:bottom-[10%] md:w-auto'
 				/>
 			</div>
 		</MainLayout>

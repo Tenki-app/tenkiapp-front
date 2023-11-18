@@ -32,7 +32,6 @@ const OnboardingSlideOne = ({
 			}
 			imageUrl={coffeeCupImage}
 			imageAlt='coffee on desktop'
-			containerStyles=''
 		/>
 	);
 };

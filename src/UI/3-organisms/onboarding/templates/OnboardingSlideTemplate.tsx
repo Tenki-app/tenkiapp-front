@@ -27,14 +27,14 @@ const OnboardingSlideTemplate = ({
 				containerStyles ?? ''
 			}`}
 		>
-			<div className='w-full h-[45%] relative md:h-full md:w-[40%]'>
+			<div className='w-full h-[45%] relative md:h-full md:w-[50%]'>
 				<div className='w-full h-full absolute top-0 left-0 bg-black opacity-60' />
 				<Image
 					src={imageUrl}
 					alt={imageAlt}
-					className='h-full'
+					className='h-full object-cover'
 				/>
-				<div className='absolute top-0 bottom-0 left-0 right-0 m-auto w-full h-fit md:static'>
+				<div className='absolute top-0 bottom-0 left-0 right-0 m-auto w-full md:hidden h-fit md:static'>
 					<TitleWithLines title={title} />
 				</div>
 			</div>
