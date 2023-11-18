@@ -42,15 +42,17 @@ const OnboardingSlideTemplate = ({
 					/>
 				</div>
 			</div>
-			<div className='w-full px-[10%] h-[53%] mx-auto mt-12 overflow-y-auto md:h-full md:w-[40%] md:relative'>
-				<div className='m-auto hidden h-fit absolute left-0 z-20 md:block md:w-full'>
+			<div className='w-full px-[10%] h-[53%] mx-auto mt-12 overflow-y-auto md:h-full md:w-[50%] md:relative md:mx-0 md:px-12'>
+				<div className='m-auto hidden h-fit absolute left-0 z-20 md:block md:w-[80%]'>
 					<TitleWithLines
 						title={title}
 						colorVariation='dark-blue'
 						designVariation='left'
 					/>
 				</div>
-				{content}
+				<div className='md:mt-[20vh] md:max-w-[600px] md:mx-auto'>
+					{content}
+				</div>
 			</div>
 		</div>
 	);

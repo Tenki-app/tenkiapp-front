@@ -30,8 +30,7 @@ const TitleWithLines = ({
 		lineStyles += ' w-[10%] h-[2px]';
 	}
 	if (designVariation === 'left') {
-		containerStyles += ' flex justify-start items-center w-full gap-2';
-		lineStyles += '';
+		containerStyles += ' flex justify-start items-center w-full gap-6';
 		leftLineStyle += ' w-[10%]';
 		rightLineStyle += ' w-[40%]';
 	}
