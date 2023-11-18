@@ -27,7 +27,7 @@ const OnboardingSlideTemplate = ({
 				containerStyles ?? ''
 			}`}
 		>
-			<div className='w-full h-[45%] relative md:h-full md:w-[50%]'>
+			{/* <div className='w-full h-[45%] relative md:h-full md:w-[50%]'>
 				<div className='w-full h-full absolute top-0 left-0 bg-black opacity-60' />
 				<Image
 					src={imageUrl}
@@ -41,8 +41,8 @@ const OnboardingSlideTemplate = ({
 						designVariation='center'
 					/>
 				</div>
-			</div>
-			<div className='w-full px-[10%] h-[53%] mx-auto mt-12 overflow-y-auto md:h-full md:w-[50%] md:relative md:mx-0 md:px-12'>
+			</div> */}
+			<div className='w-full px-[10%]  mx-auto mt-12 overflow-y-auto md:h-[65%] md:w-[50%] md:relative md:mx-0 md:px-12'>
 				<div className='m-auto hidden h-fit absolute left-0 z-20 md:block md:w-[80%]'>
 					<TitleWithLines
 						title={title}
