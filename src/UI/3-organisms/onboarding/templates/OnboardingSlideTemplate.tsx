@@ -34,11 +34,22 @@ const OnboardingSlideTemplate = ({
 					alt={imageAlt}
 					className='h-full object-cover'
 				/>
-				<div className='absolute top-0 bottom-0 left-0 right-0 m-auto w-full md:hidden h-fit md:static'>
-					<TitleWithLines title={title} />
+				<div className='absolute top-0 bottom-0 left-0 right-0 m-auto w-full md:hidden h-fit'>
+					<TitleWithLines
+						title={title}
+						colorVariation='white'
+						designVariation='center'
+					/>
 				</div>
 			</div>
-			<div className='w-full px-[10%] h-[53%] mx-auto mt-12 overflow-y-auto md:h-full md:w-[40%]'>
+			<div className='w-full px-[10%] h-[53%] mx-auto mt-12 overflow-y-auto md:h-full md:w-[40%] md:relative'>
+				<div className='m-auto hidden h-fit absolute left-0 z-20 md:block md:w-full'>
+					<TitleWithLines
+						title={title}
+						colorVariation='dark-blue'
+						designVariation='left'
+					/>
+				</div>
 				{content}
 			</div>
 		</div>
