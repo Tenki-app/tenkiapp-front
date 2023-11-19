@@ -1,21 +1,17 @@
 import { useTranslation } from 'react-i18next';
+import { useSwiper } from 'swiper/react';
 
 import { OnboardingSlideTemplate } from '@/UI/3-organisms/onboarding/templates/OnboardingSlideTemplate';
-import { Button } from '@/UI/1-atoms/Button/Button';
-import calendarImage from '@/images/onboarding/calendar.png';
 
-type TypeOnboardingSlideTwoProps = {
-	onClickContinue: () => void;
-};
-
-const OnboardingSlideThree = ({
-	onClickContinue,
-}: TypeOnboardingSlideTwoProps) => {
+const OnboardingSlideThree = () => {
+	const swiper = useSwiper();
 	const { t } = useTranslation();
 
 	return (
 		<OnboardingSlideTemplate
-			onClickContinue={onClickContinue}
+			onClickContinue={() => {
+				swiper.slideNext();
+			}}
 			content={
 				<div className=''>
 					Lorem Ipsum is simply dummy text of the printing and

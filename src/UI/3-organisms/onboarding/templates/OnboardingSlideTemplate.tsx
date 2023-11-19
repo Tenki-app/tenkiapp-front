@@ -16,7 +16,7 @@ const OnboardingSlideTemplate = ({
 	const { t } = useTranslation();
 
 	return (
-		<div className='px-[10%] mx-auto pt-12 pb-12 overflow-y-auto h-full w-full md:max-w-[590px] md:w-auto md:px-0'>
+		<div className='px-[10%] pt-12 pb-12 overflow-y-auto h-full w-full'>
 			{content}
 			<div className='flex justify-end mt-12'>
 				<Button

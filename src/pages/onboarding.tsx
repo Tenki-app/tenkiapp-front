@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from 'swiper/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { onboardingImagesData } from '@/lib/data/onboarding';
 
@@ -15,8 +15,6 @@ import Image from 'next/image';
 import 'swiper/css';
 
 const OnboardingPage = () => {
-	const swiperSlide = useSwiperSlide();
-	const swiper = useSwiper();
 	const { t } = useTranslation();
 
 	const [indexActiveSlide, setIndexActiveSlide] = useState<string>('1');
@@ -71,7 +69,7 @@ const OnboardingPage = () => {
 					</div>
 				</div>
 				<div className='h-[55%] w-full flex flex-col justify-between md:h-full md:w-[50%] md:gap-4'>
-					<div className='hidden w-full mt-12 md:block'>
+					<div className='hidden w-[90%] mt-12 md:block'>
 						<TitleWithLines
 							title={t(
 								onboardingImagesData[indexActiveNumber].title
@@ -85,15 +83,13 @@ const OnboardingPage = () => {
 						slidesPerView={1}
 						pagination={{ clickable: true }}
 						className='h-[82%] w-full md:mb-0 md:h-[70%]'
+						onSlideChange={(param: any) => {
+							setIndexActiveSlide(String(param.activeIndex + 1));
+						}}
 					>
 						{sliderDotsOptions.map((singleDot) => (
 							<SwiperSlide key={singleDot}>
-								{({ isActive }) => {
-									if (isActive) {
-										setIndexActiveSlide(singleDot);
-									}
-									return renderSlide(singleDot);
-								}}
+								{renderSlide(singleDot)}
 							</SwiperSlide>
 						))}
 					</Swiper>

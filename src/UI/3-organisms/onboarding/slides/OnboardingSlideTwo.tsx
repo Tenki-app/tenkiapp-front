@@ -1,19 +1,11 @@
-import { useTranslation } from 'react-i18next';
+import { useSwiper } from 'swiper/react';
 
 import { OnboardingSlideTemplate } from '@/UI/3-organisms/onboarding/templates/OnboardingSlideTemplate';
-import { Button } from '@/UI/1-atoms/Button/Button';
 import { CardTask } from '../../task/cards/CardTask';
 import { SampleCardTask } from '../../task/cards/SampleCardTask';
-import checkListImage from '@/images/onboarding/check-list.png';
 
-type TypeOnboardingSlideTwoProps = {
-	onClickContinue: () => void;
-};
-
-const OnboardingSlideTwo = ({
-	onClickContinue,
-}: TypeOnboardingSlideTwoProps) => {
-	const { t } = useTranslation();
+const OnboardingSlideTwo = () => {
+	const swiper = useSwiper();
 
 	return (
 		<OnboardingSlideTemplate
@@ -37,7 +29,9 @@ const OnboardingSlideTwo = ({
 					/>
 				</div>
 			}
-			onClickContinue={onClickContinue}
+			onClickContinue={() => {
+				swiper.slideNext();
+			}}
 		/>
 	);
 };
