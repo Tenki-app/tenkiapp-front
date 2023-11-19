@@ -22,28 +22,18 @@ const OnboardingPage = () => {
 	const sliderDotsOptions = ['1', '2', '3', '4'];
 	const indexActiveNumber = Number(indexActiveSlide) - 1;
 
-	const onClickContinueSlide = () => {};
-
 	const renderSlide = (slideIndex: string) => {
 		if (slideIndex === '1') {
-			return (
-				<OnboardingSlideOne onClickContinue={onClickContinueSlide} />
-			);
+			return <OnboardingSlideOne />;
 		}
 		if (slideIndex === '2') {
-			return (
-				<OnboardingSlideTwo onClickContinue={onClickContinueSlide} />
-			);
+			return <OnboardingSlideTwo />;
 		}
 		if (slideIndex === '3') {
-			return (
-				<OnboardingSlideThree onClickContinue={onClickContinueSlide} />
-			);
+			return <OnboardingSlideThree />;
 		}
 		if (slideIndex === '4') {
-			return (
-				<OnboardingSlideFour onClickContinue={onClickContinueSlide} />
-			);
+			return <OnboardingSlideFour />;
 		}
 		return <></>;
 	};
