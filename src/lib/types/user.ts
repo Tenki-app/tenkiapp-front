@@ -1,10 +1,7 @@
 import { z } from 'zod';
 
-import { userSchema } from '../schema/userSchema';
+import { userSchema, userSignInSchema } from '../schema/userSchema';
 
 export type TypeUser = z.infer<typeof userSchema>;
 
-export type TypeFormLogin = {
-    username: string;
-    password: string;
-};
+export type TypeUserSignInPostParams = z.infer<typeof userSignInSchema>;
