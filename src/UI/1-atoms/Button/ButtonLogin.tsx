@@ -1,22 +1,36 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+
+import { usePostSignInUser } from '@/lib/hooks/queries/useQueryUser';
 
 import { Button } from './Button';
-import { useTranslation } from 'react-i18next';
 
 const ButtonLogin = () => {
 	const { loginWithPopup, getIdTokenClaims } = useAuth0();
 	const router = useRouter();
 	const { t, i18n } = useTranslation();
+	const { mutateAsync: postSignInUser } = usePostSignInUser();
 
 	const handleLogin = async () => {
-		await loginWithPopup();
+		try {
+			await loginWithPopup();
 
-		const credentials = await getIdTokenClaims();
+			const credentials = await getIdTokenClaims();
 
-		console.log(credentials);
+			const userData = {
+				name: credentials?.name,
+				user_name: credentials?.nickname,
+				email: credentials?.email,
+			};
 
-		router.push('/');
+			await postSignInUser(userData);
+
+			router.push('/');
+		} catch (error: unknown) {
+			console.error(error);
+			router.push('/login');
+		}
 	};
 
 	return (

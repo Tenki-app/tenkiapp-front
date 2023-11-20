@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 // SIGN IN USER
 const fetchPostSignInUser = async (
-	user: TypeUserSignInPostParams,
+	user: Partial<TypeUserSignInPostParams>,
 	getIdTokenClaims: any
 ) => {
 	const idToken = await getIdTokenClaims();
@@ -23,12 +23,12 @@ const fetchPostSignInUser = async (
 
 	return response;
 };
-const usePostSignInUser = async () => {
+export const usePostSignInUser = () => {
 	const { getIdTokenClaims } = useAuth0();
 	const { setUser } = useAppStore();
 
 	return useMutation({
-		mutationFn: (user: TypeUserSignInPostParams) =>
+		mutationFn: (user: Partial<TypeUserSignInPostParams>) =>
 			fetchPostSignInUser(user, getIdTokenClaims),
 		onSuccess: (data) => {
 			queryClient.setQueryData(['user'], data?.user);
