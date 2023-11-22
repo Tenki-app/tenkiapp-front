@@ -10,16 +10,10 @@ export const fetchGetAllTasks = async (
 	userId?: string,
 	apiAuth?: AxiosInstance
 ) => {
-	if (!userId || !apiAuth) return null;
+	/* if (!userId || !apiAuth) return null;
 
 	const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS(userId);
 	const response = await apiAuth.get(endpoint);
 
-	return response;
+	return response; */
 };
-/* export const useGetAllTasks = () => {
-
-	return {
-		resp: query,
-	};
-}; */
