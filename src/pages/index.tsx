@@ -9,7 +9,7 @@ import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/Button/Button';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { CardTask } from '@/UI/3-organisms/task/CardTask';
+import { CardTask } from '@/UI/3-organisms/task/cards/CardTask';
 import { ButtonLogin } from '@/UI/1-atoms/Button/ButtonLogin';
 import { ButtonLogout } from '@/UI/1-atoms/Button/ButtonLogout';
 

@@ -6,23 +6,27 @@ export type typeTitle = {
 	type?: string;
 };
 
-const Title = ({ children, className, type }: typeTitle): JSX.Element => {
+const Title = ({
+	children,
+	className,
+	type = 'title',
+}: typeTitle): JSX.Element => {
 	return (
 		<>
 			{type === 'title' && (
 				<h1
-					className={`${
+					className={`text-3xl text-dark-blue font-primary font-medium ${
 						className ?? ''
-					} text-3xl text-dark-blue font-primary font-bold`}
+					}`}
 				>
 					{children}
 				</h1>
 			)}
 			{type === 'subtitle' && (
 				<h2
-					className={`${
+					className={`text-2xl text-dark-blue font-primary font-bold ${
 						className ?? ''
-					} text-2xl text-dark-blue font-primary font-bold`}
+					}`}
 				>
 					{children}
 				</h2>

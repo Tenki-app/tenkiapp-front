@@ -9,7 +9,7 @@ type typeButtonProps = {
 	onClick?: MouseEventHandler;
 	redirect?: string;
 	type?: 'button' | 'submit' | 'reset';
-	variant?: 'fill' | 'underline' | 'blue' | 'custom';
+	variant?: 'underline' | 'blue' | 'custom' | 'bordered';
 };
 
 const Button = ({
@@ -18,21 +18,20 @@ const Button = ({
 	onClick,
 	redirect,
 	type = 'button',
-	variant = 'fill',
+	variant = 'custom',
 }: typeButtonProps): JSX.Element => {
 	let designButton = '';
 
-	if (variant === 'fill') {
-		designButton =
-			'w-max text-champagne-white dark:text-dark-blue dark:font-medium font-medium';
-	} else if (variant === 'underline') {
+	if (variant === 'underline') {
 		designButton =
 			'text-lg w-max text-champagne-white underline font-medium';
 	} else if (variant === 'blue') {
 		designButton =
-			'px-8 py-2 mt-2 rounded-lg bg-dark-blue text-white dark:bg-champagne-white';
+			'px-8 py-2 rounded-lg bg-dark-blue text-white dark:bg-champagne-white';
 	} else if (variant === 'custom') {
 		designButton = '';
+	} else if (variant === 'bordered') {
+		designButton = 'px-8 py-2 rounded-lg border-dark-blue border';
 	}
 
 	return (
