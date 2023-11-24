@@ -6,8 +6,7 @@ export const userSchema = z.object({
 	name: z.string(),
 	user_name: z.string(),
 	email: z.string(),
-	// TODO: change tasks type
-	tasks: z.array(z.string()).nullable(),
+	tasks: z.array(taskSchema).nullable(),
 });
 
 export const userSignInSchema = z.object({
