@@ -12,6 +12,9 @@ const OnboardingSlideThree = () => {
 			onClickContinue={() => {
 				swiper.slideNext();
 			}}
+			onClickBack={() => {
+				swiper.slidePrev();
+			}}
 			content={
 				<div className=''>
 					Lorem Ipsum is simply dummy text of the printing and

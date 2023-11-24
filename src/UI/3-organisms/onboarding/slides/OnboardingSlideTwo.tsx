@@ -32,6 +32,9 @@ const OnboardingSlideTwo = () => {
 			onClickContinue={() => {
 				swiper.slideNext();
 			}}
+			onClickBack={() => {
+				swiper.slidePrev();
+			}}
 		/>
 	);
 };
