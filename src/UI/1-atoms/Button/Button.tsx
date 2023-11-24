@@ -9,7 +9,7 @@ type typeButtonProps = {
 	onClick?: MouseEventHandler;
 	redirect?: string;
 	type?: 'button' | 'submit' | 'reset';
-	variant?: 'underline' | 'blue' | 'custom' | 'bordered';
+	variant?: 'underline' | 'blue' | 'custom' | 'bordered' | 'ghost';
 };
 
 const Button = ({
@@ -32,6 +32,8 @@ const Button = ({
 		designButton = '';
 	} else if (variant === 'bordered') {
 		designButton = 'px-8 py-2 rounded-lg border-dark-blue border';
+	} else if (variant === 'ghost') {
+		designButton = 'p-2';
 	}
 
 	return (

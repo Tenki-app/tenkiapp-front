@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '@/UI/1-atoms/Button/Button';
+import ArrowIcon from '@/svg/general/arrow.svg';
 
 import type { ReactNode } from 'react';
 
@@ -9,15 +10,20 @@ type TypeOnboardingSlideProps = {
 	onClickContinue: () => void;
 	onClickBack?: () => void;
 	continueButtonText?: string;
+	backButtonText?: string;
 };
 
 const OnboardingSlideTemplate = ({
 	content,
 	onClickContinue,
 	onClickBack,
-	continueButtonText = 'continue',
+	continueButtonText,
+	backButtonText,
 }: TypeOnboardingSlideProps) => {
 	const { t } = useTranslation();
+
+	const arrowButtonStyles =
+		'rounded-full aspect-square flex justify-center items-center w-[40px]';
 
 	const showBackButton = !!onClickBack;
 
@@ -31,17 +37,23 @@ const OnboardingSlideTemplate = ({
 			>
 				{showBackButton && (
 					<Button
-						variant='bordered'
+						variant={`${backButtonText ? 'bordered' : 'custom'}`}
+						className={`${backButtonText ? '' : arrowButtonStyles}`}
 						onClick={onClickBack}
 					>
-						{t('back')}
+						{backButtonText ? t(backButtonText) : <ArrowIcon />}
 					</Button>
 				)}
 				<Button
-					variant='bordered'
+					variant={`${continueButtonText ? 'bordered' : 'custom'}`}
+					className={`${continueButtonText ? '' : arrowButtonStyles}`}
 					onClick={onClickContinue}
 				>
-					{t(continueButtonText)}
+					{continueButtonText ? (
+						t(continueButtonText)
+					) : (
+						<ArrowIcon className='rotate-180' />
+					)}
 				</Button>
 			</div>
 		</div>

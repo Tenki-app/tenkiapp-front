@@ -12,4 +12,6 @@ export const global_es = {
 	moreInfo: 'Más información',
 	editar: 'Editar',
 	delete: 'Eliminar',
+	back: 'Volver',
+	finish: 'Finalizar',
 };
