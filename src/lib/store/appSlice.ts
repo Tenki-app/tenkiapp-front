@@ -4,7 +4,7 @@ import { TypeThemeMode } from '../types/themeMode';
 
 export interface AppSlice {
 	user: null | TypeUser;
-	setUser: (user: TypeUser) => void;
+	setUser: (user: TypeUser | null) => void;
 	isLoading: boolean;
 	setIsLoading: (isLoading: boolean) => void;
 	theme: TypeThemeMode;

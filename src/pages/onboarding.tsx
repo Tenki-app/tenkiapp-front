@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide, useSwiper, useSwiperSlide } from 'swiper/react';
 import { useEffect, useState } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 import { onboardingImagesData } from '@/lib/data/onboarding';
 
@@ -94,4 +95,6 @@ const OnboardingPage = () => {
 	);
 };
 
-export default OnboardingPage;
+export default withAuthenticationRequired(OnboardingPage, {
+	onRedirecting: () => <>Loading...</>,
+});

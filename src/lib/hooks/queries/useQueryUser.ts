@@ -6,6 +6,7 @@ import { useAppStore } from '@/lib/store/store';
 import { QueryClient, useMutation } from '@tanstack/react-query';
 
 import type { TypeUserSignInPostParams } from '@/lib/types/user';
+import { userPostSignInResponseSchema } from '@/lib/schema/userSchema';
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,7 @@ const fetchPostSignInUser = async (
 	const endpoint = USER_ENDPOINTS.SIGN_IN;
 	const response = await postDataWithAuth(endpoint, user, idToken.__raw);
 
-	return response;
+	return userPostSignInResponseSchema.parse(response);
 };
 export const usePostSignInUser = () => {
 	const { getIdTokenClaims } = useAuth0();
@@ -31,7 +32,6 @@ export const usePostSignInUser = () => {
 		mutationFn: (user: Partial<TypeUserSignInPostParams>) =>
 			fetchPostSignInUser(user, getIdTokenClaims),
 		onSuccess: (data) => {
-			queryClient.setQueryData(['user'], data?.user);
 			setUser(data?.user ?? null);
 		},
 		onError: (err) => {

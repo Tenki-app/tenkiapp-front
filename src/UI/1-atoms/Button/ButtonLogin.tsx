@@ -24,9 +24,14 @@ const ButtonLogin = () => {
 				email: credentials?.email,
 			};
 
-			await postSignInUser(userData);
+			const signInResponse = await postSignInUser(userData);
 
-			router.push('/');
+			if (signInResponse?.status === 200) {
+				router.push('/');
+			}
+			if (signInResponse?.status === 201) {
+				router.push('/onboarding');
+			}
 		} catch (error: unknown) {
 			console.error(error);
 			router.push('/login');
