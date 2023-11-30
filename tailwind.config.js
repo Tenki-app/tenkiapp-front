@@ -13,6 +13,7 @@ module.exports = {
 		extend: {
 			colors: {
 				'dark-blue': '#182438',
+				'blue-hover': '#7A889F',
 				'dark-garnet': '#723232',
 				'champagne-white': '#F7EFD8',
 				'champagne-white-middleTransparency':
