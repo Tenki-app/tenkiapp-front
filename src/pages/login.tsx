@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { LoginBanner } from '@/UI/3-organisms/login/LoginBanner';
+import { LoginBanner } from '@/UI/3-organisms/Login/LoginBanner';
 import TenkiLogo from '@/svg/theme/tenkiLogo.svg';
 import { ThemeMode } from '@/UI/2-molecules/ThemeMode/ThemeMode';
 import { SwitchLang } from '@/UI/2-molecules/SwitchLang/SwitchLang';

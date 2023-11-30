@@ -6,10 +6,10 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { onboardingImagesData } from '@/lib/data/onboarding';
 
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { OnboardingSlideOne } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideOne';
-import { OnboardingSlideTwo } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideTwo';
-import { OnboardingSlideThree } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideThree';
-import { OnboardingSlideFour } from '@/UI/3-organisms/onboarding/slides/OnboardingSlideFour';
+import { OnboardingSlideOne } from '@/UI/3-organisms/Onboardings/slides/OnboardingSlideOne';
+import { OnboardingSlideTwo } from '@/UI/3-organisms/Onboardings/slides/OnboardingSlideTwo';
+import { OnboardingSlideThree } from '@/UI/3-organisms/Onboardings/slides/OnboardingSlideThree';
+import { OnboardingSlideFour } from '@/UI/3-organisms/Onboardings/slides/OnboardingSlideFour';
 import SliderDots from '@/UI/2-molecules/Slider/SliderDots';
 import TitleWithLines from '@/UI/1-atoms/Text/TitleWithLines';
 import Image from 'next/image';
