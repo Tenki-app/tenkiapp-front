@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 .main-transition {
-	transition: all ease .3s;
+	transition: all ease 0.3s;
 }
-
 /* stateDropdown hover styles */
 .option-styles {
 	transition: all ease 0.2s;
@@ -16,4 +15,32 @@
 }
 .option-styles:hover p {
 	color: #f7efd8;
+}
+.ov-btn-slide-left {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	display: inline-block;
+}
+.ov-btn-slide-left::after {
+	content: '';
+	background: #7a889f;
+	position: absolute;
+	z-index: -1;
+	padding: 16px 20px;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: -100%;
+	right: 100%;
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
+}
+.ov-btn-slide-left:hover::after {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
 }
