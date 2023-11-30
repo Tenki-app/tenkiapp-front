@@ -1,17 +1,35 @@
-import { TabHeader } from '@/UI/2-molecules/Tab/TabHeader';
-import { TabBody } from '@/UI/2-molecules/Tab/TabBody';
-import { ReactNode } from 'react';
+import { Button } from '@/UI/1-atoms/Button/Button';
+
+import type { ReactNode, Dispatch, SetStateAction } from 'react';
+import type { TypeTabContent } from '@/lib/types/type';
 
 type TypeTabProps = {
-	tabsContent: Array<{ header: ReactNode; body: ReactNode }>;
+	tabContent: Array<TypeTabContent>;
+	activeTab?: String;
+	setActiveTab?: Dispatch<SetStateAction<string>>;
+	containerStyles?: string;
 };
 
-const Tab = ({ tabsContent }: TypeTabProps) => {
+const Tab = ({
+	tabContent,
+	activeTab,
+	setActiveTab,
+	containerStyles,
+}: TypeTabProps) => {
 	return (
-		<div>
-			<ul className=''></ul>
+		<div className={`${containerStyles ?? ''}`}>
+			<ul className=''>
+				{tabContent.map((singleTab, index) => (
+					<li key={index}>
+						<Button variant='custom'>{singleTab.header}</Button>
+					</li>
+				))}
+			</ul>
+			<div className=''>
+				{tabContent.map((singleTab) => singleTab.body)}
+			</div>
 		</div>
 	);
 };
 
-export default Tab;
+export { Tab };
