@@ -6,23 +6,27 @@ import { Button } from '@/UI/1-atoms/Button/Button';
 import type { TypeTaskTab } from '@/lib/types/tasks';
 
 type TypeFilterTagsProps = {
-	activeTag: TypeTaskTab;
-	setActiveTag: () => void;
 	containerStyles?: string;
 };
 
-const FilterTags = ({ activeTag, containerStyles }: TypeFilterTagsProps) => {
+const FilterTags = ({ containerStyles }: TypeFilterTagsProps) => {
 	const { t } = useTranslation();
 	const { activeTaskTagFilter, setActiveTaskTagFilter } = useAppStore();
 
 	const buttonStyles = '';
 
-	const handleUpdateActiveTag = (tag: TypeTaskTab) => {};
+	const handleUpdateActiveTag = (tag: TypeTaskTab) => {
+		setActiveTaskTagFilter(tag);
+	};
 
 	return (
-		<ul className={`${containerStyles ?? ''}`}>
+		<ul className={`flex gap-3 justify-center ${containerStyles ?? ''}`}>
 			<li>
 				<Button
+					className={`${activeTaskTagFilter === 'today' ? '' : ''} ${
+						buttonStyles ?? ''
+					}`}
+					variant='blue'
 					onClick={() => {
 						handleUpdateActiveTag('today');
 					}}
@@ -35,6 +39,7 @@ const FilterTags = ({ activeTag, containerStyles }: TypeFilterTagsProps) => {
 					onClick={() => {
 						handleUpdateActiveTag('next');
 					}}
+					variant='blue'
 				>
 					{t('next')}
 				</Button>
@@ -44,6 +49,7 @@ const FilterTags = ({ activeTag, containerStyles }: TypeFilterTagsProps) => {
 					onClick={() => {
 						handleUpdateActiveTag('someday');
 					}}
+					variant='blue'
 				>
 					{t('someday')}
 				</Button>
