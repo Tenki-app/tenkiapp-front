@@ -1,12 +1,13 @@
 import { StateCreator } from 'zustand';
 import { TypeTaskTab } from '../types/tasks';
 
-export interface AppSlice {
-	activeTaskTab: TypeTaskTab;
-	setActiveTaskTab: (activeTaskTab: TypeTaskTab) => void;
+export interface TaskSlice {
+	activeTaskTagFilter: TypeTaskTab;
+	setActiveTaskTagFilter: (activeTaskTagFilter: TypeTaskTab) => void;
 }
 
-export const createAppSlice: StateCreator<AppSlice> = (set) => ({
-	activeTaskTab: 'today',
-	setActiveTaskTab: (activeTaskTab) => set(() => ({ activeTaskTab })),
+export const createTaskSlice: StateCreator<TaskSlice> = (set) => ({
+	activeTaskTagFilter: 'today',
+	setActiveTaskTagFilter: (activeTaskTagFilter) =>
+		set(() => ({ activeTaskTagFilter })),
 });

@@ -1,6 +1,6 @@
 import { Button } from '@/UI/1-atoms/Button/Button';
 
-import type { ReactNode, Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import type { TypeTabContent } from '@/lib/types/type';
 
 type TypeTabProps = {
