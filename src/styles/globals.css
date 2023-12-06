@@ -6,6 +6,10 @@
 	transition: all ease .3s;
 }
 
+.fast-transition {
+	transition: all ease .1s;
+}
+
 /* stateDropdown hover styles */
 .option-styles {
 	transition: all ease 0.2s;

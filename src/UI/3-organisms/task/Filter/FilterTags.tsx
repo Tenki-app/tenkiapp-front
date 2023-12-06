@@ -13,20 +13,24 @@ const FilterTags = ({ containerStyles }: TypeFilterTagsProps) => {
 	const { t } = useTranslation();
 	const { activeTaskTagFilter, setActiveTaskTagFilter } = useAppStore();
 
-	const buttonStyles = '';
+	const buttonStyles =
+		'bg-dark-blue rounded-tl rounded-tr text-white px-8 py-2 fast-transition';
+	const activeButtonStyles = '!bg-bluish-gray';
 
 	const handleUpdateActiveTag = (tag: TypeTaskTab) => {
 		setActiveTaskTagFilter(tag);
 	};
 
+	const handleButtonStyles = (tag: TypeTaskTab) =>
+		`${activeTaskTagFilter === tag ? activeButtonStyles : ''} ${
+			buttonStyles ?? ''
+		}`;
+
 	return (
 		<ul className={`flex gap-3 justify-center ${containerStyles ?? ''}`}>
 			<li>
 				<Button
-					className={`${activeTaskTagFilter === 'today' ? '' : ''} ${
-						buttonStyles ?? ''
-					}`}
-					variant='blue'
+					className={handleButtonStyles('today')}
 					onClick={() => {
 						handleUpdateActiveTag('today');
 					}}
@@ -36,20 +40,20 @@ const FilterTags = ({ containerStyles }: TypeFilterTagsProps) => {
 			</li>
 			<li>
 				<Button
+					className={handleButtonStyles('next')}
 					onClick={() => {
 						handleUpdateActiveTag('next');
 					}}
-					variant='blue'
 				>
 					{t('next')}
 				</Button>
 			</li>
 			<li>
 				<Button
+					className={handleButtonStyles('someday')}
 					onClick={() => {
 						handleUpdateActiveTag('someday');
 					}}
-					variant='blue'
 				>
 					{t('someday')}
 				</Button>
