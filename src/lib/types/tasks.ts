@@ -4,4 +4,6 @@ import { responsePostTaskSchema } from '../schema/taskSchema';
 
 export type typesPostTask = z.infer<typeof responsePostTaskSchema>;
 
-export type TypeTaskTab = 'today' | 'next' | 'someday';
+export type TypeTaskCategory = 'today' | 'next' | 'someday';
+
+export type TypeTaskState = 'done' | 'pending' | 'progress';

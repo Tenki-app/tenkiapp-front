@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/lib/store/store';
 import { Button } from '@/UI/1-atoms/Button/Button';
 
-import type { TypeTaskTab } from '@/lib/types/tasks';
+import type { TypeTaskCategory } from '@/lib/types/tasks';
 
 type TypeFilterTagsProps = {
 	containerStyles?: string;
@@ -17,11 +17,11 @@ const FilterTags = ({ containerStyles }: TypeFilterTagsProps) => {
 		'bg-dark-blue rounded-tl rounded-tr text-white px-4 md:px-8 py-2 fast-transition font-bold';
 	const activeButtonStyles = '!bg-bluish-gray';
 
-	const handleUpdateActiveTag = (tag: TypeTaskTab) => {
+	const handleUpdateActiveTag = (tag: TypeTaskCategory) => {
 		setActiveTaskTagFilter(tag);
 	};
 
-	const handleButtonStyles = (tag: TypeTaskTab) =>
+	const handleButtonStyles = (tag: TypeTaskCategory) =>
 		`${activeTaskTagFilter === tag ? activeButtonStyles : ''} ${
 			buttonStyles ?? ''
 		}`;

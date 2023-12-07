@@ -9,13 +9,15 @@ import InProgressIcon from '@/svg/task/inProgressIcon.svg';
 import DeleteIcon from '@/svg/task/deleteIcon.svg';
 import EditIcon from '@/svg/task/editIcon.svg';
 
+import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
+
 type TypeCardTaskProps = {
 	title: string;
 	description: string;
 	time: string;
 	date: string;
-	state: 'done' | 'pending' | 'progress';
-	category: 'today' | 'next' | 'someday';
+	state: TypeTaskState;
+	category: TypeTaskCategory;
 	cardTaskStyles?: string;
 	isOpen?: boolean;
 	designVariation?: 'white' | 'red' | 'blue';

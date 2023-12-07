@@ -1,9 +1,9 @@
 import { StateCreator } from 'zustand';
-import { TypeTaskTab } from '../types/tasks';
+import { TypeTaskCategory } from '../types/tasks';
 
 export interface TaskSlice {
-	activeTaskTagFilter: TypeTaskTab;
-	setActiveTaskTagFilter: (activeTaskTagFilter: TypeTaskTab) => void;
+	activeTaskTagFilter: TypeTaskCategory;
+	setActiveTaskTagFilter: (activeTaskTagFilter: TypeTaskCategory) => void;
 }
 
 export const createTaskSlice: StateCreator<TaskSlice> = (set) => ({
