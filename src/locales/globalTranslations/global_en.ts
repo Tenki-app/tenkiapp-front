@@ -14,4 +14,7 @@ export const global_en = {
 	delete: 'Delete',
 	back: 'Back',
 	finish: 'Finish',
+	today: 'Hoy',
+	next: 'Después',
+	someday: 'Algún',
 };

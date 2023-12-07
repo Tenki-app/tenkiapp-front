@@ -14,7 +14,7 @@ const FilterTags = ({ containerStyles }: TypeFilterTagsProps) => {
 	const { activeTaskTagFilter, setActiveTaskTagFilter } = useAppStore();
 
 	const buttonStyles =
-		'bg-dark-blue rounded-tl rounded-tr text-white px-8 py-2 fast-transition';
+		'bg-dark-blue rounded-tl rounded-tr text-white px-4 md:px-8 py-2 fast-transition font-bold';
 	const activeButtonStyles = '!bg-bluish-gray';
 
 	const handleUpdateActiveTag = (tag: TypeTaskTab) => {

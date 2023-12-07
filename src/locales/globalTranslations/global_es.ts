@@ -14,4 +14,7 @@ export const global_es = {
 	delete: 'Eliminar',
 	back: 'Volver',
 	finish: 'Finalizar',
+	today: 'Today',
+	next: 'Next',
+	someday: 'Someday',
 };
