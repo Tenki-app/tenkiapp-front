@@ -8,15 +8,15 @@ import { TaskPanel } from '@/UI/3-organisms/Task/Tabs/TaskPanel';
 import type { TypeTabContent } from '@/lib/types/type';
 
 const TaskPage = () => {
-	const { activeTaskTagFilter, setActiveTaskTagFilter } = useAppStore();
+	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
 	const { t } = useTranslation();
 
 	return (
 		<MainLayout>
-			<section className='px-2'>
+			<section className='px-2 py-10'>
 				<TaskPanel
-					activeTaskTagFilter={activeTaskTagFilter}
-					setActiveTaskTagFilter={setActiveTaskTagFilter}
+					activeTaskTabFilter={activeTaskTabFilter}
+					setActiveTaskTabFilter={setActiveTaskTabFilter}
 				/>
 			</section>
 		</MainLayout>

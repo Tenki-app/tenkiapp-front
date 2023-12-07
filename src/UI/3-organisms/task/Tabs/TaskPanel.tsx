@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { tasksDummyData } from '@/lib/data/tasks';
 
@@ -8,30 +8,37 @@ import { FilterTags } from '@/UI/3-organisms/Filter/FilterTabs';
 import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 
 type TypeTaskPanelProps = {
-	activeTaskTagFilter: TypeTaskCategory;
-	setActiveTaskTagFilter: (activeTaskTagFilter: TypeTaskCategory) => void;
+	activeTaskTabFilter: TypeTaskCategory;
+	setActiveTaskTabFilter: (activeTaskTabFilter: TypeTaskCategory) => void;
 	containerStyles?: string;
 };
 
 const TaskPanel = ({
-	activeTaskTagFilter,
-	setActiveTaskTagFilter,
+	activeTaskTabFilter,
+	setActiveTaskTabFilter,
 	containerStyles,
 }: TypeTaskPanelProps) => {
-	const [tasksToShow, setTasksToShow] = useState<any>([]);
+	const [tasksToShow, setTasksToShow] = useState<any[]>([]);
 
 	const tasksTagContent = ['today', 'next', 'someday'];
+
+	useEffect(() => {
+		const tasksFiltered = tasksDummyData.filter(
+			(singleTask) => singleTask.category === activeTaskTabFilter
+		);
+		setTasksToShow(tasksFiltered);
+	}, [activeTaskTabFilter]);
 
 	return (
 		<div className={`w-full ${containerStyles ?? ''}`}>
 			<FilterTags
 				tabsContent={tasksTagContent}
-				activeTag={activeTaskTagFilter}
-				setActiveTag={setActiveTaskTagFilter}
+				activeTag={activeTaskTabFilter}
+				setActiveTag={setActiveTaskTabFilter}
 				containerStyles='w-[90%] mx-auto'
 			/>
 			<div className='bg-olive-drab w-full px-8 py-10 flex flex-col gap-y-4'>
-				{tasksDummyData.map((singleTask, index) => (
+				{tasksToShow.map((singleTask, index) => (
 					<CardTask
 						key={index}
 						title={singleTask.title}
