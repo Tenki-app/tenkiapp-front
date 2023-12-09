@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppStore } from '@/lib/store/store';
+import { tasksDummyData } from '@/lib/data/tasks';
 
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { tasksDummyData } from '@/lib/data/tasks';
 import { CardTask } from '@/UI/3-organisms/task/cards/CardTask';
 import { FilterTags } from '@/UI/3-organisms/Filter/FilterTabs';
+import { ProgressBar } from '@/UI/2-molecules/Bar/ProgressBar';
 
 import { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 
@@ -17,6 +18,14 @@ const TaskPage = () => {
 	const [tasksToShow, setTasksToShow] = useState<any[]>([]);
 
 	const tasksTagContent = ['today', 'next', 'someday'];
+
+	const tasksDone = useMemo(() => {
+		return tasksDummyData.filter((task) => task.state === 'done');
+		// Pending to fix when backend is ready
+		// eslint-disable-next-line
+	}, [tasksDummyData]);
+
+	const tasksDonePercent = (tasksDone.length / tasksDummyData.length) * 100;
 
 	useEffect(() => {
 		const tasksFiltered = tasksDummyData.filter(
@@ -50,6 +59,10 @@ const TaskPage = () => {
 							/>
 						))}
 					</div>
+					<ProgressBar
+						containerStyles='mt-6'
+						progressPercent={tasksDonePercent}
+					/>
 				</div>
 			</section>
 		</MainLayout>
