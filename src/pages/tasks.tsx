@@ -5,7 +5,6 @@ import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
 
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { CardTask } from '@/UI/3-organisms/task/cards/CardTask';
 import { FilterTags } from '@/UI/3-organisms/Filter/FilterTabs';
 import { ProgressBar } from '@/UI/2-molecules/Bar/ProgressBar';
 
@@ -44,21 +43,6 @@ const TaskPage = () => {
 					containerStyles='w-[90%] mx-auto'
 				/>
 				<div className='bg-olive-drab h-full w-full px-8 pt-8'>
-					<div className='flex flex-col h-[80%] gap-y-4 overflow-y-auto'>
-						{tasksToShow.map((singleTask, index) => (
-							<CardTask
-								key={index}
-								title={singleTask.title}
-								description={singleTask.description}
-								time={singleTask.time}
-								date={singleTask.date}
-								state={singleTask.state as TypeTaskState}
-								category={
-									singleTask.category as TypeTaskCategory
-								}
-							/>
-						))}
-					</div>
 					<ProgressBar
 						containerStyles='mt-6'
 						progressPercent={tasksDonePercent}

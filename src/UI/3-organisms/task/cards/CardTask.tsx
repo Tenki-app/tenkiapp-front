@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { Text } from '@/UI/1-atoms/Text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
@@ -36,7 +36,7 @@ const CardTask = ({
 }: TypeCardTaskProps) => {
 	const [isActive, setIsActive] = useState(isOpen);
 
-	let designCard = '';
+	const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
 	const renderStatus = () => {
 		const iconStyles = 'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px]';
@@ -50,8 +50,6 @@ const CardTask = ({
 			return <InProgressIcon className={`${iconStyles}`} />;
 		}
 	};
-
-	const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
 	const handleShowDetails = () => {
 		if (!isActive) {
