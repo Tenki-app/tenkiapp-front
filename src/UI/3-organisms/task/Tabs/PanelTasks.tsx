@@ -1,4 +1,4 @@
-import { CardTask } from '@/UI/3-organisms/task/cards/CardTask';
+import { CardTask } from '../Cards/CardTask';
 
 import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 
@@ -9,7 +9,7 @@ type TypeCardTaskProps = {
 const PanelTasks = ({ allTasks }: TypeCardTaskProps) => {
 	return (
 		<div className='flex flex-col h-[80%] gap-y-4 overflow-y-auto'>
-			{allTasks.map((singleTask, index) => (
+			{allTasks.map((singleTask: any, index: number) => (
 				<CardTask
 					key={index}
 					title={singleTask.title}
