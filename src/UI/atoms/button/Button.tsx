@@ -22,6 +22,7 @@ const Button = ({
 	isHover = false,
 }: typeButtonProps): JSX.Element => {
 	let designButton = isHover ? 'ov-btn-slide-left' : '';
+
 	if (variant === 'underline') {
 		designButton +=
 			'text-lg w-max text-champagne-white underline font-medium';

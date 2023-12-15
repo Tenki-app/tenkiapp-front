@@ -18,7 +18,7 @@ const FilterTags = ({
 	const { t } = useTranslation();
 
 	const buttonStyles =
-		'bg-dark-blue rounded-tl rounded-tr text-white px-6 md:px-8 py-2 fast-transition font-semibold';
+		'bg-dark-blue rounded-tl rounded-tr text-sm md:text-lg text-white px-6 md:px-8 py-2 fast-transition font-semibold';
 	const activeButtonStyles = '!bg-bluish-gray';
 
 	const handleUpdateActiveTag = (tag: string) => {

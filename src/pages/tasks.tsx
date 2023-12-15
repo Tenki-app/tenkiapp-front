@@ -7,8 +7,9 @@ import { tasksDummyData } from '@/lib/data/tasks';
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
-
 import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
+import { Button } from '@/UI/atoms/button/Button';
+import AddIcon from '@/svg/task/addIcon.svg';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
@@ -42,12 +43,19 @@ const TaskPage = () => {
 					setActiveTag={setActiveTaskTabFilter}
 					containerStyles='w-[90%] mx-auto'
 				/>
-				<div className='bg-olive-drab h-full w-full px-8 pt-8'>
+				<div className='bg-olive-drab h-full w-full flex flex-col justify-around px-8 pt-4 pb-4'>
 					<PanelTasks allTasks={tasksToShow} />
-					<ProgressBar
-						containerStyles='mt-6'
-						progressPercent={tasksDonePercent}
-					/>
+					<div className=''>
+						<ProgressBar
+							containerStyles='mt-6'
+							progressPercent={tasksDonePercent}
+						/>
+						<div className='flex justify-end mt-4'>
+							<Button className='bg-dark-blue p-3 rounded-full'>
+								<AddIcon className='w-[20px] h-[20px]' />
+							</Button>
+						</div>
+					</div>
 				</div>
 			</section>
 		</MainLayout>
