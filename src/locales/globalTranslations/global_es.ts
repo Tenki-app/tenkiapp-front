@@ -17,4 +17,5 @@ export const global_es = {
 	today: 'Hoy',
 	next: 'Después',
 	someday: 'Algún día',
+	tasks: 'Tareas',
 };

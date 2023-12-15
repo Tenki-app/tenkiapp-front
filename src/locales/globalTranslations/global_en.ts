@@ -17,4 +17,5 @@ export const global_en = {
 	today: 'Today',
 	next: 'Next',
 	someday: 'Someday',
+	tasks: 'Tasks',
 };
