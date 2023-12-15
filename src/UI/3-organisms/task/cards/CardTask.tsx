@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { Text } from '@/UI/1-atoms/text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
