@@ -1,8 +1,8 @@
 import { useSwiper } from 'swiper/react';
 
-import { OnboardingSlideTemplate } from '../Templates/OnboardingSlideTemplate';
-import { CardTask } from '../../Task/Cards/CardTask';
-import { SampleCardTask } from '../../Task/Cards/SampleCardTask';
+import { OnboardingSlideTemplate } from '../templates/OnboardingSlideTemplate';
+import { CardTask } from '../../task/cards/CardTask';
+import { SampleCardTask } from '../../task/cards/SampleCardTask';
 
 const OnboardingSlideTwo = () => {
 	const swiper = useSwiper();

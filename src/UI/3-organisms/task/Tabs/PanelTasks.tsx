@@ -1,4 +1,4 @@
-import { CardTask } from '../Cards/CardTask';
+import { CardTask } from '../cards/CardTask';
 
 import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 

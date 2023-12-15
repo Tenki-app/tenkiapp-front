@@ -1,5 +1,5 @@
 /* import { ReactNode } from "react"; */
-import { Text } from '../Text/Text';
+import { Text } from '../text/Text';
 import FinishIcon from '@/svg/task/finishStateIcon.svg';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
 import InProgressIcon from '@/svg/task/inProgressIcon.svg';

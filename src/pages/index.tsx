@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
-import { Input } from '@/UI/1-atoms/Inputs/Input';
-import { Title } from '@/UI/1-atoms/Text/Title';
+import { Input } from '@/UI/1-atoms/inputs/Input';
+import { Title } from '@/UI/1-atoms/text/Title';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
-import { Dropdown } from '@/UI/1-atoms/Inputs/Dropdown';
-import { StateDropdown } from '@/UI/1-atoms/Inputs/stateDropDown';
+import { Dropdown } from '@/UI/1-atoms/inputs/Dropdown';
+import { StateDropdown } from '@/UI/1-atoms/inputs/stateDropDown';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/UI/1-atoms/Button/Button';
+import { Button } from '@/UI/1-atoms/button/Button';
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
 import { CardTask } from '@/UI/3-organisms/task/cards/CardTask';
-import { ButtonLogin } from '@/UI/1-atoms/Button/ButtonLogin';
-import { ButtonLogout } from '@/UI/1-atoms/Button/ButtonLogout';
+import { ButtonLogin } from '@/UI/1-atoms/button/ButtonLogin';
+import { ButtonLogout } from '@/UI/1-atoms/button/ButtonLogout';
 
 const options = [
 	{

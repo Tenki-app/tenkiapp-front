@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
-
-import IndicatorDot from '@/UI/1-atoms/Slider/IndicatorDot';
+import IndicatorDot from '@/UI/1-atoms/slider/IndicatorDot';
 
 type TypeSliderDotsProps = {
 	dotOptions: Array<string>;

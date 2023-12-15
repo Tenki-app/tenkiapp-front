@@ -1,4 +1,4 @@
-import { Button } from '@/UI/1-atoms/Button/Button';
+import { Button } from '@/UI/1-atoms/button/Button';
 import React, { ReactNode } from 'react';
 type typePillProps = {
 	contentPill1: ReactNode;

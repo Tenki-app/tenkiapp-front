@@ -5,11 +5,10 @@ import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
 
 import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { FilterTags } from '@/UI/3-organisms/Filter/FilterTabs';
-import { ProgressBar } from '@/UI/2-molecules/Bar/ProgressBar';
+import { FilterTags } from '@/UI/3-organisms/filter/FilterTabs';
+import { ProgressBar } from '@/UI/2-molecules/bar/ProgressBar';
 
-import { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
-import { PanelTasks } from '@/UI/3-organisms/Task/Tabs/PanelTasks';
+import { PanelTasks } from '@/UI/3-organisms/task/tabs/PanelTasks';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();

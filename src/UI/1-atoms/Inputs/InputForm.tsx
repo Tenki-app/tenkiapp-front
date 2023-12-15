@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import { useFormContext } from 'react-hook-form';
 
-import { Text } from '../Text/Text';
+import { Text } from '../text/Text';
 
 import { useState, type ReactNode } from 'react';
 import type { typesFormValidations } from '@/lib/types/form';
