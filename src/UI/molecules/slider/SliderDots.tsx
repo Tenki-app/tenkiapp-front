@@ -1,4 +1,4 @@
-import IndicatorDot from '@/UI/1-atoms/slider/IndicatorDot';
+import IndicatorDot from '@/UI/atoms/slider/IndicatorDot';
 
 type TypeSliderDotsProps = {
 	dotOptions: Array<string>;

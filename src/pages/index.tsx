@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 
-import { Input } from '@/UI/1-atoms/inputs/Input';
-import { Title } from '@/UI/1-atoms/text/Title';
+import { Input } from '@/UI/atoms/inputs/Input';
+import { Title } from '@/UI/atoms/text/Title';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
-import { Dropdown } from '@/UI/1-atoms/inputs/Dropdown';
-import { StateDropdown } from '@/UI/1-atoms/inputs/stateDropDown';
+import { Dropdown } from '@/UI/atoms/inputs/Dropdown';
+import { StateDropdown } from '@/UI/atoms/inputs/stateDropDown';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/UI/1-atoms/button/Button';
-import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { CardTask } from '@/UI/3-organisms/task/cards/CardTask';
-import { ButtonLogin } from '@/UI/1-atoms/button/ButtonLogin';
-import { ButtonLogout } from '@/UI/1-atoms/button/ButtonLogout';
+import { Button } from '@/UI/atoms/button/Button';
+import { MainLayout } from '@/UI/layouts/MainLayout';
+import { CardTask } from '@/UI/organisms/task/cards/CardTask';
+import { ButtonLogin } from '@/UI/atoms/button/ButtonLogin';
+import { ButtonLogout } from '@/UI/atoms/button/ButtonLogout';
 
 const options = [
 	{
