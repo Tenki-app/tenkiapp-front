@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import type { ReactNode, MouseEventHandler } from 'react';
 
@@ -10,7 +9,7 @@ type typeButtonProps = {
 	redirect?: string;
 	type?: 'button' | 'submit' | 'reset';
 	variant?: 'underline' | 'blue' | 'custom' | 'bordered' | 'ghost';
-	isHover: boolean;
+	isHover?: boolean;
 };
 
 const Button = ({
@@ -20,7 +19,7 @@ const Button = ({
 	redirect,
 	type = 'button',
 	variant = 'custom',
-	isHover,
+	isHover = false,
 }: typeButtonProps): JSX.Element => {
 	let designButton = isHover ? 'ov-btn-slide-left' : '';
 	if (variant === 'underline') {

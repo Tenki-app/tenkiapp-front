@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
-import { Text } from '@/UI/1-atoms/Text/Text';
+import { Text } from '@/UI/1-atoms/text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
 import DoneIcon from '@/svg/task/finishStateIcon.svg';
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';
@@ -9,13 +9,15 @@ import InProgressIcon from '@/svg/task/inProgressIcon.svg';
 import DeleteIcon from '@/svg/task/deleteIcon.svg';
 import EditIcon from '@/svg/task/editIcon.svg';
 
+import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
+
 type TypeCardTaskProps = {
 	title: string;
 	description: string;
 	time: string;
 	date: string;
-	state: 'done' | 'pending' | 'progress';
-	category: 'today' | 'next' | 'someday';
+	state: TypeTaskState;
+	category: TypeTaskCategory;
 	cardTaskStyles?: string;
 	isOpen?: boolean;
 	designVariation?: 'white' | 'red' | 'blue';
@@ -34,7 +36,7 @@ const CardTask = ({
 }: TypeCardTaskProps) => {
 	const [isActive, setIsActive] = useState(isOpen);
 
-	let designCard = '';
+	const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
 	const renderStatus = () => {
 		const iconStyles = 'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px]';
@@ -48,8 +50,6 @@ const CardTask = ({
 			return <InProgressIcon className={`${iconStyles}`} />;
 		}
 	};
-
-	const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
 	const handleShowDetails = () => {
 		if (!isActive) {
@@ -70,7 +70,7 @@ const CardTask = ({
 
 	return (
 		<motion.div
-			className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
+			className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md  ${
 				cardTaskStyles ?? ''
 			} ${!isActive && 'cursor-pointer'}`}
 			onClick={() => {

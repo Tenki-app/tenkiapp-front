@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
-import { SwitchLang } from '../2-molecules/SwitchLang/SwitchLang';
-import { ThemeMode } from '../2-molecules/ThemeMode/ThemeMode';
-import { Pill } from '../2-molecules/Pill/Pill';
+import { SwitchLang } from '../2-molecules/switchLang/SwitchLang';
+import { ThemeMode } from '../2-molecules/themeMode/ThemeMode';
+import { Pill } from '../2-molecules/pill/Pill';
 
 type typeMainLayoutProps = {
 	children: ReactNode;
@@ -22,7 +22,7 @@ const MainLayout = ({
 
 	return (
 		<main
-			className={`bg-champagne-white h-screen ${
+			className={`bg-champagne-white w-screen h-screen ${
 				className ?? ''
 			} dark:bg-dark-blue`}
 		>

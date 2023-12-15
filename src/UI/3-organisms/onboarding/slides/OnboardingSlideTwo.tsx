@@ -1,6 +1,6 @@
 import { useSwiper } from 'swiper/react';
 
-import { OnboardingSlideTemplate } from '@/UI/3-organisms/Onboardings/templates/OnboardingSlideTemplate';
+import { OnboardingSlideTemplate } from '../templates/OnboardingSlideTemplate';
 import { CardTask } from '../../task/cards/CardTask';
 import { SampleCardTask } from '../../task/cards/SampleCardTask';
 

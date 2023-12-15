@@ -1,7 +1,7 @@
 import ColFlag from '@/svg/theme/colombiaFlag.svg';
 import UsaFlag from '@/svg/theme/usaFlag.svg';
 import { useTranslation } from 'react-i18next';
-import { Text } from '@/UI/1-atoms/Text/Text';
+import { Text } from '@/UI/1-atoms/text/Text';
 
 const SwitchLang = () => {
 	const { t, i18n } = useTranslation();
