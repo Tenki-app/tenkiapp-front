@@ -1,11 +1,11 @@
 type TypeProgressBarProps = {
-	containerStyles?: string;
 	progressPercent: number;
+	containerStyles?: string;
 };
 
 const ProgressBar = ({
-	containerStyles,
 	progressPercent,
+	containerStyles,
 }: TypeProgressBarProps) => {
 	const widthStyle = `w-${progressPercent}%`;
 

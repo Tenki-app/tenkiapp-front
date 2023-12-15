@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/1-atoms/button/Button';
 
 type TypeFilterTagsProps = {
-	tabsContent: string[];
 	activeTag: string;
 	setActiveTag: (value: any) => void;
+	tabsContent: string[];
 	containerStyles?: string;
 };
 
 const FilterTags = ({
-	tabsContent,
 	activeTag,
 	setActiveTag,
+	tabsContent,
 	containerStyles,
 }: TypeFilterTagsProps) => {
 	const { t } = useTranslation();
