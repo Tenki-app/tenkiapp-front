@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useSwiper } from 'swiper/react';
 
-import { OnboardingSlideTemplate } from '@/UI/3-organisms/Onboardings/templates/OnboardingSlideTemplate';
+import { OnboardingSlideTemplate } from '../Templates/OnboardingSlideTemplate';
 import { Text } from '@/UI/1-atoms/Text/Text';
 
 const OnboardingSlideOne = () => {
