@@ -43,6 +43,7 @@ const ButtonLogin = () => {
 			variant='custom'
 			className='text-lg font-semibold bg-dark-blue text-champagne-white w-[286px] rounded-full px-8 py-2 dark:bg-champagne-white dark:text-dark-blue'
 			onClick={handleLogin}
+			isHover={true}
 		>
 			{t('login')}
 		</Button>

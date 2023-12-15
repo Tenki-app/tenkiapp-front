@@ -10,6 +10,7 @@ type typeButtonProps = {
 	redirect?: string;
 	type?: 'button' | 'submit' | 'reset';
 	variant?: 'underline' | 'blue' | 'custom' | 'bordered' | 'ghost';
+	isHover: boolean;
 };
 
 const Button = ({
@@ -19,21 +20,21 @@ const Button = ({
 	redirect,
 	type = 'button',
 	variant = 'custom',
+	isHover,
 }: typeButtonProps): JSX.Element => {
-	let designButton = '';
-
+	let designButton = isHover ? 'ov-btn-slide-left' : '';
 	if (variant === 'underline') {
-		designButton =
+		designButton +=
 			'text-lg w-max text-champagne-white underline font-medium';
 	} else if (variant === 'blue') {
-		designButton =
+		designButton +=
 			'px-8 py-2 rounded-lg bg-dark-blue text-white dark:bg-champagne-white';
 	} else if (variant === 'custom') {
-		designButton = '';
+		designButton += '';
 	} else if (variant === 'bordered') {
-		designButton = 'px-8 py-2 rounded-lg border-dark-blue border';
+		designButton += 'px-8 py-2 rounded-lg border-dark-blue border';
 	} else if (variant === 'ghost') {
-		designButton = 'p-2';
+		designButton += 'p-2';
 	}
 
 	return (
