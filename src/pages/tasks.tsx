@@ -8,7 +8,7 @@ import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 
-import { PanelTasks } from '@/UI/organisms/task/tabs/PanelTasks';
+import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
