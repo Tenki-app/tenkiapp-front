@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
 import { SwitchLang } from '../molecules/switchLang/SwitchLang';
 import { ThemeMode } from '../molecules/themeMode/ThemeMode';
-import { Pill } from '../molecules/pill/Pill';
+
+import type { ReactNode } from 'react';
 
 type typeMainLayoutProps = {
 	children: ReactNode;
