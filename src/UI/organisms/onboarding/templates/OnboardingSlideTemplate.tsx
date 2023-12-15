@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@/UI/1-atoms/button/Button';
+import { Button } from '@/UI/atoms/button/Button';
 import ArrowIcon from '@/svg/general/arrow.svg';
 
 import type { ReactNode } from 'react';

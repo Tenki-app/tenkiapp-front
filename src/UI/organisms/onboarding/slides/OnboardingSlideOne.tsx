@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSwiper } from 'swiper/react';
 
 import { OnboardingSlideTemplate } from '../templates/OnboardingSlideTemplate';
-import { Text } from '@/UI/1-atoms/text/Text';
+import { Text } from '@/UI/atoms/text/Text';
 
 const OnboardingSlideOne = () => {
 	const swiper = useSwiper();

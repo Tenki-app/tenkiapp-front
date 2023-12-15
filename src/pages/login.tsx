@@ -1,9 +1,9 @@
-import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { LoginBanner } from '@/UI/3-organisms/login/LoginBanner';
+import { MainLayout } from '@/UI/layouts/MainLayout';
+import { LoginBanner } from '@/UI/organisms/login/LoginBanner';
 import TenkiLogo from '@/svg/theme/tenkiLogo.svg';
-import { ThemeMode } from '@/UI/2-molecules/themeMode/ThemeMode';
-import { SwitchLang } from '@/UI/2-molecules/switchLang/SwitchLang';
-import { ButtonLogin } from '@/UI/1-atoms/button/ButtonLogin';
+import { ThemeMode } from '@/UI/molecules/themeMode/ThemeMode';
+import { SwitchLang } from '@/UI/molecules/switchLang/SwitchLang';
+import { ButtonLogin } from '@/UI/atoms/button/ButtonLogin';
 
 const Login = () => {
 	return (

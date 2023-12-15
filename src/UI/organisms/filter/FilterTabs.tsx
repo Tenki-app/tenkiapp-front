@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@/UI/1-atoms/button/Button';
+import { Button } from '@/UI/atoms/button/Button';
 
 type TypeFilterTagsProps = {
 	activeTag: string;

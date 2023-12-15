@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
-import { Text } from '@/UI/1-atoms/text/Text';
+import { Text } from '@/UI/atoms/text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
 import DoneIcon from '@/svg/task/finishStateIcon.svg';
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';

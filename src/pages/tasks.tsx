@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
 
-import { MainLayout } from '@/UI/4-layouts/MainLayout';
-import { FilterTags } from '@/UI/3-organisms/filter/FilterTabs';
-import { ProgressBar } from '@/UI/2-molecules/bar/ProgressBar';
+import { MainLayout } from '@/UI/layouts/MainLayout';
+import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
+import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 
-import { PanelTasks } from '@/UI/3-organisms/task/tabs/PanelTasks';
+import { PanelTasks } from '@/UI/organisms/task/tabs/PanelTasks';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
