@@ -3,7 +3,7 @@ import { CardTask } from '../Cards/CardTask';
 import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 
 type TypeCardTaskProps = {
-	allTasks: any;
+	allTasks: any[];
 };
 
 const PanelTasks = ({ allTasks }: TypeCardTaskProps) => {

@@ -9,6 +9,7 @@ import { FilterTags } from '@/UI/3-organisms/Filter/FilterTabs';
 import { ProgressBar } from '@/UI/2-molecules/Bar/ProgressBar';
 
 import { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
+import { PanelTasks } from '@/UI/3-organisms/Task/Tabs/PanelTasks';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
@@ -43,6 +44,7 @@ const TaskPage = () => {
 					containerStyles='w-[90%] mx-auto'
 				/>
 				<div className='bg-olive-drab h-full w-full px-8 pt-8'>
+					<PanelTasks allTasks={tasksToShow} />
 					<ProgressBar
 						containerStyles='mt-6'
 						progressPercent={tasksDonePercent}
