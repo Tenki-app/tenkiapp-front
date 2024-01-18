@@ -12,6 +12,7 @@ import { MainLayout } from '@/UI/layouts/MainLayout';
 import { CardTask } from '@/UI/organisms/task/cards/CardTask';
 import { ButtonLogin } from '@/UI/atoms/button/ButtonLogin';
 import { ButtonLogout } from '@/UI/atoms/button/ButtonLogout';
+import { NavBar } from '@/UI/molecules/nav/NavBar';
 
 const options = [
 	{
@@ -103,6 +104,12 @@ const Home = () => {
 					}
 				/>
 			</div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<NavBar></NavBar>
 		</MainLayout>
 	);
 };
