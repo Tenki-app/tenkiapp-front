@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
+
+import { Loader } from '@/UI/molecules/loader/Loader';
 import { Input } from '@/UI/atoms/inputs/Input';
 import { Title } from '@/UI/atoms/text/Title';
 import ProfileIcon from '@/svg/navBar/profileIcon.svg';
@@ -108,5 +111,9 @@ const Home = () => {
 };
 
 export default withAuthenticationRequired(Home, {
-	onRedirecting: () => <>Loading...</>,
+	onRedirecting: () => <Loader />,
+	onBeforeAuthentication: () =>
+		new Promise(() => {
+			redirectToLoginPage();
+		}),
 });

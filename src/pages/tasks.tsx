@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 
 import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
-
+import { Loader } from '@/UI/molecules/loader/Loader';
 import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
 
 const TaskPage = () => {
@@ -54,4 +56,10 @@ const TaskPage = () => {
 	);
 };
 
-export default TaskPage;
+export default withAuthenticationRequired(TaskPage, {
+	onRedirecting: () => <Loader />,
+	onBeforeAuthentication: () =>
+		new Promise(() => {
+			redirectToLoginPage();
+		}),
+});
