@@ -11,6 +11,7 @@ import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 import { Loader } from '@/UI/molecules/loader/Loader';
 import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
+import { Title } from '@/UI/atoms/text/Title';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
@@ -36,7 +37,8 @@ const TaskPage = () => {
 	}, [activeTaskTabFilter]);
 
 	return (
-		<MainLayout>
+		<MainLayout hasNav>
+			<Title className='text-center'>{t('tasks')}</Title>
 			<section className='px-2 pt-10 pb-20 h-full'>
 				<FilterTags
 					tabsContent={tasksTagContent}
