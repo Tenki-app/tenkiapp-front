@@ -8,7 +8,7 @@ type TypeCardTaskProps = {
 
 const PanelTasks = ({ allTasks }: TypeCardTaskProps) => {
 	return (
-		<div className='flex flex-col h-[80%] gap-y-4 overflow-y-auto'>
+		<div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
 			{allTasks.map((singleTask: any, index: number) => (
 				<CardTask
 					key={index}

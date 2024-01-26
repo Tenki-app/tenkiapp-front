@@ -49,3 +49,32 @@
 	-webkit-transition: all 0.35s;
 	transition: all 0.35s;
 }
+
+/* Scroll bar (Chrome and Safari) */
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #a0a0a0;
+	border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+/* Scroll bar (Firefox) */
+::-moz-scrollbar {
+	width: 10px;
+}
+
+::-moz-scrollbar-thumb {
+	background-color: #626262;
+	border-radius: 8px;
+}
+
+::-moz-scrollbar-track {
+	background-color: transparent;
+}
