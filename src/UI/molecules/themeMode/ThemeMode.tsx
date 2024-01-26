@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+import { useAppStore } from '@/lib/store/store';
+
 import MoonIcon from '@/svg/theme/moonIcon.svg';
 import SunIcon from '@/svg/theme/sunIcon.svg';
-import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import { useAppStore } from '@/lib/store/store';
+
 const ThemeMode = () => {
 	const { theme, setTheme } = useAppStore();
 	useEffect(() => {

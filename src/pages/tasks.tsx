@@ -1,11 +1,19 @@
 import { useEffect, useMemo, useState } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
+
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
+import { Loader } from '@/UI/molecules/loader/Loader';
 import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
+import { Title } from '@/UI/atoms/text/Title';
+import { Button } from '@/UI/atoms/button/Button';
+
+import AddIcon from '@/assets/svg/task/addIcon.svg';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
@@ -31,24 +39,39 @@ const TaskPage = () => {
 	}, [activeTaskTabFilter]);
 
 	return (
-		<MainLayout>
-			<section className='px-2 pt-10 pb-20 h-full'>
+		<MainLayout hasNav>
+			<Title className='text-center !font-bold mb-4'>{t('tasks')}</Title>
+			<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
 				<FilterTags
 					tabsContent={tasksTagContent}
 					activeTag={activeTaskTabFilter}
 					setActiveTag={setActiveTaskTabFilter}
 					containerStyles='w-[90%] mx-auto'
 				/>
-				<div className='bg-olive-drab h-full w-full px-8 pt-8'>
+				<div className='bg-olive-drab h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
 					<PanelTasks allTasks={tasksToShow} />
-					<ProgressBar
-						containerStyles='mt-6'
-						progressPercent={tasksDonePercent}
-					/>
+					<div className='flex flex-col items-end'>
+						<ProgressBar
+							containerStyles='mt-6'
+							progressPercent={tasksDonePercent}
+						/>
+						<Button
+							variant='rounded'
+							className='mt-3 mr-3'
+						>
+							<AddIcon className='text-white w-[20px] h-[20px]' />
+						</Button>
+					</div>
 				</div>
 			</section>
 		</MainLayout>
 	);
 };
 
-export default TaskPage;
+export default withAuthenticationRequired(TaskPage, {
+	onRedirecting: () => <Loader />,
+	onBeforeAuthentication: () =>
+		new Promise(() => {
+			redirectToLoginPage();
+		}),
+});
