@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
-
 import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
