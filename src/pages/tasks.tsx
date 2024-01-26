@@ -42,14 +42,14 @@ const TaskPage = () => {
 	return (
 		<MainLayout hasNav>
 			<Title className='text-center !font-bold mb-4'>{t('tasks')}</Title>
-			<section className='px-2 pb-20 h-[85%] lg:max-w-[1050px] lg:mx-auto'>
+			<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
 				<FilterTags
 					tabsContent={tasksTagContent}
 					activeTag={activeTaskTabFilter}
 					setActiveTag={setActiveTaskTabFilter}
 					containerStyles='w-[90%] mx-auto'
 				/>
-				<div className='bg-olive-drab h-full w-full px-8 py-8 flex flex-col justify-between'>
+				<div className='bg-olive-drab h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
 					<PanelTasks allTasks={tasksToShow} />
 					<div className='flex flex-col items-end'>
 						<ProgressBar
