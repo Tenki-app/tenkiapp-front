@@ -41,8 +41,8 @@ const TaskPage = () => {
 
 	return (
 		<MainLayout hasNav>
-			<Title className='text-center font-bold'>{t('tasks')}</Title>
-			<section className='px-2 pb-20 h-[85%]'>
+			<Title className='text-center !font-bold mb-4'>{t('tasks')}</Title>
+			<section className='px-2 pb-20 h-[85%] lg:max-w-[1050px] lg:mx-auto'>
 				<FilterTags
 					tabsContent={tasksTagContent}
 					activeTag={activeTaskTabFilter}
@@ -60,7 +60,7 @@ const TaskPage = () => {
 							variant='rounded'
 							className='mt-3 mr-3'
 						>
-							<AddIcon className='text-white' />
+							<AddIcon className='text-white w-[20px] h-[20px]' />
 						</Button>
 					</div>
 				</div>
