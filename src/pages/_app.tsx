@@ -36,7 +36,7 @@ export default function App({
 			<QueryClientProvider client={queryClient}>
 				<I18nextProvider i18n={i18next}>
 					<Component {...pageProps} />
-					{/* <ReactQueryDevtools /> */}
+					<ReactQueryDevtools />
 				</I18nextProvider>
 			</QueryClientProvider>
 		</Auth0Provider>
