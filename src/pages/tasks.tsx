@@ -12,6 +12,9 @@ import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 import { Loader } from '@/UI/molecules/loader/Loader';
 import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
 import { Title } from '@/UI/atoms/text/Title';
+import { Button } from '@/UI/atoms/button/Button';
+
+import AddIcon from '@/assets/svg/task/addIcon.svg';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
@@ -38,20 +41,28 @@ const TaskPage = () => {
 
 	return (
 		<MainLayout hasNav>
-			<Title className='text-center'>{t('tasks')}</Title>
-			<section className='px-2 pt-10 pb-20 h-full'>
+			<Title className='text-center font-bold'>{t('tasks')}</Title>
+			<section className='px-2 pb-20 h-[85%]'>
 				<FilterTags
 					tabsContent={tasksTagContent}
 					activeTag={activeTaskTabFilter}
 					setActiveTag={setActiveTaskTabFilter}
 					containerStyles='w-[90%] mx-auto'
 				/>
-				<div className='bg-olive-drab h-full w-full px-8 pt-8'>
+				<div className='bg-olive-drab h-full w-full px-8 py-8 flex flex-col justify-between'>
 					<PanelTasks allTasks={tasksToShow} />
-					<ProgressBar
-						containerStyles='mt-6'
-						progressPercent={tasksDonePercent}
-					/>
+					<div className='flex flex-col items-end'>
+						<ProgressBar
+							containerStyles='mt-6'
+							progressPercent={tasksDonePercent}
+						/>
+						<Button
+							variant='rounded'
+							className='mt-3 mr-3'
+						>
+							<AddIcon className='text-white' />
+						</Button>
+					</div>
 				</div>
 			</section>
 		</MainLayout>
