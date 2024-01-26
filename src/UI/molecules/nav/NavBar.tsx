@@ -12,8 +12,6 @@ export const NavBar = () => {
 		setNavOption(option);
 	};
 	const handleActiveStyles = (option: NavType) => {
-		console.log('option', option);
-		console.log('navOption', navOption);
 		let activeStyles = 'w-[32px] h-[32px] ';
 		if (navOption === option) {
 			activeStyles += 'text-light-blue';
