@@ -11,7 +11,7 @@ export const NavBar = () => {
 	const handleActive = (option: NavType) => {
 		setNavOption(option);
 	};
-	const handleActiveStyles = (option: NavType) => {
+	const handleActiveStyles = (option: NavType): string => {
 		let activeStyles = 'w-[32px] h-[32px] ';
 		if (navOption === option) {
 			activeStyles += 'text-light-blue';
@@ -20,32 +20,53 @@ export const NavBar = () => {
 		}
 		return activeStyles;
 	};
+
+	const handleLinkActiveStyles = (option: NavType): string => {
+		let linkActiveStyles = '';
+		if (navOption === option) {
+			linkActiveStyles +=
+				'main-transition bg-dark-blue-transparent block py-[11px] px-[22px] border-b-4 border-b-light-blue rounded-md';
+		}
+		return linkActiveStyles;
+	};
 	return (
-		<nav className='w-[375px] h-[69px] bg-dark-blue'>
+		<nav className='w-full h-[69px] fixed z-[90] bottom-0 bg-dark-blue'>
 			<ul className='h-full flex justify-around items-center'>
 				<li onClick={() => handleActive('Home')}>
-					<Link href={''}>
+					<Link
+						href={''}
+						className={handleLinkActiveStyles('Home')}
+					>
 						<HomeIcon
 							className={handleActiveStyles('Home')}
 						></HomeIcon>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Task')}>
-					<Link href={''}>
+					<Link
+						href={''}
+						className={handleLinkActiveStyles('Task')}
+					>
 						<TasksIcon
 							className={handleActiveStyles('Task')}
 						></TasksIcon>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Profile')}>
-					<Link href={''}>
+					<Link
+						href={''}
+						className={handleLinkActiveStyles('Profile')}
+					>
 						<ProfileIcon
 							className={handleActiveStyles('Profile')}
 						></ProfileIcon>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Notification')}>
-					<Link href={''}>
+					<Link
+						href={''}
+						className={handleLinkActiveStyles('Notification')}
+					>
 						<NotificationIcon
 							className={handleActiveStyles('Notification')}
 						></NotificationIcon>
