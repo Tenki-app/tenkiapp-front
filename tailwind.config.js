@@ -21,6 +21,7 @@ module.exports = {
 				'champagne-white-transparency': 'rgba(247, 239, 216, 0.51)',
 				'light-blue': '#95F9FF',
 				'bluish-gray': '#556270',
+				'dark-blue-transparent': 'rgba(73, 91, 122, 0.34)',
 				'olive-drab': '#6F7C5E',
 				bronze: '#C5A76E',
 				'light-gray': '#556270',
