@@ -8,7 +8,7 @@ const AddTaskModal = ({ setShowModal }: TypeAddTaskModalProps) => {
 	return (
 		<ModalTemplate
 			title='Añadir tarea'
-			content={<div></div>}
+			content={<div>I am a fucking modal guys</div>}
 			setShowModal={setShowModal}
 		/>
 	);

@@ -12,6 +12,7 @@ import { Loader } from '@/UI/molecules/loader/Loader';
 import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
 import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
+import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
@@ -20,7 +21,7 @@ const TaskPage = () => {
 	const { t } = useTranslation();
 
 	const [tasksToShow, setTasksToShow] = useState<any[]>([]);
-	const [openAddTaskModal, setOpenAddTaskModal] = useState(false);
+	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 
 	const tasksTagContent = ['today', 'next', 'someday'];
 
@@ -33,7 +34,7 @@ const TaskPage = () => {
 	const tasksDonePercent = (tasksDone.length / tasksDummyData.length) * 100;
 
 	const handleAddTask = () => {
-		setOpenAddTaskModal(true);
+		setShowAddTaskModal(true);
 	};
 
 	useEffect(() => {
@@ -45,6 +46,12 @@ const TaskPage = () => {
 
 	return (
 		<>
+			<ModalTemplate
+				title='Añadir tarea'
+				content={<div>I am a fucking modal guys</div>}
+				showModal={showAddTaskModal}
+				setShowModal={setShowAddTaskModal}
+			/>
 			<MainLayout hasNav>
 				<Title className='text-center !font-bold mb-4'>
 					{t('tasks')}
@@ -66,6 +73,7 @@ const TaskPage = () => {
 							<Button
 								variant='rounded'
 								className='mt-3 mr-3'
+								onClick={handleAddTask}
 							>
 								<AddIcon className='text-white w-[20px] h-[20px]' />
 							</Button>
