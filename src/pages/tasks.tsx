@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/lib/store/store';
@@ -15,6 +15,8 @@ import { Button } from '@/UI/atoms/button/Button';
 import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
+
+import type { MouseEvent } from 'react';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
@@ -33,7 +35,8 @@ const TaskPage = () => {
 
 	const tasksDonePercent = (tasksDone.length / tasksDummyData.length) * 100;
 
-	const handleAddTask = () => {
+	const handleAddTask = (e: MouseEvent<HTMLButtonElement>) => {
+		e.stopPropagation();
 		setShowAddTaskModal(true);
 	};
 
