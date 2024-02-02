@@ -25,9 +25,17 @@ export const NavBar = () => {
 		let linkActiveStyles = '';
 		if (navOption === option) {
 			linkActiveStyles +=
-				'main-transition bg-dark-blue-transparent block py-[11px] px-[22px] border-b-4 border-b-light-blue rounded-md';
+				'main-transition bg-dark-blue-transparent block py-[11px] px-[22px] rounded-md relative flex flex-row justify-center items-center relative';
 		}
 		return linkActiveStyles;
+	};
+
+	const handleDivActive = (option: NavType): string => {
+		if (navOption === option) {
+			return 'bg-light-blue w-[60px] h-[3px] absolute bottom-0 rounded';
+		} else {
+			return '';
+		}
 	};
 	return (
 		<nav className='w-full h-[69px] fixed z-[90] bottom-0 bg-dark-blue'>
@@ -40,6 +48,7 @@ export const NavBar = () => {
 						<HomeIcon
 							className={handleActiveStyles('Home')}
 						></HomeIcon>
+						<div className={handleDivActive('Home')}></div>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Task')}>
@@ -50,6 +59,7 @@ export const NavBar = () => {
 						<TasksIcon
 							className={handleActiveStyles('Task')}
 						></TasksIcon>
+						<div className={handleDivActive('Task')}></div>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Profile')}>
@@ -60,6 +70,7 @@ export const NavBar = () => {
 						<ProfileIcon
 							className={handleActiveStyles('Profile')}
 						></ProfileIcon>
+						<div className={handleDivActive('Profile')}></div>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Notification')}>
@@ -70,6 +81,7 @@ export const NavBar = () => {
 						<NotificationIcon
 							className={handleActiveStyles('Notification')}
 						></NotificationIcon>
+						<div className={handleDivActive('Notification')}></div>
 					</Link>
 				</li>
 			</ul>
