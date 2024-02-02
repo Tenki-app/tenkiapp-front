@@ -3,18 +3,22 @@ import type { ReactNode } from 'react';
 type typeTextProps = {
 	children: ReactNode;
 	className?: string;
+	variant?: 'custom' | 'default';
 };
 
-const Text = ({ children, className }: typeTextProps): JSX.Element => {
-	return (
-		<p
-			className={`text-dark-blue dark:text-champagne-white text-base font-primary ${
-				className ?? ''
-			}`}
-		>
-			{children}
-		</p>
-	);
+const Text = ({
+	children,
+	className,
+	variant = 'default',
+}: typeTextProps): JSX.Element => {
+	let textDesign = 'text-base font-primary ';
+	if (variant === 'custom') {
+		textDesign += '';
+	} else if (variant === 'default') {
+		textDesign +=
+			'text-dark-blue dark:text-champagne-white text-base font-primary';
+	}
+	return <p className={`${textDesign} ${className ?? ''}`}>{children}</p>;
 };
 
 export { Text };
