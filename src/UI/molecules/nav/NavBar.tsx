@@ -5,6 +5,7 @@ import NotificationIcon from '@/svg/navBar/notificationIcon.svg';
 import Link from 'next/link';
 import { NavType } from '@/lib/types/navBar';
 import { useState } from 'react';
+import { Text } from '@/UI/atoms/text/Text';
 
 export const NavBar = () => {
 	const [navOption, setNavOption] = useState<NavType>('Home');
@@ -22,23 +23,27 @@ export const NavBar = () => {
 	};
 
 	const handleLinkActiveStyles = (option: NavType): string => {
-		let linkActiveStyles = '';
+		let linkActiveStyles =
+			'flex flex-row justify-center items-center relative ';
 		if (navOption === option) {
 			linkActiveStyles +=
-				'main-transition bg-dark-blue-transparent block py-[11px] px-[22px] rounded-md relative flex flex-row justify-center items-center relative';
+				'main-transition bg-dark-blue-transparent block py-[11px] px-[22px] rounded-md relative flex flex-row justify-center items-center relative text-light-blue';
+		} else {
+			linkActiveStyles += 'text-champagne-white';
 		}
 		return linkActiveStyles;
 	};
 
 	const handleDivActive = (option: NavType): string => {
 		if (navOption === option) {
-			return 'bg-light-blue w-[60px] h-[3px] absolute bottom-0 rounded';
+			return 'bg-light-blue w-[80%] h-[3px] absolute bottom-0 rounded';
 		} else {
 			return '';
 		}
 	};
+
 	return (
-		<nav className='w-full h-[69px] fixed z-[90] bottom-0 bg-dark-blue'>
+		<nav className='w-full h-[69px] fixed z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
 			<ul className='h-full flex justify-around items-center'>
 				<li onClick={() => handleActive('Home')}>
 					<Link
@@ -49,6 +54,12 @@ export const NavBar = () => {
 							className={handleActiveStyles('Home')}
 						></HomeIcon>
 						<div className={handleDivActive('Home')}></div>
+						<Text
+							className='hidden md:block ml-[10px] font-bold'
+							variant='custom'
+						>
+							HOME
+						</Text>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Task')}>
@@ -60,6 +71,12 @@ export const NavBar = () => {
 							className={handleActiveStyles('Task')}
 						></TasksIcon>
 						<div className={handleDivActive('Task')}></div>
+						<Text
+							className='hidden md:block ml-[10px] font-bold'
+							variant='custom'
+						>
+							TASK
+						</Text>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Profile')}>
@@ -71,6 +88,12 @@ export const NavBar = () => {
 							className={handleActiveStyles('Profile')}
 						></ProfileIcon>
 						<div className={handleDivActive('Profile')}></div>
+						<Text
+							className='hidden md:block ml-[10px] font-bold'
+							variant='custom'
+						>
+							PROFILE
+						</Text>
 					</Link>
 				</li>
 				<li onClick={() => handleActive('Notification')}>
@@ -82,6 +105,12 @@ export const NavBar = () => {
 							className={handleActiveStyles('Notification')}
 						></NotificationIcon>
 						<div className={handleDivActive('Notification')}></div>
+						<Text
+							className='hidden md:block ml-[10px] font-bold'
+							variant='custom'
+						>
+							NOTIFICATION
+						</Text>
 					</Link>
 				</li>
 			</ul>
