@@ -13,6 +13,7 @@ import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
 import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
 import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
+import { FormAddTask } from '@/UI/organisms/task/forms/FormAddTask';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
@@ -51,7 +52,7 @@ const TaskPage = () => {
 		<>
 			<ModalTemplate
 				title='Añadir tarea'
-				content={<div>I am a fucking modal guys</div>}
+				content={<FormAddTask />}
 				showModal={showAddTaskModal}
 				setShowModal={setShowAddTaskModal}
 			/>

@@ -47,7 +47,7 @@ const ModalTemplate = ({
 							animate={{ opacity: 0.6 }}
 						/>
 						<div
-							className='absolute left-0 right-0 main-transition top-0 max-w-[375px] h-[400px] bottom-0 m-auto z-[90] bg-champagne-white p-4'
+							className='absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white p-4'
 							ref={modalRef}
 						>
 							<div className='flex justify-end'>
