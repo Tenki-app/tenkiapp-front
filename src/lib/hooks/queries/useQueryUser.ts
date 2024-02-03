@@ -22,7 +22,7 @@ const fetchPostSignInUser = async (
 	const endpoint = USER_ENDPOINTS.SIGN_IN;
 	const response = await postDataWithAuth(endpoint, user, idToken.__raw);
 
-	return userPostSignInResponseSchema.parse(response);
+	return response;
 };
 export const usePostSignInUser = () => {
 	const { getIdTokenClaims } = useAuth0();
