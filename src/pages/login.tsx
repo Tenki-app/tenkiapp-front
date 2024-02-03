@@ -13,7 +13,7 @@ const Login = () => {
 					<LoginBanner />
 				</div>
 				<div className='flex flex-col items-center w-full md:w-1/2'>
-					<div className='pl-[10px] pr-[10px] flex justify-between w-full pb-[18%] md:pl-[5%] md:pr-[5%] 2xl:pl-[10%] 2xl:pr-[10%] 2xl:pt-[4%] 2xl:pb-[12%] pt-[15px]'>
+					<div className='pl-[10px] pr-[10px] flex justify-between w-full md:pl-[5%] md:pr-[5%] 2xl:pl-[10%] 2xl:pr-[10%] 2xl:pt-[4%] 2xl:pb-[12%] pt-[15px]'>
 						<div className='flex items-center'>
 							<ThemeMode />
 							<SwitchLang />
