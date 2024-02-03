@@ -26,8 +26,6 @@ const TaskPage = () => {
 	const { t } = useTranslation();
 	const { allTasks } = useGetAllTasks(user?.id);
 
-	console.log(allTasks);
-
 	const [tasksToShow, setTasksToShow] = useState<any[]>([]);
 	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 
