@@ -5,6 +5,8 @@ import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
+import { useGetAllTasks } from '@/lib/hooks/queries/useQueryTask';
+
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
@@ -20,8 +22,9 @@ import AddIcon from '@/assets/svg/task/addIcon.svg';
 import type { MouseEvent } from 'react';
 
 const TaskPage = () => {
-	const { activeTaskTabFilter, setActiveTaskTabFilter } = useAppStore();
+	const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
 	const { t } = useTranslation();
+	const { allTasks } = useGetAllTasks(user?.id);
 
 	const [tasksToShow, setTasksToShow] = useState<any[]>([]);
 	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
