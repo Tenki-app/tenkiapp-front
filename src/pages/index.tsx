@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { useEffect, useState } from 'react';
+import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react';
 
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
@@ -30,6 +30,7 @@ const options = [
 
 const Home = () => {
 	const [translations, i18n] = useTranslation('global');
+	const { getIdTokenClaims } = useAuth0();
 
 	const [hidden, setHidden] = useState(true);
 
@@ -38,6 +39,15 @@ const Home = () => {
 	};
 
 	const handleSignOut = () => {};
+
+	useEffect(() => {
+		const showToken = async () => {
+			const idToken = await getIdTokenClaims();
+			console.log(idToken?.__raw);
+		};
+
+		showToken();
+	}, []);
 
 	return (
 		<MainLayout hasNav={true}>

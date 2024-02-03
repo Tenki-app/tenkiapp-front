@@ -1,10 +1,20 @@
 import { AxiosResponse } from 'axios';
-
 import { api } from '@/lib/utils/axios';
 
-export const postDataWithAuth = async (
+export const deleteData = async (endpoint: string): Promise<any> => {
+	return api
+		.delete(endpoint)
+		.then((res: AxiosResponse) => {
+			return res.data;
+		})
+		.catch((error: unknown) => {
+			console.error(error);
+			throw error;
+		});
+};
+
+export const deleteDataWithToken = async (
 	endpoint: string,
-	values: Record<string, any>,
 	token: string
 ): Promise<any> => {
 	const headers = {
@@ -12,12 +22,13 @@ export const postDataWithAuth = async (
 	};
 
 	return api
-		.post(endpoint, values, { headers })
+		.delete(endpoint, { headers })
 		.then((res: AxiosResponse) => {
 			return res.data;
 		})
 		.catch((error: unknown) => {
 			console.error(error);
+
 			throw error;
 		});
 };
