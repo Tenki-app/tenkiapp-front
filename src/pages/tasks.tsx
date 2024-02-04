@@ -71,7 +71,7 @@ const TaskPage = () => {
 						containerStyles='w-[90%] mx-auto'
 					/>
 					<div className='bg-olive-drab h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
-						<PanelTasks allTasks={tasksToShow} />
+						<PanelTasks allTasks={allTasks} />
 						<div className='flex flex-col items-end'>
 							<ProgressBar
 								containerStyles='mt-6'
