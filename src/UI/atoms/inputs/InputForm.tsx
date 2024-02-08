@@ -4,11 +4,12 @@ import { useFormContext } from 'react-hook-form';
 import { Text } from '../text/Text';
 
 import { useState, type ReactNode } from 'react';
-import type { typesFormValidations } from '@/lib/types/form';
+
+import type { TypeFormValidations } from '@/lib/types/form';
 
 export type typeInputFormProps = {
 	name: string;
-	formValidations?: typesFormValidations;
+	formValidations?: TypeFormValidations;
 	designContainer?: string;
 	placeholder?: string;
 	designErrorMessage?: string;
@@ -33,7 +34,7 @@ const InputForm = ({
 	const [showPassword, setShowPassword] = useState(false);
 
 	const inputDesign =
-		'text-xl dark:text-champagne-white text-dark-blue w-full border-b-[2px] focus:outline-none border-b-rounded dark:border-champagne-white-transparency border-dark-blue-transparency bg-transparent dark:placeholder:text-champagne-white-transparency placeholder:text-dark-blue-transparency font-medium';
+		'text-lg dark:text-champagne-white text-dark-blue w-full border-[1px] focus:outline-none rounded dark:border-champagne-white-transparency border-dark-blue-transparency bg-transparent dark:placeholder:text-champagne-white-transparency placeholder:text-dark-blue-transparency font-medium p-[6px]';
 
 	const handleIconClick = () => {
 		if (type === 'password') {
@@ -60,7 +61,13 @@ const InputForm = ({
 						{...register(name, formValidations)}
 					/>
 				)}
-				{type === 'textarea' && <textarea />}
+				{type === 'textarea' && (
+					<textarea
+						className={`${inputDesign} min-h-[90px]`}
+						{...register(name, formValidations)}
+						placeholder={placeholder}
+					/>
+				)}
 				{icon && (
 					<div
 						onClick={handleIconClick}
