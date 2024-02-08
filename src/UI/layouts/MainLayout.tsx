@@ -1,3 +1,4 @@
+import { NavBar } from '../molecules/nav/NavBar';
 import { SwitchLang } from '../molecules/switchLang/SwitchLang';
 import { ThemeMode } from '../molecules/themeMode/ThemeMode';
 
@@ -33,6 +34,7 @@ const MainLayout = ({
 			>
 				{hasNav && (
 					<div className='flex p-3 '>
+						<NavBar />
 						<ThemeMode />
 						<SwitchLang />
 					</div>
