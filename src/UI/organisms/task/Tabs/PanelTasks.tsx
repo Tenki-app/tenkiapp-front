@@ -1,9 +1,10 @@
 import { CardTask } from '../cards/CardTask';
 
 import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
-import { typesGetTask } from '@/lib/types/tasks';
+import type { TypeTask } from '@/lib/types/tasks';
+
 type TypeCardTaskProps = {
-	allTasks?: typesGetTask[];
+	allTasks?: TypeTask[];
 };
 
 const PanelTasks = ({ allTasks }: TypeCardTaskProps) => {
