@@ -4,11 +4,11 @@ import ProfileIcon from '@/svg/navBar/profileIcon.svg';
 import NotificationIcon from '@/svg/navBar/notificationIcon.svg';
 import Link from 'next/link';
 import { NavType } from '@/lib/types/navBar';
-import { useState } from 'react';
 import { Text } from '@/UI/atoms/text/Text';
+import { useAppStore } from '@/lib/store/store';
 
 export const NavBar = () => {
-	const [navOption, setNavOption] = useState<NavType>('Home');
+	const { navOption, setNavOption } = useAppStore();
 	const handleActive = (option: NavType) => {
 		setNavOption(option);
 	};
@@ -43,12 +43,12 @@ export const NavBar = () => {
 	};
 
 	return (
-		<nav className='w-full h-[69px] md:h-[80px] fixed z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
+		<nav className='w-full h-[69px] md:h-[80px] fixed left-0 z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
 			<ul className='h-full flex items-center justify-between'>
 				<div className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
 					<li onClick={() => handleActive('Home')}>
 						<Link
-							href={''}
+							href={'/'}
 							className={handleLinkActiveStyles('Home')}
 						>
 							<HomeIcon
@@ -65,7 +65,7 @@ export const NavBar = () => {
 					</li>
 					<li onClick={() => handleActive('Task')}>
 						<Link
-							href={''}
+							href={'/tasks'}
 							className={handleLinkActiveStyles('Task')}
 						>
 							<TasksIcon
@@ -82,7 +82,7 @@ export const NavBar = () => {
 					</li>
 					<li onClick={() => handleActive('Profile')}>
 						<Link
-							href={''}
+							href={'/profile'}
 							className={handleLinkActiveStyles('Profile')}
 						>
 							<ProfileIcon
