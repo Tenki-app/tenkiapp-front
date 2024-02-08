@@ -122,7 +122,6 @@ const Home = () => {
 			<br />
 			<br />
 			<br />
-			<NavBar></NavBar>
 		</MainLayout>
 	);
 };
