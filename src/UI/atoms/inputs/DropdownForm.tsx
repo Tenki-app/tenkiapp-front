@@ -13,6 +13,7 @@ type TypeDropdownFormProps = {
 	designSelect?: string;
 	placeholder?: string;
 	designErrorMessage?: string;
+	hasDefaultOption?: boolean;
 };
 
 const DropdownForm = ({
@@ -22,6 +23,7 @@ const DropdownForm = ({
 	designSelect,
 	placeholder,
 	designErrorMessage,
+	hasDefaultOption,
 }: TypeDropdownFormProps): JSX.Element => {
 	const {
 		register,
