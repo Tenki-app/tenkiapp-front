@@ -11,7 +11,6 @@ import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 import { Loader } from '@/UI/molecules/loader/Loader';
-import { PanelTasks } from '@/UI/organisms/task/Tabs/PanelTasks';
 import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
 import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
@@ -20,6 +19,8 @@ import { FormAddTask } from '@/UI/organisms/task/forms/FormAddTask';
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
 import type { MouseEvent } from 'react';
+import { CardTask } from '@/UI/organisms/task/cards/CardTask';
+import { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
@@ -70,8 +71,22 @@ const TaskPage = () => {
 						setActiveTag={setActiveTaskTabFilter}
 						containerStyles='w-[90%] mx-auto'
 					/>
-					<div className='bg-olive-drab h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
-						<PanelTasks allTasks={allTasks} />
+					<div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
+						<div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
+							{allTasks?.map((singleTask: any, index: number) => (
+								<CardTask
+									key={index}
+									title={singleTask.title}
+									description={singleTask.description}
+									time={singleTask.time}
+									date={singleTask.date_task}
+									state={singleTask.state as TypeTaskState}
+									category={
+										singleTask.category as TypeTaskCategory
+									}
+								/>
+							))}
+						</div>
 						<div className='flex flex-col items-end'>
 							<ProgressBar
 								containerStyles='mt-6'
