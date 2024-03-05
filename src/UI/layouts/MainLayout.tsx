@@ -34,7 +34,6 @@ const MainLayout = ({
 			>
 				{hasNav && (
 					<div className='flex p-3 '>
-						<NavBar />
 						<ThemeMode />
 						<SwitchLang />
 					</div>

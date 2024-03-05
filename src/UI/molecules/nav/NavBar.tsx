@@ -24,10 +24,10 @@ export const NavBar = () => {
 
 	const handleLinkActiveStyles = (option: NavType): string => {
 		let linkActiveStyles =
-			'flex flex-row justify-center items-center relative ';
+			'main-transition flex flex-row justify-center items-center relative ';
 		if (navOption === option) {
 			linkActiveStyles +=
-				'main-transition bg-dark-blue-transparent block py-[11px] px-[22px] rounded-md relative flex flex-row justify-center items-center relative text-light-blue';
+				'bg-dark-blue-transparent block py-[11px] px-[22px] rounded-md relative flex flex-row justify-center items-center relative text-light-blue';
 		} else {
 			linkActiveStyles += 'text-champagne-white';
 		}

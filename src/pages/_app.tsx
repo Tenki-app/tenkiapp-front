@@ -4,11 +4,12 @@ import { I18nextProvider } from 'react-i18next';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { i18next } from './../lib/utils/i18n';
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 
 import type { AppProps } from 'next/app';
 
 import '@/styles/globals.css';
+import { NavBar } from '@/UI/molecules/nav/NavBar';
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ export default function App({
 	pageProps: { session, ...pageProps },
 }: AppProps) {
 	const [isInitialRender, setIsInitialRender] = useState(false);
-
+	const router = useRouter();
+	let isShowNav =
+		router.pathname !== '/login' && router.pathname !== '/onboarding';
 	useEffect(() => {
 		setIsInitialRender(true);
 	}, []);
@@ -35,6 +38,7 @@ export default function App({
 		>
 			<QueryClientProvider client={queryClient}>
 				<I18nextProvider i18n={i18next}>
+					{isShowNav ? <NavBar /> : <></>}
 					<Component {...pageProps} />
 					<ReactQueryDevtools />
 				</I18nextProvider>
