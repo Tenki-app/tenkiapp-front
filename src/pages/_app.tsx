@@ -21,7 +21,6 @@ export default function App({
 	const router = useRouter();
 	let isShowNav =
 		router.pathname !== '/login' && router.pathname !== '/onboarding';
-	console.log(router.pathname);
 	useEffect(() => {
 		setIsInitialRender(true);
 	}, []);
