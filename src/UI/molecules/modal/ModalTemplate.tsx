@@ -9,63 +9,63 @@ import CloseIcon from '@/svg/task/closeIcon.svg';
 import type { ReactNode } from 'react';
 
 type TypeModalTemplateProps = {
-	title: string;
-	showModal: boolean;
-	setShowModal: (value: boolean) => void;
-	content: ReactNode;
-	contentStyles?: string;
+    title: string;
+    showModal: boolean;
+    setShowModal: (value: boolean) => void;
+    content: ReactNode;
+    contentStyles?: string;
 };
 
 const ModalTemplate = ({
-	title,
-	showModal,
-	setShowModal,
-	content,
-	contentStyles,
+    title,
+    showModal,
+    setShowModal,
+    content,
+    contentStyles,
 }: TypeModalTemplateProps) => {
-	const modalRef = useRef(null);
+    const modalRef = useRef(null);
 
-	useCloseWhenClickOutside({
-		showElement: showModal,
-		setShowElement: setShowModal,
-		elementRef: modalRef,
-	});
+    useCloseWhenClickOutside({
+        showElement: showModal,
+        setShowElement: setShowModal,
+        elementRef: modalRef,
+    });
 
-	const handleCloseModal = (event: MouseEvent) => {
-		event.stopPropagation();
-		setShowModal(false);
-	};
+    const handleCloseModal = (event: MouseEvent) => {
+        event.stopPropagation();
+        setShowModal(false);
+    };
 
-	return (
-		<>
-			<AnimatePresence>
-				{showModal && (
-					<div className='w-screen h-screen fixed z-[30] '>
-						<motion.div
-							className='bg-black w-full h-full main-transition'
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 0.6 }}
-						/>
-						<div
-							className='absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white p-4'
-							ref={modalRef}
-						>
-							<div className='flex justify-end'>
-								<CloseIcon
-									className='cursor-pointer'
-									onClick={handleCloseModal}
-								/>
-							</div>
-							<Text className='text-center font-bold text-lg w-full border-b-[1px] pb-[2px] mb-4 border-dark-blue'>
-								{title}
-							</Text>
-							<div className={`${contentStyles}`}>{content}</div>
-						</div>
-					</div>
-				)}
-			</AnimatePresence>
-		</>
-	);
+    return (
+        <>
+            <AnimatePresence>
+                {showModal && (
+                    <div className='w-screen h-screen fixed z-[30] '>
+                        <motion.div
+                            className='bg-black w-full h-full main-transition'
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.6 }}
+                        />
+                        <div
+                            className='absolute left-0 right-0 main-transition rounded-md overflow-y-auto top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white p-4'
+                            ref={modalRef}
+                        >
+                            <div className='flex justify-end'>
+                                <CloseIcon
+                                    className='cursor-pointer'
+                                    onClick={handleCloseModal}
+                                />
+                            </div>
+                            <Text className='text-center font-bold text-lg w-full border-b-[1px] pb-[2px] mb-4 border-dark-blue'>
+                                {title}
+                            </Text>
+                            <div className={`${contentStyles}`}>{content}</div>
+                        </div>
+                    </div>
+                )}
+            </AnimatePresence>
+        </>
+    );
 };
 
 export { ModalTemplate };

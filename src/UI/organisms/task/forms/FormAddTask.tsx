@@ -1,49 +1,78 @@
 import { useForm, FormProvider } from 'react-hook-form';
+import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { taskCategories } from '@/lib/data/tasks';
 
 import { InputForm } from '@/UI/atoms/inputs/InputForm';
 import { DropdownForm } from '@/UI/atoms/inputs/DropdownForm';
 import { Button } from '@/UI/atoms/button/Button';
-import { LinkElement } from '@/UI/atoms/link/LinkElement';
+
+import type { TypeAddTaskForm } from '@/lib/types/tasks';
+import { resolverAddTaskFormSchema } from '@/lib/schema/taskSchema';
 
 const FormAddTask = () => {
-	const methods = useForm();
+    const methods = useForm<TypeAddTaskForm>({
+        defaultValues: {
+            title: '',
+            description: '',
+            category: 'today',
+            date: '',
+            hour: '',
+        },
+        resolver: zodResolver(resolverAddTaskFormSchema),
+    });
 
-	return (
-		<FormProvider {...methods}>
-			<form className='flex flex-col gap-y-3'>
-				<InputForm
-					name='title'
-					placeholder='Title...*'
-				/>
-				<InputForm
-					name='description'
-					type='textarea'
-					placeholder={`Description...*`}
-				/>
-				<DropdownForm
-					name='category'
-					dropdownOptions={taskCategories}
-				/>
-				<div className='text-center'>
-					<Button
-						redirect='#'
-						variant='underline'
-						className='!text-dark-blue text-sm !font-bold'
-					>
-						More options
-					</Button>
-				</div>
-				<Button
-					className=''
-					variant='blue'
-				>
-					Agregar +
-				</Button>
-			</form>
-		</FormProvider>
-	);
+    const [showMoreOptions, setShowMoreOptions] = useState(false);
+
+    return (
+        <FormProvider {...methods}>
+            <form className='flex flex-col gap-y-3'>
+                <InputForm
+                    name='title'
+                    placeholder='Title...*'
+                />
+                <InputForm
+                    name='description'
+                    type='textarea'
+                    placeholder={`Description...*`}
+                />
+                <DropdownForm
+                    name='category'
+                    dropdownOptions={taskCategories}
+                />
+                {showMoreOptions && (
+                    <>
+                        <InputForm
+                            name='date'
+                            type='date'
+                        />
+                        <InputForm
+                            name='hour'
+                            type='time'
+                        />
+                    </>
+                )}
+                <div className='text-center'>
+                    <Button
+                        redirect='#'
+                        variant='underline'
+                        className='!text-dark-blue text-sm !font-bold'
+                        onClick={() => setShowMoreOptions(!showMoreOptions)}
+                    >
+                        {showMoreOptions ? 'Less options' : 'More options'}
+                    </Button>
+                </div>
+                <Button
+                    className=''
+                    variant='blue'
+                    onClick={() => methods.handleSubmit((data) => {})}
+                >
+                    Agregar +
+                </Button>
+            </form>
+        </FormProvider>
+    );
 };
 
 export { FormAddTask };
