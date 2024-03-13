@@ -7,85 +7,84 @@ import { useAppStore } from '@/lib/store/store';
 import { postDataWithAuth } from '@/lib/helpers/fetching/postData';
 
 import { responseGetAllTaskSchema } from '@/lib/schema/taskSchema';
-import type { TypeTask } from '@/lib/types/tasks';
 
 const fetchGetAllTasks = async (getIdTokenClaims: any, userId?: string) => {
-	const idToken = await getIdTokenClaims();
-	if (!idToken || !userId) return null;
+    const idToken = await getIdTokenClaims();
+    if (!idToken || !userId) return null;
 
-	const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS(userId);
+    const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS(userId);
 
-	const response = await getDataWithAuth(endpoint, idToken?.__raw);
+    const response = await getDataWithAuth(endpoint, idToken?.__raw);
 
-	return responseGetAllTaskSchema.parse(response);
+    return responseGetAllTaskSchema.parse(response);
 };
 export const useGetAllTasks = (userId?: string) => {
-	const { setIsLoading } = useAppStore();
-	const { getIdTokenClaims } = useAuth0();
+    const { setIsLoading } = useAppStore();
+    const { getIdTokenClaims } = useAuth0();
 
-	const { data, isError, error, isLoading } = useQuery({
-		queryKey: ['allTasks'],
-		queryFn: async () => {
-			setIsLoading(true);
-			return fetchGetAllTasks(getIdTokenClaims, userId);
-		},
-		onError: (err: any) => {
-			setIsLoading(false);
-			console.error(err);
-		},
-		onSettled: () => {
-			setIsLoading(false);
-		},
-	});
+    const { data, isError, error, isLoading } = useQuery({
+        queryKey: ['allTasks'],
+        queryFn: async () => {
+            setIsLoading(true);
+            return fetchGetAllTasks(getIdTokenClaims, userId);
+        },
+        onError: (err: any) => {
+            setIsLoading(false);
+            console.error(err);
+        },
+        onSettled: () => {
+            setIsLoading(false);
+        },
+    });
 
-	return {
-		allTasks: data?.tasks,
-		isLoading,
-		isError,
-		error,
-	};
+    return {
+        allTasks: data?.tasks,
+        isLoading,
+        isError,
+        error,
+    };
 };
 
 const fetchPostSingleTask = async (
-	getIdTokenClaims: any,
-	taskValues: any,
-	userId?: string
+    getIdTokenClaims: any,
+    taskValues: any,
+    userId?: string
 ) => {
-	const idToken = await getIdTokenClaims();
+    const idToken = await getIdTokenClaims();
 
-	if (!idToken || !userId) return null;
+    if (!idToken || !userId) return null;
 
-	const endpoint = TASKS_ENDPOINTS.POST_SINGLE_TASK(userId);
+    const endpoint = TASKS_ENDPOINTS.POST_SINGLE_TASK(userId);
 
-	const response = await postDataWithAuth(
-		endpoint,
-		taskValues,
-		idToken?.__raw
-	);
+    const response = await postDataWithAuth(
+        endpoint,
+        taskValues,
+        idToken?.__raw
+    );
 
-	return response;
+    return response;
 };
 export const usePostSingleTask = async (userId?: string) => {
-	const { setIsLoading } = useAppStore();
-	const { getIdTokenClaims } = useAuth0();
+    const { setIsLoading } = useAppStore();
+    const { getIdTokenClaims } = useAuth0();
 
-	const { mutateAsync, isLoading, isError } = useMutation({
-		mutationKey: ['createSingleTask'],
-		mutationFn: (values: any) => {
-			setIsLoading(true);
-			return fetchPostSingleTask(getIdTokenClaims, values, userId);
-		},
-		onError: (err) => {
-			console.error(err);
-		},
-		onSettled: () => {
-			setIsLoading(false);
-		},
-	});
+    const { mutateAsync, isLoading, isError } = useMutation({
+        mutationKey: ['createSingleTask'],
+        mutationFn: (values: any) => {
+            setIsLoading(true);
+            return fetchPostSingleTask(getIdTokenClaims, values, userId);
+        },
+        onError: (err) => {
+            console.error(err);
+        },
+        onSettled: () => {
+            setIsLoading(false);
+        },
+    });
 
-	return {
-		postSingleTask: mutateAsync,
-		isLoading,
-		isError,
-	};
+    return {
+        postSingleTask: mutateAsync,
+        isLoading,
+        isError,
+    };
 };

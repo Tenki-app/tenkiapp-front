@@ -11,15 +11,13 @@ import { Button } from '@/UI/atoms/button/Button';
 import type { TypeAddTaskForm } from '@/lib/types/tasks';
 import { resolverAddTaskFormSchema } from '@/lib/schema/taskSchema';
 
-const FormAddTask = () => {
+type TypeFormAddTaskProps = {
+    formInitialValues?: TypeAddTaskForm;
+};
+
+const FormAddTask = ({ formInitialValues }: TypeFormAddTaskProps) => {
     const methods = useForm<TypeAddTaskForm>({
-        defaultValues: {
-            title: '',
-            description: '',
-            category: 'today',
-            date: '',
-            hour: '',
-        },
+        defaultValues: formInitialValues,
         resolver: zodResolver(resolverAddTaskFormSchema),
     });
 
