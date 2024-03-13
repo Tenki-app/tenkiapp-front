@@ -13,15 +13,18 @@ import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 import { Loader } from '@/UI/molecules/loader/Loader';
 import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
-import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
-import { FormAddTask } from '@/UI/organisms/task/forms/FormAddTask';
+import { ModalAddTask } from '@/UI/organisms/task/modal/ModalAddTask';
+import { ModalEditTask } from '@/UI/organisms/task/modal/ModalEditTask';
+import { CardTask } from '@/UI/organisms/task/cards/CardTask';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
 import type { MouseEvent } from 'react';
-import { CardTask } from '@/UI/organisms/task/cards/CardTask';
-import { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
-import { ModalAddTask } from '@/UI/organisms/task/modal/ModalAddTask';
+import type {
+    TypeTaskCategory,
+    TypeTaskState,
+    TypeTask,
+} from '@/lib/types/tasks';
 
 const TaskPage = () => {
     const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
@@ -30,6 +33,8 @@ const TaskPage = () => {
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+    const [showEditTaskModal, setShowEditTaskModal] = useState(false);
+    const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
 
     const tasksTagContent = ['today', 'next', 'someday'];
 
@@ -46,6 +51,10 @@ const TaskPage = () => {
         setShowAddTaskModal(true);
     };
 
+    const handleEditTask = (singleTask: TypeTask) => {
+        setTaskToEdit(singleTask);
+    };
+
     useEffect(() => {
         const tasksFiltered = tasksDummyData.filter(
             (singleTask) => singleTask.category === activeTaskTabFilter
@@ -56,8 +65,13 @@ const TaskPage = () => {
     return (
         <>
             <ModalAddTask
-                showAddTaskModal={showAddTaskModal}
-                setShowAddTaskModal={setShowAddTaskModal}
+                showModal={showAddTaskModal}
+                setShowModal={setShowAddTaskModal}
+            />
+            <ModalEditTask
+                showModal={showEditTaskModal}
+                setShowModal={setShowEditTaskModal}
+                formInitialValues={null}
             />
             <MainLayout hasNav>
                 <Title className='text-center !font-bold mb-4'>
@@ -83,6 +97,9 @@ const TaskPage = () => {
                                     category={
                                         singleTask.category as TypeTaskCategory
                                     }
+                                    onClickEdit={() => {
+                                        handleEditTask(singleTask);
+                                    }}
                                 />
                             ))}
                         </div>

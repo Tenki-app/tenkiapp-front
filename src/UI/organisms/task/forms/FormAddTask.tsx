@@ -12,12 +12,12 @@ import type { TypeAddTaskForm } from '@/lib/types/tasks';
 import { resolverAddTaskFormSchema } from '@/lib/schema/taskSchema';
 
 type TypeFormAddTaskProps = {
-    formValues?: TypeAddTaskForm;
+    formInitialValues?: TypeAddTaskForm;
 };
 
-const FormAddTask = ({ formValues }: TypeFormAddTaskProps) => {
+const FormAddTask = ({ formInitialValues }: TypeFormAddTaskProps) => {
     const methods = useForm<TypeAddTaskForm>({
-        defaultValues: formValues,
+        defaultValues: formInitialValues,
         resolver: zodResolver(resolverAddTaskFormSchema),
     });
 
