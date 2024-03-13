@@ -60,11 +60,14 @@ const TaskPage = () => {
 				showModal={showAddTaskModal}
 				setShowModal={setShowAddTaskModal}
 			/>
-			<MainLayout hasNav>
+			<MainLayout
+				hasNav
+				className='pt-[90px]'
+			>
 				<Title className='text-center !font-bold mb-4'>
 					{t('tasks')}
 				</Title>
-				<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
+				<section className='px-2 h-[85%] lg:max-w-[950px] lg:mx-auto pb-[150px]'>
 					<FilterTags
 						tabsContent={tasksTagContent}
 						activeTag={activeTaskTabFilter}

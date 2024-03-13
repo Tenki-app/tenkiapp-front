@@ -3,7 +3,10 @@ import { MainLayout } from '@/UI/layouts/MainLayout';
 const Profile = () => {
 	return (
 		<>
-			<MainLayout hasNav={true}>
+			<MainLayout
+				className='pt-[90px]'
+				hasNav={true}
+			>
 				<p> Profile page!</p>
 			</MainLayout>
 		</>

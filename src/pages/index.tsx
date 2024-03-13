@@ -40,7 +40,10 @@ const Home = () => {
 	const handleSignOut = () => {};
 
 	return (
-		<MainLayout hasNav={true}>
+		<MainLayout
+			hasNav={true}
+			className='pt-[90px]'
+		>
 			<div className='bg-champagne-white w-screen h-screen p-12'>
 				<div className='flex justify-end'>
 					<Button onClick={handleSignOut}>Sign Out</Button>
