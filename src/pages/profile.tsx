@@ -4,7 +4,7 @@ const Profile = () => {
 	return (
 		<>
 			<MainLayout
-				className='pt-[90px]'
+				className='md:pt-[90px]'
 				hasNav={true}
 			>
 				<p> Profile page!</p>

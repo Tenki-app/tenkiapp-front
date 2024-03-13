@@ -42,7 +42,7 @@ const Home = () => {
 	return (
 		<MainLayout
 			hasNav={true}
-			className='pt-[90px]'
+			className='md:pt-[90px]'
 		>
 			<div className='bg-champagne-white w-screen h-screen p-12'>
 				<div className='flex justify-end'>

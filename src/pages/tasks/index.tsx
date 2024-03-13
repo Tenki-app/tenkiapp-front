@@ -62,7 +62,7 @@ const TaskPage = () => {
 			/>
 			<MainLayout
 				hasNav
-				className='pt-[90px]'
+				className='md:pt-[90px]'
 			>
 				<Title className='text-center !font-bold mb-4'>
 					{t('tasks')}
