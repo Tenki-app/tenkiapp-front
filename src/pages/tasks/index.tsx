@@ -73,7 +73,10 @@ const TaskPage = () => {
                 setShowModal={setShowEditTaskModal}
                 formInitialValues={null}
             />
-            <MainLayout hasNav>
+            <MainLayout
+                className='md:pt-[90px]'
+                hasNav
+            >
                 <Title className='text-center !font-bold mb-4'>
                     {t('tasks')}
                 </Title>
