@@ -1,3 +1,4 @@
 export const task_en = {
-	tasks: 'Tasks',
+    tasks: 'Tasks',
+    addTask: 'Add task',
 };
