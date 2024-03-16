@@ -33,8 +33,14 @@ const InputForm = ({
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const inputDesign =
-        'text-lg dark:text-champagne-white text-dark-blue w-full border-[1px] focus:outline-none rounded dark:border-champagne-white-transparency border-dark-blue-transparency bg-transparent dark:placeholder:text-champagne-white-transparency placeholder:text-dark-blue-transparency font-medium p-[6px]';
+    let inputDesign =
+        'text-md dark:text-champagne-white text-dark-blue w-full border-[1px] focus:outline-none rounded dark:border-champagne-white-transparency border-dark-blue-transparency bg-transparent dark:placeholder:text-champagne-white-transparency placeholder:text-dark-blue-transparency font-medium ';
+
+    if (type === 'date' || type === 'time') {
+        inputDesign += 'px-[6px] py-[2px]';
+    } else {
+        inputDesign += 'p-[6px]';
+    }
 
     const handleIconClick = () => {
         if (type === 'password') {
