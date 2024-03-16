@@ -24,6 +24,7 @@ import type {
     TypeTaskCategory,
     TypeTaskState,
     TypeTask,
+    TypeAddTaskForm,
 } from '@/lib/types/tasks';
 
 const TaskPage = () => {
@@ -34,7 +35,7 @@ const TaskPage = () => {
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-    const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
+    const [taskToEdit, setTaskToEdit] = useState<TypeAddTaskForm | null>(null);
 
     const tasksTagContent = ['today', 'next', 'someday'];
 
@@ -52,7 +53,16 @@ const TaskPage = () => {
     };
 
     const handleEditTask = (singleTask: TypeTask) => {
-        setTaskToEdit(singleTask);
+        const taskInitialData = {
+            title: singleTask.title,
+            description: singleTask.description,
+            category: singleTask.category,
+            date: singleTask.date_task,
+            hour: singleTask.time,
+        };
+
+        setTaskToEdit(taskInitialData);
+        setShowEditTaskModal(true);
     };
 
     useEffect(() => {
@@ -71,7 +81,7 @@ const TaskPage = () => {
             <ModalEditTask
                 showModal={showEditTaskModal}
                 setShowModal={setShowEditTaskModal}
-                formInitialValues={null}
+                formInitialValues={taskToEdit}
             />
             <MainLayout
                 className='md:pt-[90px]'
@@ -100,7 +110,10 @@ const TaskPage = () => {
                                     category={
                                         singleTask.category as TypeTaskCategory
                                     }
-                                    onClickEdit={() => {
+                                    onClickEdit={(
+                                        e: MouseEvent<HTMLButtonElement>
+                                    ) => {
+                                        e.stopPropagation();
                                         handleEditTask(singleTask);
                                     }}
                                 />

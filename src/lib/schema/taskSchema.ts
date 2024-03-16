@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { pomodoroSchema } from './pomodoroSchema';
 
 const stateTypeEnum = z.enum(['done', 'pending', 'progress']);
-const categoryTypeEnum = z.enum(['today', 'tomorrow', 'someday']);
+const categoryTypeEnum = z.enum(['today', 'next', 'someday']);
 
 export const taskSchema = z.object({
     category: categoryTypeEnum,

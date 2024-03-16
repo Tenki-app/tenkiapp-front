@@ -23,7 +23,13 @@ const ModalEditTask = ({
     return (
         <ModalTemplate
             title={t('editTask')}
-            content={<FormAddTask formInitialValues={defaultTaskFormValues} />}
+            content={
+                <FormAddTask
+                    formInitialValues={
+                        formInitialValues ?? defaultTaskFormValues
+                    }
+                />
+            }
             showModal={showModal}
             setShowModal={setShowModal}
         />
