@@ -32,7 +32,7 @@ const DropdownForm = ({
 
     return (
         <select
-            className={`w-full rounded text-lg p-1 text-gray outline-none bg-transparent font-medium focus:outline-none border-dark-blue border font-primary ${
+            className={`w-full rounded text-lg p-1 text-dark-blue outline-none bg-transparent font-medium focus:outline-none border-dark-blue border font-primary ${
                 designSelect ?? ''
             }`}
             placeholder={placeholder}

@@ -10,12 +10,14 @@ import { Button } from '@/UI/atoms/button/Button';
 
 import type { TypeAddTaskForm } from '@/lib/types/tasks';
 import { resolverAddTaskFormSchema } from '@/lib/schema/taskSchema';
+import type { SubmitHandler } from 'react-hook-form';
 
 type TypeFormAddTaskProps = {
     formInitialValues?: TypeAddTaskForm;
+    onSubmit: SubmitHandler<TypeAddTaskForm>;
 };
 
-const FormAddTask = ({ formInitialValues }: TypeFormAddTaskProps) => {
+const FormAddTask = ({ formInitialValues, onSubmit }: TypeFormAddTaskProps) => {
     const methods = useForm<TypeAddTaskForm>({
         defaultValues: formInitialValues,
         resolver: zodResolver(resolverAddTaskFormSchema),
@@ -64,7 +66,7 @@ const FormAddTask = ({ formInitialValues }: TypeFormAddTaskProps) => {
                 <Button
                     className=''
                     variant='blue'
-                    onClick={() => methods.handleSubmit((data) => {})}
+                    onClick={() => methods.handleSubmit(onSubmit)}
                 >
                     Agregar +
                 </Button>

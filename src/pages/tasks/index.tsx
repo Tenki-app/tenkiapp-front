@@ -26,10 +26,12 @@ import type {
     TypeTask,
     TypeAddTaskForm,
 } from '@/lib/types/tasks';
+import type { SubmitHandler } from 'react-hook-form';
 
 const TaskPage = () => {
     const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
     const { t } = useTranslation();
+
     const { allTasks } = useGetAllTasks(user?.id);
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
@@ -47,12 +49,12 @@ const TaskPage = () => {
 
     const tasksDonePercent = (tasksDone.length / tasksDummyData.length) * 100;
 
-    const handleAddTask = (e: MouseEvent<HTMLButtonElement>) => {
+    const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setShowAddTaskModal(true);
     };
 
-    const handleEditTask = (singleTask: TypeTask) => {
+    const handleOpenEditTaskModal = (singleTask: TypeTask) => {
         const taskInitialData = {
             title: singleTask.title,
             description: singleTask.description,
@@ -64,6 +66,10 @@ const TaskPage = () => {
         setTaskToEdit(taskInitialData);
         setShowEditTaskModal(true);
     };
+
+    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = (formData) => {};
+
+    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = (formData) => {};
 
     useEffect(() => {
         const tasksFiltered = tasksDummyData.filter(
@@ -77,11 +83,13 @@ const TaskPage = () => {
             <ModalAddTask
                 showModal={showAddTaskModal}
                 setShowModal={setShowAddTaskModal}
+                onSubmit={onSubmitAddTask}
             />
             <ModalEditTask
                 showModal={showEditTaskModal}
                 setShowModal={setShowEditTaskModal}
                 formInitialValues={taskToEdit}
+                onSubmit={onSubmitEditTask}
             />
             <MainLayout
                 className='md:pt-[90px]'
@@ -114,7 +122,7 @@ const TaskPage = () => {
                                         e: MouseEvent<HTMLButtonElement>
                                     ) => {
                                         e.stopPropagation();
-                                        handleEditTask(singleTask);
+                                        handleOpenEditTaskModal(singleTask);
                                     }}
                                 />
                             ))}
@@ -127,7 +135,7 @@ const TaskPage = () => {
                             <Button
                                 variant='rounded'
                                 className='mt-3 mr-3'
-                                onClick={handleAddTask}
+                                onClick={handleOpenAddTaskModal}
                             >
                                 <AddIcon className='text-white w-[20px] h-[20px]' />
                             </Button>
