@@ -66,9 +66,9 @@ const FormAddTask = ({ formInitialValues, onSubmit }: TypeFormAddTaskProps) => {
                 <Button
                     className=''
                     variant='blue'
-                    onClick={() => methods.handleSubmit(onSubmit)}
+                    onClick={methods.handleSubmit(onSubmit)}
                 >
-                    Agregar +
+                    Add +
                 </Button>
             </form>
         </FormProvider>

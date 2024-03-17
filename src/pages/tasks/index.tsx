@@ -1,11 +1,14 @@
-import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/lib/store/store';
 import { tasksDummyData } from '@/lib/data/tasks';
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
-import { useGetAllTasks } from '@/lib/hooks/queries/useQueryTask';
+import {
+    useGetAllTasks,
+    usePostSingleTask,
+} from '@/lib/hooks/queries/useQueryTask';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
@@ -33,6 +36,7 @@ const TaskPage = () => {
     const { t } = useTranslation();
 
     const { allTasks } = useGetAllTasks(user?.id);
+    const { postSingleTask } = usePostSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
@@ -69,7 +73,14 @@ const TaskPage = () => {
 
     const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = (formData) => {};
 
-    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = (formData) => {};
+    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = (formData) => {
+        const newTaskToSend = {
+            ...formData,
+            state: 'pending',
+        };
+
+        postSingleTask(newTaskToSend);
+    };
 
     useEffect(() => {
         const tasksFiltered = tasksDummyData.filter(

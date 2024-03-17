@@ -31,22 +31,24 @@ const DropdownForm = ({
     } = useFormContext();
 
     return (
-        <select
-            className={`w-full rounded text-lg p-1 text-dark-blue outline-none bg-transparent font-medium focus:outline-none border-dark-blue border font-primary ${
-                designSelect ?? ''
-            }`}
-            placeholder={placeholder}
-            {...register(name, formValidations)}
-        >
-            {dropdownOptions.map((option, index) => (
-                <option
-                    key={index}
-                    value={option.value}
-                    className='bg-champagne-white'
-                >
-                    {option.label}
-                </option>
-            ))}
+        <div>
+            <select
+                className={`w-full rounded text-lg p-1 text-dark-blue outline-none bg-transparent font-medium focus:outline-none border-dark-blue border font-primary ${
+                    designSelect ?? ''
+                }`}
+                placeholder={placeholder}
+                {...register(name, formValidations)}
+            >
+                {dropdownOptions.map((option, index) => (
+                    <option
+                        key={index}
+                        value={option.value}
+                        className='bg-champagne-white'
+                    >
+                        {option.label}
+                    </option>
+                ))}
+            </select>
             <ErrorMessage
                 errors={errors}
                 name={name}
@@ -62,7 +64,7 @@ const DropdownForm = ({
                     );
                 }}
             />
-        </select>
+        </div>
     );
 };
 
