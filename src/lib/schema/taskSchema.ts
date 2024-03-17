@@ -2,16 +2,16 @@ import { z } from 'zod';
 import { pomodoroSchema } from './pomodoroSchema';
 
 const stateTypeEnum = z.enum(['done', 'pending', 'progress']);
-const categoryTypeEnum = z.enum(['today', 'tomorrow', 'someday']);
+const categoryTypeEnum = z.enum(['today', 'next', 'someday', '']);
 
 export const taskSchema = z.object({
     category: categoryTypeEnum,
-    date_created: z.string(),
-    date_task: z.string(),
+    date_created: z.string().nullable(),
+    date_task: z.string().nullable(),
     title: z.string(),
-    description: z.string(),
+    description: z.string().nullable(),
     state: stateTypeEnum,
-    time: z.string(),
+    time: z.string().nullable(),
     is_pomodoro: z.boolean().nullable().optional(),
     pomodoro: z.array(pomodoroSchema).nullable(),
     _id: z.string(),
@@ -31,8 +31,11 @@ export const responsePostTaskSchema = z.object({
 
 export const resolverAddTaskFormSchema = z.object({
     title: z.string().min(1, 'Title is required'),
-    description: z.string().min(1, 'Description is required'),
-    category: categoryTypeEnum,
-    date: z.string().nullable(),
-    hour: z.string().nullable(),
+    description: z.string().nullable(),
+    category: categoryTypeEnum.refine(
+        (value) => value !== '',
+        'Category is required'
+    ),
+    date: z.string().nullable().optional(),
+    hour: z.string().nullable().optional(),
 });

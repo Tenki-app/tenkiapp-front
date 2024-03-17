@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 
 import { Text } from '@/UI/atoms/text/Text';
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
@@ -21,7 +21,7 @@ type TypeCardTaskProps = {
     cardTaskStyles?: string;
     isOpen?: boolean;
     designVariation?: 'white' | 'red' | 'blue';
-    onClickEdit: () => void;
+    onClickEdit: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
 const CardTask = ({

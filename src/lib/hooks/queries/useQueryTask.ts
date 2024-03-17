@@ -7,9 +7,11 @@ import { useAppStore } from '@/lib/store/store';
 import { postDataWithAuth } from '@/lib/helpers/fetching/postData';
 
 import { responseGetAllTaskSchema } from '@/lib/schema/taskSchema';
+import { TypeAddTaskForm } from '@/lib/types/tasks';
 
 const fetchGetAllTasks = async (getIdTokenClaims: any, userId?: string) => {
     const idToken = await getIdTokenClaims();
+
     if (!idToken || !userId) return null;
 
     const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS(userId);
@@ -64,15 +66,15 @@ const fetchPostSingleTask = async (
 
     return response;
 };
-export const usePostSingleTask = async (userId?: string) => {
-    const { setIsLoading } = useAppStore();
+export const usePostSingleTask = () => {
+    const { setIsLoading, user } = useAppStore();
     const { getIdTokenClaims } = useAuth0();
 
     const { mutateAsync, isLoading, isError } = useMutation({
         mutationKey: ['createSingleTask'],
-        mutationFn: (values: any) => {
+        mutationFn: (values: TypeAddTaskForm) => {
             setIsLoading(true);
-            return fetchPostSingleTask(getIdTokenClaims, values, userId);
+            return fetchPostSingleTask(getIdTokenClaims, values, user?.id);
         },
         onError: (err) => {
             console.error(err);
