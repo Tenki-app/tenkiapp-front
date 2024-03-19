@@ -29,6 +29,12 @@ export const responsePostTaskSchema = z.object({
     task: taskSchema,
 });
 
+export const responsePutTaskSchema = z.object({
+    status: z.number(),
+    message: z.string(),
+    task: taskSchema,
+});
+
 export const resolverAddTaskFormSchema = z.object({
     title: z.string().min(1, 'Title is required'),
     description: z.string().nullable(),

@@ -5,13 +5,13 @@ import { defaultTaskFormValues } from '@/lib/data/tasks';
 import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
 import { FormAddTask } from '../forms/FormAddTask';
 
-import type { TypeAddTaskForm } from '@/lib/types/tasks';
+import type { TypeAddTaskForm, TypeTask } from '@/lib/types/tasks';
 import type { SubmitHandler } from 'react-hook-form';
 
 type TypeModalEditTaskProps = {
     showModal: boolean;
     setShowModal: (show: boolean) => void;
-    formInitialValues: TypeAddTaskForm | null;
+    formInitialValues: TypeTask | null;
     onSubmit: SubmitHandler<TypeAddTaskForm>;
 };
 
@@ -23,14 +23,28 @@ const ModalEditTask = ({
 }: TypeModalEditTaskProps) => {
     const { t } = useTranslation();
 
+    const initialValuesFormatted = () => {
+        if (!formInitialValues) {
+            return undefined;
+        }
+
+        const taskInitialData = {
+            title: formInitialValues.title,
+            description: formInitialValues.description,
+            category: formInitialValues.category,
+            date: formInitialValues.date_task,
+            hour: formInitialValues.time,
+        };
+
+        return taskInitialData;
+    };
+
     return (
         <ModalTemplate
             title={t('editTask')}
             content={
                 <FormAddTask
-                    formInitialValues={
-                        formInitialValues ?? defaultTaskFormValues
-                    }
+                    formInitialValues={initialValuesFormatted()}
                     onSubmit={onSubmit}
                 />
             }

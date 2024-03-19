@@ -43,7 +43,7 @@ const TaskPage = () => {
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-    const [taskToEdit, setTaskToEdit] = useState<TypeAddTaskForm | null>(null);
+    const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
 
     const tasksTagContent = ['today', 'next', 'someday'];
 
@@ -61,37 +61,36 @@ const TaskPage = () => {
     };
 
     const handleOpenEditTaskModal = (singleTask: TypeTask) => {
-        const taskInitialData = {
-            title: singleTask.title,
-            description: singleTask.description,
-            category: singleTask.category,
-            date: singleTask.date_task,
-            hour: singleTask.time,
-        };
-
-        setTaskToEdit(taskInitialData);
+        setTaskToEdit(singleTask);
         setShowEditTaskModal(true);
     };
 
-    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = (
-        formData,
-        taskId
+    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = async (
+        formData
     ) => {
+        if (!taskToEdit) {
+            return null;
+        }
+
         const editTaskToSend = {
             ...formData,
-            taskId: taskId,
+            taskId: taskToEdit?.id,
         };
 
-        // putSingleTask(editTaskToSend);
+        putSingleTask(editTaskToSend).finally(() => {
+            setShowEditTaskModal(false);
+        });
     };
 
-    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = (formData) => {
+    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (
+        formData
+    ) => {
         const newTaskToSend = {
             ...formData,
             state: 'pending',
         };
 
-        postSingleTask(newTaskToSend);
+        await postSingleTask(newTaskToSend);
     };
 
     useEffect(() => {

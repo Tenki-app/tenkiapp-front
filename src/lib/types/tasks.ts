@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-import { responsePostTaskSchema } from '../schema/taskSchema';
 import { taskSchema } from '../schema/taskSchema';
 
 export type TypeTask = z.infer<typeof taskSchema>;

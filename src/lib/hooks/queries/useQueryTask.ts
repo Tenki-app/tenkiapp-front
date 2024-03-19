@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { TASKS_ENDPOINTS } from '@/lib/utils/router';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getDataWithAuth } from '@/lib/helpers/fetching/getData';
 import { useAppStore } from '@/lib/store/store';
 import { postDataWithAuth } from '@/lib/helpers/fetching/postData';
@@ -10,6 +10,7 @@ import { putDataWithToken } from '@/lib/helpers/fetching/putData';
 import {
     responseGetAllTaskSchema,
     responsePostTaskSchema,
+    responsePutTaskSchema,
 } from '@/lib/schema/taskSchema';
 import { TypeAddTaskForm, TypeEditTaskForm } from '@/lib/types/tasks';
 
@@ -30,7 +31,7 @@ export const useGetAllTasks = (userId?: string) => {
     const { getIdTokenClaims } = useAuth0();
 
     const { data, isError, error, isLoading } = useQuery({
-        queryKey: ['allTasks'],
+        queryKey: ['allTasks', userId],
         queryFn: async () => {
             setIsLoading(true);
             return fetchGetAllTasks(getIdTokenClaims, userId);
@@ -100,7 +101,7 @@ export const usePostSingleTask = () => {
 // update single task
 const fetchPutSingleTask = async (
     getIdTokenClaims: any,
-    taskValues: TypeEditTaskForm,
+    taskValues: Partial<TypeAddTaskForm>,
     userId?: string,
     taskId?: string
 ) => {
@@ -116,22 +117,30 @@ const fetchPutSingleTask = async (
         idToken?.__raw
     );
 
-    return response;
+    return responsePutTaskSchema.parse(response);
 };
 export const usePutSingleTask = () => {
     const { setIsLoading, user } = useAppStore();
     const { getIdTokenClaims } = useAuth0();
+    const currentQueryClient = useQueryClient();
 
     const { mutateAsync, isLoading, isError } = useMutation({
         mutationKey: ['editSingleTask'],
         mutationFn: (values: TypeEditTaskForm) => {
+            const { taskId, ...taskToUpdate } = values;
             setIsLoading(true);
-            return fetchPutSingleTask(getIdTokenClaims, values, user?.id);
+            return fetchPutSingleTask(
+                getIdTokenClaims,
+                taskToUpdate,
+                user?.id,
+                taskId
+            );
         },
         onError: (err) => {
             console.error(err);
         },
         onSettled: () => {
+            currentQueryClient.invalidateQueries(['allTasks', user?.id]);
             setIsLoading(false);
         },
     });
