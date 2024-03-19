@@ -13,14 +13,13 @@ import type { TypeTaskCategory, TypeTaskState } from '@/lib/types/tasks';
 
 type TypeCardTaskProps = {
     title: string;
-    description: string;
-    time: string;
-    date: string;
+    description: string | null;
+    time: string | null;
+    date: string | null;
     state: TypeTaskState;
     category: TypeTaskCategory;
     cardTaskStyles?: string;
     isOpen?: boolean;
-    designVariation?: 'white' | 'red' | 'blue';
     onClickEdit: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
@@ -33,7 +32,6 @@ const CardTask = ({
     category,
     cardTaskStyles,
     isOpen = false,
-    designVariation,
     onClickEdit,
 }: TypeCardTaskProps) => {
     const [isActive, setIsActive] = useState(isOpen);

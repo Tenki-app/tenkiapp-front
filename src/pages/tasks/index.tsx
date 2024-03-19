@@ -8,6 +8,7 @@ import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 import {
     useGetAllTasks,
     usePostSingleTask,
+    usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
@@ -37,11 +38,12 @@ const TaskPage = () => {
 
     const { allTasks } = useGetAllTasks(user?.id);
     const { postSingleTask } = usePostSingleTask();
+    const { putSingleTask } = usePutSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-    const [taskToEdit, setTaskToEdit] = useState<TypeAddTaskForm | null>(null);
+    const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
 
     const tasksTagContent = ['today', 'next', 'someday'];
 
@@ -59,27 +61,36 @@ const TaskPage = () => {
     };
 
     const handleOpenEditTaskModal = (singleTask: TypeTask) => {
-        const taskInitialData = {
-            title: singleTask.title,
-            description: singleTask.description,
-            category: singleTask.category,
-            date: singleTask.date_task,
-            hour: singleTask.time,
-        };
-
-        setTaskToEdit(taskInitialData);
+        setTaskToEdit(singleTask);
         setShowEditTaskModal(true);
     };
 
-    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = (formData) => {};
+    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = async (
+        formData
+    ) => {
+        if (!taskToEdit) {
+            return null;
+        }
 
-    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = (formData) => {
+        const editTaskToSend = {
+            ...formData,
+            taskId: taskToEdit?.id,
+        };
+
+        putSingleTask(editTaskToSend).finally(() => {
+            setShowEditTaskModal(false);
+        });
+    };
+
+    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (
+        formData
+    ) => {
         const newTaskToSend = {
             ...formData,
             state: 'pending',
         };
 
-        postSingleTask(newTaskToSend);
+        await postSingleTask(newTaskToSend);
     };
 
     useEffect(() => {
@@ -118,7 +129,7 @@ const TaskPage = () => {
                     />
                     <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
                         <div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
-                            {allTasks?.map((singleTask: any, index: number) => (
+                            {allTasks?.map((singleTask, index) => (
                                 <CardTask
                                     key={index}
                                     title={singleTask.title}

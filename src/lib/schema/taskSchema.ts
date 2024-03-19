@@ -14,7 +14,7 @@ export const taskSchema = z.object({
     time: z.string().nullable(),
     is_pomodoro: z.boolean().nullable().optional(),
     pomodoro: z.array(pomodoroSchema).nullable(),
-    _id: z.string(),
+    id: z.string(),
 });
 
 export const responseGetAllTaskSchema = z.object({
@@ -24,7 +24,13 @@ export const responseGetAllTaskSchema = z.object({
 });
 
 export const responsePostTaskSchema = z.object({
-    code: z.number(),
+    status: z.number(),
+    message: z.string(),
+    task: taskSchema,
+});
+
+export const responsePutTaskSchema = z.object({
+    status: z.number(),
     message: z.string(),
     task: taskSchema,
 });

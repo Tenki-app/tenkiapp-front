@@ -1,6 +1,5 @@
 import { z } from 'zod';
 
-import { responsePostTaskSchema } from '../schema/taskSchema';
 import { taskSchema } from '../schema/taskSchema';
 
 export type TypeTask = z.infer<typeof taskSchema>;
@@ -15,4 +14,8 @@ export type TypeAddTaskForm = {
     category: TypeTaskCategory;
     date: string | null;
     hour: string | null;
+};
+
+export type TypeEditTaskForm = Partial<TypeAddTaskForm> & {
+    taskId: string;
 };

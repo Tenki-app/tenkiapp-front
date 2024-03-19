@@ -2,7 +2,7 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { taskCategories } from '@/lib/data/tasks';
+import { defaultTaskFormValues, taskCategories } from '@/lib/data/tasks';
 
 import { InputForm } from '@/UI/atoms/inputs/InputForm';
 import { DropdownForm } from '@/UI/atoms/inputs/DropdownForm';
@@ -19,11 +19,13 @@ type TypeFormAddTaskProps = {
 
 const FormAddTask = ({ formInitialValues, onSubmit }: TypeFormAddTaskProps) => {
     const methods = useForm<TypeAddTaskForm>({
-        defaultValues: formInitialValues,
+        defaultValues: formInitialValues ?? defaultTaskFormValues,
         resolver: zodResolver(resolverAddTaskFormSchema),
     });
 
     const [showMoreOptions, setShowMoreOptions] = useState(false);
+
+    const isEditFormTask = !!formInitialValues;
 
     return (
         <FormProvider {...methods}>
@@ -68,7 +70,7 @@ const FormAddTask = ({ formInitialValues, onSubmit }: TypeFormAddTaskProps) => {
                     variant='blue'
                     onClick={methods.handleSubmit(onSubmit)}
                 >
-                    Add +
+                    {isEditFormTask ? 'Update' : '+ Create'}
                 </Button>
             </form>
         </FormProvider>
