@@ -16,3 +16,7 @@ export type TypeAddTaskForm = {
     date: string | null;
     hour: string | null;
 };
+
+export type TypeEditTaskForm = Partial<TypeAddTaskForm> & {
+    taskId: string;
+};

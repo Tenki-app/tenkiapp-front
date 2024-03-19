@@ -8,6 +8,7 @@ import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 import {
     useGetAllTasks,
     usePostSingleTask,
+    usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
@@ -37,6 +38,7 @@ const TaskPage = () => {
 
     const { allTasks } = useGetAllTasks(user?.id);
     const { postSingleTask } = usePostSingleTask();
+    const { putSingleTask } = usePutSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
@@ -71,7 +73,17 @@ const TaskPage = () => {
         setShowEditTaskModal(true);
     };
 
-    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = (formData) => {};
+    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = (
+        formData,
+        taskId
+    ) => {
+        const editTaskToSend = {
+            ...formData,
+            taskId: taskId,
+        };
+
+        // putSingleTask(editTaskToSend);
+    };
 
     const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = (formData) => {
         const newTaskToSend = {
@@ -118,7 +130,7 @@ const TaskPage = () => {
                     />
                     <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
                         <div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
-                            {allTasks?.map((singleTask: any, index: number) => (
+                            {allTasks?.map((singleTask, index) => (
                                 <CardTask
                                     key={index}
                                     title={singleTask.title}

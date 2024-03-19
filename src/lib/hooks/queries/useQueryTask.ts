@@ -5,10 +5,15 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getDataWithAuth } from '@/lib/helpers/fetching/getData';
 import { useAppStore } from '@/lib/store/store';
 import { postDataWithAuth } from '@/lib/helpers/fetching/postData';
+import { putDataWithToken } from '@/lib/helpers/fetching/putData';
 
-import { responseGetAllTaskSchema } from '@/lib/schema/taskSchema';
-import { TypeAddTaskForm } from '@/lib/types/tasks';
+import {
+    responseGetAllTaskSchema,
+    responsePostTaskSchema,
+} from '@/lib/schema/taskSchema';
+import { TypeAddTaskForm, TypeEditTaskForm } from '@/lib/types/tasks';
 
+// get all tasks
 const fetchGetAllTasks = async (getIdTokenClaims: any, userId?: string) => {
     const idToken = await getIdTokenClaims();
 
@@ -47,9 +52,10 @@ export const useGetAllTasks = (userId?: string) => {
     };
 };
 
+// create single task
 const fetchPostSingleTask = async (
     getIdTokenClaims: any,
-    taskValues: any,
+    taskValues: TypeAddTaskForm,
     userId?: string
 ) => {
     const idToken = await getIdTokenClaims();
@@ -64,7 +70,7 @@ const fetchPostSingleTask = async (
         idToken?.__raw
     );
 
-    return response;
+    return responsePostTaskSchema.parse(response);
 };
 export const usePostSingleTask = () => {
     const { setIsLoading, user } = useAppStore();
@@ -86,6 +92,52 @@ export const usePostSingleTask = () => {
 
     return {
         postSingleTask: mutateAsync,
+        isLoading,
+        isError,
+    };
+};
+
+// update single task
+const fetchPutSingleTask = async (
+    getIdTokenClaims: any,
+    taskValues: TypeEditTaskForm,
+    userId?: string,
+    taskId?: string
+) => {
+    const idToken = await getIdTokenClaims();
+
+    if (!idToken || !userId || !taskId) return null;
+
+    const endpoint = TASKS_ENDPOINTS.PUT_SINGLE_TASKS(userId, taskId);
+
+    const response = await putDataWithToken(
+        endpoint,
+        taskValues,
+        idToken?.__raw
+    );
+
+    return response;
+};
+export const usePutSingleTask = () => {
+    const { setIsLoading, user } = useAppStore();
+    const { getIdTokenClaims } = useAuth0();
+
+    const { mutateAsync, isLoading, isError } = useMutation({
+        mutationKey: ['editSingleTask'],
+        mutationFn: (values: TypeEditTaskForm) => {
+            setIsLoading(true);
+            return fetchPutSingleTask(getIdTokenClaims, values, user?.id);
+        },
+        onError: (err) => {
+            console.error(err);
+        },
+        onSettled: () => {
+            setIsLoading(false);
+        },
+    });
+
+    return {
+        putSingleTask: mutateAsync,
         isLoading,
         isError,
     };
