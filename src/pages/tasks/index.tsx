@@ -37,7 +37,7 @@ const TaskPage = () => {
     const { t } = useTranslation();
 
     const { allTasks } = useGetAllTasks(user?.id);
-    const { postSingleTask } = usePostSingleTask();
+    const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
     const { putSingleTask, isLoadingPutTask } = usePutSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
@@ -90,7 +90,9 @@ const TaskPage = () => {
             state: 'pending',
         };
 
-        await postSingleTask(newTaskToSend);
+        postSingleTask(newTaskToSend).finally(() => {
+            setShowAddTaskModal(false);
+        });
     };
 
     useEffect(() => {
@@ -106,6 +108,7 @@ const TaskPage = () => {
                 showModal={showAddTaskModal}
                 setShowModal={setShowAddTaskModal}
                 onSubmit={onSubmitAddTask}
+                isLoadingSubmit={isLoadingPostTask}
             />
             <ModalEditTask
                 showModal={showEditTaskModal}
