@@ -13,6 +13,7 @@ type TypeModalEditTaskProps = {
     setShowModal: (show: boolean) => void;
     formInitialValues: TypeTask | null;
     onSubmit: SubmitHandler<TypeAddTaskForm>;
+    isLoadingSubmit?: boolean;
 };
 
 const ModalEditTask = ({
@@ -20,6 +21,7 @@ const ModalEditTask = ({
     setShowModal,
     formInitialValues,
     onSubmit,
+    isLoadingSubmit,
 }: TypeModalEditTaskProps) => {
     const { t } = useTranslation();
 
@@ -46,6 +48,7 @@ const ModalEditTask = ({
                 <FormAddTask
                     formInitialValues={initialValuesFormatted()}
                     onSubmit={onSubmit}
+                    isLoadingSubmit={isLoadingSubmit}
                 />
             }
             showModal={showModal}

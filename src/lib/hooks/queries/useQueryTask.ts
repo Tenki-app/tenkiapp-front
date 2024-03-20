@@ -147,7 +147,7 @@ export const usePutSingleTask = () => {
 
     return {
         putSingleTask: mutateAsync,
-        isLoading,
+        isLoadingPutTask: isLoading,
         isError,
     };
 };

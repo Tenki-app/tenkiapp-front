@@ -15,9 +15,14 @@ import type { SubmitHandler } from 'react-hook-form';
 type TypeFormAddTaskProps = {
     formInitialValues?: TypeAddTaskForm;
     onSubmit: SubmitHandler<TypeAddTaskForm>;
+    isLoadingSubmit?: boolean;
 };
 
-const FormAddTask = ({ formInitialValues, onSubmit }: TypeFormAddTaskProps) => {
+const FormAddTask = ({
+    formInitialValues,
+    onSubmit,
+    isLoadingSubmit,
+}: TypeFormAddTaskProps) => {
     const methods = useForm<TypeAddTaskForm>({
         defaultValues: formInitialValues ?? defaultTaskFormValues,
         resolver: zodResolver(resolverAddTaskFormSchema),
@@ -69,6 +74,7 @@ const FormAddTask = ({ formInitialValues, onSubmit }: TypeFormAddTaskProps) => {
                     className=''
                     variant='blue'
                     onClick={methods.handleSubmit(onSubmit)}
+                    isDisabled={isLoadingSubmit}
                 >
                     {isEditFormTask ? 'Update' : '+ Create'}
                 </Button>

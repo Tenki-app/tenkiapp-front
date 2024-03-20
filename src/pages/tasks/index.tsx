@@ -38,7 +38,7 @@ const TaskPage = () => {
 
     const { allTasks } = useGetAllTasks(user?.id);
     const { postSingleTask } = usePostSingleTask();
-    const { putSingleTask } = usePutSingleTask();
+    const { putSingleTask, isLoadingPutTask } = usePutSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<any[]>([]);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
@@ -112,6 +112,7 @@ const TaskPage = () => {
                 setShowModal={setShowEditTaskModal}
                 formInitialValues={taskToEdit}
                 onSubmit={onSubmitEditTask}
+                isLoadingSubmit={isLoadingPutTask}
             />
             <MainLayout
                 className='md:pt-[90px]'
