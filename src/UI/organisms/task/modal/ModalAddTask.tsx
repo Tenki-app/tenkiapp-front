@@ -10,19 +10,26 @@ type TypeModalAddTaskProps = {
     showModal: boolean;
     setShowModal: (show: boolean) => void;
     onSubmit: SubmitHandler<TypeAddTaskForm>;
+    isLoadingSubmit?: boolean;
 };
 
 const ModalAddTask = ({
     showModal,
     setShowModal,
     onSubmit,
+    isLoadingSubmit,
 }: TypeModalAddTaskProps) => {
     const { t } = useTranslation();
 
     return (
         <ModalTemplate
             title={t('addTask')}
-            content={<FormAddTask onSubmit={onSubmit} />}
+            content={
+                <FormAddTask
+                    onSubmit={onSubmit}
+                    isLoadingSubmit={isLoadingSubmit}
+                />
+            }
             showModal={showModal}
             setShowModal={setShowModal}
         />

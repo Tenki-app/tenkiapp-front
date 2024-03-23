@@ -76,6 +76,7 @@ const fetchPostSingleTask = async (
 export const usePostSingleTask = () => {
     const { setIsLoading, user } = useAppStore();
     const { getIdTokenClaims } = useAuth0();
+    const currentQueryClient = useQueryClient();
 
     const { mutateAsync, isLoading, isError } = useMutation({
         mutationKey: ['createSingleTask'],
@@ -87,13 +88,14 @@ export const usePostSingleTask = () => {
             console.error(err);
         },
         onSettled: () => {
+            currentQueryClient.invalidateQueries(['allTasks', user?.id]);
             setIsLoading(false);
         },
     });
 
     return {
         postSingleTask: mutateAsync,
-        isLoading,
+        isLoadingPostTask: isLoading,
         isError,
     };
 };
