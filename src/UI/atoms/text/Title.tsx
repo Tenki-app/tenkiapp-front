@@ -15,7 +15,7 @@ const Title = ({
 		<>
 			{type === 'title' && (
 				<h1
-					className={`text-3xl text-dark-blue font-primary font-medium ${
+					className={`text-3xl text-dark-blue dark:text-champagne-white font-primary font-medium ${
 						className ?? ''
 					}`}
 				>
