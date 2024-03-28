@@ -1,5 +1,15 @@
 import { TypeTaskCategory } from '../types/tasks';
 
+export const taskFilterTagsCategories = ['today', 'next', 'someday'];
+
+export const defaultTaskFormValues = {
+    title: '',
+    description: '',
+    category: 'today' as TypeTaskCategory,
+    date: '',
+    hour: '',
+};
+
 export const tasksDummyData = [
     {
         title: 'Do dinner',
@@ -181,11 +191,3 @@ export const taskCategories = [
         value: 'someday',
     },
 ];
-
-export const defaultTaskFormValues = {
-    title: '',
-    description: '',
-    category: 'today' as TypeTaskCategory,
-    date: '',
-    hour: '',
-};

@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
-import { useAppStore } from '@/lib/store/store';
-import { tasksDummyData } from '@/lib/data/tasks';
-import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
+import { useAppStore } from '@/lib/store/store';
 import {
     useGetAllTasks,
     useGetAllTasksByCategory,
     usePostSingleTask,
     usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
+import { taskFilterTagsCategories } from '@/lib/data/tasks';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
@@ -60,15 +60,22 @@ const TaskPage = () => {
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
     const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
 
-    const tasksTagContent = ['today', 'next', 'someday'];
+    const tasksDonePercent = () => {
+        const tasksDone = todayAllTasks?.filter(
+            (task) => task.state === 'done'
+        );
+        const isPossibleToCalculatePercent =
+            tasksDone &&
+            Array.isArray(tasksDone) &&
+            todayAllTasks &&
+            Array.isArray(todayAllTasks);
 
-    const tasksDone = useMemo(() => {
-        return tasksDummyData.filter((task) => task.state === 'done');
-        // Pending to fix when backend is ready
-        // eslint-disable-next-line
-    }, [tasksDummyData]);
+        if (isPossibleToCalculatePercent) {
+            return (tasksDone.length / todayAllTasks.length) * 100;
+        }
 
-    const tasksDonePercent = (tasksDone.length / tasksDummyData.length) * 100;
+        return 0;
+    };
 
     const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -152,7 +159,7 @@ const TaskPage = () => {
                 </Title>
                 <section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
                     <FilterTags
-                        tabsContent={tasksTagContent}
+                        tabsContent={taskFilterTagsCategories}
                         activeTag={activeTaskTabFilter}
                         setActiveTag={setActiveTaskTabFilter}
                         containerStyles='w-[90%] mx-auto'
@@ -182,7 +189,7 @@ const TaskPage = () => {
                         <div className='flex flex-col items-end'>
                             <ProgressBar
                                 containerStyles='mt-6'
-                                progressPercent={tasksDonePercent}
+                                progressPercent={tasksDonePercent()}
                             />
                             <Button
                                 variant='rounded'
