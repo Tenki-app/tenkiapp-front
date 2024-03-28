@@ -7,4 +7,6 @@ export const TASKS_ENDPOINTS = {
     GET_ALL_TASKS: (userId: string) => `/api/tasks/user/${userId}`,
     PUT_SINGLE_TASKS: (userId: string, taskId: string) =>
         `/api/tasks/${taskId}/user/${userId}`,
+    GET_ALL_TASKS_BY_CATEGORY: (userId: string, category: string) =>
+        `/api/tasks/category/${category}/user/${userId}`,
 };

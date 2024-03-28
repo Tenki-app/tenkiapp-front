@@ -7,6 +7,7 @@ import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
 import {
     useGetAllTasks,
+    useGetAllTasksByCategory,
     usePostSingleTask,
     usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
@@ -36,11 +37,25 @@ const TaskPage = () => {
     const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
     const { t } = useTranslation();
 
-    const { allTasks } = useGetAllTasks(user?.id);
+    const { allTasksByCategory: todayAllTasks } = useGetAllTasksByCategory(
+        'today',
+        user?.id
+    );
+    const { allTasksByCategory: nextAllTasks } = useGetAllTasksByCategory(
+        'next',
+        user?.id
+    );
+    const { allTasksByCategory: somedayAllTasks } = useGetAllTasksByCategory(
+        'someday',
+        user?.id
+    );
+
     const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
     const { putSingleTask, isLoadingPutTask } = usePutSingleTask();
 
-    const [tasksToShow, setTasksToShow] = useState<any[]>([]);
+    const [tasksToShow, setTasksToShow] = useState<
+        TypeTask[] | [] | undefined | null
+    >(null);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
     const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
@@ -96,11 +111,22 @@ const TaskPage = () => {
     };
 
     useEffect(() => {
-        const tasksFiltered = tasksDummyData.filter(
-            (singleTask) => singleTask.category === activeTaskTabFilter
-        );
-        setTasksToShow(tasksFiltered);
-    }, [activeTaskTabFilter]);
+        if (activeTaskTabFilter === 'today') {
+            setTasksToShow(todayAllTasks);
+        }
+        if (activeTaskTabFilter === 'next') {
+            setTasksToShow(nextAllTasks);
+        }
+        if (activeTaskTabFilter === 'someday') {
+            setTasksToShow(somedayAllTasks);
+        }
+    }, [
+        activeTaskTabFilter,
+        setTasksToShow,
+        todayAllTasks,
+        nextAllTasks,
+        somedayAllTasks,
+    ]);
 
     return (
         <>
@@ -133,7 +159,7 @@ const TaskPage = () => {
                     />
                     <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
                         <div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
-                            {allTasks?.map((singleTask, index) => (
+                            {tasksToShow?.map((singleTask, index) => (
                                 <CardTask
                                     key={index}
                                     title={singleTask.title}

@@ -20,7 +20,7 @@ export const taskSchema = z.object({
 export const responseGetAllTaskSchema = z.object({
     status: z.number(),
     message: z.string(),
-    tasks: z.array(taskSchema),
+    tasks: z.array(taskSchema).nullable(),
 });
 
 export const responsePostTaskSchema = z.object({
