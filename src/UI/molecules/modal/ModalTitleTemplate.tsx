@@ -8,7 +8,7 @@ import CloseIcon from '@/svg/task/closeIcon.svg';
 
 import type { ReactNode } from 'react';
 
-type TypeModalTemplateProps = {
+type TypeModalTitleTemplateProps = {
     title: string;
     showModal: boolean;
     setShowModal: (value: boolean) => void;
@@ -16,13 +16,13 @@ type TypeModalTemplateProps = {
     contentStyles?: string;
 };
 
-const ModalTemplate = ({
+const ModalTitleTemplate = ({
     title,
     showModal,
     setShowModal,
     content,
     contentStyles,
-}: TypeModalTemplateProps) => {
+}: TypeModalTitleTemplateProps) => {
     const modalRef = useRef(null);
 
     useCloseWhenClickOutside({
@@ -68,4 +68,4 @@ const ModalTemplate = ({
     );
 };
 
-export { ModalTemplate };
+export { ModalTitleTemplate };

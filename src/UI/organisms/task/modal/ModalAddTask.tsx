@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { ModalTemplate } from '@/UI/molecules/modal/ModalTemplate';
+import { ModalTitleTemplate } from '@/UI/molecules/modal/ModalTitleTemplate';
 import { FormAddTask } from '../forms/FormAddTask';
 
 import type { TypeAddTaskForm } from '@/lib/types/tasks';
@@ -22,7 +22,7 @@ const ModalAddTask = ({
     const { t } = useTranslation();
 
     return (
-        <ModalTemplate
+        <ModalTitleTemplate
             title={t('addTask')}
             content={
                 <FormAddTask
