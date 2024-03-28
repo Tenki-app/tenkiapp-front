@@ -1,14 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 import { useAppStore } from '@/lib/store/store';
 import {
-    useGetAllTasks,
     useGetAllTasksByCategory,
     usePostSingleTask,
-    usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
 import { taskFilterTagsCategories } from '@/lib/data/tasks';
 
@@ -19,18 +17,12 @@ import { Loader } from '@/UI/molecules/loader/Loader';
 import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
 import { ModalAddTask } from '@/UI/organisms/task/modal/ModalAddTask';
-import { ModalEditTask } from '@/UI/organisms/task/modal/ModalEditTask';
 import { CardTask } from '@/UI/organisms/task/cards/CardTask';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
 import type { MouseEvent } from 'react';
-import type {
-    TypeTaskCategory,
-    TypeTaskState,
-    TypeTask,
-    TypeAddTaskForm,
-} from '@/lib/types/tasks';
+import type { TypeTask, TypeAddTaskForm } from '@/lib/types/tasks';
 import type { SubmitHandler } from 'react-hook-form';
 
 const TaskPage = () => {
@@ -51,14 +43,11 @@ const TaskPage = () => {
     );
 
     const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
-    const { putSingleTask, isLoadingPutTask } = usePutSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<
         TypeTask[] | [] | undefined | null
     >(null);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
-    const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-    const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
 
     const tasksDonePercent = () => {
         const tasksDone = todayAllTasks?.filter(
@@ -80,28 +69,6 @@ const TaskPage = () => {
     const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         setShowAddTaskModal(true);
-    };
-
-    const handleOpenEditTaskModal = (singleTask: TypeTask) => {
-        setTaskToEdit(singleTask);
-        setShowEditTaskModal(true);
-    };
-
-    const onSubmitEditTask: SubmitHandler<TypeAddTaskForm> = async (
-        formData
-    ) => {
-        if (!taskToEdit) {
-            return null;
-        }
-
-        const editTaskToSend = {
-            ...formData,
-            taskId: taskToEdit?.id,
-        };
-
-        putSingleTask(editTaskToSend).finally(() => {
-            setShowEditTaskModal(false);
-        });
     };
 
     const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (
@@ -143,13 +110,6 @@ const TaskPage = () => {
                 onSubmit={onSubmitAddTask}
                 isLoadingSubmit={isLoadingPostTask}
             />
-            <ModalEditTask
-                showModal={showEditTaskModal}
-                setShowModal={setShowEditTaskModal}
-                formInitialValues={taskToEdit}
-                onSubmit={onSubmitEditTask}
-                isLoadingSubmit={isLoadingPutTask}
-            />
             <MainLayout
                 className='md:pt-[90px]'
                 hasNav
@@ -169,20 +129,7 @@ const TaskPage = () => {
                             {tasksToShow?.map((singleTask, index) => (
                                 <CardTask
                                     key={index}
-                                    title={singleTask.title}
-                                    description={singleTask.description}
-                                    time={singleTask.time}
-                                    date={singleTask.date_task}
-                                    state={singleTask.state as TypeTaskState}
-                                    category={
-                                        singleTask.category as TypeTaskCategory
-                                    }
-                                    onClickEdit={(
-                                        e: MouseEvent<HTMLButtonElement>
-                                    ) => {
-                                        e.stopPropagation();
-                                        handleOpenEditTaskModal(singleTask);
-                                    }}
+                                    taskData={singleTask}
                                 />
                             ))}
                         </div>
