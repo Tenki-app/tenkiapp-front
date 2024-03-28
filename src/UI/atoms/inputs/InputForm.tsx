@@ -15,6 +15,9 @@ export type typeInputFormProps = {
     designErrorMessage?: string;
     type?: 'text' | 'textarea' | 'password' | 'date' | 'time';
     icon?: ReactNode;
+    min?: string;
+    max?: string;
+    isDisabled?: boolean;
 };
 
 const InputForm = ({
@@ -25,6 +28,9 @@ const InputForm = ({
     designErrorMessage,
     type = 'text',
     icon,
+    min,
+    max,
+    isDisabled,
 }: typeInputFormProps): JSX.Element => {
     const {
         register,
@@ -37,9 +43,13 @@ const InputForm = ({
         'text-md dark:text-champagne-white text-dark-blue w-full border-[1px] focus:outline-none rounded dark:border-champagne-white-transparency border-dark-blue-transparency bg-transparent dark:placeholder:text-champagne-white-transparency placeholder:text-dark-blue-transparency font-medium ';
 
     if (type === 'date' || type === 'time') {
-        inputDesign += 'px-[6px] py-[2px]';
+        inputDesign += 'px-[6px] py-[2px] ';
     } else {
-        inputDesign += 'p-[6px]';
+        inputDesign += 'p-[6px] ';
+    }
+
+    if (isDisabled) {
+        inputDesign += '!bg-[#a49f9f69] !border-[#919191] text-[#898989]';
     }
 
     const handleIconClick = () => {
@@ -56,6 +66,9 @@ const InputForm = ({
                         className={inputDesign}
                         placeholder={placeholder}
                         type={type}
+                        min={min}
+                        max={max}
+                        disabled={isDisabled}
                         {...register(name, formValidations)}
                     />
                 )}
@@ -64,12 +77,14 @@ const InputForm = ({
                         className={inputDesign}
                         placeholder={placeholder}
                         type={showPassword ? 'text' : 'password'}
+                        disabled={isDisabled}
                         {...register(name, formValidations)}
                     />
                 )}
                 {type === 'textarea' && (
                     <textarea
                         className={`${inputDesign} min-h-[90px]`}
+                        disabled={isDisabled}
                         {...register(name, formValidations)}
                         placeholder={placeholder}
                     />

@@ -1,8 +1,9 @@
 import { useForm, FormProvider } from 'react-hook-form';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { defaultTaskFormValues, taskCategories } from '@/lib/data/tasks';
+import { getCurrentDate, getTomorrowDate } from '@/lib/helpers/date/getDates';
 
 import { InputForm } from '@/UI/atoms/inputs/InputForm';
 import { DropdownForm } from '@/UI/atoms/inputs/DropdownForm';
@@ -23,17 +24,40 @@ const FormAddTask = ({
     onSubmit,
     isLoadingSubmit,
 }: TypeFormAddTaskProps) => {
-    const methods = useForm<TypeAddTaskForm>({
+    const formMethods = useForm<TypeAddTaskForm>({
         defaultValues: formInitialValues ?? defaultTaskFormValues,
         resolver: zodResolver(resolverAddTaskFormSchema),
     });
 
     const [showMoreOptions, setShowMoreOptions] = useState(false);
 
+    const categoryValue = formMethods.watch('category');
     const isEditFormTask = !!formInitialValues;
 
+    const handleMinDateValidation = () => {
+        if (categoryValue === 'today') {
+            return getCurrentDate();
+        }
+        if (categoryValue === 'next') {
+            return getTomorrowDate();
+        }
+        return undefined;
+    };
+
+    useEffect(() => {
+        if (categoryValue === 'today') {
+            formMethods.setValue('date', getCurrentDate());
+        }
+        if (categoryValue === 'next') {
+            formMethods.setValue('date', getTomorrowDate());
+        }
+        if (categoryValue === 'someday') {
+            formMethods.setValue('date', '');
+        }
+    }, [categoryValue, formMethods]);
+
     return (
-        <FormProvider {...methods}>
+        <FormProvider {...formMethods}>
             <form className='flex flex-col gap-y-3'>
                 <InputForm
                     name='title'
@@ -48,12 +72,17 @@ const FormAddTask = ({
                     name='category'
                     dropdownOptions={taskCategories}
                 />
+                <InputForm
+                    name='date'
+                    type='date'
+                    min={handleMinDateValidation()}
+                    max={
+                        categoryValue === 'today' ? getCurrentDate() : undefined
+                    }
+                    isDisabled={!!(categoryValue === 'someday')}
+                />
                 {showMoreOptions && (
                     <>
-                        <InputForm
-                            name='date'
-                            type='date'
-                        />
                         <InputForm
                             name='hour'
                             type='time'
@@ -71,9 +100,8 @@ const FormAddTask = ({
                     </Button>
                 </div>
                 <Button
-                    className=''
                     variant='blue'
-                    onClick={methods.handleSubmit(onSubmit)}
+                    onClick={formMethods.handleSubmit(onSubmit)}
                     isDisabled={isLoadingSubmit}
                 >
                     {isEditFormTask ? 'Update' : '+ Create'}

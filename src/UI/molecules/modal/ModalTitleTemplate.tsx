@@ -8,21 +8,23 @@ import CloseIcon from '@/svg/task/closeIcon.svg';
 
 import type { ReactNode } from 'react';
 
-type TypeModalTemplateProps = {
+type TypeModalTitleTemplateProps = {
     title: string;
     showModal: boolean;
     setShowModal: (value: boolean) => void;
     content: ReactNode;
     contentStyles?: string;
+    modalContainerStyles?: string;
 };
 
-const ModalTemplate = ({
+const ModalTitleTemplate = ({
     title,
     showModal,
     setShowModal,
     content,
     contentStyles,
-}: TypeModalTemplateProps) => {
+    modalContainerStyles,
+}: TypeModalTitleTemplateProps) => {
     const modalRef = useRef(null);
 
     useCloseWhenClickOutside({
@@ -47,19 +49,25 @@ const ModalTemplate = ({
                             animate={{ opacity: 0.6 }}
                         />
                         <div
-                            className='absolute left-0 right-0 main-transition rounded-md overflow-y-auto top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white p-4'
+                            className={`absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white py-4 px-2 ${
+                                modalContainerStyles ?? ''
+                            }`}
                             ref={modalRef}
                         >
-                            <div className='flex justify-end'>
-                                <CloseIcon
-                                    className='cursor-pointer'
-                                    onClick={handleCloseModal}
-                                />
+                            <div className='w-full h-full overflow-y-auto px-2'>
+                                <div className='flex justify-end'>
+                                    <CloseIcon
+                                        className='cursor-pointer'
+                                        onClick={handleCloseModal}
+                                    />
+                                </div>
+                                <Text className='text-center font-bold text-lg w-full border-b-[1px] pb-[2px] mb-4 border-dark-blue'>
+                                    {title}
+                                </Text>
+                                <div className={`${contentStyles}`}>
+                                    {content}
+                                </div>
                             </div>
-                            <Text className='text-center font-bold text-lg w-full border-b-[1px] pb-[2px] mb-4 border-dark-blue'>
-                                {title}
-                            </Text>
-                            <div className={`${contentStyles}`}>{content}</div>
                         </div>
                     </div>
                 )}
@@ -68,4 +76,4 @@ const ModalTemplate = ({
     );
 };
 
-export { ModalTemplate };
+export { ModalTitleTemplate };
