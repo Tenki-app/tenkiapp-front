@@ -12,7 +12,12 @@ import {
     responsePostTaskSchema,
     responsePutTaskSchema,
 } from '@/lib/schema/taskSchema';
-import { TypeAddTaskForm, TypeEditTaskForm } from '@/lib/types/tasks';
+
+import type {
+    TypeAddTaskForm,
+    TypeEditTaskForm,
+    TypeTaskCategory,
+} from '@/lib/types/tasks';
 
 // get all tasks
 const fetchGetAllTasks = async (getIdTokenClaims: any, userId?: string) => {
@@ -47,6 +52,59 @@ export const useGetAllTasks = (userId?: string) => {
 
     return {
         allTasks: data?.tasks,
+        isLoading,
+        isError,
+        error,
+    };
+};
+
+// get all tasks by category
+const fetchGetAllTasksByCategory = async (
+    getIdTokenClaims: any,
+    category: string,
+    userId?: string
+) => {
+    const idToken = await getIdTokenClaims();
+
+    if (!idToken || !userId) return null;
+
+    const endpoint = TASKS_ENDPOINTS.GET_ALL_TASKS_BY_CATEGORY(
+        userId,
+        category
+    );
+
+    const response = await getDataWithAuth(endpoint, idToken?.__raw);
+
+    return responseGetAllTaskSchema.parse(response);
+};
+export const useGetAllTasksByCategory = (
+    category: TypeTaskCategory,
+    userId?: string
+) => {
+    const { setIsLoading } = useAppStore();
+    const { getIdTokenClaims } = useAuth0();
+
+    const { data, isError, error, isLoading } = useQuery({
+        queryKey: [`${category}AllTasks`, userId],
+        queryFn: async () => {
+            setIsLoading(true);
+            return fetchGetAllTasksByCategory(
+                getIdTokenClaims,
+                category,
+                userId
+            );
+        },
+        onError: (err: any) => {
+            setIsLoading(false);
+            console.error(err);
+        },
+        onSettled: () => {
+            setIsLoading(false);
+        },
+    });
+
+    return {
+        allTasksByCategory: data?.tasks,
         isLoading,
         isError,
         error,
@@ -88,7 +146,9 @@ export const usePostSingleTask = () => {
             console.error(err);
         },
         onSettled: () => {
-            currentQueryClient.invalidateQueries(['allTasks', user?.id]);
+            currentQueryClient.invalidateQueries(['todayAllTasks', user?.id]);
+            currentQueryClient.invalidateQueries(['nextAllTasks', user?.id]);
+            currentQueryClient.invalidateQueries(['somedayAllTasks', user?.id]);
             setIsLoading(false);
         },
     });

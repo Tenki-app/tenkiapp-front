@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
-import { useAppStore } from '@/lib/store/store';
-import { tasksDummyData } from '@/lib/data/tasks';
-import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
+import { useAppStore } from '@/lib/store/store';
 import {
     useGetAllTasks,
+    useGetAllTasksByCategory,
     usePostSingleTask,
     usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
+import { taskFilterTagsCategories } from '@/lib/data/tasks';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
@@ -36,24 +37,45 @@ const TaskPage = () => {
     const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
     const { t } = useTranslation();
 
-    const { allTasks } = useGetAllTasks(user?.id);
+    const { allTasksByCategory: todayAllTasks } = useGetAllTasksByCategory(
+        'today',
+        user?.id
+    );
+    const { allTasksByCategory: nextAllTasks } = useGetAllTasksByCategory(
+        'next',
+        user?.id
+    );
+    const { allTasksByCategory: somedayAllTasks } = useGetAllTasksByCategory(
+        'someday',
+        user?.id
+    );
+
     const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
     const { putSingleTask, isLoadingPutTask } = usePutSingleTask();
 
-    const [tasksToShow, setTasksToShow] = useState<any[]>([]);
+    const [tasksToShow, setTasksToShow] = useState<
+        TypeTask[] | [] | undefined | null
+    >(null);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
     const [taskToEdit, setTaskToEdit] = useState<TypeTask | null>(null);
 
-    const tasksTagContent = ['today', 'next', 'someday'];
+    const tasksDonePercent = () => {
+        const tasksDone = todayAllTasks?.filter(
+            (task) => task.state === 'done'
+        );
+        const isPossibleToCalculatePercent =
+            tasksDone &&
+            Array.isArray(tasksDone) &&
+            todayAllTasks &&
+            Array.isArray(todayAllTasks);
 
-    const tasksDone = useMemo(() => {
-        return tasksDummyData.filter((task) => task.state === 'done');
-        // Pending to fix when backend is ready
-        // eslint-disable-next-line
-    }, [tasksDummyData]);
+        if (isPossibleToCalculatePercent) {
+            return (tasksDone.length / todayAllTasks.length) * 100;
+        }
 
-    const tasksDonePercent = (tasksDone.length / tasksDummyData.length) * 100;
+        return 0;
+    };
 
     const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -96,11 +118,22 @@ const TaskPage = () => {
     };
 
     useEffect(() => {
-        const tasksFiltered = tasksDummyData.filter(
-            (singleTask) => singleTask.category === activeTaskTabFilter
-        );
-        setTasksToShow(tasksFiltered);
-    }, [activeTaskTabFilter]);
+        if (activeTaskTabFilter === 'today') {
+            setTasksToShow(todayAllTasks);
+        }
+        if (activeTaskTabFilter === 'next') {
+            setTasksToShow(nextAllTasks);
+        }
+        if (activeTaskTabFilter === 'someday') {
+            setTasksToShow(somedayAllTasks);
+        }
+    }, [
+        activeTaskTabFilter,
+        setTasksToShow,
+        todayAllTasks,
+        nextAllTasks,
+        somedayAllTasks,
+    ]);
 
     return (
         <>
@@ -126,14 +159,14 @@ const TaskPage = () => {
                 </Title>
                 <section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
                     <FilterTags
-                        tabsContent={tasksTagContent}
+                        tabsContent={taskFilterTagsCategories}
                         activeTag={activeTaskTabFilter}
                         setActiveTag={setActiveTaskTabFilter}
                         containerStyles='w-[90%] mx-auto'
                     />
                     <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
                         <div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
-                            {allTasks?.map((singleTask, index) => (
+                            {tasksToShow?.map((singleTask, index) => (
                                 <CardTask
                                     key={index}
                                     title={singleTask.title}
@@ -156,7 +189,7 @@ const TaskPage = () => {
                         <div className='flex flex-col items-end'>
                             <ProgressBar
                                 containerStyles='mt-6'
-                                progressPercent={tasksDonePercent}
+                                progressPercent={tasksDonePercent()}
                             />
                             <Button
                                 variant='rounded'
