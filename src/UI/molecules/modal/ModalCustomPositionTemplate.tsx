@@ -8,7 +8,7 @@ import type { Dispatch, ReactNode, SetStateAction } from 'react';
 type TypeModalCustomPositionTemplateProps = {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
-    content: ReactNode;
+    content?: ReactNode;
 };
 
 const ModalCustomPositionTemplate = ({
@@ -33,12 +33,14 @@ const ModalCustomPositionTemplate = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.6 }}
                     />
-                    <div
-                        className={`absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white py-4 px-2}`}
-                        ref={modalRef}
-                    >
-                        <div className={``}>{content}</div>
-                    </div>
+                    {content && (
+                        <div
+                            className={`absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white py-4 px-2}`}
+                            ref={modalRef}
+                        >
+                            <div className={``}>{content}</div>
+                        </div>
+                    )}
                 </div>
             )}
         </AnimatePresence>

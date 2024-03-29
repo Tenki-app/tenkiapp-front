@@ -6,7 +6,8 @@ import { usePutSingleTask } from '@/lib/hooks/queries/useQueryTask';
 
 import { Text } from '@/UI/atoms/text/Text';
 import { Button } from '@/UI/atoms/button/Button';
-import { ModalUpdateStatusTask } from '@/UI/molecules/task/ModalUpdateStatusTask';
+import { UpdateStatusTask } from '@/UI/molecules/task/UpdateStatusTask';
+import { ModalCustomPositionTemplate } from '@/UI/molecules/modal/ModalCustomPositionTemplate';
 import { ModalEditTask } from '../modal/ModalEditTask';
 
 import PendingIcon from '@/svg/task/pendingStateIcon.svg';
@@ -50,7 +51,7 @@ const CardTask = ({
         description,
         state,
         category,
-    } = taskData;
+    } = taskData || {};
     const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
     const renderStatus = () => {
@@ -121,10 +122,9 @@ const CardTask = ({
     return (
         <>
             {createPortal(
-                <ModalUpdateStatusTask
-                    isShowStatusModal={showStatusModal}
-                    setIsShowStatusModal={setShowStatusModal}
-                    handleUpdateStatus={handleUpdateStatus}
+                <ModalCustomPositionTemplate
+                    showModal={showStatusModal}
+                    setShowModal={setShowStatusModal}
                 />,
                 document.body
             )}
@@ -148,15 +148,24 @@ const CardTask = ({
             >
                 <div className='flex justify-between'>
                     <div className='flex items-start gap-4 md:gap-6'>
-                        <Button
-                            variant='custom'
-                            onClick={onClickStatusButton}
-                            className={`z-20 ${
-                                !isUpdateStatusActive ? 'cursor-default' : ''
-                            }`}
-                        >
-                            {renderStatus()}
-                        </Button>
+                        <div className='relative w-fit h-fit'>
+                            <Button
+                                variant='custom'
+                                onClick={onClickStatusButton}
+                                className={`z-20 ${
+                                    !isUpdateStatusActive
+                                        ? 'cursor-default'
+                                        : ''
+                                }`}
+                            >
+                                {renderStatus()}
+                            </Button>
+                            {showStatusModal && (
+                                <UpdateStatusTask
+                                    handleUpdateStatus={() => {}}
+                                />
+                            )}
+                        </div>
                         <div>
                             <Text className='font-bold !text-lg italic'>
                                 {title}
