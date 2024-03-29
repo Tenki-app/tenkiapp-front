@@ -5,14 +5,9 @@ import { MouseEvent, useState } from 'react';
 import { usePutSingleTask } from '@/lib/hooks/queries/useQueryTask';
 
 import { Text } from '@/UI/atoms/text/Text';
-import { Button } from '@/UI/atoms/button/Button';
-import { UpdateStatusTask } from '@/UI/molecules/task/UpdateStatusTask';
-import { ModalCustomPositionTemplate } from '@/UI/molecules/modal/ModalCustomPositionTemplate';
+import { ButtonStateTask } from '@/UI/molecules/task/button/ButtonStateTask';
 import { ModalEditTask } from '../modal/ModalEditTask';
 
-import PendingIcon from '@/svg/task/pendingStateIcon.svg';
-import DoneIcon from '@/svg/task/finishStateIcon.svg';
-import InProgressIcon from '@/svg/task/inProgressIcon.svg';
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';
 import DeleteIcon from '@/svg/task/deleteIcon.svg';
 import EditIcon from '@/svg/task/editIcon.svg';
@@ -41,7 +36,6 @@ const CardTask = ({
 
     const [isActive, setIsActive] = useState(isOpen);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
-    const [showStatusModal, setShowStatusModal] = useState(false);
 
     const {
         id: taskId,
@@ -54,19 +48,6 @@ const CardTask = ({
     } = taskData || {};
     const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
 
-    const renderStatus = () => {
-        const iconStyles = 'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px]';
-        if (state === 'done') {
-            return <DoneIcon className={`${iconStyles}`} />;
-        }
-        if (state === 'pending') {
-            return <PendingIcon className={`${iconStyles}`} />;
-        }
-        if (state === 'progress') {
-            return <InProgressIcon className={`${iconStyles}`} />;
-        }
-    };
-
     const handleShowDetails = () => {
         if (!isActive) {
             setIsActive(true);
@@ -77,14 +58,6 @@ const CardTask = ({
         if (isActive) {
             setIsActive(false);
         }
-    };
-
-    const onClickStatusButton = () => {
-        if (!isUpdateStatusActive) {
-            return;
-        }
-
-        setShowStatusModal(true);
     };
 
     const handleUpdateStatus = (stateToUpdate: TypeTaskState) => {
@@ -122,13 +95,6 @@ const CardTask = ({
     return (
         <>
             {createPortal(
-                <ModalCustomPositionTemplate
-                    showModal={showStatusModal}
-                    setShowModal={setShowStatusModal}
-                />,
-                document.body
-            )}
-            {createPortal(
                 <ModalEditTask
                     showModal={showEditTaskModal}
                     setShowModal={setShowEditTaskModal}
@@ -139,7 +105,7 @@ const CardTask = ({
                 document.body
             )}
             <motion.div
-                className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md  ${
+                className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
                     cardTaskStyles ?? ''
                 } ${!isActive && 'cursor-pointer'}`}
                 onClick={() => {
@@ -148,24 +114,11 @@ const CardTask = ({
             >
                 <div className='flex justify-between'>
                     <div className='flex items-start gap-4 md:gap-6'>
-                        <div className='relative w-fit h-fit'>
-                            <Button
-                                variant='custom'
-                                onClick={onClickStatusButton}
-                                className={`z-20 ${
-                                    !isUpdateStatusActive
-                                        ? 'cursor-default'
-                                        : ''
-                                }`}
-                            >
-                                {renderStatus()}
-                            </Button>
-                            {showStatusModal && (
-                                <UpdateStatusTask
-                                    handleUpdateStatus={() => {}}
-                                />
-                            )}
-                        </div>
+                        <ButtonStateTask
+                            taskState={state}
+                            isUpdateStatusActive={isUpdateStatusActive}
+                            handleUpdateStatus={handleUpdateStatus}
+                        />
                         <div>
                             <Text className='font-bold !text-lg italic'>
                                 {title}
