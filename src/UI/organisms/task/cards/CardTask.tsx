@@ -114,9 +114,10 @@ const CardTask = ({
                 onClick={(e) => {
                     const isValidClick =
                         (e.target as HTMLElement).id !== 'modal-bg' &&
-                        (e.target as HTMLElement).getAttribute(
+                        !(e.target as HTMLElement).getAttribute(
                             'data-state-task'
                         );
+
                     if (isValidClick) {
                         handleShowDetails();
                     }
