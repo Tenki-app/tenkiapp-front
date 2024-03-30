@@ -108,7 +108,7 @@ const CardTask = ({
                 className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
                     cardTaskStyles ?? ''
                 } ${!isActive && 'cursor-pointer'}`}
-                onClick={() => {
+                onClick={(e) => {
                     handleShowDetails();
                 }}
             >

@@ -9,19 +9,21 @@ type TypeModalCustomPositionTemplateProps = {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
     content?: ReactNode;
+    isCloseWhenClickOutside?: boolean;
 };
 
 const ModalCustomPositionTemplate = ({
     showModal,
     content,
     setShowModal,
+    isCloseWhenClickOutside = true,
 }: TypeModalCustomPositionTemplateProps) => {
     const modalRef = useRef(null);
 
     useCloseWhenClickOutside({
         showElement: showModal,
         setShowElement: setShowModal,
-        elementRef: modalRef,
+        elementRef: isCloseWhenClickOutside ? modalRef : undefined,
     });
 
     return (

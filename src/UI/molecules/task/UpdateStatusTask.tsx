@@ -14,7 +14,8 @@ type TypeUpdateStatusTaskProps = {
 const UpdateStatusTask = ({
     handleUpdateStatus,
 }: TypeUpdateStatusTaskProps) => {
-    const buttonStyles = 'flex gap-x-5 items-center w-full py-3 px-4';
+    const buttonStyles =
+        'flex gap-x-5 items-center w-full py-3 px-4 hover:bg-[#dbd6bc] main-transition';
     const iconStyles =
         'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px] cursor-pointer';
 
@@ -53,14 +54,6 @@ const UpdateStatusTask = ({
                 />
                 <Text className=''>In progress</Text>
             </Button>
-            {/* <InProgressIcon
-                className={`${iconStyles}`}
-                onClick={() => handleUpdateStatus('progress')}
-            />
-            <DoneIcon
-                className={`${iconStyles}`}
-                onClick={() => handleUpdateStatus('done')}
-            /> */}
         </div>
     );
 };
