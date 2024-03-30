@@ -9,19 +9,21 @@ type TypeModalCustomPositionTemplateProps = {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
     content?: ReactNode;
+    isCloseWhenClickOutside?: boolean;
 };
 
 const ModalCustomPositionTemplate = ({
     showModal,
     content,
     setShowModal,
+    isCloseWhenClickOutside = true,
 }: TypeModalCustomPositionTemplateProps) => {
     const modalRef = useRef(null);
 
     useCloseWhenClickOutside({
         showElement: showModal,
         setShowElement: setShowModal,
-        elementRef: modalRef,
+        elementRef: isCloseWhenClickOutside ? modalRef : undefined,
     });
 
     return (
@@ -29,6 +31,7 @@ const ModalCustomPositionTemplate = ({
             {showModal && (
                 <div className='w-screen h-screen fixed z-[30] left-0 top-0'>
                     <motion.div
+                        id='modal-bg'
                         className='bg-black w-full h-full main-transition'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.6 }}

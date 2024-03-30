@@ -202,7 +202,9 @@ export const usePutSingleTask = () => {
             console.error(err);
         },
         onSettled: () => {
-            currentQueryClient.invalidateQueries(['allTasks', user?.id]);
+            currentQueryClient.invalidateQueries(['todayAllTasks', user?.id]);
+            currentQueryClient.invalidateQueries(['nextAllTasks', user?.id]);
+            currentQueryClient.invalidateQueries(['somedayAllTasks', user?.id]);
             setIsLoading(false);
         },
     });

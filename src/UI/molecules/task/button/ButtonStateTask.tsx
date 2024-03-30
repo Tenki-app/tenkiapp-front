@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+
+import { useCloseWhenClickOutside } from '@/lib/hooks/useCloseWhenClickOutside';
 
 import { UpdateStatusTask } from '@/UI/molecules/task/UpdateStatusTask';
 import { Button } from '@/UI/atoms/button/Button';
@@ -13,16 +15,21 @@ import type { TypeTaskState } from '@/lib/types/tasks';
 
 type TypeButtonStateTaskProps = {
     taskState: TypeTaskState;
+    showStatusModal: boolean;
+    setShowStatusModal: (value: boolean) => void;
     isUpdateStatusActive?: boolean;
     handleUpdateStatus: (stateToUpdate: TypeTaskState) => void;
 };
 
 const ButtonStateTask = ({
     taskState,
+    showStatusModal,
+    setShowStatusModal,
     isUpdateStatusActive,
     handleUpdateStatus,
 }: TypeButtonStateTaskProps) => {
-    const [showStatusModal, setShowStatusModal] = useState(false);
+    const modalRef = useRef<HTMLDivElement>(null);
+    const stateButtonRef = useRef<HTMLDivElement>(null);
 
     const onClickStatusButton = () => {
         if (!isUpdateStatusActive) {
@@ -45,31 +52,62 @@ const ButtonStateTask = ({
         }
     };
 
+    let stateButtonCoordinates;
+
+    if (stateButtonRef.current) {
+        stateButtonCoordinates = stateButtonRef.current.getBoundingClientRect();
+    }
+
+    useCloseWhenClickOutside({
+        showElement: showStatusModal,
+        setShowElement: setShowStatusModal,
+        elementRef: modalRef,
+    });
+
     return (
         <>
             {createPortal(
                 <ModalCustomPositionTemplate
                     showModal={showStatusModal}
                     setShowModal={setShowStatusModal}
+                    isCloseWhenClickOutside={false}
                 />,
                 document.body
             )}
             <div className='relative w-fit h-fit'>
-                <Button
-                    variant='custom'
-                    onClick={onClickStatusButton}
-                    className={`z-20 ${
-                        !isUpdateStatusActive ? 'cursor-default' : ''
-                    }`}
-                >
-                    {renderStatus()}
-                </Button>
-                {showStatusModal && (
-                    <UpdateStatusTask
-                        handleUpdateStatus={() => {
-                            //handleUpdateStatus()
+                <div ref={stateButtonRef}>
+                    <Button
+                        variant='custom'
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onClickStatusButton();
                         }}
-                    />
+                        className={`z-20 ${
+                            !isUpdateStatusActive ? 'cursor-default' : ''
+                        }`}
+                    >
+                        {renderStatus()}
+                    </Button>
+                </div>
+                {showStatusModal && (
+                    <>
+                        {createPortal(
+                            <div
+                                className={`fixed z-50`}
+                                style={{
+                                    left: stateButtonCoordinates?.left,
+                                    top:
+                                        (stateButtonCoordinates?.top ?? 0) + 40,
+                                }}
+                                ref={modalRef}
+                            >
+                                <UpdateStatusTask
+                                    handleUpdateStatus={handleUpdateStatus}
+                                />
+                            </div>,
+                            document.body
+                        )}
+                    </>
                 )}
             </div>
         </>

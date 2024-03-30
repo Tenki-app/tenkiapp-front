@@ -14,30 +14,42 @@ type TypeUpdateStatusTaskProps = {
 const UpdateStatusTask = ({
     handleUpdateStatus,
 }: TypeUpdateStatusTaskProps) => {
-    const buttonStyles = 'flex gap-x-3 items-center w-full';
+    const buttonStyles =
+        'flex gap-x-5 items-center w-full py-3 px-4 hover:bg-[#dbd6bc] main-transition';
     const iconStyles =
-        'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px] cursor-pointer';
+        'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px] cursor-pointer pointer-events-none';
+    const textStyles = 'pointer-events-none';
 
     return (
-        <div className='flex flex-col bg-champagne-white border border-black z-[999999] absolute'>
+        <div className='flex flex-col bg-champagne-white border border-black z-50 p-[6px] absolute w-[230px] rounded-lg'>
             <Button
                 variant='custom'
                 className={`${buttonStyles}`}
-            >
-                <PendingIcon
-                    className={`${iconStyles}`}
-                    onClick={() => handleUpdateStatus('pending')}
-                />
-                <Text>Pending</Text>
-            </Button>
-            <InProgressIcon
-                className={`${iconStyles}`}
-                onClick={() => handleUpdateStatus('progress')}
-            />
-            <DoneIcon
-                className={`${iconStyles}`}
                 onClick={() => handleUpdateStatus('done')}
-            />
+                data-state-task
+            >
+                <DoneIcon className={`${iconStyles}`} />
+
+                <Text className={`${textStyles}`}>Done</Text>
+            </Button>
+            <Button
+                variant='custom'
+                className={`border-t border-b border-black ${buttonStyles}`}
+                onClick={() => handleUpdateStatus('pending')}
+                data-state-task
+            >
+                <PendingIcon className={`${iconStyles}`} />
+                <Text className={`${textStyles}`}>Pending</Text>
+            </Button>
+            <Button
+                variant='custom'
+                className={`${buttonStyles}`}
+                onClick={() => handleUpdateStatus('progress')}
+                data-state-task
+            >
+                <InProgressIcon className={`${iconStyles}`} />
+                <Text className={`${textStyles}`}>In progress</Text>
+            </Button>
         </div>
     );
 };

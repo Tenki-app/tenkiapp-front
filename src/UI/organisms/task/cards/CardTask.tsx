@@ -36,6 +36,7 @@ const CardTask = ({
 
     const [isActive, setIsActive] = useState(isOpen);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
+    const [showStatusModal, setShowStatusModal] = useState(false);
 
     const {
         id: taskId,
@@ -66,7 +67,9 @@ const CardTask = ({
             taskId,
         };
 
-        putSingleTask(taskToUpdate);
+        putSingleTask(taskToUpdate).finally(() => {
+            setShowStatusModal(false);
+        });
     };
 
     const handleSubmitEditTask: SubmitHandler<TypeAddTaskForm> = async (
@@ -108,8 +111,16 @@ const CardTask = ({
                 className={`shadow-lg bg-champagne-white relative px-4 py-5 rounded-md ${
                     cardTaskStyles ?? ''
                 } ${!isActive && 'cursor-pointer'}`}
-                onClick={() => {
-                    handleShowDetails();
+                onClick={(e) => {
+                    const isValidClick =
+                        (e.target as HTMLElement).id !== 'modal-bg' &&
+                        !(e.target as HTMLElement).getAttribute(
+                            'data-state-task'
+                        );
+
+                    if (isValidClick) {
+                        handleShowDetails();
+                    }
                 }}
             >
                 <div className='flex justify-between'>
@@ -118,6 +129,8 @@ const CardTask = ({
                             taskState={state}
                             isUpdateStatusActive={isUpdateStatusActive}
                             handleUpdateStatus={handleUpdateStatus}
+                            setShowStatusModal={setShowStatusModal}
+                            showStatusModal={showStatusModal}
                         />
                         <div>
                             <Text className='font-bold !text-lg italic'>
