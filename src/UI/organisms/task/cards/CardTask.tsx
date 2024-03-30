@@ -112,7 +112,12 @@ const CardTask = ({
                     cardTaskStyles ?? ''
                 } ${!isActive && 'cursor-pointer'}`}
                 onClick={(e) => {
-                    if ((e.target as HTMLElement).id !== 'modal-bg') {
+                    const isValidClick =
+                        (e.target as HTMLElement).id !== 'modal-bg' &&
+                        (e.target as HTMLElement).getAttribute(
+                            'data-state-task'
+                        );
+                    if (isValidClick) {
                         handleShowDetails();
                     }
                 }}
