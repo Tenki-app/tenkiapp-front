@@ -109,7 +109,9 @@ const CardTask = ({
                     cardTaskStyles ?? ''
                 } ${!isActive && 'cursor-pointer'}`}
                 onClick={(e) => {
-                    handleShowDetails();
+                    if ((e.target as HTMLElement).id !== 'modal-bg') {
+                        handleShowDetails();
+                    }
                 }}
             >
                 <div className='flex justify-between'>

@@ -31,6 +31,7 @@ const ModalCustomPositionTemplate = ({
             {showModal && (
                 <div className='w-screen h-screen fixed z-[30] left-0 top-0'>
                     <motion.div
+                        id='modal-bg'
                         className='bg-black w-full h-full main-transition'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.6 }}
