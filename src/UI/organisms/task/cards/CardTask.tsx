@@ -36,6 +36,7 @@ const CardTask = ({
 
     const [isActive, setIsActive] = useState(isOpen);
     const [showEditTaskModal, setShowEditTaskModal] = useState(false);
+    const [showStatusModal, setShowStatusModal] = useState(false);
 
     const {
         id: taskId,
@@ -66,7 +67,9 @@ const CardTask = ({
             taskId,
         };
 
-        putSingleTask(taskToUpdate);
+        putSingleTask(taskToUpdate).finally(() => {
+            setShowStatusModal(false);
+        });
     };
 
     const handleSubmitEditTask: SubmitHandler<TypeAddTaskForm> = async (
@@ -120,6 +123,8 @@ const CardTask = ({
                             taskState={state}
                             isUpdateStatusActive={isUpdateStatusActive}
                             handleUpdateStatus={handleUpdateStatus}
+                            setShowStatusModal={setShowStatusModal}
+                            showStatusModal={showStatusModal}
                         />
                         <div>
                             <Text className='font-bold !text-lg italic'>

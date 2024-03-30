@@ -15,19 +15,21 @@ import type { TypeTaskState } from '@/lib/types/tasks';
 
 type TypeButtonStateTaskProps = {
     taskState: TypeTaskState;
+    showStatusModal: boolean;
+    setShowStatusModal: (value: boolean) => void;
     isUpdateStatusActive?: boolean;
     handleUpdateStatus: (stateToUpdate: TypeTaskState) => void;
 };
 
 const ButtonStateTask = ({
     taskState,
+    showStatusModal,
+    setShowStatusModal,
     isUpdateStatusActive,
     handleUpdateStatus,
 }: TypeButtonStateTaskProps) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const stateButtonRef = useRef<HTMLDivElement>(null);
-
-    const [showStatusModal, setShowStatusModal] = useState(false);
 
     const onClickStatusButton = () => {
         if (!isUpdateStatusActive) {
