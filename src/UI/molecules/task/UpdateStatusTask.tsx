@@ -14,30 +14,53 @@ type TypeUpdateStatusTaskProps = {
 const UpdateStatusTask = ({
     handleUpdateStatus,
 }: TypeUpdateStatusTaskProps) => {
-    const buttonStyles = 'flex gap-x-3 items-center w-full';
+    const buttonStyles = 'flex gap-x-5 items-center w-full py-3 px-4';
     const iconStyles =
         'w-[25px] mt-[2px] h-[25px] md:w-[32px] md:h-[32px] cursor-pointer';
 
+    const onClickStateButton = () => {};
+
     return (
-        <div className='flex flex-col bg-champagne-white border border-black z-[999999] absolute'>
+        <div className='flex flex-col bg-champagne-white border border-black z-50 p-[6px] absolute w-[230px] rounded-lg'>
             <Button
                 variant='custom'
                 className={`${buttonStyles}`}
+            >
+                <DoneIcon
+                    className={`${iconStyles}`}
+                    onClick={() => handleUpdateStatus('done')}
+                />
+
+                <Text className=''>Done</Text>
+            </Button>
+            <Button
+                variant='custom'
+                className={`border-t border-b border-black ${buttonStyles}`}
             >
                 <PendingIcon
                     className={`${iconStyles}`}
                     onClick={() => handleUpdateStatus('pending')}
                 />
-                <Text>Pending</Text>
+                <Text className=''>Pending</Text>
             </Button>
-            <InProgressIcon
+            <Button
+                variant='custom'
+                className={`${buttonStyles}`}
+            >
+                <InProgressIcon
+                    className={`${iconStyles}`}
+                    onClick={() => handleUpdateStatus('progress')}
+                />
+                <Text className=''>In progress</Text>
+            </Button>
+            {/* <InProgressIcon
                 className={`${iconStyles}`}
                 onClick={() => handleUpdateStatus('progress')}
             />
             <DoneIcon
                 className={`${iconStyles}`}
                 onClick={() => handleUpdateStatus('done')}
-            />
+            /> */}
         </div>
     );
 };

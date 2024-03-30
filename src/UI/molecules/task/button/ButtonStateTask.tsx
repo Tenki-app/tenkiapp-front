@@ -65,11 +65,7 @@ const ButtonStateTask = ({
                     {renderStatus()}
                 </Button>
                 {showStatusModal && (
-                    <UpdateStatusTask
-                        handleUpdateStatus={() => {
-                            //handleUpdateStatus()
-                        }}
-                    />
+                    <UpdateStatusTask handleUpdateStatus={handleUpdateStatus} />
                 )}
             </div>
         </>
