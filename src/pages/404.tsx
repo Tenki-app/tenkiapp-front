@@ -4,6 +4,7 @@ import { Title } from '@/UI/atoms/text/Title';
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import PageNotFound from '@/svg/notFound/PageNotFound.svg';
 import LeftArrow from '@/svg/notFound/leftArrow.svg';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 const NotFound = () => {
 	const { t } = useTranslation();
@@ -27,13 +28,18 @@ const NotFound = () => {
 					>
 						{t('notFoundMessage')}
 					</Text>
-					<Button
-						variant='blue'
-						className='flex justify-center'
+					<Link
+						href={'/'}
+						className='text-black'
 					>
-						<LeftArrow className='h-[29px] w-[25px] mr-[20px]' />
-						{t('backButton')}
-					</Button>
+						<Button
+							variant='blue'
+							className='flex justify-center'
+						>
+							<LeftArrow className='h-[29px] w-[25px] mr-[20px]' />
+							{t('backButton')}
+						</Button>
+					</Link>
 				</div>
 			</MainLayout>
 		</>
