@@ -9,6 +9,7 @@ type TypeModalCustomPositionTemplateProps = {
     showModal: boolean;
     setShowModal: (value: boolean) => void;
     content?: ReactNode;
+    isContentWithoutWrapper?: boolean;
     isCloseWhenClickOutside?: boolean;
 };
 
@@ -16,6 +17,7 @@ const ModalCustomPositionTemplate = ({
     showModal,
     content,
     setShowModal,
+    isContentWithoutWrapper = true,
     isCloseWhenClickOutside = true,
 }: TypeModalCustomPositionTemplateProps) => {
     const modalRef = useRef(null);
@@ -36,14 +38,19 @@ const ModalCustomPositionTemplate = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.6 }}
                     />
-                    {content && (
-                        <div
-                            className={`absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white py-4 px-2}`}
-                            ref={modalRef}
-                        >
-                            <div className={``}>{content}</div>
-                        </div>
+                    {isContentWithoutWrapper && (
+                        <>
+                            {content && (
+                                <div
+                                    className={`absolute left-0 right-0 main-transition rounded-md top-0 max-w-[340px] xs:max-w-[375px] max-h-[400px] bottom-0 m-auto z-[90] bg-champagne-white py-4 px-2}`}
+                                    ref={modalRef}
+                                >
+                                    <div className={``}>{content}</div>
+                                </div>
+                            )}
+                        </>
                     )}
+                    {!isContentWithoutWrapper && <>{content && content}</>}
                 </div>
             )}
         </AnimatePresence>

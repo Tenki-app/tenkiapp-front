@@ -71,6 +71,28 @@ const ButtonStateTask = ({
                     showModal={showStatusModal}
                     setShowModal={setShowStatusModal}
                     isCloseWhenClickOutside={false}
+                    isContentWithoutWrapper={false}
+                    content={
+                        <>
+                            {createPortal(
+                                <div
+                                    className={`fixed z-50`}
+                                    style={{
+                                        left: stateButtonCoordinates?.left,
+                                        top:
+                                            (stateButtonCoordinates?.top ?? 0) +
+                                            40,
+                                    }}
+                                    ref={modalRef}
+                                >
+                                    <UpdateStatusTask
+                                        handleUpdateStatus={handleUpdateStatus}
+                                    />
+                                </div>,
+                                document.body
+                            )}
+                        </>
+                    }
                 />,
                 document.body
             )}
@@ -89,26 +111,6 @@ const ButtonStateTask = ({
                         {renderStatus()}
                     </Button>
                 </div>
-                {showStatusModal && (
-                    <>
-                        {createPortal(
-                            <div
-                                className={`fixed z-50`}
-                                style={{
-                                    left: stateButtonCoordinates?.left,
-                                    top:
-                                        (stateButtonCoordinates?.top ?? 0) + 40,
-                                }}
-                                ref={modalRef}
-                            >
-                                <UpdateStatusTask
-                                    handleUpdateStatus={handleUpdateStatus}
-                                />
-                            </div>,
-                            document.body
-                        )}
-                    </>
-                )}
             </div>
         </>
     );
