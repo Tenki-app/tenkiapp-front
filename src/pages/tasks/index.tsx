@@ -18,6 +18,7 @@ import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
 import { ModalAddTask } from '@/UI/organisms/task/modal/ModalAddTask';
 import { CardTask } from '@/UI/organisms/task/cards/CardTask';
+import { AllTasksCardRender } from '@/UI/organisms/task/AllTasksCardRender';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
@@ -29,38 +30,30 @@ const TaskPage = () => {
     const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
     const { t } = useTranslation();
 
-    const { allTasksByCategory: todayAllTasks } = useGetAllTasksByCategory(
-        'today',
+    const { allTasksByCategory } = useGetAllTasksByCategory(
+        activeTaskTabFilter,
         user?.id
     );
-    const { allTasksByCategory: nextAllTasks } = useGetAllTasksByCategory(
-        'next',
-        user?.id
-    );
-    const { allTasksByCategory: somedayAllTasks } = useGetAllTasksByCategory(
-        'someday',
-        user?.id
-    );
-
     const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
 
     const [tasksToShow, setTasksToShow] = useState<
-        TypeTask[] | [] | undefined | null
+        TypeTask[] | undefined | null
     >(null);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+    const [] = useState();
 
     const tasksDonePercent = () => {
-        const tasksDone = todayAllTasks?.filter(
+        const tasksDone = allTasksByCategory?.filter(
             (task) => task.state === 'done'
         );
         const isPossibleToCalculatePercent =
             tasksDone &&
             Array.isArray(tasksDone) &&
-            todayAllTasks &&
-            Array.isArray(todayAllTasks);
+            allTasksByCategory &&
+            Array.isArray(allTasksByCategory);
 
         if (isPossibleToCalculatePercent) {
-            return (tasksDone.length / todayAllTasks.length) * 100;
+            return (tasksDone.length / allTasksByCategory.length) * 100;
         }
 
         return 0;
@@ -85,22 +78,8 @@ const TaskPage = () => {
     };
 
     useEffect(() => {
-        if (activeTaskTabFilter === 'today') {
-            setTasksToShow(todayAllTasks);
-        }
-        if (activeTaskTabFilter === 'next') {
-            setTasksToShow(nextAllTasks);
-        }
-        if (activeTaskTabFilter === 'someday') {
-            setTasksToShow(somedayAllTasks);
-        }
-    }, [
-        activeTaskTabFilter,
-        setTasksToShow,
-        todayAllTasks,
-        nextAllTasks,
-        somedayAllTasks,
-    ]);
+        setTasksToShow(allTasksByCategory);
+    }, [activeTaskTabFilter, setTasksToShow, allTasksByCategory]);
 
     return (
         <>
@@ -125,14 +104,12 @@ const TaskPage = () => {
                         containerStyles='w-[90%] mx-auto'
                     />
                     <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
-                        <div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
-                            {tasksToShow?.map((singleTask, index) => (
-                                <CardTask
-                                    key={index}
-                                    taskData={singleTask}
-                                />
-                            ))}
-                        </div>
+                        {
+                            <AllTasksCardRender
+                                allTasksData={tasksToShow}
+                                category={activeTaskTabFilter}
+                            />
+                        }
                         <div className='flex flex-col items-end'>
                             <ProgressBar
                                 containerStyles='mt-6'
