@@ -6,9 +6,11 @@ import Link from 'next/link';
 import { NavType } from '@/lib/types/navBar';
 import { Text } from '@/UI/atoms/text/Text';
 import { useAppStore } from '@/lib/store/store';
+import { useTranslation } from 'react-i18next';
 
 export const NavBar = () => {
 	const { navOption, setNavOption } = useAppStore();
+	const { t } = useTranslation();
 	const handleActive = (option: NavType) => {
 		setNavOption(option);
 	};
@@ -59,7 +61,7 @@ export const NavBar = () => {
 								className='hidden md:block ml-[10px] font-bold'
 								variant='custom'
 							>
-								HOME
+								{t('home')}
 							</Text>
 						</Link>
 					</li>
@@ -76,7 +78,7 @@ export const NavBar = () => {
 								className='hidden md:block ml-[10px] font-bold'
 								variant='custom'
 							>
-								TASK
+								{t('tasks')}
 							</Text>
 						</Link>
 					</li>
@@ -93,7 +95,7 @@ export const NavBar = () => {
 								className='hidden md:block ml-[10px] font-bold'
 								variant='custom'
 							>
-								PROFILE
+								{t('profile')}
 							</Text>
 						</Link>
 					</li>
