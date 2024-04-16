@@ -32,12 +32,12 @@ const MainLayout = ({
 					wrapperClasses ?? ''
 				}`}
 			>
-				{hasNav && (
+				{/* {hasNav && (
 					<div className='flex p-3 '>
 						<ThemeMode />
 						<SwitchLang />
 					</div>
-				)}
+				)} */}
 
 				{children}
 			</div>
