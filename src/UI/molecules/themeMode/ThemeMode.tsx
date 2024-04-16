@@ -33,9 +33,9 @@ const ThemeMode = () => {
 			transition={{ duration: 0.5 }}
 		>
 			{theme === 'light' ? (
-				<MoonIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3' />
+				<MoonIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3 text-champagne-white' />
 			) : (
-				<SunIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3' />
+				<SunIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3 text-champagne-white' />
 			)}
 		</motion.div>
 	);

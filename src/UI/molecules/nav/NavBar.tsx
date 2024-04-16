@@ -7,6 +7,8 @@ import { NavType } from '@/lib/types/navBar';
 import { Text } from '@/UI/atoms/text/Text';
 import { useAppStore } from '@/lib/store/store';
 import { useTranslation } from 'react-i18next';
+import { SwitchLang } from '@/UI/molecules/switchLang/SwitchLang';
+import { ThemeMode } from '../themeMode/ThemeMode';
 
 export const NavBar = () => {
 	const { navOption, setNavOption } = useAppStore();
@@ -46,8 +48,8 @@ export const NavBar = () => {
 
 	return (
 		<nav className='w-full h-[69px] md:h-[80px] fixed left-0 z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
-			<ul className='h-full flex items-center justify-between'>
-				<div className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
+			<div className='h-full flex items-center justify-between'>
+				<ul className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
 					<li onClick={() => handleActive('Home')}>
 						<Link
 							href={'/'}
@@ -115,23 +117,32 @@ export const NavBar = () => {
 							></div>
 						</Link>
 					</li>
-				</div>
-
-				<li
-					onClick={() => handleActive('Notification')}
-					className='hidden md:block md:pr-11'
-				>
-					<Link
-						href={''}
-						className={handleLinkActiveStyles('Notification')}
+				</ul>
+				<ul className='flex items-center gap-5'>
+					<li className='w-fit'>
+						<SwitchLang/>
+					</li>
+					<li className='w-fit'>
+						<ThemeMode/>
+					</li>
+					<li
+						onClick={() => handleActive('Notification')}
+						className='hidden md:block md:pr-11 w-fit'
 					>
-						<NotificationIcon
-							className={handleActiveStyles('Notification')}
-						></NotificationIcon>
-						<div className={handleDivActive('Notification')}></div>
-					</Link>
-				</li>
-			</ul>
+						<Link
+							href={''}
+							className={handleLinkActiveStyles('Notification')}
+						>
+							<NotificationIcon
+								className={handleActiveStyles('Notification')}
+							></NotificationIcon>
+							<div className={handleDivActive('Notification')}></div>
+						</Link>
+
+					</li>
+				</ul>
+				
+			</div>
 		</nav>
 	);
 };

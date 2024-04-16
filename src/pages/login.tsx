@@ -14,10 +14,10 @@ const Login = () => {
 				</div>
 				<div className='flex flex-col items-center w-full md:w-1/2'>
 					<div className='pl-[10px] pr-[10px] flex justify-between w-full md:pl-[5%] md:pr-[5%] pt-[15px] 2xl:py-12'>
-						<div className='flex items-center'>
+						{/* <div className='flex items-center'>
 							<ThemeMode />
 							<SwitchLang />
-						</div>
+						</div> */}
 					</div>
 					<div className='text-center flex flex-col w-[75%] mx-auto items-center'>
 						<div className='mt-[70px]'>

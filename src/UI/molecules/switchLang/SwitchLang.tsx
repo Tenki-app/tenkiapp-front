@@ -17,9 +17,9 @@ const SwitchLang = () => {
 	};
 
 	return (
-		<div className='w-[60px] flex items-center'>
+		<div className='w-[83px] flex items-center'>
 			{
-				<Text className='underline font-bold uppercase cursor-default'>
+				<Text variant='custom' className='underline font-bold uppercase cursor-default dark:text-dark-blue text-champagne-white'>
 					{lang}
 				</Text>
 			}
