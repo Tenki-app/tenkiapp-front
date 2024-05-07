@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-
 import { useAppStore } from '@/lib/store/store';
-
 import MoonIcon from '@/svg/theme/moonIcon.svg';
 import SunIcon from '@/svg/theme/sunIcon.svg';
 
@@ -33,9 +31,9 @@ const ThemeMode = () => {
 			transition={{ duration: 0.5 }}
 		>
 			{theme === 'light' ? (
-				<MoonIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3 text-champagne-white' />
+				<MoonIcon className='lg:cursor-pointer w-[30px] h-[30px] text-champagne-white' />
 			) : (
-				<SunIcon className='lg:cursor-pointer w-[30px] h-[30px] mr-3 text-champagne-white' />
+				<SunIcon className='lg:cursor-pointer w-[30px] h-[30px] text-champagne-white' />
 			)}
 		</motion.div>
 	);

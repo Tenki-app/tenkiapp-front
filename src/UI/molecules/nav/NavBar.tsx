@@ -119,12 +119,14 @@ export const NavBar = () => {
 					</li>
 				</ul>
 				<ul className='flex items-center gap-5'>
-					<li className='w-fit'>
+					<li className='w-fit hidden md:block'>
 						<SwitchLang/>
 					</li>
-					<li className='w-fit'>
+					<div className='h-[18px] w-[3px] bg-champagne-white hidden md:block'></div>
+					<li className='w-fit hidden md:block'>
 						<ThemeMode/>
 					</li>
+					<div className='h-[18px] w-[3px] bg-champagne-white hidden md:block'></div>
 					<li
 						onClick={() => handleActive('Notification')}
 						className='hidden md:block md:pr-11 w-fit'
