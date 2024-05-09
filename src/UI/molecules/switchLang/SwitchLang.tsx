@@ -33,7 +33,7 @@ const SwitchLang = () => {
                 <div
                     className={`shadow transition-all relative ${
                         lang === 'es' ? 'left-[-4px]' : 'left-[17px]'
-                    } bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue dark:border-champagne-white rounded-[50%]`}
+                    } bottom-[4px] w-[30px] h-[30px]  bg-dark-garnet border-[2px] border-dark-blue dark:border-champagne-white rounded-[50%] overflow-hidden`}
                 >
                     {lang === 'es' ? (
                         <ColFlag className='w-[100%] h-[100%]' />
