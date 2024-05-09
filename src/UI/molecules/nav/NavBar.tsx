@@ -140,10 +140,8 @@ export const NavBar = () => {
 							></NotificationIcon>
 							<div className={handleDivActive('Notification')}></div>
 						</Link>
-
 					</li>
 				</ul>
-				
 			</div>
 		</nav>
 	);
