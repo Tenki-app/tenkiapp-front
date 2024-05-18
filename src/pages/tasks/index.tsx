@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 
@@ -17,54 +17,54 @@ import { Loader } from '@/UI/molecules/loader/Loader';
 import { Title } from '@/UI/atoms/text/Title';
 import { Button } from '@/UI/atoms/button/Button';
 import { ModalAddTask } from '@/UI/organisms/task/modal/ModalAddTask';
-import { CardTask } from '@/UI/organisms/task/cards/CardTask';
+import { AccordionStates } from '@/UI/organisms/task/state/AccordionStates';
 
 import AddIcon from '@/assets/svg/task/addIcon.svg';
 
 import type { MouseEvent } from 'react';
-import type { TypeTask, TypeAddTaskForm } from '@/lib/types/tasks';
+import type { TypeAddTaskForm } from '@/lib/types/tasks';
 import type { SubmitHandler } from 'react-hook-form';
 
 const TaskPage = () => {
     const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
     const { t } = useTranslation();
 
-    const { allTasksByCategory: todayAllTasks } = useGetAllTasksByCategory(
-        'today',
+    const { allTasksByCategory } = useGetAllTasksByCategory(
+        activeTaskTabFilter,
         user?.id
     );
-    const { allTasksByCategory: nextAllTasks } = useGetAllTasksByCategory(
-        'next',
-        user?.id
-    );
-    const { allTasksByCategory: somedayAllTasks } = useGetAllTasksByCategory(
-        'someday',
-        user?.id
-    );
-
     const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
 
-    const [tasksToShow, setTasksToShow] = useState<
-        TypeTask[] | [] | undefined | null
-    >(null);
     const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 
-    const tasksDonePercent = () => {
-        const tasksDone = todayAllTasks?.filter(
-            (task) => task.state === 'done'
-        );
-        const isPossibleToCalculatePercent =
-            tasksDone &&
-            Array.isArray(tasksDone) &&
-            todayAllTasks &&
-            Array.isArray(todayAllTasks);
+    const inProgressTasks = allTasksByCategory?.filter(
+        (task) => task.state === 'progress'
+    );
+    const doneTasks = allTasksByCategory?.filter(
+        (task) => task.state === 'done'
+    );
+    const pendingTasks = allTasksByCategory?.filter(
+        (task) => task.state === 'pending'
+    );
 
-        if (isPossibleToCalculatePercent) {
-            return (tasksDone.length / todayAllTasks.length) * 100;
+    const tasksDonePercent = useCallback(() => {
+        if (activeTaskTabFilter === 'today') {
+            const tasksDone = allTasksByCategory?.filter(
+                (task) => task.state === 'done'
+            );
+            const isPossibleToCalculatePercent =
+                tasksDone &&
+                Array.isArray(tasksDone) &&
+                allTasksByCategory &&
+                Array.isArray(allTasksByCategory);
+
+            if (isPossibleToCalculatePercent) {
+                return (tasksDone.length / allTasksByCategory.length) * 100;
+            }
         }
 
         return 0;
-    };
+    }, [activeTaskTabFilter, allTasksByCategory]);
 
     const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -83,24 +83,6 @@ const TaskPage = () => {
             setShowAddTaskModal(false);
         });
     };
-
-    useEffect(() => {
-        if (activeTaskTabFilter === 'today') {
-            setTasksToShow(todayAllTasks);
-        }
-        if (activeTaskTabFilter === 'next') {
-            setTasksToShow(nextAllTasks);
-        }
-        if (activeTaskTabFilter === 'someday') {
-            setTasksToShow(somedayAllTasks);
-        }
-    }, [
-        activeTaskTabFilter,
-        setTasksToShow,
-        todayAllTasks,
-        nextAllTasks,
-        somedayAllTasks,
-    ]);
 
     return (
         <>
@@ -125,14 +107,11 @@ const TaskPage = () => {
                         containerStyles='w-[90%] mx-auto'
                     />
                     <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
-                        <div className='flex flex-col h-[80%] px-1 gap-y-4 overflow-y-auto'>
-                            {tasksToShow?.map((singleTask, index) => (
-                                <CardTask
-                                    key={index}
-                                    taskData={singleTask}
-                                />
-                            ))}
-                        </div>
+                        <AccordionStates
+                            inProgressTasks={inProgressTasks}
+                            doneTasks={doneTasks}
+                            pendingTasks={pendingTasks}
+                        />
                         <div className='flex flex-col items-end'>
                             <ProgressBar
                                 containerStyles='mt-6'
