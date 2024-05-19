@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 
@@ -9,7 +9,7 @@ import {
 	usePostSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
 import { taskFilterTagsCategories } from '@/lib/data/tasks';
-import { calculateTaskPercent } from '@/lib/helpers/task/calculateTaskPercent';
+import { calculateTaskDonePercent } from '@/lib/helpers/task/calculateTaskPercent';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
@@ -51,7 +51,7 @@ const TaskPage = () => {
 
 	useEffect(() => {
 		if (activeTaskTabFilter === 'today') {
-			setTodayTasksPercent(calculateTaskPercent(allTasksByCategory));
+			setTodayTasksPercent(calculateTaskDonePercent(allTasksByCategory));
 		}
 	}, [allTasksByCategory, activeTaskTabFilter]);
 
