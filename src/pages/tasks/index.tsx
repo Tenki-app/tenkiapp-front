@@ -1,14 +1,15 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useTranslation } from 'react-i18next';
 
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 import { useAppStore } from '@/lib/store/store';
 import {
-    useGetAllTasksByCategory,
-    usePostSingleTask,
+	useGetAllTasksByCategory,
+	usePostSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
 import { taskFilterTagsCategories } from '@/lib/data/tasks';
+import { calculateTaskPercent } from '@/lib/helpers/task/calculateTaskPercent';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
 import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
@@ -26,116 +27,104 @@ import type { TypeAddTaskForm } from '@/lib/types/tasks';
 import type { SubmitHandler } from 'react-hook-form';
 
 const TaskPage = () => {
-    const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
-    const { t } = useTranslation();
+	const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
+	const { t } = useTranslation();
 
-    const { allTasksByCategory } = useGetAllTasksByCategory(
-        activeTaskTabFilter,
-        user?.id
-    );
-    const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
+	const { allTasksByCategory } = useGetAllTasksByCategory(
+		activeTaskTabFilter,
+		user?.id
+	);
+	const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
 
-    const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+	const [todayTasksPercent, setTodayTasksPercent] = useState(0);
 
-    const inProgressTasks = allTasksByCategory?.filter(
-        (task) => task.state === 'progress'
-    );
-    const doneTasks = allTasksByCategory?.filter(
-        (task) => task.state === 'done'
-    );
-    const pendingTasks = allTasksByCategory?.filter(
-        (task) => task.state === 'pending'
-    );
+	const inProgressTasks = allTasksByCategory?.filter(
+		(task) => task.state === 'progress'
+	);
+	const doneTasks = allTasksByCategory?.filter(
+		(task) => task.state === 'done'
+	);
+	const pendingTasks = allTasksByCategory?.filter(
+		(task) => task.state === 'pending'
+	);
 
-    const tasksDonePercent = useCallback(() => {
-        if (activeTaskTabFilter === 'today') {
-            const tasksDone = allTasksByCategory?.filter(
-                (task) => task.state === 'done'
-            );
-            const isPossibleToCalculatePercent =
-                tasksDone &&
-                Array.isArray(tasksDone) &&
-                allTasksByCategory &&
-                Array.isArray(allTasksByCategory);
+	useEffect(() => {
+		if (activeTaskTabFilter === 'today') {
+			setTodayTasksPercent(calculateTaskPercent(allTasksByCategory));
+		}
+	}, [allTasksByCategory, activeTaskTabFilter]);
 
-            if (isPossibleToCalculatePercent) {
-                return (tasksDone.length / allTasksByCategory.length) * 100;
-            }
-        }
+	const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
+		e.stopPropagation();
+		setShowAddTaskModal(true);
+	};
 
-        return 0;
-    }, [activeTaskTabFilter, allTasksByCategory]);
+	const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (
+		formData
+	) => {
+		const newTaskToSend = {
+			...formData,
+			state: 'pending',
+		};
 
-    const handleOpenAddTaskModal = (e: MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
-        setShowAddTaskModal(true);
-    };
+		postSingleTask(newTaskToSend).finally(() => {
+			setShowAddTaskModal(false);
+		});
+	};
 
-    const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (
-        formData
-    ) => {
-        const newTaskToSend = {
-            ...formData,
-            state: 'pending',
-        };
-
-        postSingleTask(newTaskToSend).finally(() => {
-            setShowAddTaskModal(false);
-        });
-    };
-
-    return (
-        <>
-            <ModalAddTask
-                showModal={showAddTaskModal}
-                setShowModal={setShowAddTaskModal}
-                onSubmit={onSubmitAddTask}
-                isLoadingSubmit={isLoadingPostTask}
-            />
-            <MainLayout
-                className='md:pt-[90px]'
-                hasNav
-            >
-                <Title className='text-center !font-bold mb-4'>
-                    {t('tasks')}
-                </Title>
-                <section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
-                    <FilterTags
-                        tabsContent={taskFilterTagsCategories}
-                        activeTag={activeTaskTabFilter}
-                        setActiveTag={setActiveTaskTabFilter}
-                        containerStyles='w-[90%] mx-auto'
-                    />
-                    <div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
-                        <AccordionStates
-                            inProgressTasks={inProgressTasks}
-                            doneTasks={doneTasks}
-                            pendingTasks={pendingTasks}
-                        />
-                        <div className='flex flex-col items-end'>
-                            <ProgressBar
-                                containerStyles='mt-6'
-                                progressPercent={tasksDonePercent()}
-                            />
-                            <Button
-                                variant='rounded'
-                                className='mt-3 mr-3'
-                                onClick={handleOpenAddTaskModal}
-                            >
-                                <AddIcon className='text-white w-[20px] h-[20px]' />
-                            </Button>
-                        </div>
-                    </div>
-                </section>
-            </MainLayout>
-        </>
-    );
+	return (
+		<>
+			<ModalAddTask
+				showModal={showAddTaskModal}
+				setShowModal={setShowAddTaskModal}
+				onSubmit={onSubmitAddTask}
+				isLoadingSubmit={isLoadingPostTask}
+			/>
+			<MainLayout
+				className='md:pt-[90px]'
+				hasNav
+			>
+				<Title className='text-center !font-bold mb-4'>
+					{t('tasks')}
+				</Title>
+				<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
+					<FilterTags
+						tabsContent={taskFilterTagsCategories}
+						activeTag={activeTaskTabFilter}
+						setActiveTag={setActiveTaskTabFilter}
+						containerStyles='w-[90%] mx-auto'
+					/>
+					<div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
+						<AccordionStates
+							inProgressTasks={inProgressTasks}
+							doneTasks={doneTasks}
+							pendingTasks={pendingTasks}
+						/>
+						<div className='flex flex-col items-end'>
+							<ProgressBar
+								containerStyles='mt-6'
+								progressPercent={todayTasksPercent}
+							/>
+							<Button
+								variant='rounded'
+								className='mt-3 mr-3'
+								onClick={handleOpenAddTaskModal}
+							>
+								<AddIcon className='text-white w-[20px] h-[20px]' />
+							</Button>
+						</div>
+					</div>
+				</section>
+			</MainLayout>
+		</>
+	);
 };
 
 export default withAuthenticationRequired(TaskPage, {
-    onRedirecting: () => <Loader />,
-    onBeforeAuthentication: () =>
-        new Promise(() => {
-            redirectToLoginPage();
-        }),
+	onRedirecting: () => <Loader />,
+	onBeforeAuthentication: () =>
+		new Promise(() => {
+			redirectToLoginPage();
+		}),
 });
