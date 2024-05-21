@@ -33,9 +33,9 @@ const MainLayout = ({
                 }`}
             >
                 {hasNav && (
-                    <div className='flex p-3 block md:hidden'>
-                        <ThemeMode />
-                        <SwitchLang />
+                    <div className='flex p-3 md:hidden'>
+                        <ThemeMode variant='screen' />
+                        <SwitchLang variant='screen' />
                     </div>
                 )}
 
