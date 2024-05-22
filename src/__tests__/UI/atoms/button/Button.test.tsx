@@ -1,7 +1,8 @@
-import { Button } from '@/UI/atoms/button/Button';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-describe('test button', () => {
+import { Button } from '@/UI/atoms/button/Button';
+
+describe('test button component', () => {
 	it('should show button text correctly', () => {
 		render(<Button>Test</Button>);
 
