@@ -72,11 +72,13 @@ export const NavBar = () => {
 						<Link
 							href={'/'}
 							className={handleLinkActiveStyles('Home')}
+							data-testid='navbar-home-button'
 						>
 							<HomeIcon
 								className={handleActiveStyles('Home')}
 							></HomeIcon>
 							<div className={handleDivActive('Home')}></div>
+
 							<Text
 								className='hidden md:block ml-[10px] font-bold'
 								variant='custom'
@@ -89,6 +91,7 @@ export const NavBar = () => {
 						<Link
 							href={'/tasks'}
 							className={handleLinkActiveStyles('Task')}
+							data-testid='navbar-task-button'
 						>
 							<TasksIcon
 								className={handleActiveStyles('Task')}
@@ -106,6 +109,7 @@ export const NavBar = () => {
 						<Link
 							href={'/profile'}
 							className={handleLinkActiveStyles('Profile')}
+							data-testid='navbar-profile-button'
 						>
 							<ProfileIcon
 								className={handleActiveStyles('Profile')}
@@ -122,6 +126,7 @@ export const NavBar = () => {
 					<li
 						onClick={() => handleActive('Notification')}
 						className='block md:hidden'
+						data-testid='navbar-notifications-button'
 					>
 						<Link
 							href={''}
