@@ -17,7 +17,7 @@ const OnboardingSlideTwo = () => {
 						category='today'
 						sampleCardTaskStyles='pointer-events-none mb-10 bg-[#8f3b3396]'
 					/>
-					<CardTask
+					{/* <CardTask
 						title='Do dinner'
 						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
 						time='15:00'
@@ -26,7 +26,7 @@ const OnboardingSlideTwo = () => {
 						category='today'
 						isOpen
 						cardTaskStyles='pointer-events-none bg-[#8f3b3396]'
-					/>
+					/> */}
 				</div>
 			}
 			onClickContinue={() => {
