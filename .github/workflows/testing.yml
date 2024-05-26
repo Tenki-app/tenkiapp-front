@@ -5,6 +5,9 @@ on: [pull_request]
 jobs:
     GitHub-Actions:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [20.x]
         steps:
             - name: Linter
               uses: npm run lint
