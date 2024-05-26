@@ -6,6 +6,8 @@ jobs:
     GitHub-Actions:
         runs-on: ubuntu-latest
         steps:
+            - name: Checkout folders
+              uses: actions/checkout@v4
             - name: Linter
               run: npm run lint
             - name: Unit tests
