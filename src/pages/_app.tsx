@@ -6,10 +6,10 @@ import { i18next } from './../lib/utils/i18n';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import type { AppProps } from 'next/app';
-
-import '@/styles/globals.css';
 import { NavBar } from '@/UI/molecules/nav/NavBar';
+import '@/styles/globals.css';
+
+import type { AppProps } from 'next/app';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +21,7 @@ export default function App({
 	const router = useRouter();
 	let isShowNav =
 		router.pathname !== '/login' && router.pathname !== '/onboarding';
+
 	useEffect(() => {
 		setIsInitialRender(true);
 	}, []);
