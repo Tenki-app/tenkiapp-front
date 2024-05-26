@@ -12,6 +12,6 @@ jobs:
             - name: Linter
               uses: npm run lint
             - name: Unit tests
-              uses: npm run test-coverge
+              uses: npm run test-coverage
             - name: Build app
               uses: npm run build
