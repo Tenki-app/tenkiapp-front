@@ -12,10 +12,8 @@ import { StateDropdown } from '@/UI/atoms/inputs/stateDropDown';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/UI/atoms/button/Button';
 import { MainLayout } from '@/UI/layouts/MainLayout';
-import { CardTask } from '@/UI/organisms/task/cards/CardTask';
 import { ButtonLogin } from '@/UI/atoms/button/ButtonLogin';
 import { ButtonLogout } from '@/UI/atoms/button/ButtonLogout';
-import { NavBar } from '@/UI/molecules/nav/NavBar';
 
 const options = [
 	{
@@ -72,30 +70,6 @@ const Home = () => {
 				<div className='bg-olive-drab p-4 bg flex flex-col gap-4'>
 					<ButtonLogin />
 					<ButtonLogout />
-					<CardTask
-						title='Do dinner'
-						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
-						time='15:00'
-						date='13-01-2023'
-						state='done'
-						category='today'
-					/>
-					<CardTask
-						title='To buy food'
-						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
-						time='15:00'
-						date='13-01-2023'
-						state='progress'
-						category='next'
-					/>
-					<CardTask
-						title='Do dinner'
-						description='sdl sdfklj sdfjll sdklfj sdlfjskdf sdlfjskdf sdlfjskdfsdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf sdlfjskdf'
-						time='15:00'
-						date='13-01-2023'
-						state='pending'
-						category='someday'
-					/>
 				</div>
 				<StateDropdown
 					className={hidden ? '!hidden' : '!block'}
