@@ -6,8 +6,6 @@ import { i18next } from './../lib/utils/i18n';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { useAppStore } from '@/lib/store/store';
-
 import { NavBar } from '@/UI/molecules/nav/NavBar';
 import '@/styles/globals.css';
 
@@ -19,8 +17,6 @@ export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }: AppProps) {
-	const { navOption } = useAppStore();
-
 	const [isInitialRender, setIsInitialRender] = useState(false);
 	const router = useRouter();
 	let isShowNav =
