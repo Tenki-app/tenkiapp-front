@@ -2,7 +2,7 @@ import { Button } from '@/UI/atoms/button/Button';
 import { Text } from '@/UI/atoms/text/Text';
 import { Title } from '@/UI/atoms/text/Title';
 import { MainLayout } from '@/UI/layouts/MainLayout';
-import PageNotFound from '@/svg/notFound/PageNotFound.svg';
+import PageNotFound from '@/svg/notFound/pageNotFound.svg';
 import LeftArrow from '@/svg/notFound/leftArrow.svg';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
