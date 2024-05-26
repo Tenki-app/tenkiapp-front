@@ -7,13 +7,15 @@ type TypeFilterTagsProps = {
 	setActiveTag: (value: any) => void;
 	tabsContent: string[];
 	containerStyles?: string;
+	testId?: string;
 };
 
-const FilterTags = ({
+const FilterTabs = ({
 	activeTag,
 	setActiveTag,
 	tabsContent,
 	containerStyles,
+	testId,
 }: TypeFilterTagsProps) => {
 	const { t } = useTranslation();
 
@@ -29,7 +31,10 @@ const FilterTags = ({
 		`${activeTag === tag ? activeButtonStyles : ''} ${buttonStyles ?? ''}`;
 
 	return (
-		<ul className={`flex gap-3 justify-center ${containerStyles ?? ''}`}>
+		<ul
+			className={`flex gap-3 justify-center ${containerStyles ?? ''}`}
+			data-testid={testId}
+		>
 			{tabsContent.map((tag, index) => (
 				<li key={index + tag}>
 					<Button
@@ -46,4 +51,4 @@ const FilterTags = ({
 	);
 };
 
-export { FilterTags };
+export { FilterTabs };

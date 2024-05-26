@@ -12,7 +12,7 @@ import { taskFilterTagsCategories } from '@/lib/data/tasks';
 import { calculateTaskDonePercent } from '@/lib/helpers/task/calculateTaskPercent';
 
 import { MainLayout } from '@/UI/layouts/MainLayout';
-import { FilterTags } from '@/UI/organisms/filter/FilterTabs';
+import { FilterTabs } from '@/UI/organisms/filter/FilterTabs';
 import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
 import { Loader } from '@/UI/molecules/loader/Loader';
 import { Title } from '@/UI/atoms/text/Title';
@@ -89,7 +89,7 @@ const TaskPage = () => {
 					{t('tasks')}
 				</Title>
 				<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
-					<FilterTags
+					<FilterTabs
 						tabsContent={taskFilterTagsCategories}
 						activeTag={activeTaskTabFilter}
 						setActiveTag={setActiveTaskTabFilter}

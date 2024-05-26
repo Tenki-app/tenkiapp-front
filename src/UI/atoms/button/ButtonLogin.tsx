@@ -9,7 +9,7 @@ import { Button } from './Button';
 const ButtonLogin = () => {
 	const { loginWithPopup, getIdTokenClaims } = useAuth0();
 	const router = useRouter();
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 	const { mutateAsync: postSignInUser } = usePostSignInUser();
 
 	const handleLogin = async () => {
