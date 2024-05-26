@@ -10,8 +10,8 @@ jobs:
                 node-version: [20.x]
         steps:
             - name: Linter
-              uses: npm run lint
+              run: npm run lint
             - name: Unit tests
-              uses: npm run test-coverage
+              run: npm run test-coverage
             - name: Build app
-              uses: npm run build
+              run: npm run build
