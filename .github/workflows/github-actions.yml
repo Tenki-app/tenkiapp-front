@@ -1,0 +1,13 @@
+name: GitHub Actions
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [pull_request]
+jobs:
+    Explore-GitHub-Actions:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Linter
+              uses: npm run lint
+            - name: Unit tests
+              uses: npm run test-coverge
+            - name: Build app
+              uses: npm run build
