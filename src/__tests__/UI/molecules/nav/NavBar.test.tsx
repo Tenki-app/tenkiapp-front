@@ -3,13 +3,6 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import { NavBar } from '@/UI/molecules/nav/NavBar';
 import { useRouter } from 'next/navigation';
 
-/* jest.mock('next/navigation', () => ({
-	useRouter: jest.fn().mockReturnValue({
-		push: jest.fn(),
-		replace: replaceMock,
-	}),
-})); */
-
 jest.mock('@/lib/store/store', () => ({
 	useAppStore: jest.fn().mockReturnValue({
 		navOption: 'Task',
