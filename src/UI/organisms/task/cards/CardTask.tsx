@@ -18,6 +18,7 @@ import type {
     TypeTaskState,
 } from '@/lib/types/tasks';
 import { SubmitHandler } from 'react-hook-form';
+import { Button } from '@/UI/atoms/button/Button';
 
 type TypeCardTaskProps = {
     taskData: TypeTask;
@@ -47,8 +48,10 @@ const CardTask = ({
         state,
         category,
     } = taskData || {};
-    const bottomIconsStyles = 'w-[18px] h-[18px] text-dark-blue cursor-pointer';
-
+    const bottomIconsStyles =
+        'w-[18px] h-[18px] text-dark-blue cursor-pointer dark:text-champagne-white';
+    const buttonStyles =
+        'border-2 border-dark-blue p-2 rounded-full dark:border-champagne-white dark:bg-dark-blue';
     const handleShowDetails = () => {
         if (!isActive) {
             setIsActive(true);
@@ -181,11 +184,15 @@ const CardTask = ({
                         >
                             <Text className='pt-4 pb-8'>{description}</Text>
                             <div className='flex justify-start gap-5 pt-[14px] items-center border-t '>
-                                <EditIcon
-                                    className={bottomIconsStyles}
+                                <Button
+                                    className={buttonStyles}
                                     onClick={onClickEdit}
-                                />
-                                <DeleteIcon className={bottomIconsStyles} />
+                                >
+                                    <EditIcon className={bottomIconsStyles} />
+                                </Button>
+                                <Button className={buttonStyles}>
+                                    <DeleteIcon className={bottomIconsStyles} />
+                                </Button>
                             </div>
                         </motion.div>
                     )}
