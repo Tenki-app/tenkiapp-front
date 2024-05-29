@@ -16,87 +16,41 @@ import { ButtonLogin } from '@/UI/atoms/button/ButtonLogin';
 import { ButtonLogout } from '@/UI/atoms/button/ButtonLogout';
 
 const options = [
-	{
-		label: 'label',
-		value: 'value',
-	},
-	{
-		label: 'label2',
-		value: 'value2',
-	},
+    {
+        label: 'label',
+        value: 'value',
+    },
+    {
+        label: 'label2',
+        value: 'value2',
+    },
 ];
 
 const Home = () => {
-	const [translations, i18n] = useTranslation('global');
+    const [translations, i18n] = useTranslation('global');
 
-	const [hidden, setHidden] = useState(true);
+    const [hidden, setHidden] = useState(true);
 
-	const showModal = () => {
-		setHidden(!hidden);
-	};
+    const showModal = () => {
+        setHidden(!hidden);
+    };
 
-	const handleSignOut = () => {};
+    const handleSignOut = () => {};
 
-	return (
-		<MainLayout
-			hasNav={true}
-			className='md:pt-[90px]'
-		>
-			<div className='bg-champagne-white w-screen h-screen p-12'>
-				<div className='flex justify-end'>
-					<Button onClick={handleSignOut}>Sign Out</Button>
-				</div>
-				<Title type='title'>Title</Title>
-				<Title type='subtitle'>Subtitle</Title>
-				<Dropdown dropdownOptions={options} />
-				<button onClick={() => showModal()}>
-					{translations('buttonLabel')}
-				</button>
-				<br />
-				<button
-					className='bg-dark-blue text-champagne-white p-2'
-					onClick={() => i18n.changeLanguage('es')}
-				>
-					ESPAÑOL
-				</button>
-				<br />
-				<br />
-				<button
-					className='bg-dark-blue text-champagne-white p-2'
-					onClick={() => i18n.changeLanguage('en')}
-				>
-					ENGLISH
-				</button>
-				<div className='bg-olive-drab p-4 bg flex flex-col gap-4'>
-					<ButtonLogin />
-					<ButtonLogout />
-				</div>
-				<StateDropdown
-					className={hidden ? '!hidden' : '!block'}
-					showModal={showModal}
-				/>
-				<Input
-					className=''
-					type='text'
-					text={'Escribe tu usuario...'}
-					icon={
-						<ProfileIcon className='w-full h-full text-dark-blue-transparency' />
-					}
-				/>
-			</div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-		</MainLayout>
-	);
+    return (
+        <MainLayout
+            hasNav={true}
+            className='md:pt-[90px]'
+        >
+            <div className='bg-champagne-white w-screen h-screen p-12'></div>
+        </MainLayout>
+    );
 };
 
 export default withAuthenticationRequired(Home, {
-	onRedirecting: () => <Loader />,
-	onBeforeAuthentication: () =>
-		new Promise(() => {
-			redirectToLoginPage();
-		}),
+    onRedirecting: () => <Loader />,
+    onBeforeAuthentication: () =>
+        new Promise(() => {
+            redirectToLoginPage();
+        }),
 });
