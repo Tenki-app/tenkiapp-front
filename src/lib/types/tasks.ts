@@ -9,13 +9,18 @@ export type TypeTaskCategory = 'today' | 'next' | 'someday' | '';
 export type TypeTaskState = 'done' | 'pending' | 'progress';
 
 export type TypeAddTaskForm = {
-    title: string;
-    description: string | null;
-    category: TypeTaskCategory;
-    date: string | null;
-    hour: string | null;
+	title: string;
+	description: string | null;
+	category: TypeTaskCategory;
+	date: string | null;
+	hour: string | null;
 };
 
 export type TypeEditTaskForm = Partial<TypeAddTaskForm> & {
-    taskId: string;
+	taskId: string;
+};
+
+export type TypeDeleteTaskParams = {
+	taskId: string;
+	userId: string;
 };
