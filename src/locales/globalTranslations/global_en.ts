@@ -17,4 +17,6 @@ export const global_en = {
 	today: 'Today',
 	next: 'Next',
 	someday: 'Someday',
+	yes: 'Yes',
+	no: 'No',
 };

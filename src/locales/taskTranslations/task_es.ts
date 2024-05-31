@@ -1,5 +1,7 @@
 export const task_es = {
-    tasks: 'Tareas',
-    addTask: 'Añadir tarea',
-    editTask: 'Editar tarea',
+	tasks: 'Tareas',
+	addTask: 'Añadir tarea',
+	editTask: 'Editar tarea',
+	deleteTask: 'Eliminar task',
+	deleteTaskDescription: '¿Estás seguro de que quieres eliminar esta tarea?',
 };
