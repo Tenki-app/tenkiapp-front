@@ -31,14 +31,27 @@ const ModalConfirm = ({
 	return (
 		<ModalTitleTemplate
 			title={title}
+			modalContainerStyles='h-auto max-h-[240px]'
 			content={
-				<div>
-					<Text>{description}</Text>
-					<div className='mt-8 flex justify-between'>
-						<Button>
+				<div className=''>
+					<Text className='text-center mt-6'>{description}</Text>
+					<div className='mt-8 flex justify-center gap-x-6 '>
+						<Button
+							onClick={onClick}
+							variant='blue'
+						>
 							{confirmButtonText ? confirmButtonText : t('yes')}
 						</Button>
-						<Button>
+						<Button
+							onClick={() => {
+								if (onCancel) {
+									onCancel();
+								} else {
+									setShowModal(false);
+								}
+							}}
+							variant='bordered'
+						>
 							{cancelButtonText ? cancelButtonText : t('no')}
 						</Button>
 					</div>

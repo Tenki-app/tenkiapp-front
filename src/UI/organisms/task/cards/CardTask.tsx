@@ -1,15 +1,20 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { MouseEvent, useState } from 'react';
+import { SubmitHandler } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
 	useDeleteSingleTask,
 	usePutSingleTask,
 } from '@/lib/hooks/queries/useQueryTask';
+import { useAppStore } from '@/lib/store/store';
 
 import { Text } from '@/UI/atoms/text/Text';
 import { ButtonStateTask } from '@/UI/molecules/task/button/ButtonStateTask';
 import { ModalEditTask } from '../modal/ModalEditTask';
+import { Button } from '@/UI/atoms/button/Button';
+import { ModalConfirm } from '../../modal/ModalConfirm';
 
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';
 import DeleteIcon from '@/svg/task/deleteIcon.svg';
@@ -20,8 +25,6 @@ import type {
 	TypeTask,
 	TypeTaskState,
 } from '@/lib/types/tasks';
-import { SubmitHandler } from 'react-hook-form';
-import { Button } from '@/UI/atoms/button/Button';
 
 type TypeCardTaskProps = {
 	taskData: TypeTask;
@@ -36,11 +39,15 @@ const CardTask = ({
 	isOpen = false,
 	isUpdateStatusActive = true,
 }: TypeCardTaskProps) => {
+	const { t } = useTranslation();
+	const { user } = useAppStore();
+
 	const { putSingleTask, isLoadingPutTask } = usePutSingleTask();
 	const { deleteSingleTask } = useDeleteSingleTask();
 
 	const [isActive, setIsActive] = useState(isOpen);
 	const [showEditTaskModal, setShowEditTaskModal] = useState(false);
+	const [showDeleteTaskModal, setShowDeleteTaskModal] = useState(false);
 	const [showStatusModal, setShowStatusModal] = useState(false);
 
 	const {
@@ -52,6 +59,8 @@ const CardTask = ({
 		state,
 		category,
 	} = taskData || {};
+	const userId = user?.id;
+
 	const bottomIconsStyles =
 		'w-[18px] h-[18px] text-dark-blue cursor-pointer dark:text-champagne-white';
 	const buttonStyles =
@@ -99,6 +108,15 @@ const CardTask = ({
 
 	const onClickDelete = (e: MouseEvent<SVGSVGElement>) => {
 		e.stopPropagation();
+		setShowDeleteTaskModal(true);
+	};
+
+	const handleDeleteTask = () => {
+		if (taskId && userId) {
+			deleteSingleTask({ taskId, userId }).finally(() => {
+				setShowDeleteTaskModal(false);
+			});
+		}
 	};
 
 	const variantsArrow = {
@@ -115,6 +133,16 @@ const CardTask = ({
 					formInitialValues={taskData}
 					onSubmit={handleSubmitEditTask}
 					isLoadingSubmit={isLoadingPutTask}
+				/>,
+				document.body
+			)}
+			{createPortal(
+				<ModalConfirm
+					showModal={showDeleteTaskModal}
+					setShowModal={setShowDeleteTaskModal}
+					onClick={handleDeleteTask}
+					title={t('deleteTask')}
+					description={t('deleteTaskDescription')}
 				/>,
 				document.body
 			)}
@@ -198,7 +226,10 @@ const CardTask = ({
 								>
 									<EditIcon className={bottomIconsStyles} />
 								</Button>
-								<Button className={buttonStyles}>
+								<Button
+									className={buttonStyles}
+									onClick={onClickDelete}
+								>
 									<DeleteIcon className={bottomIconsStyles} />
 								</Button>
 							</div>
