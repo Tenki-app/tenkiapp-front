@@ -235,7 +235,7 @@ const fetchDeleteSingleTask = async (
 	return response;
 };
 export const useDeleteSingleTask = () => {
-	const { setIsLoading, user } = useAppStore();
+	const { setIsLoading } = useAppStore();
 	const { getIdTokenClaims } = useAuth0();
 	const currentQueryClient = useQueryClient();
 
@@ -250,9 +250,9 @@ export const useDeleteSingleTask = () => {
 			console.error(err);
 		},
 		onSettled: () => {
-			currentQueryClient.invalidateQueries(['todayAllTasks', user?.id]);
-			currentQueryClient.invalidateQueries(['nextAllTasks', user?.id]);
-			currentQueryClient.invalidateQueries(['somedayAllTasks', user?.id]);
+			currentQueryClient.invalidateQueries(['todayAllTasks']);
+			currentQueryClient.invalidateQueries(['nextAllTasks']);
+			currentQueryClient.invalidateQueries(['somedayAllTasks']);
 			setIsLoading(false);
 		},
 	});
