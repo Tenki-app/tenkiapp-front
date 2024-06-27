@@ -32,7 +32,7 @@ const Button = ({
 	...restProps
 }: typeButtonProps): JSX.Element => {
 	const variantStyles = () => {
-		let designButton = `font-primary ${isHover ? 'ov-btn-slide-left' : ''}`;
+		let designButton = `font-primary ${isHover ? '' : ''}`;
 
 		if (variant === 'underline') {
 			designButton +=
@@ -57,7 +57,10 @@ const Button = ({
 		<>
 			{redirect ? (
 				<Link
-					className={twMerge(variantStyles(), className)}
+					className={`ov-btn-slide-left ${twMerge(
+						variantStyles(),
+						className
+					)}`}
 					href={redirect}
 					onClick={onClick}
 					{...restProps}
@@ -66,7 +69,10 @@ const Button = ({
 				</Link>
 			) : (
 				<button
-					className={twMerge(variantStyles(), className)}
+					className={`ov-btn-slide-left ${twMerge(
+						variantStyles(),
+						className
+					)}`}
 					onClick={onClick}
 					type={type}
 					disabled={isDisabled}
