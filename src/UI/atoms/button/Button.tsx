@@ -57,7 +57,7 @@ const Button = ({
 		<>
 			{redirect ? (
 				<Link
-					className={`ov-btn-slide-left ${twMerge(
+					className={`${isHover ? 'ov-btn-slide-left' : ''} ${twMerge(
 						variantStyles(),
 						className
 					)}`}
@@ -69,7 +69,7 @@ const Button = ({
 				</Link>
 			) : (
 				<button
-					className={`ov-btn-slide-left ${twMerge(
+					className={`${isHover ? 'ov-btn-slide-left' : ''} ${twMerge(
 						variantStyles(),
 						className
 					)}`}
