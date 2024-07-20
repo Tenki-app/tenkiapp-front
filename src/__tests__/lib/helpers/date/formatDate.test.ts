@@ -6,7 +6,7 @@ describe('test the format date', () => {
 		expect(formatDate(null)).toBe('');
 	});
 	it('should return date when is defined', () => {
-		expect(formatDate('2024-03-19T02:25:56.282Z')).toBe('3/18/2024');
+		expect(formatDate('2024-03-19T02:25:56.282Z')).toBe('18/3/2024');
 	});
 
 	
