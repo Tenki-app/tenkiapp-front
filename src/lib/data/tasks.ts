@@ -175,15 +175,15 @@ export const tasksDummyData = [
 
 export const taskCategories = [
 	{
-		label: 'Today',
+		label: 'today',
 		value: 'today',
 	},
 	{
-		label: 'Next',
+		label: 'next',
 		value: 'next',
 	},
 	{
-		label: 'Someday',
+		label: 'someday',
 		value: 'someday',
 	},
 ];

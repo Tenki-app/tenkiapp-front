@@ -19,4 +19,8 @@ export const global_es = {
 	someday: 'Algún día',
 	yes: 'Si',
 	no: 'No',
+	update: 'Actualizar',
+	create: 'Crear',
+	hide: 'Esconder',
+	moreOptions: 'Más opciones',
 };

@@ -1,6 +1,7 @@
 import { useForm, FormProvider } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
 
 import { defaultTaskFormValues, taskCategories } from '@/lib/data/tasks';
 import { getCurrentDate, getTomorrowDate } from '@/lib/helpers/date/getDates';
@@ -24,6 +25,7 @@ const FormTask = ({
 	onSubmit,
 	isLoadingSubmit,
 }: TypeFormTaskProps) => {
+	const { t } = useTranslation();
 	const formMethods = useForm<TypeAddTaskForm>({
 		defaultValues: formInitialValues ?? defaultTaskFormValues,
 		resolver: zodResolver(resolverAddTaskFormSchema),
@@ -61,17 +63,17 @@ const FormTask = ({
 			<form className='flex flex-col gap-y-3'>
 				<InputForm
 					name='title'
-					placeholder='Title...*'
+					placeholder={`${t('title')}...*`}
 				/>
 				<InputForm
 					name='description'
 					type='textarea'
-					placeholder={`Description...*`}
+					placeholder={`${t('description')}...*`}
 				/>
 				<DropdownForm
 					name='category'
 					dropdownOptions={taskCategories}
-					placeholder='Category...*'
+					placeholder={`${t('category')}...*`}
 				/>
 				<InputForm
 					name='date'
@@ -97,7 +99,7 @@ const FormTask = ({
 						className='!text-dark-blue text-sm !font-bold'
 						onClick={() => setShowMoreOptions(!showMoreOptions)}
 					>
-						{showMoreOptions ? 'Less options' : 'More options'}
+						{showMoreOptions ? t('hide') : t('moreOptions')}
 					</Button>
 				</div>
 				<Button
@@ -105,7 +107,7 @@ const FormTask = ({
 					onClick={formMethods.handleSubmit(onSubmit)}
 					isDisabled={isLoadingSubmit}
 				>
-					{isEditFormTask ? 'Update' : '+ Create'}
+					{isEditFormTask ? t('update') : `+ ${t('create')}`}
 				</Button>
 			</form>
 		</FormProvider>
