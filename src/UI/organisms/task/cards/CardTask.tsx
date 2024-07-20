@@ -15,6 +15,7 @@ import { ButtonStateTask } from '@/UI/molecules/task/button/ButtonStateTask';
 import { ModalEditTask } from '../modal/ModalEditTask';
 import { Button } from '@/UI/atoms/button/Button';
 import { ModalConfirm } from '../../modal/ModalConfirm';
+import { formatDate } from '@/helpers/date/formatDate';
 
 import ArrowIcon from '@/svg/task/downArrowIcon.svg';
 import DeleteIcon from '@/svg/task/deleteIcon.svg';
@@ -118,13 +119,7 @@ const CardTask = ({
             });
         }
     };
-    const formatDate = (date: string | null) => {
-        if (!date) {
-            return '';
-        }
-        const dateToChoose = new Date(date).toLocaleDateString();
-        return dateToChoose;
-    };
+
     const variantsArrow = {
         open: { rotate: '180deg' },
         close: { rotate: '0' },
