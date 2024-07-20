@@ -71,6 +71,7 @@ const FormTask = ({
 				<DropdownForm
 					name='category'
 					dropdownOptions={taskCategories}
+					placeholder='Category...*'
 				/>
 				<InputForm
 					name='date'
