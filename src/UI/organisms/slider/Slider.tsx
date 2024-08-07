@@ -56,52 +56,55 @@ const Slider = ({
 	};
 
 	return (
-		<div className='relative'>
-			<Swiper
-				spaceBetween={spaceBetween}
-				slidesPerView={slidesPerView}
-				autoplay={autoplay}
-				pagination={{
-					el: '.dots-container',
-					clickable: true,
-					bulletActiveClass: 'active-dot',
-					bulletClass: 'dot',
-					renderBullet: function (index, className) {
-						return '<span class="' + className + '">' + '</span>';
-					},
-				}}
-				className={`${sliderStyles} relative flex flex-row`}
-				onSlideChange={(param: any) => {
-					setIndexActiveSlide(String(param.activeIndex + 1));
-				}}
-				navigation={{
-					nextEl: '.swiper-button-next',
-					prevEl: '.swiper-button-prev',
-				}}
-				modules={[Navigation, Pagination]}
-			>
-				{slides.map((singleSlide, index) => (
-					<SwiperSlide key={index}>{singleSlide}</SwiperSlide>
-				))}
-				{navigation && (
-					<>
-						<Button
-							className={`swiper-button-prev left-5 ${commonArrowButtonStyles}`}
-						>
-							<ArrowIcon className='text-champagne-white' />
-						</Button>
-						<Button
-							className={`swiper-button-next right-5 ${commonArrowButtonStyles}`}
-						>
-							<ArrowIcon className='rotate-180 text-champagne-white' />
-						</Button>
-					</>
-				)}
-				{pagination && (
-					<div className='dots-container w-full flex justify-center z-[100] absolute !bottom-[30px] gap-x-2'></div>
-				)}
-			</Swiper>
-		</div>
+		<Swiper
+			spaceBetween={spaceBetween}
+			slidesPerView={slidesPerView}
+			autoplay={autoplay}
+			pagination={{
+				el: '.dots-container',
+				clickable: true,
+				bulletActiveClass: 'active-dot',
+				bulletClass: 'dot',
+				renderBullet: function (index, className) {
+					return '<span class="' + className + '">' + '</span>';
+				},
+			}}
+			className={`${sliderStyles} relative flex flex-row w-full h-full`}
+			onSlideChange={(param: any) => {
+				setIndexActiveSlide(String(param.activeIndex + 1));
+			}}
+			navigation={{
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			}}
+			modules={[Navigation, Pagination]}
+		>
+			{slides.map((singleSlide, index) => (
+				<SwiperSlide
+					key={index}
+					className='h-full'
+				>
+					{singleSlide}
+				</SwiperSlide>
+			))}
+			{navigation && (
+				<>
+					<Button
+						className={`swiper-button-prev left-5 ${commonArrowButtonStyles}`}
+					>
+						<ArrowIcon className='text-champagne-white w-[30px] h-[30px]' />
+					</Button>
+					<Button
+						className={`swiper-button-next right-5 ${commonArrowButtonStyles}`}
+					>
+						<ArrowIcon className='rotate-180 text-champagne-white w-[30px] h-[30px]' />
+					</Button>
+				</>
+			)}
+			{pagination && (
+				<div className='dots-container w-full flex justify-center z-[100] absolute !bottom-[30px] gap-x-2'></div>
+			)}
+		</Swiper>
 	);
 };
 
