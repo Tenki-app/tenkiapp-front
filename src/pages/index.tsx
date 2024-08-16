@@ -5,6 +5,7 @@ import HomeSlider from '@/UI/organisms/home/slider/HomeSlider';
 
 import { Loader } from '@/UI/molecules/loader/Loader';
 import { MainLayout } from '@/UI/layouts/MainLayout';
+import { TasksHome } from '@/UI/organisms/tasksHome/tasksHome';
 
 const Home = () => {
 	return (
@@ -12,7 +13,10 @@ const Home = () => {
 			hasNav={true}
 			className='md:pt-[90px]'
 		>
-			<HomeSlider />
+			<div className='bg-champagne-white w-screen'>
+				<HomeSlider />
+				<TasksHome />
+			</div>
 		</MainLayout>
 	);
 };
