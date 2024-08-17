@@ -90,12 +90,12 @@ const Slider = ({
 			{navigation && (
 				<>
 					<Button
-						className={`swiper-button-prev left-5 ${commonArrowButtonStyles}`}
+						className={`swiper-button-prev left-5 outline-none ${commonArrowButtonStyles}`}
 					>
 						<ArrowIcon className='text-champagne-white w-[30px] h-[30px]' />
 					</Button>
 					<Button
-						className={`swiper-button-next right-5 ${commonArrowButtonStyles}`}
+						className={`swiper-button-next right-5 outline-none ${commonArrowButtonStyles}`}
 					>
 						<ArrowIcon className='rotate-180 text-champagne-white w-[30px] h-[30px]' />
 					</Button>

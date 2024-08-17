@@ -1,13 +1,16 @@
+import { useGetScreenSize } from '@/lib/hooks/utils/useGetScreenSize';
+import { SM } from '@/lib/utils/constants';
+
 import Image from 'next/image';
 import { Slider } from '../../slider/Slider';
 import { HomeSlide } from '../HomeSlide';
-
-import KeyboardNotesImage from '@/images/home/keyboard-notes-image.png';
 import { Text } from '@/UI/atoms/text/Text';
 
-type TypeHomeSliderProps = {};
+import KeyboardNotesImage from '@/images/home/keyboard-notes-image.png';
 
 const HomeSlider = () => {
+	const { screenWidth } = useGetScreenSize();
+
 	const slideStyles =
 		'h-full w-full flex justify-center items-center text-white text-4xl';
 
@@ -53,6 +56,7 @@ const HomeSlider = () => {
 			<Slider
 				slides={slidesArray}
 				dotStyle='simple'
+				navigation={screenWidth > SM}
 			/>
 		</div>
 	);
