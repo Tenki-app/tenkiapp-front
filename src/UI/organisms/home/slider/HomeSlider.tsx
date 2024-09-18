@@ -19,9 +19,9 @@ const HomeSlider = () => {
 			key={1}
 			description={
 				<div>
-					<Text className='text-3xl'>
+					<Text className='text-center text-xl md:text-3xl'>
 						Gestiona tus <span>tareas</span> de manera efectiva con
-						<span>Tenki!</span>
+						<span> Tenki!</span>
 					</Text>
 				</div>
 			}
@@ -30,19 +30,52 @@ const HomeSlider = () => {
 			key={2}
 			className={slideStyles}
 		>
-			2
+			<HomeSlide
+				key={1}
+				description={
+					<div>
+						<Text className='text-center text-xl md:text-3xl'>
+							Gestiona tus <span>tareas</span> de manera efectiva
+							con
+							<span> Tenki!</span>
+						</Text>
+					</div>
+				}
+			/>
 		</div>,
 		<div
 			key={3}
 			className={slideStyles}
 		>
-			3
+			<HomeSlide
+				key={1}
+				description={
+					<div>
+						<Text className='text-center text-xl md:text-3xl'>
+							Gestiona tus <span>tareas</span> de manera efectiva
+							con
+							<span> Tenki!</span>
+						</Text>
+					</div>
+				}
+			/>
 		</div>,
 		<div
 			key={4}
 			className={slideStyles}
 		>
-			4
+			<HomeSlide
+				key={1}
+				description={
+					<div>
+						<Text className='text-center text-xl md:text-3xl'>
+							Gestiona tus <span>tareas</span> de manera efectiva
+							con
+							<span> Tenki!</span>
+						</Text>
+					</div>
+				}
+			/>
 		</div>,
 	];
 
@@ -56,7 +89,7 @@ const HomeSlider = () => {
 			<Slider
 				slides={slidesArray}
 				dotStyle='simple'
-				navigation={screenWidth > SM}
+				hasNavigation={screenWidth > SM}
 			/>
 		</div>
 	);

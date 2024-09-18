@@ -1,7 +1,9 @@
-import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useState } from 'react';
 import { withAuthenticationRequired } from '@auth0/auth0-react';
+import Image from 'next/image';
+
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import { onboardingImagesData } from '@/lib/data/onboarding';
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 import { MainLayout } from '@/UI/layouts/MainLayout';
@@ -12,7 +14,6 @@ import { OnboardingSlideFour } from '@/UI/organisms/onboarding/slides/Onboarding
 import SliderDots from '@/UI/molecules/slider/SliderDots';
 import TitleWithLines from '@/UI/atoms/text/TitleWithLines';
 import { Loader } from '@/UI/molecules/loader/Loader';
-import Image from 'next/image';
 import 'swiper/css';
 
 const OnboardingPage = () => {

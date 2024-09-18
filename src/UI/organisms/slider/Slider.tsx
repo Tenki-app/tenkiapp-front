@@ -14,14 +14,13 @@ import { Button } from '@/UI/atoms/button/Button';
 
 type TypeHomeSlider = {
 	slides: Array<ReactNode>;
-	dotStyle: 'numbers' | 'simple';
+	dotStyle?: 'numbers' | 'simple' | 'none';
 	sliderStyles?: string;
 	swiperStyles?: string;
 	spaceBetween?: number;
 	slidesPerView?: number;
-	autoplay?: boolean;
-	navigation?: boolean;
-	pagination?: boolean;
+	hasAutoplay?: boolean;
+	hasNavigation?: boolean;
 };
 
 const Slider = ({
@@ -30,9 +29,8 @@ const Slider = ({
 	sliderStyles,
 	spaceBetween = 0,
 	slidesPerView = 1,
-	autoplay = false,
-	navigation = true,
-	pagination = true,
+	hasAutoplay = false,
+	hasNavigation = true,
 }: TypeHomeSlider) => {
 	const [indexActiveSlide, setIndexActiveSlide] = useState<string>('1');
 
@@ -51,6 +49,11 @@ const Slider = ({
 			);
 		}
 		if (dotStyle === 'simple') {
+			return (
+				<div className='dots-container w-full flex justify-center z-[100] absolute !bottom-[30px] gap-x-2'></div>
+			);
+		}
+		if (dotStyle === 'none') {
 			return <></>;
 		}
 	};
@@ -59,7 +62,7 @@ const Slider = ({
 		<Swiper
 			spaceBetween={spaceBetween}
 			slidesPerView={slidesPerView}
-			autoplay={autoplay}
+			autoplay={hasAutoplay}
 			pagination={{
 				el: '.dots-container',
 				clickable: true,
@@ -87,7 +90,7 @@ const Slider = ({
 					{singleSlide}
 				</SwiperSlide>
 			))}
-			{navigation && (
+			{hasNavigation && (
 				<>
 					<Button
 						className={`swiper-button-prev left-5 outline-none ${commonArrowButtonStyles}`}
@@ -101,9 +104,7 @@ const Slider = ({
 					</Button>
 				</>
 			)}
-			{pagination && (
-				<div className='dots-container w-full flex justify-center z-[100] absolute !bottom-[30px] gap-x-2'></div>
-			)}
+			{renderDotsComponent()}
 		</Swiper>
 	);
 };
