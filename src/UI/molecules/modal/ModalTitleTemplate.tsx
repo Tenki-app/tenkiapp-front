@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { twMerge } from 'tailwind-merge';
 
-import { useCloseWhenClickOutside } from '@/lib/hooks/useCloseWhenClickOutside';
+import { useCloseWhenClickOutside } from '@/lib/hooks/utils/useCloseWhenClickOutside';
 
 import { Text } from '@/UI/atoms/text/Text';
 import CloseIcon from '@/svg/task/closeIcon.svg';
