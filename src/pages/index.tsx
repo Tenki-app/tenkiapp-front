@@ -12,7 +12,7 @@ const Home = () => {
             hasNav={true}
             className='md:pt-[90px]'
         >
-            <div className='bg-champagne-white w-screen'>
+            <div className='bg-champagne-white pb-[183px]'>
                 <TasksHome />
             </div>
         </MainLayout>
