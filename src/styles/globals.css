@@ -78,3 +78,17 @@
 ::-moz-scrollbar-track {
 	background-color: transparent;
 }
+
+/* Slider */
+.active-dot {
+	background: #F7EFD8 !important;
+	opacity: 1 !important;
+	transform: scale(1.2);
+}
+
+.dot {
+	background: #081529;
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+}
