@@ -8,23 +8,23 @@ import { MainLayout } from '@/UI/layouts/MainLayout';
 import { TasksHome } from '@/UI/organisms/tasksHome/tasksHome';
 
 const Home = () => {
-	return (
-		<MainLayout
-			hasNav={true}
-			className='md:pt-[90px]'
-		>
-			<div className='bg-champagne-white w-screen'>
-				<HomeSlider />
-				<TasksHome />
-			</div>
-		</MainLayout>
-	);
+    return (
+        <MainLayout
+            hasNav={true}
+            className='md:pt-[90px]'
+        >
+            <div className='bg-champagne-white pb-[183px]'>
+                <HomeSlider />
+                <TasksHome />
+            </div>
+        </MainLayout>
+    );
 };
 
 export default withAuthenticationRequired(Home, {
-	onRedirecting: () => <Loader />,
-	onBeforeAuthentication: () =>
-		new Promise(() => {
-			redirectToLoginPage();
-		}),
+    onRedirecting: () => <Loader />,
+    onBeforeAuthentication: () =>
+        new Promise(() => {
+            redirectToLoginPage();
+        }),
 });
