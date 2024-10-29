@@ -2,7 +2,17 @@ import { Title } from '@/UI/atoms/text/Title';
 import { TasksListContainer } from '@/UI/molecules/tasksListContainer/taskListContainer';
 import LeavesPictogram1 from '@/svg/home/Top-Leaves.svg';
 import LeavesPictogram2 from '@/svg/home/Top-Leaves2.svg';
+import { useGetAllTasksByCategory } from '@/lib/hooks/queries/useQueryTask';
+import { useAppStore } from '@/lib/store/store';
 const TasksHome = () => {
+    const { user } = useAppStore();
+    const { allTasksByCategory } = useGetAllTasksByCategory('today', user?.id);
+    const inProgressTasks = allTasksByCategory?.filter(
+        (task) => task.state === 'progress'
+    );
+    const pendingTasks = allTasksByCategory?.filter(
+        (task) => task.state === 'pending'
+    );
     return (
         <div className='md:pl-[5%] md:pr-[5%] relative'>
             <LeavesPictogram1 className='hidden md:block w-[269px] h-[266px] text-dark-blue opacity-[.2] absolute right-0 ' />
@@ -20,7 +30,7 @@ const TasksHome = () => {
                     >
                         En progreso
                     </Title>
-                    <TasksListContainer />
+                    <TasksListContainer tasks={inProgressTasks} />
                 </div>
                 <div className='flex flex-col items-center'>
                     <Title
@@ -29,7 +39,7 @@ const TasksHome = () => {
                     >
                         Pendientes
                     </Title>
-                    <TasksListContainer />
+                    <TasksListContainer tasks={pendingTasks} />
                     <LeavesPictogram2 className='hidden md:block w-[269px] h-[266px] text-dark-blue opacity-[.2] absolute z-0 left-0 bottom-[-184px]' />
                 </div>
             </div>
