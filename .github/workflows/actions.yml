@@ -1,0 +1,22 @@
+name: Testing
+
+on: [pull_request]
+
+jobs:
+    GitHub-Actions:
+        runs-on: ubuntu-latest
+        env:
+            NEXT_PUBLIC_AUTH0_DOMAIN: ${{ secrets.NEXT_PUBLIC_AUTH0_DOMAIN }}
+            NEXT_PUBLIC_AUTH0_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_AUTH0_CLIENT_ID }}
+            NEXT_PUBLIC_AUTH0_CLIENT_SECRET: ${{ secrets.NEXT_PUBLIC_AUTH0_CLIENT_SECRET }}
+        steps:
+            - name: Checkout folders
+              uses: actions/checkout@v4
+            - name: Install dependencies
+              run: npm install
+            - name: Linter
+              run: npm run lint
+            - name: Unit tests
+              run: npm run test-coverage
+            - name: Build app
+              run: npm run build

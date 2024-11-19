@@ -49,6 +49,9 @@
             ],
             "@/store/*": [
                 "./src/UI/lib/store*"
+            ],
+            "@/locales/*": [
+                "./src/locales/*"
             ]
         }
     },

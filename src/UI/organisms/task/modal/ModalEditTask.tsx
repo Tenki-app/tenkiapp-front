@@ -1,0 +1,58 @@
+import { useTranslation } from 'react-i18next';
+
+import { ModalTitleTemplate } from '@/UI/molecules/modal/ModalTitleTemplate';
+import { FormTask } from '../forms/FormTask';
+
+import type { TypeAddTaskForm, TypeTask } from '@/lib/types/tasks';
+import type { SubmitHandler } from 'react-hook-form';
+
+type TypeModalEditTaskProps = {
+	showModal: boolean;
+	setShowModal: (show: boolean) => void;
+	formInitialValues: TypeTask | null;
+	onSubmit: SubmitHandler<TypeAddTaskForm>;
+	isLoadingSubmit?: boolean;
+};
+
+const ModalEditTask = ({
+	showModal,
+	setShowModal,
+	formInitialValues,
+	onSubmit,
+	isLoadingSubmit,
+}: TypeModalEditTaskProps) => {
+	const { t } = useTranslation();
+
+	const initialValuesFormatted = () => {
+		if (!formInitialValues) {
+			return undefined;
+		}
+
+		const taskInitialData = {
+			title: formInitialValues.title,
+			description: formInitialValues.description,
+			category: formInitialValues.category,
+			date: formInitialValues.date_task,
+			hour: formInitialValues.time,
+		};
+
+		return taskInitialData;
+	};
+
+	return (
+		<ModalTitleTemplate
+			title={t('editTask')}
+			content={
+				<FormTask
+					formInitialValues={initialValuesFormatted()}
+					onSubmit={onSubmit}
+					isLoadingSubmit={isLoadingSubmit}
+				/>
+			}
+			showModal={showModal}
+			setShowModal={setShowModal}
+		/>
+	);
+};
+
+export { ModalEditTask };

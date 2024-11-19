@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main-transition {
+	transition: all ease 0.3s;
+}
+
+.fast-transition {
+	transition: all ease .1s;
+}
+
+/* stateDropdown hover styles */
+.option-styles {
+	transition: all ease 0.2s;
+}
+.option-styles:hover {
+	background: #182438;
+	cursor: pointer;
+}
+.option-styles:hover p {
+	color: #f7efd8;
+}
+.ov-btn-slide-left {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	display: inline-block;
+}
+.ov-btn-slide-left::after {
+	content: '';
+	background: #7a889f;
+	position: absolute;
+	z-index: -1;
+	padding: 16px 20px;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: -100%;
+	right: 100%;
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
+}
+.ov-btn-slide-left:hover::after {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	-webkit-transition: all 0.35s;
+	transition: all 0.35s;
+}
+
+/* Scroll bar (Chrome and Safari) */
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #a0a0a0;
+	border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+/* Scroll bar (Firefox) */
+::-moz-scrollbar {
+	width: 10px;
+}
+
+::-moz-scrollbar-thumb {
+	background-color: #626262;
+	border-radius: 8px;
+}
+
+::-moz-scrollbar-track {
+	background-color: transparent;
+}
+
+/* Slider */
+.active-dot {
+	background: #F7EFD8 !important;
+	opacity: 1 !important;
+	transform: scale(1.2);
+}
+
+.dot {
+	background: #081529;
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+}

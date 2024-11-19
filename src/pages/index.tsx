@@ -1,14 +1,27 @@
-import Title from "@/UI/1-atoms/Text/Title";
-import TenkiLogo from "@/svg/theme/tenkiLogo.svg";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
-export default function Home() {
-    return (
-        <div>
-            <TenkiLogo
-                className='text-blue-900 w-[100px] h-[100px]'
-                onClick
-            />
-            <Title>Hi, this is Tenki</Title>
-        </div>
-    );
-}
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
+import HomeSlider from '@/UI/organisms/home/slider/HomeSlider';
+
+import { Loader } from '@/UI/molecules/loader/Loader';
+import { MainLayout } from '@/UI/layouts/MainLayout';
+import { TasksHome } from '@/UI/organisms/tasksHome/tasksHome';
+
+const Home = () => {
+	return (
+		<MainLayout hasNav={true}>
+			<div className='bg-champagne-white pb-[183px]'>
+				<HomeSlider />
+				<TasksHome />
+			</div>
+		</MainLayout>
+	);
+};
+
+export default withAuthenticationRequired(Home, {
+	onRedirecting: () => <Loader />,
+	onBeforeAuthentication: () =>
+		new Promise(() => {
+			redirectToLoginPage();
+		}),
+});
