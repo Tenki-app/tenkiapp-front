@@ -1,7 +1,7 @@
-import { SwitchLang } from '../molecules/switchLang/SwitchLang';
-import { ThemeMode } from '../molecules/themeMode/ThemeMode';
+import { SwitchLang } from "../molecules/switchLang/SwitchLang";
+import { ThemeMode } from "../molecules/themeMode/ThemeMode";
 
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
 type typeMainLayoutProps = {
 	children: ReactNode;
@@ -18,17 +18,17 @@ const MainLayout = ({
 	wrapperClasses,
 	hasMobileNav,
 }: typeMainLayoutProps) => {
-	const mainMargin = 'mx-auto w-[90vw] 2xl:w-[1080px]';
+	const mainMargin = "mx-auto w-[90vw] 2xl:w-[1080px]";
 
 	return (
 		<main
 			className={`bg-champagne-white w-screen h-screen ${
-				className ?? ''
+				className ?? ""
 			} dark:bg-dark-blue`}
 		>
 			<div
-				className={`h-full ${hasMargin ? mainMargin : ''} ${
-					wrapperClasses ?? ''
+				className={`h-full ${hasMargin ? mainMargin : ""} ${
+					wrapperClasses ?? ""
 				}`}
 			>
 				{hasMobileNav && (

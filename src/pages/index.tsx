@@ -1,16 +1,16 @@
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { withAuthenticationRequired } from "@auth0/auth0-react";
 
-import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
-import HomeSlider from '@/UI/organisms/home/slider/HomeSlider';
+import { redirectToLoginPage } from "@/lib/helpers/redirect/redirects";
+import HomeSlider from "@/UI/organisms/home/slider/HomeSlider";
 
-import { Loader } from '@/UI/molecules/loader/Loader';
-import { MainLayout } from '@/UI/layouts/MainLayout';
-import { TasksHome } from '@/UI/organisms/tasksHome/tasksHome';
+import { Loader } from "@/UI/molecules/loader/Loader";
+import { MainLayout } from "@/UI/layouts/MainLayout";
+import { TasksHome } from "@/UI/organisms/tasksHome/tasksHome";
 
 const Home = () => {
 	return (
 		<MainLayout hasMobileNav={true}>
-			<div className='bg-champagne-white pb-[183px]'>
+			<div className='bg-champagne-white'>
 				<HomeSlider />
 				<TasksHome />
 			</div>

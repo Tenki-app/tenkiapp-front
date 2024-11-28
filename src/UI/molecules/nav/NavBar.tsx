@@ -106,44 +106,51 @@ export const NavBar = () => {
 	}, []);
 
 	return (
-		<nav className='w-full h-[69px] md:h-[80px] fixed left-0 z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
-			<div className='h-full flex items-center justify-between'>
-				<ul className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
-					{navBarItemsData.map((navBarItem) =>
-						renderNavBarItem(
-							navBarItem.itemName as NavType,
-							navBarItem.redirect,
-							navBarItem.itemLabel
-						)
-					)}
-				</ul>
-				<ul className='flex items-center gap-5'>
-					<li className='w-fit hidden md:block'>
-						<SwitchLang variant='nav' />
-					</li>
-					<div className='h-[18px] w-[3px] bg-champagne-white hidden md:block'></div>
-					<li className='w-fit hidden md:block'>
-						<ThemeMode variant='nav' />
-					</li>
-					<div className='h-[18px] w-[3px] bg-champagne-white hidden md:block'></div>
-					<li
-						onClick={() => handleActive("Notification")}
-						className='hidden md:block md:pr-11 w-fit'
-					>
-						<Link
-							href={""}
-							className={handleLinkActiveStyles("Notification")}
+		<>
+			<nav className='w-full h-[69px] md:h-[80px] fixed left-0 z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
+				<div className='h-full flex items-center justify-between'>
+					<ul className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
+						{navBarItemsData.map((navBarItem) =>
+							renderNavBarItem(
+								navBarItem.itemName as NavType,
+								navBarItem.redirect,
+								navBarItem.itemLabel
+							)
+						)}
+					</ul>
+					<ul className='flex items-center gap-5'>
+						<li className='w-fit hidden md:block'>
+							<SwitchLang variant='nav' />
+						</li>
+						<div className='h-[18px] w-[3px] bg-champagne-white hidden md:block'></div>
+						<li className='w-fit hidden md:block'>
+							<ThemeMode variant='nav' />
+						</li>
+						<div className='h-[18px] w-[3px] bg-champagne-white hidden md:block'></div>
+						<li
+							onClick={() => handleActive("Notification")}
+							className='hidden md:block md:pr-11 w-fit'
 						>
-							<NotificationIcon
-								className={handleActiveStyles("Notification")}
-							></NotificationIcon>
-							<div
-								className={handleDivActive("Notification")}
-							></div>
-						</Link>
-					</li>
-				</ul>
-			</div>
-		</nav>
+							<Link
+								href={""}
+								className={handleLinkActiveStyles(
+									"Notification"
+								)}
+							>
+								<NotificationIcon
+									className={handleActiveStyles(
+										"Notification"
+									)}
+								></NotificationIcon>
+								<div
+									className={handleDivActive("Notification")}
+								></div>
+							</Link>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div className='mb-[69px] md:mb-[80px]'></div>
+		</>
 	);
 };

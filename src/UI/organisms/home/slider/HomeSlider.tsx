@@ -1,18 +1,18 @@
-import { useGetScreenSize } from '@/lib/hooks/utils/useGetScreenSize';
-import { SM } from '@/lib/utils/constants';
+import { useGetScreenSize } from "@/lib/hooks/utils/useGetScreenSize";
+import { SM } from "@/lib/utils/constants";
 
-import Image from 'next/image';
-import { Slider } from '../../slider/Slider';
-import { HomeSlide } from '../HomeSlide';
-import { Text } from '@/UI/atoms/text/Text';
+import Image from "next/image";
+import { Slider } from "../../slider/Slider";
+import { HomeSlide } from "../HomeSlide";
+import { Text } from "@/UI/atoms/text/Text";
 
-import KeyboardNotesImage from '@/images/home/keyboard-notes-image.png';
+import KeyboardNotesImage from "@/images/home/keyboard-notes-image.png";
 
 const HomeSlider = () => {
 	const { screenWidth } = useGetScreenSize();
 
 	const slideStyles =
-		'h-full w-full flex justify-center items-center text-white text-4xl';
+		"h-full w-full flex justify-center items-center text-white text-4xl";
 
 	const slidesArray = [
 		<HomeSlide
@@ -26,10 +26,7 @@ const HomeSlider = () => {
 				</div>
 			}
 		/>,
-		<div
-			key={2}
-			className={slideStyles}
-		>
+		<div key={2} className={slideStyles}>
 			<HomeSlide
 				key={1}
 				description={
@@ -43,10 +40,7 @@ const HomeSlider = () => {
 				}
 			/>
 		</div>,
-		<div
-			key={3}
-			className={slideStyles}
-		>
+		<div key={3} className={slideStyles}>
 			<HomeSlide
 				key={1}
 				description={
@@ -60,10 +54,7 @@ const HomeSlider = () => {
 				}
 			/>
 		</div>,
-		<div
-			key={4}
-			className={slideStyles}
-		>
+		<div key={4} className={slideStyles}>
 			<HomeSlide
 				key={1}
 				description={
@@ -80,7 +71,7 @@ const HomeSlider = () => {
 	];
 
 	return (
-		<div className='h-[500px] relative md:mt-[80px]'>
+		<div className='h-[500px] relative'>
 			<Image
 				src={KeyboardNotesImage}
 				alt='Keyboard notes'
