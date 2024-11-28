@@ -22,7 +22,7 @@ const MainLayout = ({
 
 	return (
 		<main
-			className={`bg-champagne-white w-screen h-screen md:pt-[80px] ${
+			className={`bg-champagne-white w-screen h-screen ${
 				className ?? ''
 			} dark:bg-dark-blue`}
 		>

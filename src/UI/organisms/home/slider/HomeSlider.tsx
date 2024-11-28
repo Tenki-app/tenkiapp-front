@@ -80,7 +80,7 @@ const HomeSlider = () => {
 	];
 
 	return (
-		<div className='h-[500px] relative'>
+		<div className='h-[500px] relative md:mt-[80px]'>
 			<Image
 				src={KeyboardNotesImage}
 				alt='Keyboard notes'
