@@ -9,7 +9,7 @@ import { TasksHome } from '@/UI/organisms/tasksHome/tasksHome';
 
 const Home = () => {
 	return (
-		<MainLayout hasNav={true}>
+		<MainLayout hasMobileNav={true}>
 			<div className='bg-champagne-white pb-[183px]'>
 				<HomeSlider />
 				<TasksHome />
