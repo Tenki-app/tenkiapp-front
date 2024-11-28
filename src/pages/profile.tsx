@@ -5,7 +5,7 @@ const Profile = () => {
 		<>
 			<MainLayout
 				className='md:pt-[90px]'
-				hasNav={true}
+				hasMobileNav={true}
 			>
 				<p> Profile page!</p>
 			</MainLayout>
