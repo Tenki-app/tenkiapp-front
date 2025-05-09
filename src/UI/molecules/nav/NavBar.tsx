@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import { useAppStore } from '@/lib/store/store';
 import { useRouter } from 'next/navigation';
@@ -65,7 +65,7 @@ export const NavBar = () => {
 				<Link
 					href={redirect}
 					className={handleLinkActiveStyles(itemName)}
-					data-testid='navbar-home-button'
+					data-testid={`${'navbar-button-'}${itemName}`}
 				>
 					{itemName === 'Home' && (
 						<HomeIcon className={handleActiveStyles('Home')} />
@@ -107,16 +107,21 @@ export const NavBar = () => {
 
 	return (
 		<>
-			<nav className='w-full h-[69px] md:h-[80px] fixed left-0 z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'>
+			<nav
+				className='w-full h-[69px] md:h-[80px] fixed left-0 z-[90] bottom-0 bg-dark-blue md:top-0 md:pb-[3px]'
+				data-testid='navbar-task-button'
+			>
 				<div className='h-full flex items-center justify-between'>
 					<ul className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
-						{navBarItemsData.map((navBarItem) =>
-							renderNavBarItem(
-								navBarItem.itemName as NavType,
-								navBarItem.redirect,
-								navBarItem.itemLabel
-							)
-						)}
+						{navBarItemsData.map((navBarItem, index) => (
+							<Fragment key={index}>
+								{renderNavBarItem(
+									navBarItem.itemName as NavType,
+									navBarItem.redirect,
+									navBarItem.itemLabel
+								)}
+							</Fragment>
+						))}
 					</ul>
 					<ul className='flex items-center gap-5'>
 						<li className='w-fit hidden md:block'>
