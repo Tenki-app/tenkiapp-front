@@ -82,8 +82,8 @@ const TaskPage = () => {
 				isLoadingSubmit={isLoadingPostTask}
 			/>
 			<MainLayout
-				className='md:pt-[90px]'
-				hasNav
+				className='md:pt-10'
+				hasMobileNav
 			>
 				<Title className='text-center !font-bold mb-4'>
 					{t('tasks')}

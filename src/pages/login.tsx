@@ -7,7 +7,7 @@ import { ButtonLogin } from '@/UI/atoms/button/ButtonLogin';
 
 const Login = () => {
     return (
-        <MainLayout hasNav={false}>
+        <MainLayout hasMobileNav={false}>
             <div className='flex h-screen'>
                 <div className='hidden w-1/2 md:block'>
                     <LoginBanner />
