@@ -41,9 +41,9 @@ describe('NavBar tests', () => {
 
 	it('should all link have correct href', () => {
 		render(<NavBar />);
-		const homeLink = screen.getByTestId('navbar-home-button');
-		const taskLink = screen.getByTestId('navbar-task-button');
-		const profileLink = screen.getByTestId('navbar-profile-button');
+		const homeLink = screen.getByTestId('navbar-button-Home');
+		const taskLink = screen.getByTestId('navbar-button-Task');
+		const profileLink = screen.getByTestId('navbar-button-Profile');
 
 		expect(homeLink).toHaveAttribute('href', '/');
 		expect(taskLink).toHaveAttribute('href', '/tasks');

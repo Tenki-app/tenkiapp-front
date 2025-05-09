@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react";
-import { withAuthenticationRequired } from "@auth0/auth0-react";
-import { useTranslation } from "react-i18next";
+import { useEffect, useState } from 'react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { useTranslation } from 'react-i18next';
 
-import { redirectToLoginPage } from "@/lib/helpers/redirect/redirects";
-import { useAppStore } from "@/lib/store/store";
+import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
+import { useAppStore } from '@/lib/store/store';
 import {
 	useGetAllTasksByCategory,
 	usePostSingleTask,
-} from "@/lib/hooks/queries/useQueryTask";
-import { taskFilterTagsCategories } from "@/lib/data/tasks";
-import { calculateTaskDonePercent } from "@/lib/helpers/task/calculateTaskPercent";
+} from '@/lib/hooks/queries/useQueryTask';
+import { taskFilterTagsCategories } from '@/lib/data/tasks';
+import { calculateTaskDonePercent } from '@/lib/helpers/task/calculateTaskPercent';
 
-import { MainLayout } from "@/UI/layouts/MainLayout";
-import { FilterTabs } from "@/UI/organisms/filter/FilterTabs";
-import { ProgressBar } from "@/UI/molecules/bar/ProgressBar";
-import { Loader } from "@/UI/molecules/loader/Loader";
-import { Title } from "@/UI/atoms/text/Title";
-import { Button } from "@/UI/atoms/button/Button";
-import { ModalAddTask } from "@/UI/organisms/task/modal/ModalAddTask";
-import { AccordionStates } from "@/UI/organisms/task/state/AccordionStates";
+import { MainLayout } from '@/UI/layouts/MainLayout';
+import { FilterTabs } from '@/UI/organisms/filter/FilterTabs';
+import { ProgressBar } from '@/UI/molecules/bar/ProgressBar';
+import { Loader } from '@/UI/molecules/loader/Loader';
+import { Title } from '@/UI/atoms/text/Title';
+import { Button } from '@/UI/atoms/button/Button';
+import { ModalAddTask } from '@/UI/organisms/task/modal/ModalAddTask';
+import { AccordionStates } from '@/UI/organisms/task/state/AccordionStates';
 
-import AddIcon from "@/assets/svg/task/addIcon.svg";
+import AddIcon from '@/assets/svg/task/addIcon.svg';
 
-import type { MouseEvent } from "react";
-import type { TypeAddTaskForm } from "@/lib/types/tasks";
-import type { SubmitHandler } from "react-hook-form";
+import type { MouseEvent } from 'react';
+import type { TypeAddTaskForm } from '@/lib/types/tasks';
+import type { SubmitHandler } from 'react-hook-form';
 
 const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
@@ -40,17 +40,17 @@ const TaskPage = () => {
 	const [todayTasksPercent, setTodayTasksPercent] = useState(0);
 
 	const inProgressTasks = allTasksByCategory?.filter(
-		(task) => task.state === "progress"
+		(task) => task.state === 'progress'
 	);
 	const doneTasks = allTasksByCategory?.filter(
-		(task) => task.state === "done"
+		(task) => task.state === 'done'
 	);
 	const pendingTasks = allTasksByCategory?.filter(
-		(task) => task.state === "pending"
+		(task) => task.state === 'pending'
 	);
 
 	useEffect(() => {
-		if (activeTaskTabFilter === "today") {
+		if (activeTaskTabFilter === 'today') {
 			setTodayTasksPercent(calculateTaskDonePercent(allTasksByCategory));
 		}
 	}, [allTasksByCategory, activeTaskTabFilter]);
@@ -65,7 +65,7 @@ const TaskPage = () => {
 	) => {
 		const newTaskToSend = {
 			...formData,
-			state: "pending",
+			state: 'pending',
 		};
 
 		postSingleTask(newTaskToSend).finally(() => {
@@ -81,9 +81,12 @@ const TaskPage = () => {
 				onSubmit={onSubmitAddTask}
 				isLoadingSubmit={isLoadingPostTask}
 			/>
-			<MainLayout className='pt-10' hasMobileNav>
+			<MainLayout
+				className='md:pt-10'
+				hasMobileNav
+			>
 				<Title className='text-center !font-bold mb-4'>
-					{t("tasks")}
+					{t('tasks')}
 				</Title>
 				<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
 					<FilterTabs
