@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { useTranslation } from 'react-i18next';
+
 import { Text } from '@/UI/atoms/text/Text';
 import ProfileIcon from '@/svg/profile/profileIcon.svg';
 
@@ -16,6 +18,8 @@ export const ProfileHeader = ({
 	profileImageSrc,
 	numberPendingTasks,
 }: TypeProfileHeaderProps) => {
+	const { t } = useTranslation();
+
 	return (
 		<div className='flex gap-x-6 items-center'>
 			{profileImageSrc ? (
@@ -32,7 +36,16 @@ export const ProfileHeader = ({
 			<div className='flex flex-col'>
 				<Text className='font-bold text-[18px]'>{profileName}</Text>
 				<Text className='text-[14px]'>{profileEmail}</Text>
-				<Text className='text-[14px]'>Tareas pendientes</Text>
+				{numberPendingTasks && (
+					<div className='flex items-center'>
+						<Text className='text-[14px]'>{`${t(
+							'pendingTasks'
+						)}: `}</Text>
+						<Text className='text-[13px] w-[17px] flex justify-center items-center dark:bg-champagne-white bg-dark-blue rounded-full ml-2 text-champagne-white dark:text-dark-blue'>
+							{numberPendingTasks}
+						</Text>
+					</div>
+				)}
 			</div>
 		</div>
 	);
