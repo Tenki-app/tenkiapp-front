@@ -7,7 +7,8 @@ import { usePostSignInUser } from '@/lib/hooks/queries/useQueryUser';
 import { Button } from './Button';
 
 const ButtonLogin = () => {
-	const { loginWithPopup, getIdTokenClaims } = useAuth0();
+	const { loginWithPopup, getIdTokenClaims, user } = useAuth0();
+
 	const router = useRouter();
 	const { t } = useTranslation();
 	const { mutateAsync: postSignInUser } = usePostSignInUser();

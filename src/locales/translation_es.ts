@@ -4,6 +4,7 @@ import { navBar_es } from './navBar/navBar_es';
 import { notFound_es } from './notFound/notFound_es';
 import { onboarding_es } from './onboardingTranslations/onboarding_es';
 import { task_es } from './taskTranslations/task_es';
+import { profile_es } from './profile/profile_es';
 
 export const translations_es = {
 	...global_es,
@@ -11,5 +12,6 @@ export const translations_es = {
 	...onboarding_es,
 	...task_es,
 	...notFound_es,
-	...navBar_es
+	...navBar_es,
+	...profile_es
 };
