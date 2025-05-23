@@ -5,6 +5,14 @@ const nextConfig = {
 		locales: ["en", "es"],
 		defaultLocale: "en",
 	},
+	images: {
+		remotePatterns: [{
+			protocol: 'https',
+			hostname: 'lh3.googleusercontent.com',
+			port: '',
+			pathname: '/a/**'
+		}]
+	},
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
