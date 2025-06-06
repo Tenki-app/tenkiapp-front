@@ -36,8 +36,7 @@ export const NavBar = () => {
 	};
 
 	const handleLinkActiveStyles = (option: NavType): string => {
-		let linkActiveStyles =
-			'main-transition flex flex-row justify-center items-center relative ';
+		let linkActiveStyles = 'main-transition flex flex-row justify-center items-center relative ';
 		if (navOption === option) {
 			linkActiveStyles +=
 				'bg-dark-blue-transparent block py-[11px] px-[22px] rounded-md relative flex flex-row justify-center items-center relative text-light-blue';
@@ -55,11 +54,7 @@ export const NavBar = () => {
 		}
 	};
 
-	const renderNavBarItem = (
-		itemName: NavType,
-		redirect: string,
-		itemLabel: string
-	) => {
+	const renderNavBarItem = (itemName: NavType, redirect: string, itemLabel: string) => {
 		return (
 			<li onClick={() => handleActive(itemName)}>
 				<Link
@@ -67,17 +62,9 @@ export const NavBar = () => {
 					className={handleLinkActiveStyles(itemName)}
 					data-testid={`${'navbar-button-'}${itemName}`}
 				>
-					{itemName === 'Home' && (
-						<HomeIcon className={handleActiveStyles('Home')} />
-					)}
-					{itemName === 'Profile' && (
-						<ProfileIcon
-							className={handleActiveStyles('Profile')}
-						/>
-					)}
-					{itemName === 'Task' && (
-						<TasksIcon className={handleActiveStyles('Task')} />
-					)}
+					{itemName === 'Home' && <HomeIcon className={handleActiveStyles('Home')} />}
+					{itemName === 'Profile' && <ProfileIcon className={handleActiveStyles('Profile')} />}
+					{itemName === 'Task' && <TasksIcon className={handleActiveStyles('Task')} />}
 
 					<div className={handleDivActive(itemName)}></div>
 
@@ -115,11 +102,7 @@ export const NavBar = () => {
 					<ul className='h-full flex justify-evenly items-center gap-10 w-full md:w-auto px-6 md:pl-11'>
 						{navBarItemsData.map((navBarItem, index) => (
 							<Fragment key={index}>
-								{renderNavBarItem(
-									navBarItem.itemName as NavType,
-									navBarItem.redirect,
-									navBarItem.itemLabel
-								)}
+								{renderNavBarItem(navBarItem.itemName as NavType, navBarItem.redirect, navBarItem.itemLabel)}
 							</Fragment>
 						))}
 					</ul>
@@ -138,24 +121,15 @@ export const NavBar = () => {
 						>
 							<Link
 								href={''}
-								className={handleLinkActiveStyles(
-									'Notification'
-								)}
+								className={handleLinkActiveStyles('Notification')}
 							>
-								<NotificationIcon
-									className={handleActiveStyles(
-										'Notification'
-									)}
-								></NotificationIcon>
-								<div
-									className={handleDivActive('Notification')}
-								></div>
+								<NotificationIcon className={handleActiveStyles('Notification')}></NotificationIcon>
+								<div className={handleDivActive('Notification')}></div>
 							</Link>
 						</li>
 					</ul>
 				</div>
 			</nav>
-			<div className='md:mb-[80px]'></div>
 		</>
 	);
 };
