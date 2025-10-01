@@ -12,6 +12,8 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				'dark-gray-blue':'#2B3746',
+				'gray-blue':'#525E6B',
 				'dark-blue': '#182438',
 				'blue-hover': '#7A889F',
 				'dark-garnet': '#723232',
