@@ -10,25 +10,18 @@ type TypeFilterTagsProps = {
 	testId?: string;
 };
 
-const FilterTabs = ({
-	activeTag,
-	setActiveTag,
-	tabsContent,
-	containerStyles,
-	testId,
-}: TypeFilterTagsProps) => {
+const FilterTabs = ({ activeTag, setActiveTag, tabsContent, containerStyles, testId }: TypeFilterTagsProps) => {
 	const { t } = useTranslation();
 
 	const buttonStyles =
-		'bg-dark-blue rounded-tl rounded-tr text-white px-6 md:px-8 py-2 fast-transition font-semibold text-sm xs:text-lg';
+		'bg-dark-blue dark:bg-dark-gray-blue rounded-tl rounded-tr text-white px-6 md:px-8 py-2 fast-transition font-semibold text-sm xs:text-lg';
 	const activeButtonStyles = '!bg-bluish-gray';
 
 	const handleUpdateActiveTag = (tag: string) => {
 		setActiveTag(tag);
 	};
 
-	const handleButtonStyles = (tag: string) =>
-		`${activeTag === tag ? activeButtonStyles : ''} ${buttonStyles ?? ''}`;
+	const handleButtonStyles = (tag: string) => `${activeTag === tag ? activeButtonStyles : ''} ${buttonStyles ?? ''}`;
 
 	return (
 		<ul
