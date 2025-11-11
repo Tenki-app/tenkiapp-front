@@ -6,25 +6,27 @@ import type { ReactNode } from 'react';
 type typeMainLayoutProps = {
 	children: ReactNode;
 	className?: string;
-	hasMargin?: boolean;
-	wrapperClasses?: string;
 	hasMobileNav?: boolean;
 };
 
-const MainLayout = ({ children, className, hasMargin, wrapperClasses, hasMobileNav }: typeMainLayoutProps) => {
-	const mainMargin = 'mx-auto w-[90vw] 2xl:w-[1080px]';
-
+const MainLayout = ({
+	children,
+	className,
+	hasMobileNav,
+}: typeMainLayoutProps) => {
 	return (
-		<main className={`bg-champagne-white w-screen ${className ?? ''} dark:bg-dark-blue`}>
-			<div className={`h-full ${hasMargin ? mainMargin : ''} ${wrapperClasses ?? ''}`}>
-				{hasMobileNav && (
-					<div className='flex p-3 md:hidden'>
-						<ThemeMode variant='screen' />
-						<SwitchLang variant='screen' />
-					</div>
-				)}
-				{children}
-			</div>
+		<main
+			className={`bg-champagne-white w-screen ${
+				className ?? ''
+			} dark:bg-dark-blue`}
+		>
+			{hasMobileNav && (
+				<div className='flex p-3 md:hidden'>
+					<ThemeMode variant='screen' />
+					<SwitchLang variant='screen' />
+				</div>
+			)}
+			{children}
 		</main>
 	);
 };

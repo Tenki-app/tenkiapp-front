@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	height: 100dvh;
-	background-color: #F7EFD8;
-}
 
 .main-transition {
 	transition: all ease 0.3s;
