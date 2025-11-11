@@ -13,7 +13,7 @@ const TasksHome = () => {
 	const { t } = useTranslation();
 	return (
 		<div className='md:pl-[5%] md:pr-[5%] relative pb-40'>
-			<LeavesPictogram1 className='hidden md:block w-[269px] h-[266px] text-dark-blue opacity-[.2] absolute right-0 ' />
+			<LeavesPictogram1 className='hidden md:block w-[269px] h-[266px] dark:text-champagne-white text-dark-blue opacity-[.2] absolute right-0 ' />
 			<Title className='!font-bold text-[48px] mt-[50px] mb-[20px] text-center'>{t('tasks')}</Title>
 			<div className='flex justify-center  flex-wrap gap-[5%] mt-[50px]'>
 				<div className='flex flex-col items-center z-10'>
@@ -33,7 +33,7 @@ const TasksHome = () => {
 						{t('pending')}
 					</Title>
 					<TasksListContainer tasks={pendingTasks} />
-					<LeavesPictogram2 className='hidden md:block w-[269px] h-[266px] text-dark-blue opacity-[.2] absolute z-0 left-0 bottom-0' />
+					<LeavesPictogram2 className='hidden md:block w-[269px] h-[266px] dark:text-champagne-white text-dark-blue opacity-[.2] absolute z-0 left-0 bottom-0' />
 				</div>
 			</div>
 		</div>

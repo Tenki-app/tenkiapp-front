@@ -79,7 +79,7 @@ const TaskPage = () => {
 						setActiveTag={setActiveTaskTabFilter}
 						containerStyles='w-[90%] mx-auto'
 					/>
-					<div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
+					<div className='bg-bluish-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
 						<AccordionStates
 							inProgressTasks={inProgressTasks}
 							doneTasks={doneTasks}
