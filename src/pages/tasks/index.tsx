@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { redirectToLoginPage } from '@/lib/helpers/redirect/redirects';
 import { useAppStore } from '@/lib/store/store';
-import { useGetAllTasksByCategory, usePostSingleTask } from '@/lib/hooks/queries/useQueryTask';
+import {
+	useGetAllTasksByCategory,
+	usePostSingleTask,
+} from '@/lib/hooks/queries/useQueryTask';
 import { taskFilterTagsCategories } from '@/lib/data/tasks';
 import { calculateTaskDonePercent } from '@/lib/helpers/task/calculateTaskPercent';
 
@@ -27,15 +30,24 @@ const TaskPage = () => {
 	const { activeTaskTabFilter, setActiveTaskTabFilter, user } = useAppStore();
 	const { t } = useTranslation();
 
-	const { allTasksByCategory } = useGetAllTasksByCategory(activeTaskTabFilter, user?.id);
+	const { allTasksByCategory } = useGetAllTasksByCategory(
+		activeTaskTabFilter,
+		user?.id
+	);
 	const { postSingleTask, isLoadingPostTask } = usePostSingleTask();
 
 	const [showAddTaskModal, setShowAddTaskModal] = useState(false);
 	const [todayTasksPercent, setTodayTasksPercent] = useState(0);
 
-	const inProgressTasks = allTasksByCategory?.filter((task) => task.state === 'progress');
-	const doneTasks = allTasksByCategory?.filter((task) => task.state === 'done');
-	const pendingTasks = allTasksByCategory?.filter((task) => task.state === 'pending');
+	const inProgressTasks = allTasksByCategory?.filter(
+		(task) => task.state === 'progress'
+	);
+	const doneTasks = allTasksByCategory?.filter(
+		(task) => task.state === 'done'
+	);
+	const pendingTasks = allTasksByCategory?.filter(
+		(task) => task.state === 'pending'
+	);
 
 	useEffect(() => {
 		if (activeTaskTabFilter === 'today') {
@@ -48,7 +60,9 @@ const TaskPage = () => {
 		setShowAddTaskModal(true);
 	};
 
-	const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (formData) => {
+	const onSubmitAddTask: SubmitHandler<TypeAddTaskForm> = async (
+		formData
+	) => {
 		const newTaskToSend = {
 			...formData,
 			state: 'pending',
@@ -68,11 +82,13 @@ const TaskPage = () => {
 				isLoadingSubmit={isLoadingPostTask}
 			/>
 			<MainLayout
-				className='md:pt-10'
+				className='md:pt-10 md:overflow-auto h-screen'
 				hasMobileNav
 			>
-				<Title className='text-center !font-bold mb-4 mt-[80px]'>{t('tasks')}</Title>
-				<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
+				<Title className='text-center !font-bold mb-4 mt-8 md:mt-[80px]'>
+					{t('tasks')}
+				</Title>
+				<section className='px-2 tall:h-[70%] lg:max-w-[950px] lg:mx-auto'>
 					<FilterTabs
 						tabsContent={taskFilterTagsCategories}
 						activeTag={activeTaskTabFilter}
