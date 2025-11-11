@@ -9,4 +9,5 @@ export const task_es = {
 	category: 'Categoría',
 	inProgress: 'En progreso',
 	pending: 'Pendientes',
+	done: 'Hecho'
 };

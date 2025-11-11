@@ -8,4 +8,5 @@ export const task_en = {
 	description: 'Description',
 	inProgress: 'In progress',
 	pending: 'Pending',
+	done: 'Done'
 };
