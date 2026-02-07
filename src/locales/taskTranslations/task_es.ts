@@ -7,4 +7,7 @@ export const task_es = {
 	title: 'Título',
 	description: 'Descripción',
 	category: 'Categoría',
+	inProgress: 'En progreso',
+	pending: 'Pendientes',
+	done: 'Hecho'
 };

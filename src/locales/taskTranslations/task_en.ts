@@ -6,4 +6,7 @@ export const task_en = {
 	deleteTaskDescription: 'Are you sure you want to delete this task?',
 	title: 'Title',
 	description: 'Description',
+	inProgress: 'In progress',
+	pending: 'Pending',
+	done: 'Done'
 };

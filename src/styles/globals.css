@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .main-transition {
 	transition: all ease 0.3s;
 }

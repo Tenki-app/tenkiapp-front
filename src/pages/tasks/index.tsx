@@ -82,20 +82,20 @@ const TaskPage = () => {
 				isLoadingSubmit={isLoadingPostTask}
 			/>
 			<MainLayout
-				className='md:pt-[90px]'
-				hasNav
+				className='md:pt-10 md:overflow-auto h-screen'
+				hasMobileNav
 			>
-				<Title className='text-center !font-bold mb-4'>
+				<Title className='text-center !font-bold mb-4 mt-8 md:mt-[80px]'>
 					{t('tasks')}
 				</Title>
-				<section className='px-2 pb-20 h-[85%] lg:max-w-[950px] lg:mx-auto'>
+				<section className='px-2 tall:h-[70%] lg:max-w-[950px] lg:mx-auto'>
 					<FilterTabs
 						tabsContent={taskFilterTagsCategories}
 						activeTag={activeTaskTabFilter}
 						setActiveTag={setActiveTaskTabFilter}
 						containerStyles='w-[90%] mx-auto'
 					/>
-					<div className='bg-dark-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
+					<div className='bg-bluish-gray rounded-lg h-full w-full px-4 lg:px-8 py-8 flex flex-col justify-between'>
 						<AccordionStates
 							inProgressTasks={inProgressTasks}
 							doneTasks={doneTasks}

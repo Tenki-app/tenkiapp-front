@@ -11,8 +11,7 @@ import KeyboardNotesImage from '@/images/home/keyboard-notes-image.png';
 const HomeSlider = () => {
 	const { screenWidth } = useGetScreenSize();
 
-	const slideStyles =
-		'h-full w-full flex justify-center items-center text-white text-4xl';
+	const slideStyles = 'h-full w-full flex justify-center items-center text-white text-4xl';
 
 	const slidesArray = [
 		<HomeSlide
@@ -35,8 +34,7 @@ const HomeSlider = () => {
 				description={
 					<div>
 						<Text className='text-center text-xl md:text-3xl'>
-							Gestiona tus <span>tareas</span> de manera efectiva
-							con
+							Gestiona tus <span>tareas</span> de manera efectiva con
 							<span> Tenki!</span>
 						</Text>
 					</div>
@@ -52,8 +50,7 @@ const HomeSlider = () => {
 				description={
 					<div>
 						<Text className='text-center text-xl md:text-3xl'>
-							Gestiona tus <span>tareas</span> de manera efectiva
-							con
+							Gestiona tus <span>tareas</span> de manera efectiva con
 							<span> Tenki!</span>
 						</Text>
 					</div>
@@ -69,8 +66,7 @@ const HomeSlider = () => {
 				description={
 					<div>
 						<Text className='text-center text-xl md:text-3xl'>
-							Gestiona tus <span>tareas</span> de manera efectiva
-							con
+							Gestiona tus <span>tareas</span> de manera efectiva con
 							<span> Tenki!</span>
 						</Text>
 					</div>
@@ -80,7 +76,7 @@ const HomeSlider = () => {
 	];
 
 	return (
-		<div className='h-[500px] relative'>
+		<div className='h-screen relative pt-[80px]'>
 			<Image
 				src={KeyboardNotesImage}
 				alt='Keyboard notes'

@@ -12,7 +12,7 @@ const NotFound = () => {
 		<>
 			<MainLayout
 				className='md:pt-[90px]'
-				hasNav={true}
+				hasMobileNav={true}
 			>
 				<div className='flex flex-col items-center justify-evenly h-[80%]'>
 					<Title

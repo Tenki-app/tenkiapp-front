@@ -12,6 +12,8 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				'dark-gray-blue':'#2B3746',
+				'gray-blue':'#525E6B',
 				'dark-blue': '#182438',
 				'blue-hover': '#7A889F',
 				'dark-garnet': '#723232',
@@ -41,6 +43,7 @@ module.exports = {
 			lg: '1024px',
 			xl: '1280px',
 			'2xl': '1536px',
+			'tall': { 'raw': '(min-height: 800px)' },
 		},
 	},
 	plugins: [],
