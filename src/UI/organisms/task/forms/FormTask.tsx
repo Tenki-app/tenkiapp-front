@@ -79,9 +79,7 @@ const FormTask = ({
 					name='date'
 					type='date'
 					min={handleMinDateValidation()}
-					max={
-						categoryValue === 'today' ? getCurrentDate() : undefined
-					}
+					max={categoryValue === 'today' ? getCurrentDate() : undefined}
 					isDisabled={!!(categoryValue === 'someday')}
 				/>
 				{showMoreOptions && (
